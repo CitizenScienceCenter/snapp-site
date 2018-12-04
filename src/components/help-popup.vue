@@ -38,7 +38,7 @@
             <div class="col col-tablet-portrait-10">
                 <div class="popup">
                     <ul>
-                        <li>{{ $t('transcription-rule-1') }}</li>
+                        <li>{{ $t(challenge) }}</li>
                         <li>{{ $t('transcription-rule-2') }}</li>
                         <li>{{ $t('transcription-rule-3') }}</li>
                         <li>{{ $t('transcription-rule-4') }}</li>

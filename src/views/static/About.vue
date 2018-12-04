@@ -152,7 +152,7 @@ import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 
 export default {
-  name: 'Project',
+  name: 'About',
   components: {
     'app-cover': Cover,
     'app-content-section': ContentSection,

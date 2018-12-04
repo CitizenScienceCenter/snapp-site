@@ -26,103 +26,79 @@ export const i18n = new VueI18n({
   locale: language,
   messages: {
     'de': {
-      'page-homepage': {
-        'link': 'Home',
-        'title': 'Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-transcribe': {
-        'link': 'Transkribieren',
-        'title': 'Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-translate': {
-        'link': 'Übersetzen',
-        'title': 'Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-project': {
-        'link': 'Das Projekt',
-        'title': 'Das Projekt – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-wenker': {
-        'link': 'Wenker',
-        'title': 'Georg Wenker – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-faq': {
-        'link': 'FAQ',
-        'title': 'FAQ – Projekt Wenker – Citizen Science Center Zürich'
-      },
-    'page-terms': {
-        'link': 'Privacy Policy & Terms of Use',
-        'title': 'Privacy Policy & Terms of Use – Projekt Wenker – Citizen Science Center Zürich'
-    },
-      'page-login': {
-        'link': 'Anmelden',
-        'title': 'Anmelden – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-register': {
-        'link': 'Registrieren',
-        'title': 'Registrieren – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-logout': {
-        'link': 'Logout',
-        'title': 'Logout – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-reset': {
-        'link': 'Passwort zurücksetzen',
-        'title': 'Passwort zurücksetzen – Projekt Wenker – Citizen Science Center Zürich'
-      },
-      'page-profile': {
-        'link': 'Profil',
-        'title': 'Profil – Projekt Wenker – Citizen Science Center Zürich'
-      }
-    },
+          'page-homepage': {
+            'link': 'Home',
+            'title': 'Snapp – Citizen Science Center Zürich'
+          },
+          'page-challenge': {
+            'link': 'Challenge',
+            'title': 'Challenge – Snapp – Citizen Science Center Zürich'
+          },
+        'page-about': {
+            'link': 'About',
+            'title': 'About – Snapp – Citizen Science Center Zürich'
+        },
+        'page-terms': {
+            'link': 'Privacy Policy & Terms of Use',
+            'title': 'Privacy Policy & Terms of Use – Snapp – Citizen Science Center Zürich'
+        },
+          'page-login': {
+            'link': 'Anmelden',
+            'title': 'Anmelden – Snapp – Citizen Science Center Zürich'
+          },
+          'page-register': {
+            'link': 'Registrieren',
+            'title': 'Registrieren – Snapp – Citizen Science Center Zürich'
+          },
+          'page-logout': {
+            'link': 'Logout',
+            'title': 'Logout – Snapp – Citizen Science Center Zürich'
+          },
+          'page-reset': {
+            'link': 'Passwort zurücksetzen',
+            'title': 'Passwort zurücksetzen – Snapp – Citizen Science Center Zürich'
+          },
+          'page-profile': {
+            'link': 'Profil',
+            'title': 'Profil – Snapp – Citizen Science Center Zürich'
+          }
+        },
       'en': {
           'page-homepage': {
               'link': 'Home',
-              'title': 'Project Wenker – Citizen Science Center Zurich'
+              'title': 'Snapp – Citizen Science Center Zurich'
           },
-          'page-transcribe': {
-              'link': 'Transcribe',
-              'title': 'Transcribe – Project Wenker – Citizen Science Center Zurich'
+          'page-challenge': {
+              'link': 'Challenge',
+              'title': 'Challenge – Snapp – Citizen Science Center Zurich'
           },
-          'page-translate': {
-              'link': 'Translate',
-              'title': 'Translate – Project Wenker – Citizen Science Center Zurich'
-          },
-          'page-project': {
-              'link': 'The Project',
-              'title': 'The Project – Project Wenker – Citizen Science Center Zurich'
-          },
-          'page-wenker': {
-              'link': 'Wenker',
-              'title': 'Georg Wenker – Project Wenker – Citizen Science Center Zurich'
-          },
-          'page-faq': {
-              'link': 'FAQ',
-              'title': 'FAQ – Project Wenker – Citizen Science Center Zurich'
+          'page-about': {
+              'link': 'About',
+              'title': 'About – Snapp – Citizen Science Center Zürich'
           },
           'page-terms': {
               'link': 'Privacy Policy & Terms of Use',
-              'title': 'Privacy Policy & Terms of Use – Projekt Wenker – Citizen Science Center Zurich'
+              'title': 'Privacy Policy & Terms of Use – Snapp – Citizen Science Center Zurich'
           },
           'page-login': {
               'link': 'Login',
-              'title': 'Login – Project Wenker – Citizen Science Center Zurich'
+              'title': 'Login – Snapp – Citizen Science Center Zurich'
           },
           'page-register': {
               'link': 'Register',
-              'title': 'Register – Project Wenker – Citizen Science Center Zurich'
+              'title': 'Register – Snapp – Citizen Science Center Zurich'
           },
           'page-logout': {
               'link': 'Logout',
-              'title': 'Logout – Project Wenker – Citizen Science Center Zurich'
+              'title': 'Logout – Snapp – Citizen Science Center Zurich'
           },
           'page-reset': {
               'link': 'Reset Password',
-              'title': 'Reset Password – Project Wenker – Citizen Science Center Zurich'
+              'title': 'Reset Password – Snapp – Citizen Science Center Zurich'
           },
           'page-profile': {
               'link': 'Profil',
-              'title': 'Profil – Project Wenker – Citizen Science Center Zurich'
+              'title': 'Profil – Snapp – Citizen Science Center Zurich'
           }
       }
   }

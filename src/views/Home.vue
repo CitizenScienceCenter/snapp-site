@@ -1,10 +1,10 @@
 <i18n>
 {
   "de": {
-    "cover-heading": "Schweizer­deutsch<br/>1930 / 2020",
-    "cover-subheading": "Finde deinen Dialekt in den 40 Wenker-Sätzen.",
-    "cover-button-transcribe": "Transkribieren",
-    "cover-button-translate": "Übersetzen",
+    "cover-heading": "Do you Know These Snakes?",
+    "cover-subheading": "The Snake Recognition Challenge",
+    "cover-button-transcribe": "Start the Challenge",
+    "cover-button-translate": "Learn more",
 
     "section-explanation-heading": "Die 40 Wenker-Sätze",
     "section-explanation-text": "Im Rahmen eines sprachwissenschaftlichen Forschungsprojekts wurden vor rund 100 Jahren 40 hochdeutsche Sätze in die lokalen Dialekte der Schweiz übersetzt. Diese Daten wurden jedoch nie umfassend ausgewertet. Hilf uns, diesen Schatz zu heben.",
@@ -27,10 +27,10 @@
     "section-newsletter-heading": "Abonniere unseren Newsletter"
   },
   "en": {
-    "cover-heading": "Swiss German<br/>1930 / 2020",
-    "cover-subheading": "Find your own dialect in the 40 Wenker phrases.",
-  "cover-button-transcribe": "Transcribe",
-  "cover-button-translate": "Translate",
+    "cover-heading": "Do you Know These Snakes?",
+    "cover-subheading": "The Snake Recognition Challenge",
+    "cover-button-transcribe": "Start the Challenge",
+    "cover-button-translate": "Learn more",
 
     "section-explanation-heading": "The 40 Wenker Phrases",
     "section-explanation-text": "As part of a linguistic research project about 100 years ago, 40 sentences were translated from standard German into the local dialects of Switzerland. However, this data has never been evaluated. Help us to digitize this treasure.",
@@ -77,7 +77,7 @@
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
             <router-link tag="button" to="/transcribe" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
-            <router-link tag="button" to="/translate" class="button button-primary">{{ $t('cover-button-translate') }}</router-link>
+            <router-link tag="button" to="/translate" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-translate') }}</router-link>
           </p>
         </div>
       </div>

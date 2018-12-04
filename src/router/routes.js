@@ -1,7 +1,7 @@
 import Activity from '@/views/Activity'
-import * as User from '@/views/user'
-import * as Translation from '@/views/translation'
-import * as Transcription from '@/views/transcription'
+import * as User from '@/views/shared/user'
+import Profile from '@/views/user/Profile'
+import * as Challenge from '@/views/challenge'
 import store from '../store/store.js'
 
 const logout = (to, from, next) => {
@@ -18,24 +18,14 @@ const Home = resolve => {
         resolve(require("../views/Home.vue"));
     });
 };
-const Project = resolve => {
-    require.ensure(["../views/static/Project.vue"], () => {
-        resolve(require("../views/static/Project.vue"));
-    });
-};
-const Wenker = resolve => {
-    require.ensure(["../views/static/Wenker.vue"], () => {
-        resolve(require("../views/static/Wenker.vue"));
-    });
-};
-const FAQ = resolve => {
-    require.ensure(["../views/static/FAQ.vue"], () => {
-        resolve(require("../views/static/FAQ.vue"));
+const About = resolve => {
+    require.ensure(["../views/static/About.vue"], () => {
+        resolve(require("../views/static/About.vue"));
     });
 };
 const Terms = resolve => {
-    require.ensure(["../views/static/Terms.vue"], () => {
-        resolve(require("../views/static/Terms.vue"));
+    require.ensure(["../views/shared/static/Terms.vue"], () => {
+        resolve(require("../views/shared/static/Terms.vue"));
     });
 };
 
@@ -55,93 +45,48 @@ export const routes = [
         meta: {page: 'page-logout', nav: false}
     },
     {
-        path: "/transcribe",
+        path: "/challenge",
         component: Activity,
-        meta: {requiresAuth: true, breadcrumb: 'Projects', page: 'page-transcribe', nav: true},
+        meta: {requiresAuth: true, breadcrumb: 'Projects', page: 'page-challenge', nav: true},
         children: [
+            /*
             {
                 path: "",
-                name: "TranscribeStart",
-                component: Transcription.Start,
+                name: "ChallengeStart",
+                component: Challenge.Start,
                 meta: {
                     requiresAuth: true,
                     breadcrumb: "Transcribe",
-                    page: 'page-transcribe'
+                    page: 'page-challenge'
                 }
             },
+            */
             {
-                path: "task",
-                name: "TranscribeTask",
-                component: Transcription.Task,
+                path: "",
+                name: "ChallengeTask",
+                component: Challenge.Task,
                 meta: {
                     requiresAuth: true,
                     breadcrumb: "Transcribe Task",
-                    page: 'page-transcribe'
+                    page: 'page-challenge'
                 }
             },
             {
                 path: "complete",
-                name: "TranscribeComplete",
-                component: Transcription.Complete,
+                name: "ChallengeComplete",
+                component: Challenge.Complete,
                 meta: {
                     requiresAuth: true,
                     breadcrumb: "Transcribe Complete",
-                    page: 'page-transcribe'
+                    page: 'page-challenge'
                 }
             }
         ]
     },
     {
-        path: "/translate",
-        component: Activity,
-        meta: {requiresAuth: true, breadcrumb: 'Projects', page: 'page-translate', nav: true},
-        children: [
-            {
-                path: "",
-                name: "TranslateStart",
-                component: Translation.Start,
-                meta: {
-                    requiresAuth: true,
-                    breadcrumb: "Translate",
-                    page: 'page-translate'
-                }
-            },
-            {
-                path: "task",
-                name: "TranslateTask",
-                component: Translation.Task,
-                meta: {
-                    requiresAuth: true,
-                    breadcrumb: "Translate Task",
-                    page: 'page-translate'
-                }
-            },
-            {
-                path: "complete",
-                name: "TranslateComplete",
-                component: Translation.Complete,
-                meta: {
-                    requiresAuth: true,
-                    breadcrumb: "Translate Complete",
-                    page: 'page-translate'
-                }
-            }
-        ]
-    },
-    {
-        path: "/project",
-        component: Project,
-        meta: {page: "page-project", nav: true}
-    },
-    {
-        path: "/wenker",
-        component: Wenker,
-        meta: {page: "page-wenker", nav: true}
-    },
-    {
-        path: "/faq",
-        component: FAQ,
-        meta: {page: "page-faq", nav: true}
+        path: "/about",
+        component: About,
+        meta: {page: "page-about", nav: true}
     },
     {
         path: "/terms",
@@ -175,7 +120,7 @@ export const routes = [
     {
         path: "/profile",
         name: "UserProfile",
-        component: User.Profile,
+        component: Profile,
         meta: {requiresAuth: true, breadcrumb: 'View User', page: 'page-profile', nav: false}
     },
     {

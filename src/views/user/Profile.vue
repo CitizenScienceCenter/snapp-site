@@ -63,7 +63,7 @@
                             <h3 class="subheading">{{ $t('submission-heading') }}</h3>
                             <ul>
                                 <li>
-                                    {{ $t('submission-transcription-prefix') }}99{{ $t('submission-transcription-between') }}{{this.submissionStats['Transkribieren']['count']}}{{ $t('submission-transcription-suffix') }}
+                                    {{ $t(challenge) }}99{{ $t('submission-transcription-between') }}{{this.submissionStats['Transkribieren']['count']}}{{ $t('submission-transcription-suffix') }}
                                 </li>
                                 <li>
                                     {{ $t('submission-translation-prefix') }}{{this.submissionStats['Übersetzen']['count']}}{{ $t('submission-translation-suffix') }}
@@ -104,7 +104,6 @@
         },
         data() {
             return {
-                userId: this.$route.params.id,
                 submissions: [],
                 submissionStats: {}
             };
@@ -120,9 +119,6 @@
             }
         },
         mounted() {
-            if (this.userId !== this.user.id) {
-                // this.$store.dispatch("c3s/user/getUser", this.userId);
-            }
             const subQuery = {
                 "select": {
                     "fields": [

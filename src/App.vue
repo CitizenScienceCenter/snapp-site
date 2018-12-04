@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header project-name="Projekt<br>Wenker"></app-header>
+    <app-header project-name="Snapp"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
