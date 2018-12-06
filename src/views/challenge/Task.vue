@@ -14,39 +14,30 @@
 
     <div>
 
-        <section v-if="tasks.length">
-            <task-question-image v-if="media.length > 0" :question="tasks[0].content.question"
-                                 :imgPath="media[0].path"></task-question-image>
-        </section>
-
-        <app-content-section class="content-section-condensed">
+        <app-content-section>
             <div class="content-wrapper">
 
                 <div class="content-subsection">
-                    <div class="row">
-                        <div class="col">
+                    <div class="row row-centered">
+                        <div class="col-6">
 
                             <p class="centered">
-                                {{ $t('task-description') }}
+                                <img :src="'img/tasks/'+taskMedia[0].name" />
                             </p>
 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-subsection" v-if="responses.length">
-                    <task-response :answers="tasks[0].content.answers" :responses="responses" :showSpecial="true"></task-response>
-                </div>
-
-                <div class="content-subsection">
-                    <div class="row">
-                        <div class="col">
-
-                            <p class="button-group centered task-switch-bar">
-                                <button v-on:click="endTask" class="button button-secondary">Beenden</button>
-                                <label>{{$route.query.count}} von {{taskCount}}</label>
-                                <button v-on:click="submitTask" :disabled="loading" class="button button-primary">Nächster Bogen</button>
+                            <p class="centered">
+                                {{ tasks[0].content.question.text }}
                             </p>
+
+                            <div class="form-field" style="display: block">
+                                <input type="text" id="answer" :placeholder="tasks[0].content.answers[0].placeholder" :disabled="loading" v-model="responseText" />
+                            </div>
+
+                            <div class="button-group right-aligned">
+                                <button class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
+                                <button class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
+                            </div>
+
 
                         </div>
                     </div>
@@ -55,8 +46,6 @@
             </div>
         </app-content-section>
 
-
-        <comments-list v-if="tasks.length" :id="tasks[0].id"></comments-list>
 
         <app-footer></app-footer>
 
@@ -76,47 +65,57 @@
     export default {
         name: 'Task',
         components: {
-            TaskQuestionImage,
-            TaskResponse,
             'app-content-section': ContentSection,
-            CommentsList,
             'app-footer': Footer
-        },
-        computed: mapState({
-            specialChars: state => state.consts.specialChars,
-            tasks: state => state.c3s.task.tasks,
-            media: state => state.c3s.task.media,
-            user: state => state.c3s.user.currentUser,
-            activity: state => state.c3s.activity.activity,
-            comments: state => state.c3s.task.comments,
-            loading: state => state.c3s.settings.loading
-        }),
-        watch: {
-            '$route.query.count'(to, from) {
-                this.loadTask(to)
-            }
         },
         data() {
             return {
-                task_help: '',
-                nextTxt: 'Next',
-                responses: [],
-                taskCount: 1,
-                submissions: []
+                activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
+                taskIndex: 0,
+                taskCount: undefined,
+                responseText: undefined
             }
         },
+        computed: mapState({
+            user: state => state.c3s.user.currentUser,
+            activity: state => state.c3s.activity.activity,
+            tasks: state => state.c3s.task.tasks,
+            taskMedia: state => state.c3s.task.media,
+            currentUser: state => state.c3s.user.currentUser,
+            loading: state => state.c3s.settings.loading
+        }),
         mounted() {
-            if (this.activity && this.activity.id) {
-                this.loadTask(this.$route.query['count']);
-            } else {
-                console.log('No activity set in the store!');
-                //    TODO show error for no activity
-                this.$router.push({name: 'TranscribeStart'})
-            }
+
+            this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
+
+                const taskCountQuery = {
+                    "select": {
+                        "fields": [
+                            "*"
+                        ],
+                        "tables": [
+                            "tasks"
+                        ]
+                    },
+                    "where": {
+                        "activity_id": {
+                            "op": "e",
+                            "val": this.activity.id
+                        }
+                    }
+                };
+
+                this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
+                    this.taskCount = count.body;
+
+                    this.loadTask();
+                });
+
+            });
         },
-        // TODO add route leave guard to save submission before exiting
         methods: {
-            loadTask(count) {
+            loadTask: function (taskIndex) {
+
                 const taskQuery = {
                     "select": {
                         "fields": [
@@ -133,18 +132,14 @@
                         }
                     },
                     "limit": 1,
-                    "offset": count - 1
+                    "offset": this.taskIndex
                 };
-                if (this.$route.query.hasOwnProperty('region')) {
-                    const userRegion = this.$route.query['region'];
-                    taskQuery['where']["info ->> 'SchoolRegion'"] = {'op': 'e', 'val': userRegion, "join": "a"}
-                }
-                this.$store.dispatch('c3s/task/getTaskCount', taskQuery).then(c => {
-                    this.taskCount = c.body
-                })
-                this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(t => {
-                    if (t.body && t.body.length > 0) {
-                        const task = t.body[0];
+
+
+                if (this.taskIndex < this.taskCount) {
+
+                    this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
+
                         const mediaQuery = {
                             "select": {
                                 "fields": [
@@ -157,77 +152,50 @@
                             "where": {
                                 "source_id": {
                                     "op": "e",
-                                    "val": task.id
+                                    "val": this.tasks[0].id
                                 }
-                            },
-                            "limit": 10
-                        };
-                        this.responses =[]
-                        for (let i = 0; i < task.content.answers.length; i++) {
-                            this.responses.push({text: ""})
-                        }
-                        this.createSubmission();
-                        this.$store.dispatch('c3s/media/getMedia', [mediaQuery, undefined, 100]).then(m => {
-                            let media = m.body.slice();
-                            for (let index in media) {
-                                media[index].path = media[index].path.replace('./static', 'https://wenker.citizenscience.ch/files')
                             }
-                            console.log(media[0].path)
-                            this.$store.commit('c3s/task/SET_MEDIA', media)
-                        })
-                    } else {
-                        console.log('No tasks found');
-                        this.$router.push({'name': 'TranscribeComplete'})
-                    }
-                })
-            },
-            createSubmission() {
-                const submission = {
-                    user_id: this.user.id,
-                    task_id: this.tasks[0].id,
-                    content: {}
-                };
-                this.$store.commit('c3s/submission/SET_SUBMISSION', submission)
-            },
-            endTask() {
-                //TODO do not submit if responses are ALL empty
-                this.$store.commit('c3s/submission/SET_SUBMISSION_RESPONSES', this.responses);
-                this.$store.dispatch('c3s/submission/createSubmission').then(s => {
-                    this.$router.push({
-                        name: 'TranscribeComplete'
-                    })
-                })
-            },
-            submitTask() {
-                let responded = false;
-                for (let i in this.responses) {
-                    if (this.responses[i].text.length > 0) {
-                        responded = true;
-                        break;
-                    }
+                        };
+
+                        this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
+
+                            // all loaded
+
+                        });
+                    });
                 }
-                let qu = Object.assign({}, this.$route.query);
-                qu['count'] = parseInt(qu['count']) + 1;
-                if (responded) {
-                    this.$store.commit('c3s/submission/SET_SUBMISSION_RESPONSES', this.responses);
-                    this.$store.dispatch('c3s/submission/createSubmission').then(s => {
-                        if (qu['count'] > this.taskCount) {
-                            this.$store.commit('c3s/activity/SET_ACTIVITY', null);
-                            this.$router.push({
-                                name: 'TranscribeComplete'
-                            })
-                        } else {
-                            this.$router.replace({name: 'TranscribeTask', query: qu})
-                        }
-                    })
-                } else {
-                    this.$router.replace({name: 'TranscribeTask', query: qu})
+                else {
+                    console.log("end reached");
                 }
 
+
+            },
+            nextTask: function () {
+                if (this.taskIndex < this.taskCount - 1) {
+                    this.taskIndex++;
+
+                    this.loadTask();
+                }
+            },
+            submitResponse: function() {
+                const sub = {
+                    "info": {},
+                    "content": {
+                        "responses": [{
+                            "text": ""
+                        }]
+                    },
+                    "task_id": "dc229b6c-56cd-48dc-9a75-74a1b9504acf",
+                    "user_id": "f4df80e2-0b2d-4d0f-bcbf-431b877ce2b3"
+                };
+                console.log( sub );
+
+                this.$store.dispatch('c3s/submission/createSubmission', sub ).then(submission => {
+                    console.log(submission);
+                });
             }
         }
-
-      }
+    }
 
 </script>
 

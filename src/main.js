@@ -12,7 +12,7 @@ import Croppa from 'vue-croppa';
 const env = process.env.NODE_ENV || 'development';
 let swaggerURL = 'https://api.citizenscience.ch/api/v2/swagger.json';
 if (env === 'local') {
-    swaggerURL = 'http://localhost:8080/api/v2/swagger.json';
+    swaggerURL = 'http://172.23.104.29:8080/api/v2/swagger.json';
 }
 Vue.config.productionTip = false
 

@@ -47,7 +47,7 @@ export const routes = [
     {
         path: "/challenge",
         component: Activity,
-        meta: {requiresAuth: true, breadcrumb: 'Projects', page: 'page-challenge', nav: true},
+        meta: {requiresAuth: true, page: 'page-challenge', nav: true},
         children: [
             /*
             {
@@ -67,7 +67,6 @@ export const routes = [
                 component: Challenge.Task,
                 meta: {
                     requiresAuth: true,
-                    breadcrumb: "Transcribe Task",
                     page: 'page-challenge'
                 }
             },
@@ -77,7 +76,6 @@ export const routes = [
                 component: Challenge.Complete,
                 meta: {
                     requiresAuth: true,
-                    breadcrumb: "Transcribe Complete",
                     page: 'page-challenge'
                 }
             }

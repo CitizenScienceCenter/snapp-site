@@ -76,8 +76,8 @@
             <button class="button button-primary" v-scroll-to="'#projects'">{{ $t('cover-button-projects') }}</button>
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
-            <router-link tag="button" to="/transcribe" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
-            <router-link tag="button" to="/translate" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-translate') }}</router-link>
+            <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
+            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-translate') }}</router-link>
           </p>
         </div>
       </div>
