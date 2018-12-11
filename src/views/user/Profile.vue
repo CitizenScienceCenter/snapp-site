@@ -59,11 +59,12 @@
                             </form>
                         </div>
 
+                        <!--
                         <div class="content-subsection" v-if="submissions.length">
                             <h3 class="subheading">{{ $t('submission-heading') }}</h3>
                             <ul>
                                 <li>
-                                    {{ $t(challenge) }}99{{ $t('submission-transcription-between') }}{{this.submissionStats['Transkribieren']['count']}}{{ $t('submission-transcription-suffix') }}
+                                    {{ $t('challenge') }}99{{ $t('submission-transcription-between') }}{{this.submissionStats['Transkribieren']['count']}}{{ $t('submission-transcription-suffix') }}
                                 </li>
                                 <li>
                                     {{ $t('submission-translation-prefix') }}{{this.submissionStats['Übersetzen']['count']}}{{ $t('submission-translation-suffix') }}
@@ -71,6 +72,7 @@
                             </ul>
                             <p class="lead">{{ $t('thanks') }}</p>
                         </div>
+                        -->
 
                         <div class="content-subsection">
                             <div class="button-group">

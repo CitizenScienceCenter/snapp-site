@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header project-name="Snapp"></app-header>
+    <app-header project-name="Snapp" :score="score"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
@@ -9,7 +9,8 @@
 
 <script>
 
-import Header from './components/shared/Header.vue'
+    import {mapState} from 'vuex'
+    import Header from './components/shared/Header.vue'
 
 export default {
   name: 'app',
@@ -21,7 +22,10 @@ export default {
     window.setTimeout(function() {
       app.classList.add("show");
     }, 1);
-  }
+  },
+    computed: mapState({
+        score: state => state.score.score
+    })
 }
 
 </script>

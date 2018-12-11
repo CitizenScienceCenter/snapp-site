@@ -6,7 +6,6 @@ import store from '../store/store.js'
 
 const logout = (to, from, next) => {
     localStorage.removeItem('user');
-    console.log('done')
     store.commit('c3s/user/SET_CURRENT_USER', null);
     store.commit('c3s/user/SET_ANON', false);
     next()

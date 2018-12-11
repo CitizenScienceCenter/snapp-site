@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import settings from './modules/settings'
 import consts from './modules/consts'
+import score from './modules/score'
 import VuexPersist from 'vuex-persist'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -26,7 +27,8 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   modules: {
     settings,
-    consts
+    consts,
+      score
   },
   strict: debug,
   plugins: [createPersistedState({ storage: localStorage})]

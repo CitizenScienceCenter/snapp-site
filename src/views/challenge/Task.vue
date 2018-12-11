@@ -21,23 +21,29 @@
                     <div class="row row-centered">
                         <div class="col-6">
 
-                            <p class="centered">
-                                <img :src="'img/tasks/'+taskMedia[0].name" />
-                            </p>
+                            <template v-if="tasks.length && tasks[0] && taskMedia[0]">
 
-                            <p class="centered">
-                                {{ tasks[0].content.question.text }}
-                            </p>
+                                <p class="centered">
+                                    <img :src="'img/tasks/'+taskMedia[0].name" />
+                                </p>
 
-                            <div class="form-field" style="display: block">
-                                <input type="text" id="answer" :placeholder="tasks[0].content.answers[0].placeholder" :disabled="loading" v-model="responseText" />
-                            </div>
 
-                            <div class="button-group right-aligned">
-                                <button class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
-                                <button class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
-                            </div>
+                                <p class="centered">
+                                    {{ tasks[0].content.question.text }}
+                                </p>
 
+                                <p class="small">correct answer: {{ tasks[0].info.snake_name }}</p>
+
+                                <div class="form-field" style="display: block">
+                                    <input type="text" id="answer" :placeholder="tasks[0].content.answers[0].placeholder" :disabled="loading" v-model="responseText" />
+                                </div>
+
+                                <div class="button-group right-aligned">
+                                    <button class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
+                                    <button class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
+                                </div>
+
+                            </template>
 
                         </div>
                     </div>
@@ -70,22 +76,24 @@
         },
         data() {
             return {
-                activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
                 taskIndex: 0,
                 taskCount: undefined,
-                responseText: undefined
+                responseText: undefined,
+                allUserSubmissions: [],
+                userSubmissions: []
             }
         },
         computed: mapState({
+            activityId: state => state.consts.activityId,
             user: state => state.c3s.user.currentUser,
             activity: state => state.c3s.activity.activity,
             tasks: state => state.c3s.task.tasks,
             taskMedia: state => state.c3s.task.media,
             currentUser: state => state.c3s.user.currentUser,
+            submission: state => state.c3s.submission.submission,
             loading: state => state.c3s.settings.loading
         }),
         mounted() {
-
             this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
                 const taskCountQuery = {
@@ -159,15 +167,11 @@
 
                         this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
-                            // all loaded
+                            this.responseText = "";
 
                         });
                     });
                 }
-                else {
-                    console.log("end reached");
-                }
-
 
             },
             nextTask: function () {
@@ -176,22 +180,43 @@
 
                     this.loadTask();
                 }
+                else {
+                    alert("no more tasks");
+                }
             },
             submitResponse: function() {
+
+                let validation = false;
+                if( this.responseText === this.tasks[0].info.snake_name ) {
+                    validation = "correct";
+                }
+                /*
+                else if( this.responseText === this.tasks[0].info.snake_family ) {
+                    correct = true;
+                }
+                */
+                else {
+                    validation = "incorrect";
+                }
+
+
                 const sub = {
                     "info": {},
                     "content": {
                         "responses": [{
-                            "text": ""
+                            "text": this.responseText,
+                            "validation": validation
                         }]
                     },
-                    "task_id": "dc229b6c-56cd-48dc-9a75-74a1b9504acf",
-                    "user_id": "f4df80e2-0b2d-4d0f-bcbf-431b877ce2b3"
+                    "task_id": this.tasks[0].id,
+                    "user_id": this.currentUser.id
                 };
-                console.log( sub );
 
-                this.$store.dispatch('c3s/submission/createSubmission', sub ).then(submission => {
-                    console.log(submission);
+                this.$store.commit('c3s/submission/SET_SUBMISSION', sub );
+                console.log( this.submission );
+                this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
+                    this.$store.dispatch('score/calculateScore');
+                    this.nextTask();
                 });
             }
         }
