@@ -12,7 +12,6 @@ import Croppa from 'vue-croppa';
 //let swaggerURL = 'https://api.citizenscience.ch/api/v2/swagger.json';
 let swaggerURL = 'http://172.23.104.29:8080/api/v2/swagger.json';
 
-console.log(swaggerURL)
 Vue.config.productionTip = false
 
 Vue.use(c3s.plugin, { store, swaggerURL})
@@ -31,7 +30,6 @@ store.watch(
     (state) => state.c3s && state.c3s.client,
     (value) => {
         if (value !== null) {
-            console.log(store);
             new Vue({
                 store,
                 router,

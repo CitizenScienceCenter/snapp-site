@@ -24,23 +24,28 @@
                             <template v-if="tasks.length && tasks[0] && taskMedia[0]">
 
                                 <p class="centered">
-                                    <img :src="'img/tasks/'+taskMedia[0].name" />
+                                    <img :src="'img/tasks/'+taskMedia[0].name" class="snek" />
                                 </p>
-
 
                                 <p class="centered">
                                     {{ tasks[0].content.question.text }}
                                 </p>
 
-                                <p class="small">correct answer: {{ tasks[0].info.snake_name }}</p>
-
                                 <div class="form-field" style="display: block">
-                                    <input type="text" id="answer" :placeholder="tasks[0].content.answers[0].placeholder" :disabled="loading" v-model="responseText" />
+                                    <search-select
+                                            :placeholder="tasks[0].content.answers[0].placeholder"
+                                            @responseText="setResponseText"
+                                            :options="searchOptions"
+                                            v-model="inputValue">
+                                    </search-select>
                                 </div>
 
+                                <p class="small">correct answer: {{ tasks[0].info.snake_name }}</p>
+
+
                                 <div class="button-group right-aligned">
-                                    <button class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
-                                    <button class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
+                                    <button ref="submit" class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
+                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
                                 </div>
 
                             </template>
@@ -67,20 +72,22 @@
     import TaskResponse from '@/components/TaskResponse'
     import ContentSection from '@/components/shared/ContentSection.vue'
     import Footer from '@/components/shared/Footer.vue'
+    import SearchSelect from '@/components/shared/SearchSelect.vue'
 
     export default {
         name: 'Task',
         components: {
             'app-content-section': ContentSection,
-            'app-footer': Footer
+            'app-footer': Footer,
+            'search-select': SearchSelect
         },
         data() {
             return {
                 taskIndex: 0,
-                taskCount: undefined,
-                responseText: undefined,
-                allUserSubmissions: [],
-                userSubmissions: []
+                taskCount: null,
+                responseText: null,
+                searchOptions: [],
+                inputValue: ''
             }
         },
         computed: mapState({
@@ -91,37 +98,15 @@
             taskMedia: state => state.c3s.task.media,
             currentUser: state => state.c3s.user.currentUser,
             submission: state => state.c3s.submission.submission,
-            loading: state => state.c3s.settings.loading
+            loading: state => state.c3s.settings.loading,
+            snakeNames: state => state.consts.snakeNames,
+            snakeFamilyNames: state => state.consts.snakeFamilyNames
         }),
-        mounted() {
-            this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
-
-                const taskCountQuery = {
-                    "select": {
-                        "fields": [
-                            "*"
-                        ],
-                        "tables": [
-                            "tasks"
-                        ]
-                    },
-                    "where": {
-                        "activity_id": {
-                            "op": "e",
-                            "val": this.activity.id
-                        }
-                    }
-                };
-
-                this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
-                    this.taskCount = count.body;
-
-                    this.loadTask();
-                });
-
-            });
-        },
         methods: {
+            setResponseText: function(value) {
+                this.responseText = value;
+                console.log("setResponseText");
+            },
             loadTask: function (taskIndex) {
 
                 const taskQuery = {
@@ -213,12 +198,50 @@
                 };
 
                 this.$store.commit('c3s/submission/SET_SUBMISSION', sub );
-                console.log( this.submission );
+
                 this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
                     this.$store.dispatch('score/calculateScore');
                     this.nextTask();
                 });
             }
+        },
+        mounted() {
+
+            for( let i=0; i < this.snakeNames.length; i++ ) {
+                let objects = { 'name': this.snakeNames[i], 'type': 'species' };
+                this.searchOptions.push( objects );
+            }
+            for( let i=0; i < this.snakeFamilyNames.length; i++ ) {
+                let objects = { 'name': this.snakeFamilyNames[i], 'type': 'family' };
+                this.searchOptions.push( objects );
+            }
+
+            this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
+
+                const taskCountQuery = {
+                    "select": {
+                        "fields": [
+                            "*"
+                        ],
+                        "tables": [
+                            "tasks"
+                        ]
+                    },
+                    "where": {
+                        "activity_id": {
+                            "op": "e",
+                            "val": this.activity.id
+                        }
+                    }
+                };
+
+                this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
+                    this.taskCount = count.body;
+
+                    this.loadTask();
+                });
+
+            });
         }
     }
 
@@ -229,5 +252,8 @@
     @import '@/styles/theme.scss';
     @import '@/styles/shared/variables.scss';
 
+    .snek {
+        height: 100px;
+    }
 
 </style>

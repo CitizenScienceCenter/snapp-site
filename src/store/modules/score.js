@@ -38,15 +38,12 @@ const actions = {
 
             store.dispatch('c3s/submission/getSubmissions', [submissionQuery]).then(submissions => {
 
-                console.log(store.state.c3s.user.currentUser.id);
                 let score = 0;
                 for (let i = 0; i < submissions.body.length; i++) {
-                    console.log(submissions.body[i].content.responses[0].validation);
                     if (submissions.body[i].content.responses[0].validation === "correct") {
                         score += 10;
                     }
                 }
-                console.log("score = " + score);
                 commit('SET_SCORE', score);
 
             });
