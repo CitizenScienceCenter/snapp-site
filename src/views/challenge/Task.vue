@@ -34,9 +34,9 @@
                                 <div class="form-field" style="display: block">
                                     <search-select
                                             :placeholder="tasks[0].content.answers[0].placeholder"
-                                            @responseText="setResponseText"
                                             :options="searchOptions"
-                                            v-model="inputValue">
+                                            v-model="inputValue"
+                                            @entered="$refs.submit.focus();">
                                     </search-select>
                                 </div>
 
@@ -44,8 +44,9 @@
 
 
                                 <div class="button-group right-aligned">
-                                    <button ref="submit" class="button button-primary" :disabled="loading || !responseText" @click.prevent="submitResponse()">Send</button>
-                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
+                                    <button ref="submit" id="submit" class="button button-primary" :disabled="loading || inputValue === ''" @click.prevent="submitResponse()">Send</button>
+                                    <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
+                                    <button ref="skip" id="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
                                 </div>
 
                             </template>
@@ -84,8 +85,7 @@
         data() {
             return {
                 taskIndex: 0,
-                taskCount: null,
-                responseText: null,
+                taskCount: 0,
                 searchOptions: [],
                 inputValue: ''
             }
@@ -102,11 +102,17 @@
             snakeNames: state => state.consts.snakeNames,
             snakeFamilyNames: state => state.consts.snakeFamilyNames
         }),
+        watch: {
+            inputValue: function() {
+                console.log('watch inputValue');
+                console.log(this.inputValue);
+                if( this.inputValue !== '' ) {
+                    console.log("set föcus");
+                    this.$refs.submit.focus();
+                }
+            }
+        },
         methods: {
-            setResponseText: function(value) {
-                this.responseText = value;
-                console.log("setResponseText");
-            },
             loadTask: function (taskIndex) {
 
                 const taskQuery = {
@@ -152,7 +158,8 @@
 
                         this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
-                            this.responseText = "";
+                            console.log("reset inputValue")
+                            this.inputValue = '';
 
                         });
                     });
@@ -172,7 +179,7 @@
             submitResponse: function() {
 
                 let validation = false;
-                if( this.responseText === this.tasks[0].info.snake_name ) {
+                if( this.inputValue === this.tasks[0].info.snake_name ) {
                     validation = "correct";
                 }
                 /*
@@ -189,7 +196,7 @@
                     "info": {},
                     "content": {
                         "responses": [{
-                            "text": this.responseText,
+                            "text": this.inputValue,
                             "validation": validation
                         }]
                     },
