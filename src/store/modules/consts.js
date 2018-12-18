@@ -8,9 +8,15 @@ const state = {
         "Black Mamba"
     ],
     snakeFamilyNames: [
-        "Vipers",
-        "Elapid",
-        "Colubrid"
+        "File snakes",
+        "Coral pipe snakes",
+        "Dwarf pipe snakes",
+        "Mole vipers",
+        "Boas",
+        "Round island boas",
+        "Colubrids",
+        "Asian pipe snakes",
+        "Vipers"
     ]
 }
 
