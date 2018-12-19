@@ -28,8 +28,12 @@
                 </svg>
             </button>
         </div>
-        <div ref="moveindicator" class="move-indicator">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352.201 425.775l-79.196 79.196c-9.373 9.373-24.568 9.373-33.941 0l-79.196-79.196c-15.119-15.119-4.411-40.971 16.971-40.97h51.162L228 284H127.196v51.162c0 21.382-25.851 32.09-40.971 16.971L7.029 272.937c-9.373-9.373-9.373-24.569 0-33.941L86.225 159.8c15.119-15.119 40.971-4.411 40.971 16.971V228H228V127.196h-51.23c-21.382 0-32.09-25.851-16.971-40.971l79.196-79.196c9.373-9.373 24.568-9.373 33.941 0l79.196 79.196c15.119 15.119 4.411 40.971-16.971 40.971h-51.162V228h100.804v-51.162c0-21.382 25.851-32.09 40.97-16.971l79.196 79.196c9.373 9.373 9.373 24.569 0 33.941L425.773 352.2c-15.119 15.119-40.971 4.411-40.97-16.971V284H284v100.804h51.23c21.382 0 32.09 25.851 16.971 40.971z"/></svg>
+
+        <div class="move-indicator-wrapper">
+            <div ref="moveindicator" class="move-indicator">
+                <svg class="h" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M377.941 169.941V216H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.568 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296h243.882v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.568 0-33.941l-86.059-86.059c-15.119-15.12-40.971-4.412-40.971 16.97z"/></svg>
+                <svg class="v" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M342.06,377.94H296V134.06h46.06c21.38,0,32.09-25.85,17-41L273,7A24,24,0,0,0,239,7L153,93.09c-15.12,15.12-4.41,41,17,41H216V377.94H169.94c-21.38,0-32.09,25.85-17,41L239,505A24,24,0,0,0,273,505L359,418.91c15.12-15.12,4.41-41-17-41Z"/></svg>
+            </div>
         </div>
     </div>
 </template>
@@ -59,12 +63,25 @@
         },
         methods: {
             newImageDrawn: function(event) {
-                const moveindicator = this.$refs.moveindicator
-                moveindicator.classList.add("animation");
+                const moveindicator = this.$refs.moveindicator;
 
-                setTimeout(function(){
-                    moveindicator.classList.remove("animation");
-                    }, 2000);
+                console.log(this.$refs.croppa.getMetadata().startX );
+
+                if( this.$refs.croppa.getMetadata().startX < 0 ) {
+                    console.log("h");
+                    moveindicator.classList.add("animation-h","animation");
+                    setTimeout(function(){
+                        moveindicator.classList.remove("animation-h","animation");
+                        }, 1500);
+                }
+                else {
+                    console.log("v");
+                    moveindicator.classList.add("animation-v","animation");
+                    setTimeout(function(){
+                        moveindicator.classList.remove("animation-v","animation");
+                    }, 1500);
+                }
+
             },
             zoom(out) {
                 if (out) {
@@ -110,55 +127,102 @@
             }
         }
 
-        .move-indicator {
-            background: rgba( $color-black, 0.5);
+        .move-indicator-wrapper {
+
             width: 72px;
             height: 72px;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translateX( -24px ) translateY( -24px );
-            border-radius: 50%;
-            opacity: 0;
+            transform: translateX(-24px) translateY(-24px);
             pointer-events: none;
 
-            &.animation {
-                animation-name: fade, move;
-                animation-duration: $transition-duration-super-long*2;
-                animation-iteration-count: 1;
-                animation-fill-mode: forwards;
+            .move-indicator {
 
-                @keyframes fade {
-                    0% {
-                        opacity: 0;
-                    }
-                    50% {
-                        opacity: 1;
-                    }
-                    100% {
-                        opacity: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba($color-black, 0.5);
+                border-radius: 50%;
+                opacity: 0;
+
+                svg {
+                    width: 40px;
+                    height: 40px;
+                    fill: rgba(255, 255, 255, 0.5);
+                    position: absolute;
+                    top: 16px;
+                    left: 16px;
+
+                    display: none;
+                }
+
+                &.animation {
+                    animation-duration: $transition-duration-super-long*1.5;
+                    animation-timing-function: $transition-timing-function-symmetric;
+                    animation-iteration-count: 1;
+                    animation-fill-mode: forwards;
+
+                    @keyframes ani-o {
+                        0% {
+                            opacity: 0;
+                        }
+                        33.333% {
+                            opacity: 1;
+                        }
+                        66.667% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 0;
+                        }
                     }
                 }
-                @keyframes move {
-                    0% {
-                        transform: translateX( -24px ) translateY( -0px );
+
+                &.animation-h {
+                    animation-name: ani-o, ani-h;
+
+                    svg.h {
+                        display: block;
                     }
-                    50% {
-                        transform: translateX( -24px ) translateY( -24px );
-                    }
-                    100% {
-                        transform: translateX( -24px ) translateY( -48px );
+
+                    @keyframes ani-h {
+                        0% {
+                            transform: translateX( 0);
+                        }
+                        33.333% {
+                            transform: translateX( -24px );
+                        }
+                        66.667% {
+                            transform: translateX( 24px );
+                        }
+                        100% {
+                            transform: translateX( 0);
+                        }
                     }
                 }
-            }
+                &.animation-v {
+                    animation-name: ani-o, ani-v;
 
-            svg {
-                width: 40px;
-                height: 40px;
-                fill: rgba( 255,255,255, 0.5);
-                position: absolute;
-                top: 16px;
-                left: 16px;
+                    svg.v {
+                        display: block;
+                    }
+
+                    @keyframes ani-v {
+                        0% {
+                            transform: translateY( 0);
+                        }
+                        33.333% {
+                            transform: translateY( -24px );
+                        }
+                        66.667% {
+                            transform: translateY( 24px );
+                        }
+                        100% {
+                            transform: translateY( 0);
+                        }
+                    }
+                }
+
             }
 
         }
