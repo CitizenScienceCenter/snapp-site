@@ -1,6 +1,9 @@
 <template>
     <div class="croppa-container">
-        <croppa class="croppa" ref="croppa" @new-image-drawn="newImageDrawn" canvas-color="transparent"
+        <croppa class="croppa" ref="croppa"
+                @init="init"
+                @new-image-drawn="newImageDrawn"
+                canvas-color="transparent"
                 :prevent-white-space="true"
                 :show-remove-button="false"
                 :show-loading="true"
@@ -62,24 +65,16 @@
             }
         },
         methods: {
+            init: function() {
+                this.$refs.moveindicator.classList.remove("animation-h","animation-v","animation");
+            },
             newImageDrawn: function(event) {
-                const moveindicator = this.$refs.moveindicator;
-
-                console.log(this.$refs.croppa.getMetadata().startX );
 
                 if( this.$refs.croppa.getMetadata().startX < 0 ) {
-                    console.log("h");
-                    moveindicator.classList.add("animation-h","animation");
-                    setTimeout(function(){
-                        moveindicator.classList.remove("animation-h","animation");
-                        }, 1500);
+                    this.$refs.moveindicator.classList.add("animation-h","animation");
                 }
                 else {
-                    console.log("v");
-                    moveindicator.classList.add("animation-v","animation");
-                    setTimeout(function(){
-                        moveindicator.classList.remove("animation-v","animation");
-                    }, 1500);
+                    this.$refs.moveindicator.classList.add("animation-v","animation");
                 }
 
             },
@@ -157,7 +152,7 @@
                 }
 
                 &.animation {
-                    animation-duration: $transition-duration-super-long*1.5;
+                    animation-duration: $transition-duration-super-long*2;
                     animation-timing-function: $transition-timing-function-symmetric;
                     animation-iteration-count: 1;
                     animation-fill-mode: forwards;
