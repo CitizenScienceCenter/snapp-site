@@ -1,11 +1,15 @@
 <i18n>
     {
     "de": {
-    "task-description": "Bitte übertragen Sie die im Bild ersichtlichen Sätze in das Eingabefeld."
-    },
+        "task-description": "Bitte übertragen Sie die im Bild ersichtlichen Sätze in das Eingabefeld.",
+
+        "section-newsletter-heading": "Abonniere unseren Newsletter"
+        },
     "en": {
-    "task-description": "Please transcribe the sentences from the picture above into the input field."
-    }
+        "task-description": "Please transcribe the sentences from the picture above into the input field.",
+
+        "section-newsletter-heading": "Sign up for our Newsletter"
+        }
     }
 </i18n>
 
@@ -25,7 +29,7 @@
 
                                 <div class="difficulty-select">
                                     <label>Difficulty</label>
-                                    <div v-model="difficulty" class="custom-select custom-select-mini">
+                                    <div v-model="difficulty" class="custom-select settings-select">
                                         <select>
                                             <option selected value="0">Easy</option>
                                             <option value="1">Medium</option>
@@ -38,7 +42,7 @@
                                 </div>
                                 <div class="region-select">
                                     <label>Region</label>
-                                    <div class="custom-select custom-select-mini">
+                                    <div class="custom-select settings-select">
                                         <select>
                                             <option selected>All</option>
                                             <option>Africa</option>
@@ -118,18 +122,108 @@
         <app-content-section class="content-section-condensed" color="light-greyish">
             <div class="content-wrapper">
                 <div class="row row-centered">
-                    <div class="col">
-                        stats
+                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>Current Rank</label>
+                            24.
+                        </div>
+                    </div>
+                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>Your Score</label>
+                            value
+                        </div>
+                    </div>
+                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>Highscore</label>
+                            value
+                        </div>
+                    </div>
+
+                    <div class="col col-large-3 col-wrapping col-large-no-bottom-margin">
+
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>Your Stats</label>
+                            value
+                        </div>
+
+                    </div>
+                    <div class="col col-large-3 col-wrapping col-no-bottom-margin">
+
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>This Image</label>
+                            value
+                        </div>
+
                     </div>
                 </div>
             </div>
         </app-content-section>
 
-        <app-content-section>
+        <app-content-section color="greyish">
+            <div class="content-wrapper">
+                <div class="row row-centered row-middle">
+
+                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+                        <div>
+                            <div class="extra-padding-large-h">
+                                <img src="img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
+                        <div>
+                            <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
+                            <p>
+                                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </app-content-section>
+
+        <app-content-section color="dark">
+            <div class="content-wrapper">
+                <div class="row row-centered row-middle row-reverse-large">
+
+                    <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+                        <div>
+                            <div class="extra-padding-large-h">
+                                <img src="img/graphic-about.jpg" style="border-radius: 50%" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
+                        <div>
+                            <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
+                            <p>
+                                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                            </p>
+                            <p class="centered left-aligned-large">
+                                <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </app-content-section>
+
+        <app-content-section color="greyish">
             <div class="content-wrapper">
                 <div class="row row-centered">
-                    <div class="col">
-                        price info
+                    <div class="col col-mobile-large-10">
+                        <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
+                    </div>
+                </div>
+                <div class="row row-centered">
+                    <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
+                        <app-newsletter-signup></app-newsletter-signup>
                     </div>
                 </div>
             </div>
@@ -148,6 +242,7 @@ import CommentsList from '@/components/comments-list'
 import TaskQuestionImage from '@/components/TaskQuestionImage'
 import TaskResponse from '@/components/TaskResponse'
 import ContentSection from '@/components/shared/ContentSection.vue'
+import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/shared/SearchSelect.vue'
@@ -157,6 +252,7 @@ export default {
     components: {
         'app-content-section': ContentSection,
         'app-footer': Footer,
+        'app-newsletter-signup': NewsletterSignup,
         'image-viewer': ImageViewer,
         'search-select': SearchSelect
     },
@@ -351,10 +447,9 @@ export default {
 @import '@/styles/shared/variables.scss';
 
 
-.custom-select-mini {
+.settings-select {
     select {
         border-bottom: none;
-        font-size: $font-size-small;
     }
 }
 

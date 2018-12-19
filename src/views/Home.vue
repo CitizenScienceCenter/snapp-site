@@ -6,23 +6,8 @@
     "cover-button-transcribe": "Start the Challenge",
     "cover-button-translate": "Learn more",
 
-    "section-explanation-heading": "Die 40 Wenker-Sätze",
-    "section-explanation-text": "Im Rahmen eines sprachwissenschaftlichen Forschungsprojekts wurden vor rund 100 Jahren 40 hochdeutsche Sätze in die lokalen Dialekte der Schweiz übersetzt. Diese Daten wurden jedoch nie umfassend ausgewertet. Hilf uns, diesen Schatz zu heben.",
-    "section-explanation-button": "Mehr zum Projekt",
-
-    "section-contribute-heading": "Deine Hilfe ist gefragt:",
-    "section-contribute-1-heading": "Transkribieren",
-    "section-contribute-1-text": "Die 1700 handgeschriebenen Schweizer Wenker-Bögen müssen genau abgeschrieben werden, um sie digital aufzubereiten. Dafür brauchen wir deine Unterstützung!",
-    "section-contribute-1-button": "Transkribieren",
-    "section-contribute-2-heading": "Übersetzen",
-    "section-contribute-2-text": "Übersetze die originalen Wenker-Sätze in deinen Dialekt, wie du ihn heute sprichst. So können wir das Schweizerdeutsch von heute mit dem der 1930er Jahre vergleichen.",
-    "section-contribute-2-button": "Übersetzen",
-
-    "section-wenker-heading": "Die Geschichte eines Dialektliebhabers",
-    "section-wenker-text": "Die Wenkersätze aus der Schweizer Sprachstudie haben eine interessante Vorgeschichte. Der junge Sprachwissenschaftler Georg Wenker hat sie aus einem ganz bestimmten Grund entwickelt.",
-    "section-wenker-button": "Mehr zu Georg Wenker",
-
-    "section-video-heading": "Prof. Elvira Glaser erklärt",
+    "section-explanation-heading": "How Good can you Classify Them?",
+    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
 
     "section-newsletter-heading": "Abonniere unseren Newsletter"
   },
@@ -32,23 +17,9 @@
     "cover-button-transcribe": "Start the Challenge",
     "cover-button-translate": "Learn more",
 
-    "section-explanation-heading": "The 40 Wenker Phrases",
-    "section-explanation-text": "As part of a linguistic research project about 100 years ago, 40 sentences were translated from standard German into the local dialects of Switzerland. However, this data has never been evaluated. Help us to digitize this treasure.",
-    "section-explanation-button": "More about the project",
+    "section-explanation-heading": "How Good can you Classify Them?",
+    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
 
-    "section-contribute-heading": "Your help is needed:",
-    "section-contribute-1-heading": "Transcription",
-    "section-contribute-1-text": "The 1700 hand-written swiss Wenker sheets must be accurately copied in order to process them digitally. For that we need your support!",
-    "section-contribute-1-button": "Transcribe",
-    "section-contribute-2-heading": "Translation",
-    "section-contribute-2-text": "Translate the original Wenker sentences into your own dialect. So we can compare today's Swiss German with the one spoken in the 1930ies.",
-    "section-contribute-2-button": "Translate",
-
-    "section-wenker-heading": "The Story of a Dialect Lover",
-    "section-wenker-text": "The Wenker phrases from the Swiss dialect study have an interesting history. The young linguist Georg Wenker developed them for a certain reason.",
-    "section-wenker-button": "More about Georg Wenker",
-
-    "section-video-heading": "Prof. Elvira Glaser explains",
 
     "section-newsletter-heading": "Sign up for our Newsletter"
   }
@@ -85,22 +56,61 @@
 
     <app-content-section>
       <div class="content-wrapper">
-        <div class="row row-centered row-middle">
+        <div class="row row-centered row-middle row-reverse-large">
 
-          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin scroll-effect">
+          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
             <div>
               <div class="extra-padding-large-h">
-                <img src="img/graphic-sheet.png" />
+                <img src="img/graphic-intro.png" />
               </div>
             </div>
           </div>
 
-          <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin scroll-effect scroll-effect-delayed-2">
+          <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-explanation-heading') }}</h2>
               <p>{{ $t('section-explanation-text') }}</p>
-              <p class="centered left-aligned-large">
-                <router-link tag="button" to="/project" class="button button-secondary">{{ $t('section-explanation-button') }}</router-link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </app-content-section>
+
+    <app-content-section class="content-section-condensed" color="light-greyish">
+      <div class="content-wrapper">
+        <div class="row row-centered">
+
+          <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
+            <h2 class="subheading">Challgenge open for 7 Days 5 Hours and 12 Minutes</h2>
+            <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
+          </div>
+          <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
+            <h2 class="subheading centered"">Current High Score</h2>
+          </div>
+
+        </div>
+      </div>
+    </app-content-section>
+
+
+    <app-content-section color="greyish">
+      <div class="content-wrapper">
+        <div class="row row-centered row-middle">
+
+          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+            <div>
+              <div class="extra-padding-large-h">
+                <img src="img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
+            <div>
+              <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
+              <p>
+                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
               </p>
             </div>
           </div>
@@ -108,63 +118,27 @@
         </div>
       </div>
     </app-content-section>
-
-    <app-content-section color="light-greyish">
-      <div class="content-wrapper">
-        <div class="row row-centered">
-
-          <div class="col col-large-10 scroll-effect">
-            <h2 class="heading centered">{{ $t('section-contribute-heading') }}</h2>
-          </div>
-
-          <div class="col col-tablet-portrait-10 col-large-4 col-large-after-1 col-wrapping col-large-no-bottom-margin scroll-effect scroll-effect-delayed-2">
-            <div class="row row-centered">
-              <div class="col col-6 col-tablet-portrait-4 col-large-6 extra-margin-bottom">
-                <img src="img/graphic-transcribe.png"/>
-              </div>
-            </div>
-            <h3 class="subheading centered">{{ $t('section-contribute-1-heading') }}</h3>
-            <p>{{ $t('section-contribute-1-text') }}</p>
-            <p class="centered">
-              <router-link tag="button" to="/transcribe" class="button button-primary">{{ $t('section-contribute-1-button') }}</router-link>
-            </p>
-          </div>
-          <div class="col col-tablet-portrait-10 col-large-4 col-wrapping col-no-bottom-margin scroll-effect scroll-effect-delayed-3">
-            <div class="row row-centered">
-              <div class="col col-6 col-tablet-portrait-4 col-large-6 extra-margin-bottom">
-                <img src="img/graphic-translate.png"/>
-              </div>
-            </div>
-            <h3 class="subheading centered">{{ $t('section-contribute-2-heading') }}</h3>
-            <p>{{ $t('section-contribute-2-text') }}</p>
-            <p class="centered">
-              <router-link tag="button" to="/translate" class="button button-primary">{{ $t('section-contribute-2-button') }}</router-link>
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </app-content-section>
-
 
     <app-content-section color="dark">
       <div class="content-wrapper">
         <div class="row row-centered row-middle row-reverse-large">
 
-          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin scroll-effect">
+          <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
             <div>
               <div class="extra-padding-large-h">
-                <img src="img/wenker_square.jpg" style="border-radius:50%" />
+                <img src="img/graphic-about.jpg" style="border-radius: 50%" />
               </div>
             </div>
           </div>
 
-          <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin scroll-effect scroll-effect-delayed-2">
+          <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
             <div>
-              <h2 class="heading centered left-aligned-large">{{ $t('section-wenker-heading') }}</h2>
-              <p>{{ $t('section-wenker-text') }}</p>
+              <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
+              <p>
+                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+              </p>
               <p class="centered left-aligned-large">
-                <router-link tag="button" to="/wenker" class="button button-secondary button-secondary-inverted">{{ $t('section-wenker-button') }}</router-link>
+                <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
               </p>
             </div>
           </div>
@@ -172,27 +146,6 @@
         </div>
       </div>
     </app-content-section>
-
-
-    <app-content-section>
-      <div class="content-wrapper">
-        <div class="row row-centered">
-
-          <div class="col col-10 col-large-6 scroll-effect">
-            <div>
-              <h2 class="heading centered">{{ $t('section-video-heading') }}</h2>
-
-              <div class='embed-container'>
-                <iframe src='https://www.youtube.com/embed/oFAI4rgYkt0' frameborder='0' allowfullscreen></iframe>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </app-content-section>
-
 
     <app-content-section color="greyish">
       <div class="content-wrapper">
