@@ -25,11 +25,11 @@
 
                                 <div class="difficulty-select">
                                     <label>Difficulty</label>
-                                    <div class="custom-select custom-select-mini">
+                                    <div v-model="difficulty" class="custom-select custom-select-mini">
                                         <select>
-                                            <option selected>Easy</option>
-                                            <option>Medium</option>
-                                            <option>Hard</option>
+                                            <option selected value="0">Easy</option>
+                                            <option value="1">Medium</option>
+                                            <option value="2">Hard</option>
                                         </select>
                                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                             <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
@@ -40,8 +40,10 @@
                                     <label>Region</label>
                                     <div class="custom-select custom-select-mini">
                                         <select>
-                                            <option selected>Africa</option>
+                                            <option selected>All</option>
+                                            <option>Africa</option>
                                             <option>Asia</option>
+                                            <option>Europe</option>
                                         </select>
                                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                             <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
@@ -103,7 +105,7 @@
                                 <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
                             </div>
 
-                            <div class="mongo">correct answer: {{ tasks[0].info.snake_name }}</div>
+                            <div class="mongo"><label>correct species: </label>{{ tasks[0].info.snake_name }} <label>correct family: </label>{{ tasks[0].info.snake_family }}</div>
 
 
                         </div>
@@ -162,6 +164,7 @@ export default {
         return {
             taskIndex: 0,
             taskCount: 0,
+            difficulty: 0,
             searchOptionsContainers: [],
             value: null
         }
@@ -190,7 +193,7 @@ export default {
     methods: {
         loadTask: function (taskIndex) {
 
-            const taskQuery = {
+            const taskCountQuery = {
                 "select": {
                     "fields": [
                         "*"
@@ -204,49 +207,68 @@ export default {
                         "op": "e",
                         "val": this.activity.id
                     }
-                },
-                "limit": 1,
-                "offset": this.taskIndex
+                }
             };
 
+            this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
+                this.taskCount = count.body;
 
-            if (this.taskIndex < this.taskCount) {
-
-                this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
-
-
-                    const mediaQuery = {
-                        "select": {
-                            "fields": [
-                                "*"
-                            ],
-                            "tables": [
-                                "media"
-                            ]
-                        },
-                        "where": {
-                            "source_id": {
-                                "op": "e",
-                                "val": this.tasks[0].id
-                            }
+                const taskQuery = {
+                    "select": {
+                        "fields": [
+                            "*"
+                        ],
+                        "tables": [
+                            "tasks"
+                        ]
+                    },
+                    "where": {
+                        "activity_id": {
+                            "op": "e",
+                            "val": this.activity.id
                         }
-                    };
+                    },
+                    "limit": 1,
+                    "offset": this.taskIndex
+                };
 
-                    this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
+
+                if (this.taskIndex < this.taskCount) {
+
+                    this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
 
 
-                        this.value = null;
+                        const mediaQuery = {
+                            "select": {
+                                "fields": [
+                                    "*"
+                                ],
+                                "tables": [
+                                    "media"
+                                ]
+                            },
+                            "where": {
+                                "source_id": {
+                                    "op": "e",
+                                    "val": this.tasks[0].id
+                                }
+                            }
+                        };
 
+                        this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
+
+                            this.value = null;
+
+                        });
                     });
-                });
-            }
+                }
+
+            });
 
         },
         nextTask: function () {
             if (this.taskIndex < this.taskCount - 1) {
                 this.taskIndex++;
-
-
 
                 this.loadTask();
             }
@@ -256,26 +278,26 @@ export default {
         },
         submitResponse: function() {
 
-            let validation = false;
-            if( this.value.value === this.tasks[0].info.snake_name ) {
-                validation = "correct";
-            }
-            /*
-            else if( this.responseText === this.tasks[0].info.snake_family ) {
-                correct = true;
-            }
-            */
-            else {
-                validation = "incorrect";
-            }
+            let score = false;
 
+            if( this.value.info === 'species' ) {
+                if( this.value.value === this.tasks[0].info.snake_name ) {
+                    score = 10;
+                }
+            }
+            else if( this.value.info === 'family' ) {
+                if( this.value.value === this.tasks[0].info.snake_family ) {
+                    score = 5;
+                }
+            }
 
             const sub = {
                 "info": {},
                 "content": {
                     "responses": [{
-                        "text": this.value.value,
-                        "validation": validation
+                        "value": this.value.value,
+                        "info": this.value.info,
+                        "score": score
                     }]
                 },
                 "task_id": this.tasks[0].id,
@@ -315,29 +337,7 @@ export default {
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
-
-            const taskCountQuery = {
-                "select": {
-                    "fields": [
-                        "*"
-                    ],
-                    "tables": [
-                        "tasks"
-                    ]
-                },
-                "where": {
-                    "activity_id": {
-                        "op": "e",
-                        "val": this.activity.id
-                    }
-                }
-            };
-
-            this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
-                this.taskCount = count.body;
-
-                this.loadTask();
-            });
+            this.loadTask();
 
         });
     }
@@ -387,8 +387,16 @@ export default {
 
 .mongo {
     position: absolute;
-    bottom: 0;
+    right: calc( #{$grid-gutter-large}/2 );
+    bottom: 64px;
     font-size: $font-size-small/1.25;
+    color: $color-black-tint-90;
+
+    label {
+        font-size: $font-size-small/1.25/1.25;
+        font-weight: 700;
+        color: $color-black-tint-90;
+    }
 }
 
 

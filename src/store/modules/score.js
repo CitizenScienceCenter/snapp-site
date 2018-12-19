@@ -40,9 +40,7 @@ const actions = {
 
                 let score = 0;
                 for (let i = 0; i < submissions.body.length; i++) {
-                    if (submissions.body[i].content.responses[0].validation === "correct") {
-                        score += 10;
-                    }
+                    score += submissions.body[i].content.responses[0].score;
                 }
                 commit('SET_SCORE', score);
 
