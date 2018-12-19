@@ -95,7 +95,7 @@
                     <div class="row row-centered row-large-right-aligned">
                         <div class="col col-large-5">
 
-                            <div class="form-field" style="display: block">
+                            <div class="form-field form-field-block">
                                 <search-select
                                         :placeholder="tasks[0].content.answers[0].placeholder"
                                         :optionContainers="searchOptionsContainers"
@@ -103,14 +103,23 @@
                                 </search-select>
                             </div>
 
-                            <div class="button-group right-aligned">
-                                <button ref="submit" class="button button-primary" :disabled="loading || !value" @click.prevent="submitResponse()">Send</button>
-                                <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
-                                <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading">Skip</button>
+                            <div class="actions">
+
+                                <div class="button-group right-aligned">
+                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || info" @click.prevent="submitResponse()">Send</button>
+                                    <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
+                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || info">Skip</button>
+                                </div>
+
+                                <div class="info" v-if="info" :class="{ 'positive' : info.type === 'success' || info.type === 'almost' , 'negative' : info.type === 'fail' }">
+                                    <div class="message">
+                                        {{info.type}} -> {{info.score}}
+                                    </div>
+                                </div>
+
+                                <div class="mongo"><label>correct species: </label>{{ tasks[0].info.snake_name }}<label style="margin-left: 8px">correct family: </label>{{ tasks[0].info.snake_family }}</div>
+
                             </div>
-
-                            <div class="mongo"><label>correct species: </label>{{ tasks[0].info.snake_name }} <label>correct family: </label>{{ tasks[0].info.snake_family }}</div>
-
 
                         </div>
                     </div>
@@ -262,7 +271,8 @@ export default {
             taskCount: 0,
             difficulty: 0,
             searchOptionsContainers: [],
-            value: null
+            value: null,
+            info: null
         }
     },
     computed: mapState({
@@ -363,6 +373,9 @@ export default {
 
         },
         nextTask: function () {
+
+            this.info = null;
+
             if (this.taskIndex < this.taskCount - 1) {
                 this.taskIndex++;
 
@@ -374,16 +387,38 @@ export default {
         },
         submitResponse: function() {
 
-            let score = false;
+            let score = 0;
 
             if( this.value.info === 'species' ) {
                 if( this.value.value === this.tasks[0].info.snake_name ) {
                     score = 10;
+
+                    this.info = {
+                        'type': 'success',
+                        'score': score
+                    };
+                }
+                else {
+                    this.info = {
+                        'type': 'fail',
+                        'score': score
+                    };
                 }
             }
             else if( this.value.info === 'family' ) {
                 if( this.value.value === this.tasks[0].info.snake_family ) {
                     score = 5;
+
+                    this.info = {
+                        'type': 'almost',
+                        'score': score
+                    };
+                }
+                else {
+                    this.info = {
+                        'type': 'fail',
+                        'score': score
+                    };
                 }
             }
 
@@ -405,7 +440,12 @@ export default {
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
                 this.$store.dispatch('score/calculateScore');
-                this.nextTask();
+
+                const self = this;
+                setTimeout(function(){
+                    self.nextTask();
+                }, 1000);
+
             });
         }
     },
@@ -480,24 +520,50 @@ export default {
     height: 360px;
 }
 
-.mongo {
-    position: absolute;
-    right: calc( #{$grid-gutter-large}/2 );
-    bottom: 64px;
-    font-size: $font-size-small/1.25;
-    color: $color-black-tint-90;
 
-    label {
-        font-size: $font-size-small/1.25/1.25;
-        font-weight: 700;
-        color: $color-black-tint-90;
+.actions {
+    position: relative;
+
+    .info {
+        position: absolute;
+        bottom: $spacing-1;
+        left: 0;
+        height: 40px;
+        padding: $spacing-1;
+
+        &.positive {
+            color: darkgreen;
+        }
+        &.negative {
+            color: darkred;
+        }
+    }
+
+    .mongo {
+        position: absolute;
+        right: 0;
+        bottom: -$spacing-3;
+        font-size: $font-size-small/1.25;
+        color: $color-black-tint-80;
+
+        label {
+            font-size: $font-size-small/1.25/1.25;
+            font-weight: 700;
+            color: $color-black-tint-80;
+        }
     }
 }
 
 
-
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
+    .actions {
+        position: relative;
+
+        .info {
+            height: 48px;
+        }
+    }
 
 }
 
