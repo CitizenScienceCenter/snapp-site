@@ -87,7 +87,7 @@
             </app-content-section>
 
             <app-content-section class="content-section-flat image-section">
-                <image-viewer class="image-viewer":src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                <image-viewer class="image-viewer" :src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
             </app-content-section>
 
             <app-content-section class="content-section-condensed">
@@ -254,7 +254,7 @@ import ContentSection from '@/components/shared/ContentSection.vue'
 import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
-import SearchSelect from '@/components/shared/SearchSelect.vue'
+import SearchSelect from '@/components/SearchSelect.vue'
 
 export default {
     name: 'Task',
