@@ -9,8 +9,8 @@
 
 <script>
 
-    import {mapState} from 'vuex'
-    import Header from './components/shared/Header.vue'
+import {mapState} from 'vuex'
+import Header from './components/shared/Header.vue'
 
 export default {
   name: 'app',
@@ -23,9 +23,9 @@ export default {
       app.classList.add("show");
     }, 1);
   },
-    computed: mapState({
-        score: state => state.score.score
-    })
+  computed: mapState({
+      score: state => state.score.score
+  })
 }
 
 </script>

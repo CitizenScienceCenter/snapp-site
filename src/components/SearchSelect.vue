@@ -25,6 +25,12 @@
                         :value="option.value"
                         :info="option.info">
                         {{ option.value }}
+                        <div v-if="option.synonyms && option.synonyms.length > 0">
+                            <template v-for="(synonym,index) in option.synonyms">
+                                <template v-if="index < option.synonyms.length-1">{{synonym}}, </template>
+                                <template v-else>{{synonym}}</template>
+                            </template>
+                        </div>
                     </li>
                 </template>
             </ul>
@@ -107,8 +113,26 @@
                     let filteredOptionContainers = [];
                     let id = 0;
 
+                    let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
-                        let options = this.optionContainers[i].options.filter( option => option.value.toUpperCase().includes( this.inputValue.toUpperCase() ) );
+                        //let options = this.optionContainers[i].options.filter( option => option.value.toUpperCase().includes( this.inputValue.toUpperCase() ) );
+                        let options = this.optionContainers[i].options.filter( function(option) {
+
+                            if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                return true;
+                            }
+                            else {
+                                // check synonyms if exist
+                                if( option.synonyms && option.synonyms.length > 0 ) {
+                                    for( let j = 0; j < option.synonyms.length; j++ ) {
+                                        if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                            return false;
+                        });
 
                         for( let j = 0; j < options.length; j++ ) {
                             options[j].id = id;
@@ -206,7 +230,7 @@
             top: 40px;
             left: 0;
             width: 100%;
-            max-height: calc( 40px * 5 );
+            max-height: calc( 40px * 6 );
             overflow: hidden;
             overflow-y: scroll;
 
@@ -222,8 +246,8 @@
 
                 li {
                     margin: 0;
-                    padding: 0 $spacing-2;
-                    line-height: 40px;
+                    padding: $spacing-1 $spacing-2;
+                    line-height: 1.2;
                     color: $color-black-tint-50;
 
                     &.label {
@@ -242,13 +266,18 @@
                     }
 
                     cursor: pointer;
+
+                    div {
+                        margin-top: 4px;
+                        font-size: $font-size-small /1.25;
+                    }
                 }
             }
         }
     }
 
 
-
+/*
     @media only screen and (min-width: $viewport-tablet-portrait) {
 
         .search-select {
@@ -273,5 +302,7 @@
         }
 
     }
+
+*/
 
 </style>

@@ -21,6 +21,8 @@
     @import '@/styles/theme.scss';
     @import '@/styles/shared/variables.scss';
 
+    /*
+
     .button-group {
         label {
             text-transform: uppercase;
@@ -40,5 +42,7 @@
         }
 
     }
+
+    */
 
 </style>

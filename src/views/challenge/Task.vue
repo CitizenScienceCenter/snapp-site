@@ -29,7 +29,7 @@
 
                                 <div class="difficulty-select">
                                     <label>Difficulty</label>
-                                    <div v-model="difficulty" class="custom-select settings-select">
+                                    <div class="custom-select settings-select">
                                         <select>
                                             <option selected value="0">Easy</option>
                                             <option value="1">Medium</option>
@@ -74,10 +74,13 @@
                             </h2>
                             <ul>
                                 <li>
-                                    Earn 10 points for the correct answer.
+                                    Earn 10 points for the correct binominal.
                                 </li>
                                 <li>
-                                    Earn 5 points for the correct family.
+                                    Earn 8 points for the correct genus.
+                                </li>
+                                <li>
+                                    Earn 6 points for the correct family.
                                 </li>
                             </ul>
 
@@ -170,6 +173,18 @@
             </div>
         </app-content-section>
 
+        <app-content-section>
+            <div class="content-wrapper">
+                <div class="row row-centered">
+                    <div class="col col-large-6">
+
+                        <comments :taskId="tasks[0].id"></comments>
+
+                    </div>
+                </div>
+            </div>
+        </app-content-section>
+
         <app-content-section color="greyish">
             <div class="content-wrapper">
                 <div class="row row-centered row-middle">
@@ -247,14 +262,13 @@
 <script>
 
 import {mapState} from 'vuex'
-import CommentsList from '@/components/comments-list'
-import TaskQuestionImage from '@/components/TaskQuestionImage'
-import TaskResponse from '@/components/TaskResponse'
+
 import ContentSection from '@/components/shared/ContentSection.vue'
 import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/SearchSelect.vue'
+import Comments from '@/components/Comments.vue'
 
 export default {
     name: 'Task',
@@ -263,7 +277,8 @@ export default {
         'app-footer': Footer,
         'app-newsletter-signup': NewsletterSignup,
         'image-viewer': ImageViewer,
-        'search-select': SearchSelect
+        'search-select': SearchSelect,
+        'comments': Comments
     },
     data() {
         return {
@@ -277,24 +292,68 @@ export default {
     },
     computed: mapState({
         activityId: state => state.consts.activityId,
+        families: state => state.consts.families,
+        genera: state => state.consts.genera,
+        binomials: state => state.consts.binomials,
+
         user: state => state.c3s.user.currentUser,
         activity: state => state.c3s.activity.activity,
         tasks: state => state.c3s.task.tasks,
         taskMedia: state => state.c3s.task.media,
         currentUser: state => state.c3s.user.currentUser,
         submission: state => state.c3s.submission.submission,
-        loading: state => state.c3s.settings.loading,
-        snakeNames: state => state.consts.snakeNames,
-        snakeFamilyNames: state => state.consts.snakeFamilyNames
+
+        loading: state => state.c3s.settings.loading
     }),
     watch: {
         value: function() {
             if( this.value ) {
-                // v-bind for disabled is not done yet... ¯\_(ツ)_/¯
+                console.log( this.value );
+                // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
                 this.$refs.submit.removeAttribute('disabled');
                 this.$refs.submit.focus();
             }
         }
+    },
+    mounted() {
+
+        this.$store.commit('c3s/task/SET_MEDIA', [] );
+
+        // binominals
+        let searchOptionsBinominal = [];
+        for( let i=0; i < this.binomials.length; i++ ) {
+            let option = { 'value': this.binomials[i][0], 'synonyms': this.binomials[i][1], 'info': 'binominal', 'id': null };
+            searchOptionsBinominal.push( option );
+        }
+        let searchOptionContainerBinominals = { 'label': 'Binominals', 'showLabel': false, 'options': searchOptionsBinominal };
+
+        // genera
+        let searchOptionsGenera = [];
+        for( let i=0; i < this.genera.length; i++ ) {
+            let option = { 'value': this.genera[i], 'info': 'genus', 'id': null };
+            searchOptionsGenera.push( option );
+        }
+        let searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
+
+        // families
+        let searchOptionsFamilies = [];
+        for( let i=0; i < this.families.length; i++ ) {
+            let option = { 'value': this.families[i], 'info': 'family', 'id': null };
+            searchOptionsFamilies.push( option );
+        }
+        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
+
+
+        this.searchOptionsContainers = [ searchOptionContainerBinominals, searchOptionContainerGenera, searchOptionContainerFamilies ];
+
+
+
+        this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
+
+            this.loadTask();
+
+        });
+
     },
     methods: {
         loadTask: function (taskIndex) {
@@ -366,6 +425,8 @@ export default {
                             this.value = null;
 
                         });
+
+
                     });
                 }
 
@@ -448,34 +509,6 @@ export default {
 
             });
         }
-    },
-    mounted() {
-
-        this.$store.commit('c3s/task/SET_MEDIA', [] );
-
-        let searchOptionsSpecies = [];
-        for( let i=0; i < this.snakeNames.length; i++ ) {
-            let option = { 'value': this.snakeNames[i], 'info': 'species', 'id': null };
-            searchOptionsSpecies.push( option );
-        }
-        let searchOptionContainerSpecies = { 'label': 'Species', 'showLabel': false, 'options': searchOptionsSpecies };
-
-        let searchOptionsFamilies = [];
-        for( let i=0; i < this.snakeFamilyNames.length; i++ ) {
-            let option = { 'value': this.snakeFamilyNames[i], 'info': 'family', 'id': null };
-            searchOptionsFamilies.push( option );
-        }
-        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
-
-        this.searchOptionsContainers = [searchOptionContainerSpecies,searchOptionContainerFamilies];
-
-
-
-        this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
-
-            this.loadTask();
-
-        });
     }
 }
 

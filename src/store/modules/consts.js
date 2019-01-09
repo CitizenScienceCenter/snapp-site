@@ -1,23 +1,25 @@
 const state = {
     activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
-    snakeNames: [
-        "Pit Viper",
-        "Mamba",
-        "Python",
-        "King Cobra",
-        "Black Mamba"
+    families: [
+        "Elapidae",
+        "Xenodermidae",
+        "Acrochordidae"
     ],
-    snakeFamilyNames: [
-        "File snakes",
-        "Coral pipe snakes",
-        "Dwarf pipe snakes",
-        "Mole vipers",
-        "Boas",
-        "Round island boas",
-        "Colubrids",
-        "Asian pipe snakes",
-        "Vipers",
-        "Elapidae"
+    genera: [
+        "Hydrophis",
+        "Acanthophis",
+        "Achalinus",
+        "Acrochordus"
+    ],
+    binomials: [
+        [ 'Hydrophis peronii', ['Acalyptus Peronii', 'Acalyptus superciliosus', 'Pseudodisteira horrida'] ],
+        [ 'Acanthophis antarcticus', ['Boa antarctica', 'Acanthophis cerastinus', 'Acanthophis brownii', 'Boa ambigua', 'Ophryas acanthophis', 'Vipera acanthophis', 'Vipera sorda', 'Boa aculeata', 'Acanthophis schistos'] ],
+        [ 'Acanthophis hawkei', ['Acanthophis cummingi'] ],
+        [ 'Acanthophis praelongus', [] ],
+        [ 'Acanthophis pyrrhus', ['Acanthophis antarcticus', 'Aggressiserpens pyrrhus', 'Aggressiserpens armstrongi'] ],
+        [ 'Acanthophis wellsi', ['Aggressiserpens wellsi'] ],
+        [ 'Achalinus ater', ['Achalinus niger'] ],
+        [ 'Achalinus formosanus', ['Achalinopsis sauteri'] ]
     ]
 }
 
