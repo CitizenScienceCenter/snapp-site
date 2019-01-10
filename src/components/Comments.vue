@@ -34,6 +34,11 @@
               default: null
           }
         },
+        watch: {
+            taskId: function() {
+                this.loadComments();
+            }
+        },
         computed: mapState({
             user: state => state.c3s.user.currentUser,
             comments: state => state.c3s.comments.comments

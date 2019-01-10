@@ -27,8 +27,9 @@
                         {{ option.value }}
                         <div v-if="option.synonyms && option.synonyms.length > 0">
                             <template v-for="(synonym,index) in option.synonyms">
-                                <template v-if="index < option.synonyms.length-1">{{synonym}}, </template>
-                                <template v-else>{{synonym}}</template>
+                                <template v-if="index === 0">({{synonym}}, </template>
+                                <template v-else-if="index < option.synonyms.length-1">{{synonym}}, </template>
+                                <template v-else>{{synonym}})</template>
                             </template>
                         </div>
                     </li>

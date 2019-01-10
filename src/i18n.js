@@ -25,80 +25,62 @@ language = store.state.settings.language;
 export const i18n = new VueI18n({
   locale: language,
   messages: {
-    'de': {
-          'page-homepage': {
-            'link': 'Home',
-            'title': 'Snapp – Citizen Science Center Zürich'
-          },
-          'page-challenge': {
-            'link': 'Challenge',
-            'title': 'Challenge – Snapp – Citizen Science Center Zürich'
-          },
+      'de': {
+        'page-homepage': {
+        'link': 'Home'
+        },
+        'page-challenge': {
+        'link': 'Challenge'
+        },
         'page-about': {
-            'link': 'About',
-            'title': 'About – Snapp – Citizen Science Center Zürich'
+        'link': 'About'
         },
         'page-terms': {
-            'link': 'Privacy Policy & Terms of Use',
-            'title': 'Privacy Policy & Terms of Use – Snapp – Citizen Science Center Zürich'
+        'link': 'Privacy Policy & Terms of Use'
         },
-          'page-login': {
-            'link': 'Anmelden',
-            'title': 'Anmelden – Snapp – Citizen Science Center Zürich'
-          },
-          'page-register': {
-            'link': 'Registrieren',
-            'title': 'Registrieren – Snapp – Citizen Science Center Zürich'
-          },
-          'page-logout': {
-            'link': 'Logout',
-            'title': 'Logout – Snapp – Citizen Science Center Zürich'
-          },
-          'page-reset': {
-            'link': 'Passwort zurücksetzen',
-            'title': 'Passwort zurücksetzen – Snapp – Citizen Science Center Zürich'
-          },
-          'page-profile': {
-            'link': 'Profil',
-            'title': 'Profil – Snapp – Citizen Science Center Zürich'
-          }
+        'page-login': {
+        'link': 'Anmelden'
         },
+        'page-register': {
+        'link': 'Registrieren'
+        },
+        'page-logout': {
+        'link': 'Logout'
+        },
+        'page-reset': {
+        'link': 'Passwort zurücksetzen'
+        },
+        'page-profile': {
+        'link': 'Profil'
+        }
+      },
       'en': {
           'page-homepage': {
-              'link': 'Home',
-              'title': 'Snapp – Citizen Science Center Zurich'
+              'link': 'Home'
           },
           'page-challenge': {
-              'link': 'Challenge',
-              'title': 'Challenge – Snapp – Citizen Science Center Zurich'
+              'link': 'Challenge'
           },
           'page-about': {
-              'link': 'About',
-              'title': 'About – Snapp – Citizen Science Center Zürich'
+              'link': 'About'
           },
           'page-terms': {
-              'link': 'Privacy Policy & Terms of Use',
-              'title': 'Privacy Policy & Terms of Use – Snapp – Citizen Science Center Zurich'
+              'link': 'Privacy Policy & Terms of Use'
           },
           'page-login': {
-              'link': 'Login',
-              'title': 'Login – Snapp – Citizen Science Center Zurich'
+              'link': 'Login'
           },
           'page-register': {
-              'link': 'Register',
-              'title': 'Register – Snapp – Citizen Science Center Zurich'
+              'link': 'Register'
           },
           'page-logout': {
-              'link': 'Logout',
-              'title': 'Logout – Snapp – Citizen Science Center Zurich'
+              'link': 'Logout'
           },
           'page-reset': {
-              'link': 'Reset Password',
-              'title': 'Reset Password – Snapp – Citizen Science Center Zurich'
+              'link': 'Reset Password'
           },
           'page-profile': {
-              'link': 'Profil',
-              'title': 'Profil – Snapp – Citizen Science Center Zurich'
+              'link': 'Profil'
           }
       }
   }

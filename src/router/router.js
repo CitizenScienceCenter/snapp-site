@@ -13,13 +13,7 @@ export const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const lang = store.state.settings.language || 'de'
-  const title = i18n.messages[lang][to.meta.page]['title']
-  if (title) {
-    document.title = title
-  } else {
-    document.title = ''
-  }
+  const lang = store.state.settings.language || 'de';
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.state.c3s.user.currentUser) {

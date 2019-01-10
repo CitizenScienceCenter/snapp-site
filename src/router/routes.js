@@ -70,6 +70,15 @@ export const routes = [
                 }
             },
             {
+                path: ":id",
+                name: "ChallengeTask",
+                component: Challenge.Task,
+                meta: {
+                    requiresAuth: true,
+                    page: 'page-challenge'
+                }
+            },
+            {
                 path: "complete",
                 name: "ChallengeComplete",
                 component: Challenge.Complete,
