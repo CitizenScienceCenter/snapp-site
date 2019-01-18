@@ -26,33 +26,36 @@ export const i18n = new VueI18n({
   locale: language,
   messages: {
       'de': {
-        'page-homepage': {
-        'link': 'Home'
-        },
-        'page-challenge': {
-        'link': 'Challenge'
-        },
-        'page-about': {
-        'link': 'About'
-        },
-        'page-terms': {
-        'link': 'Privacy Policy & Terms of Use'
-        },
-        'page-login': {
-        'link': 'Anmelden'
-        },
-        'page-register': {
-        'link': 'Registrieren'
-        },
-        'page-logout': {
-        'link': 'Logout'
-        },
-        'page-reset': {
-        'link': 'Passwort zurücksetzen'
-        },
-        'page-profile': {
-        'link': 'Profil'
-        }
+            'page-homepage': {
+                'link': 'Home'
+            },
+            'page-challenge': {
+                'link': 'Challenge'
+            },
+            'page-forum': {
+                'link': 'Forum'
+            },
+            'page-about': {
+                'link': 'About'
+            },
+            'page-terms': {
+                'link': 'Privacy Policy & Terms of Use'
+            },
+            'page-login': {
+                'link': 'Anmelden'
+            },
+            'page-register': {
+                'link': 'Registrieren'
+            },
+            'page-logout': {
+                'link': 'Logout'
+            },
+            'page-reset': {
+                'link': 'Passwort zurücksetzen'
+            },
+            'page-profile': {
+                'link': 'Profil'
+            }
       },
       'en': {
           'page-homepage': {
@@ -60,6 +63,9 @@ export const i18n = new VueI18n({
           },
           'page-challenge': {
               'link': 'Challenge'
+          },
+          'page-forum': {
+              'link': 'Forum'
           },
           'page-about': {
               'link': 'About'

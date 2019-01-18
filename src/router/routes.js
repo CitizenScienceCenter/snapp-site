@@ -1,7 +1,8 @@
-import Activity from '@/views/Activity'
+//import Activity from '@/views/Activity'
 import * as User from '@/views/shared/user'
 import Profile from '@/views/user/Profile'
 import * as Challenge from '@/views/challenge'
+import Forum from '@/views/Forum'
 import store from '../store/store.js'
 
 const logout = (to, from, next) => {
@@ -45,7 +46,8 @@ export const routes = [
     },
     {
         path: "/challenge",
-        component: Activity,
+        component: Challenge.Task,
+        name: "Challenge",
         meta: {requiresAuth: true, page: 'page-challenge', nav: true},
         children: [
             /*
@@ -88,6 +90,12 @@ export const routes = [
                 }
             }
         ]
+    },
+    {
+        path: "/forum",
+        component: Forum,
+        name: "Forum",
+        meta: {requiresAuth: true, page: 'page-forum', nav: true},
     },
     {
         path: "/about",

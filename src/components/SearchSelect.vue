@@ -231,7 +231,7 @@
             top: 40px;
             left: 0;
             width: 100%;
-            max-height: calc( 40px * 6 );
+            max-height: calc( 40px * 10 );
             overflow: hidden;
             overflow-y: scroll;
 

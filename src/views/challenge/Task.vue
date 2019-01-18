@@ -93,7 +93,7 @@
             </app-content-section>
 
             <app-content-section class="content-section-flat image-section" color="greyish">
-                <template v-if="tasks[0]">
+                <template v-if="taskMedia[0]">
                     <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
                     <div class="image-info image-location">
                         <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
@@ -165,10 +165,16 @@
                             24.
                         </div>
                     </div>
-                    <div class="col col-large-6 col-wrapping col-no-bottom-margin">
+                    <div class="col col-large-6 col-wrapping">
                         <div class="form-field form-field-block form-field-right-aligned">
                             <label>Highscore</label>
                             value
+                        </div>
+                    </div>
+
+                    <div class="col col-wrapping col-large-no-bottom-margin">
+                        <div class="right-aligned">
+                            CREATE ACCOUNT
                         </div>
                     </div>
 
@@ -184,7 +190,7 @@
 
                         <h2 class="heading">Comments & Discussions</h2>
 
-                        <comments :taskId="tasks[0].id"></comments>
+                        <comments :sourceId="tasks[0].id"></comments>
 
                     </div>
                 </div>
@@ -274,7 +280,7 @@ import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/SearchSelect.vue'
-import Comments from '@/components/Comments.vue'
+import Comments from '@/components/shared/Comments.vue'
 
 export default {
     name: 'Task',
@@ -368,13 +374,17 @@ export default {
         region: function(to, from) {
             this.skips = 0;
             this.loadTask();
+        },
+        taskMedia( to, from ) {
+            console.log('taskMedia from: ');
+            console.log( from );
+            console.log('taskMedia to: ');
+            console.log( to );
         }
     },
     mounted() {
 
-        //console.log( 'mounted' );
-        //console.log( this.$route.params );
-
+        this.$store.commit('c3s/task/SET_TASKS', [] );
         this.$store.commit('c3s/task/SET_MEDIA', [] );
 
         // binominals
@@ -409,7 +419,13 @@ export default {
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
             console.log('activity loaded');
-            this.loadTask();
+
+            if( this.$route.params.id ) {
+                this.loadTask( this.$route.params.id );
+            }
+            else {
+                this.loadTask();
+            }
 
         });
 
@@ -417,35 +433,38 @@ export default {
 
     },
     methods: {
-        loadTask: function() {
+        loadTask: function(id) {
 
             this.evaluation = null;
 
-            console.log( 'load task nr. '+this.skips );
+            let taskQuery;
+            if( !id ) {
 
-            let taskQuery = {
-                'select': {
-                    'fields': [
-                        '*'
-                    ],
-                    'tables': [
-                        'tasks'
-                    ]
-                },
-                'where': [
-                    {
-                        "field": 'tasks.activity_id',
-                        'op': 'e',
-                        'val': this.activity.id
+                console.log('load task nr. ' + this.skips);
+
+                taskQuery = {
+                    'select': {
+                        'fields': [
+                            '*'
+                        ],
+                        'tables': [
+                            'tasks'
+                        ]
                     },
-                    {
-                        'field': 'tasks.id',
-                        'op': 'ni',
-                        'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '"+this.user.id+"')",
-                        'join': 'a',
-                        'type': 'sql'
-                    }
-                    /*
+                    'where': [
+                        {
+                            "field": 'tasks.activity_id',
+                            'op': 'e',
+                            'val': this.activity.id
+                        },
+                        {
+                            'field': 'tasks.id',
+                            'op': 'ni',
+                            'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.user.id + "')",
+                            'join': 'a',
+                            'type': 'sql'
+                        }
+                        /*
                     {
                         'field': 'tasks.info ->> \'difficulty\'',
                         'op': 'e',
@@ -453,19 +472,43 @@ export default {
                         'join': 'a'
                     }
                     */
-                ],
-                'offset': this.skips
-            };
+                    ],
+                    'offset': this.skips
+                };
 
-            if (this.region !== 'All') {
-                taskQuery.where.push(
-                    {
-                        'field': 'tasks.info ->> \'region\'',
-                        'op': 'e',
-                        'val': this.region.toString(),
-                        'join': 'a'
-                    }
-                );
+                if (this.region !== 'All') {
+                    taskQuery.where.push(
+                        {
+                            'field': 'tasks.info ->> \'region\'',
+                            'op': 'e',
+                            'val': this.region.toString(),
+                            'join': 'a'
+                        }
+                    );
+                }
+
+            }
+            else {
+                console.log('load task id ' + id);
+
+                taskQuery = {
+                    'select': {
+                        'fields': [
+                            '*'
+                        ],
+                        'tables': [
+                            'tasks'
+                        ]
+                    },
+                    'where': [
+                        {
+                            "field": 'tasks.id',
+                            'op': 'e',
+                            'val': id
+                        }
+                    ]
+                };
+
             }
 
             this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
@@ -473,7 +516,7 @@ export default {
 
                 console.log( 'task loaded');
                 console.log( 'user '+this.user.id );
-                console.log( 'task '+this.tasks[0] );
+                console.log( 'task '+this.tasks[0].id );
                 console.log('load media');
 
                 if (this.tasks[0] ) {
@@ -499,6 +542,8 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         console.log('media loaded');
+
+                        console.log( this.taskMedia );
 
                         this.value = null;
 
