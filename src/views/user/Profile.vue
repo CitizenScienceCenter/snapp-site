@@ -138,25 +138,49 @@
                         "tasks"
                     ]
                 },
-                "where": {
-                    "submissions.user_id": {
+                "where": [
+                    {
+                        "field": "submissions.user_id",
                         "op": "e",
                         "val": this.user.id,
                         "join": "a"
                     },
-                    "submissions.task_id": {
+                    {
+                        "field": "submissions.task_id",
                         "op": "e",
                         'type': 'sql',
                         "val": "tasks.id",
                         "join": "a"
                     },
-                    "tasks.activity_id": {
+                    {
+                        "field": "tasks.activity_id",
                         "op": "e",
                         'type': 'sql',
                         "val": "activities.id",
                         "join": "a"
                     }
+                ],
+                /*
+                'where': {
+                    "submissions.user_id": {
+                        "op": "e",
+                            "val": this.user.id,
+                            "join": "a"
+                    },
+                    "submissions.task_id": {
+                        "op": "e",
+                            'type': 'sql',
+                            "val": "tasks.id",
+                            "join": "a"
+                    },
+                    "tasks.activity_id": {
+                        "op": "e",
+                            'type': 'sql',
+                            "val": "activities.id",
+                            "join": "a"
+                    }
                 }
+                */
             };
             this.$store.dispatch('c3s/submission/getSubmissions', [subQuery, 100]).then(s => {
                 if (s.ok) {

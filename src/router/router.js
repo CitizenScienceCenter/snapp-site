@@ -17,7 +17,9 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.state.c3s.user.currentUser) {
+      console.log('validate user '+store.state.c3s.user.currentUser.username);
       store.dispatch('c3s/user/validate').then(v => {
+        console.log('success');
         if (v) {
           next()
         } else {

@@ -16,7 +16,7 @@
 
 <template>
 
-    <div v-if="tasks.length && tasks[0] && taskMedia[0]">
+    <div>
 
         <div class="section-wrapper">
 
@@ -77,13 +77,13 @@
                             </h2>
                             <ul>
                                 <li>
-                                    Earn 10 points for the correct binominal.
+                                    Earn {{binominalScore}} points for the correct binominal.
                                 </li>
                                 <li>
-                                    Earn 8 points for the correct genus.
+                                    Earn {{genusScore}} points for the correct genus.
                                 </li>
                                 <li>
-                                    Earn 6 points for the correct family.
+                                    Earn {{familyScore}} points for the correct family.
                                 </li>
                             </ul>
 
@@ -92,17 +92,19 @@
                 </div>
             </app-content-section>
 
-            <app-content-section class="content-section-flat image-section">
-                <image-viewer class="image-viewer" :src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
-                <div class="image-info image-location">
-                    <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
-                    <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
-                    <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
-                </div>
-                <div class="image-info image-source">
-                    <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}, </span>
-                    <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
-                </div>
+            <app-content-section class="content-section-flat image-section" color="greyish">
+                <template v-if="tasks[0]">
+                    <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                    <div class="image-info image-location">
+                        <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
+                        <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
+                        <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
+                    </div>
+                    <div class="image-info image-source">
+                        <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}, </span>
+                        <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
+                    </div>
+                </template>
             </app-content-section>
 
             <app-content-section class="content-section-condensed response-section">
@@ -118,7 +120,7 @@
                                 </search-select>
                             </div>
 
-                            <div class="actions">
+                            <div v-if="tasks[0]" class="actions">
 
                                 <div class="button-group right-aligned">
                                     <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
@@ -150,49 +152,37 @@
         <app-content-section class="content-section-condensed" color="light-greyish">
             <div class="content-wrapper">
                 <div class="row row-centered">
-                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>Current Rank</label>
-                            24.
-                        </div>
-                    </div>
-                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
+
+                    <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                         <div class="form-field form-field-block form-field-right-aligned">
                             <label>Your Score</label>
                             value
                         </div>
                     </div>
-                    <div class="col col-large-2 col-wrapping col-large-no-bottom-margin">
+                    <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
+                        <div class="form-field form-field-block form-field-right-aligned">
+                            <label>Current Rank</label>
+                            24.
+                        </div>
+                    </div>
+                    <div class="col col-large-6 col-wrapping col-no-bottom-margin">
                         <div class="form-field form-field-block form-field-right-aligned">
                             <label>Highscore</label>
                             value
                         </div>
                     </div>
 
-                    <div class="col col-large-3 col-wrapping col-large-no-bottom-margin">
-
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>Your Stats</label>
-                            value
-                        </div>
-
-                    </div>
-                    <div class="col col-large-3 col-wrapping col-no-bottom-margin">
-
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>This Image</label>
-                            value
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </app-content-section>
 
-        <app-content-section>
+
+        <app-content-section v-if="tasks[0]" class="content-section-condensed">
             <div class="content-wrapper">
                 <div class="row row-centered">
                     <div class="col col-large-6">
+
+                        <h2 class="heading">Comments & Discussions</h2>
 
                         <comments :taskId="tasks[0].id"></comments>
 
@@ -298,49 +288,92 @@ export default {
     },
     data() {
         return {
-            taskIndex: 0,
-            taskCount: 0,
-            difficulty: 0,
+            skips: 0,
+            difficulty: '0',
             region: 'All',
             searchOptionsContainers: [],
             value: null,
             evaluation: null
         }
     },
-    computed: mapState({
-        activityId: state => state.consts.activityId,
-        families: state => state.consts.families,
-        genera: state => state.consts.genera,
-        binomials: state => state.consts.binomials,
+    computed: {
+        ...mapState({
+            //user: state => state.user.user,
+            activityId: state => state.consts.activityId,
+            families: state => state.consts.families,
+            genera: state => state.consts.genera,
+            binomials: state => state.consts.binomials,
 
-        user: state => state.c3s.user.currentUser,
-        activity: state => state.c3s.activity.activity,
-        tasks: state => state.c3s.task.tasks,
-        taskMedia: state => state.c3s.task.media,
-        currentUser: state => state.c3s.user.currentUser,
-        submission: state => state.c3s.submission.submission,
+            user: state => state.c3s.user.currentUser,
+            activity: state => state.c3s.activity.activity,
+            tasks: state => state.c3s.task.tasks,
+            taskMedia: state => state.c3s.task.media,
+            currentUser: state => state.c3s.user.currentUser,
+            submission: state => state.c3s.submission.submission,
 
-        loading: state => state.c3s.settings.loading
-    }),
+            loading: state => state.c3s.settings.loading
+        }),
+        familyScore: function() {
+            switch( this.difficulty ) {
+                case '0': {
+                    return 6;
+                }
+                case '1': {
+                    return 8;
+                }
+                case '2': {
+                    return 10;
+                }
+            }
+        },
+        genusScore: function() {
+            switch( this.difficulty ) {
+                case '0': {
+                    return 9;
+                }
+                case '1': {
+                    return 12;
+                }
+                case '2': {
+                    return 15;
+                }
+            }
+        },
+        binominalScore: function() {
+            switch( this.difficulty ) {
+                case '0': {
+                    return 12;
+                }
+                case '1': {
+                    return 16;
+                }
+                case '2': {
+                    return 20;
+                }
+            }
+        }
+    },
     watch: {
         value: function() {
             if( this.value ) {
-                console.log( this.value );
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
                 this.$refs.submit.removeAttribute('disabled');
                 this.$refs.submit.focus();
             }
         },
         difficulty: function(to, from) {
+            this.skips = 0;
             this.loadTask();
         },
         region: function(to, from) {
+            this.skips = 0;
             this.loadTask();
         }
     },
     mounted() {
 
-        console.log( this.$route.params.id );
+        //console.log( 'mounted' );
+        //console.log( this.$route.params );
 
         this.$store.commit('c3s/task/SET_MEDIA', [] );
 
@@ -371,7 +404,7 @@ export default {
         this.searchOptionsContainers = [ searchOptionContainerBinominals, searchOptionContainerGenera, searchOptionContainerFamilies ];
 
 
-        console.log('load activity');
+        //console.log('load activity');
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
@@ -380,185 +413,114 @@ export default {
 
         });
 
+
+
     },
     methods: {
-        loadTask: function (taskIndex) {
+        loadTask: function() {
 
-            console.log('load task count');
+            this.evaluation = null;
 
-            let taskCountQuery;
-            if( this.region === 'All' ) {
-                console.log( 'without region ');
-                taskCountQuery = {
-                    'select': {
-                        'fields': [
-                            '*'
-                        ],
-                        'tables': [
-                            'tasks'
-                        ]
+            console.log( 'load task nr. '+this.skips );
+
+            let taskQuery = {
+                'select': {
+                    'fields': [
+                        '*'
+                    ],
+                    'tables': [
+                        'tasks'
+                    ]
+                },
+                'where': [
+                    {
+                        "field": 'tasks.activity_id',
+                        'op': 'e',
+                        'val': this.activity.id
                     },
-                    'where': {
-                        'activity_id': {
-                            'op': 'e',
-                            'val': this.activity.id
-                        },
-                        'info ->> \'difficulty\'': {
-                            'op': 'e',
-                            'val': this.difficulty.toString(),
-                            'join': 'a'
-                        }
+                    {
+                        'field': 'tasks.id',
+                        'op': 'ni',
+                        'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '"+this.user.id+"')",
+                        'join': 'a',
+                        'type': 'sql'
                     }
-                };
-            }
-            else {
-                console.log( 'with region ');
-                taskCountQuery = {
-                    'select': {
-                        'fields': [
-                            '*'
-                        ],
-                        'tables': [
-                            'tasks'
-                        ]
-                    },
-                    'where': {
-                        'activity_id': {
-                            'op': 'e',
-                            'val': this.activity.id
-                        },
-                        'info ->> \'difficulty\'': {
-                            'op': 'e',
-                            'val': this.difficulty.toString(),
-                            'join': 'a'
-                        },
-                        'info ->> \'region\'': {
-                            'op': 'e',
-                            'val': this.region.toString(),
-                            'join': 'a'
-                        }
+                    /*
+                    {
+                        'field': 'tasks.info ->> \'difficulty\'',
+                        'op': 'e',
+                        'val': this.difficulty.toString(),
+                        'join': 'a'
                     }
-                };
+                    */
+                ],
+                'offset': this.skips
+            };
+
+            if (this.region !== 'All') {
+                taskQuery.where.push(
+                    {
+                        'field': 'tasks.info ->> \'region\'',
+                        'op': 'e',
+                        'val': this.region.toString(),
+                        'join': 'a'
+                    }
+                );
             }
 
-            this.$store.dispatch('c3s/task/getTaskCount', taskCountQuery).then( count => {
-                this.taskCount = count.body;
-                console.log('count='+ this.taskCount +'load task');
+            this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
 
-                if( this.taskCount == 0 ) {
-                    alert("no tasks found");
-                }
 
-                let taskQuery;
-                if( this.region === 'All' ) {
-                    taskQuery = {
+                console.log( 'task loaded');
+                console.log( 'user '+this.user.id );
+                console.log( 'task '+this.tasks[0] );
+                console.log('load media');
+
+                if (this.tasks[0] ) {
+
+                    const mediaQuery = {
                         'select': {
                             'fields': [
                                 '*'
                             ],
                             'tables': [
-                                'tasks'
+                                'media'
                             ]
                         },
-                        'where': {
-                            'activity_id': {
+                        'where': [
+                            {
+                                "field": "source_id",
                                 'op': 'e',
-                                'val': this.activity.id
-                            },
-                            'info ->> \'difficulty\'': {
-                                'op': 'e',
-                                'val': this.difficulty.toString(),
-                                'join': 'a'
+                                'val': this.tasks[0].id
                             }
-                        },
-                        'limit': 1,
-                        'offset': this.taskIndex
+                        ]
                     };
-                }
-                else {
-                    taskQuery = {
-                        'select': {
-                            'fields': [
-                                '*'
-                            ],
-                            'tables': [
-                                'tasks'
-                            ]
-                        },
-                        'where': {
-                            'activity_id': {
-                                'op': 'e',
-                                'val': this.activity.id
-                            },
-                            'info ->> \'difficulty\'': {
-                                'op': 'e',
-                                'val': this.difficulty.toString(),
-                                'join': 'a'
-                            },
-                            'info ->> \'region\'': {
-                                'op': 'e',
-                                'val': this.region.toString(),
-                                'join': 'a'
-                            }
-                        },
-                        'limit': 1,
-                        'offset': this.taskIndex
-                    };
-                }
 
+                    this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
-                if (this.taskIndex < this.taskCount) {
+                        console.log('media loaded');
 
-                    this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
-
-                        console.log( 'task loaded: ');
-                        console.log( this.tasks[0] );
-                        console.log('load media');
-
-                        const mediaQuery = {
-                            'select': {
-                                'fields': [
-                                    '*'
-                                ],
-                                'tables': [
-                                    'media'
-                                ]
-                            },
-                            'where': {
-                                'source_id': {
-                                    'op': 'e',
-                                    'val': this.tasks[0].id
-                                }
-                            }
-                        };
-
-                        this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
-
-                            console.log('media loaded');
-
-                            this.value = null;
-
-                        });
-
+                        this.value = null;
 
                     });
+
                 }
+
+                else {
+
+                    alert('no more tasks');
+
+                }
+
 
             });
 
         },
         nextTask: function () {
 
-            this.evaluation = null;
+             this.skips++;
+             this.loadTask();
 
-            if (this.taskIndex < this.taskCount - 1) {
-                this.taskIndex++;
-
-                this.loadTask();
-            }
-            else {
-                alert("no more tasks");
-            }
         },
         submitResponse: function() {
 
@@ -566,7 +528,7 @@ export default {
 
             if( this.value.info === 'binominal' ) {
                 if( this.value.value === this.tasks[0].info.binominal ) {
-                    score = 10;
+                    score = this.binominalScore;
 
                     this.evaluation = {
                         'type': 'success',
@@ -582,7 +544,7 @@ export default {
             }
             else if( this.value.info === 'genus' ) {
                 if( this.value.value === this.tasks[0].info.genus ) {
-                    score = 8;
+                    score = this.genusScore;
 
                     this.evaluation = {
                         'type': 'almost',
@@ -598,7 +560,7 @@ export default {
             }
             else if( this.value.info === 'family' ) {
                 if( this.value.value === this.tasks[0].info.family ) {
-                    score = 6;
+                    score = this.familyScore;
 
                     this.evaluation = {
                         'type': 'almost',
@@ -634,7 +596,7 @@ export default {
 
                 const self = this;
                 setTimeout(function(){
-                    self.nextTask();
+                    self.loadTask();
                 }, 1000);
 
             });
@@ -653,6 +615,10 @@ export default {
 .settings-select {
     select {
         border-bottom: none;
+
+        &:focus {
+            border-bottom: none;
+        }
     }
 }
 
@@ -700,9 +666,6 @@ export default {
                 right: 0;
             }
         }
-    }
-    .response-section {
-        padding-top: 0;
     }
 }
 
@@ -776,6 +739,10 @@ export default {
                     z-index: 1;
                 }
             }
+        }
+
+        .response-section {
+            padding-top: 0;
         }
     }
 

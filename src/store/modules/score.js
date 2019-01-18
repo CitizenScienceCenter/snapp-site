@@ -16,24 +16,39 @@ const actions = {
             const submissionQuery = {
                 "select": {
                     "fields": [
-                        "DISTINCT submissions.*"
+                        "submissions.*"
                     ],
                     "tables": [
                         "submissions",
                         "tasks"
                     ]
                 },
+                /*
                 "where": {
                     "tasks.activity_id": {
                         "op": "e",
-                        "val": store.state.consts.activityId,
-                        "join": "a"
+                        "val": store.state.consts.activityId
                     },
                     "submissions.user_id": {
                         "op": "e",
-                        "val": store.state.c3s.user.currentUser.id
+                        "val": store.state.c3s.user.currentUser.id,
+                        "join": "a"
                     }
-                }
+                },
+                */
+                'where': [
+                    {
+                        "field": 'tasks.activity_id',
+                        'op': 'e',
+                        'val': store.state.consts.activityId
+                    },
+                    {
+                        "field":'submissions.user_id',
+                        'op': 'e',
+                        "val": store.state.c3s.user.currentUser.id,
+                        'join': 'a'
+                    }
+                ]
             };
 
             store.dispatch('c3s/submission/getSubmissions', [submissionQuery]).then(submissions => {

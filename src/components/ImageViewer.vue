@@ -100,7 +100,7 @@
         .croppa {
             height: 100%;
             width: 100%;
-            background: linear-gradient(to bottom right, rgba($color-gradient-start, 0.2), rgba($color-gradient-end, 0.2) );
+            //background: linear-gradient(to bottom right, rgba($color-gradient-start, 0.2), rgba($color-gradient-end, 0.2) );
 
             cursor: move;
         }
