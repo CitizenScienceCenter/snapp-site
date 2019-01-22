@@ -60,19 +60,14 @@
         },
         watch: {
             src(to, from) {
-                console.log('refresh croppa');
                 this.$refs.croppa.refresh();
             }
         },
         methods: {
             init: function() {
-                console.log('croppa init');
-                console.log( this.$refs.croppa.getMetadata() );
-
                 this.$refs.moveindicator.classList.remove("animation-h","animation-v","animation");
             },
             newImageDrawn: function(event) {
-                console.log('croppa new image');
 
                 if( this.$refs.croppa.getMetadata().startX < 0 ) {
                     this.$refs.moveindicator.classList.add("animation-h","animation");

@@ -101,7 +101,7 @@
           <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
             <div>
               <div class="extra-padding-h-big">
-                <img src="img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                <img src="/img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
           <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
             <div>
               <div class="extra-padding-h">
-                <img src="img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
+                <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
               </div>
             </div>
           </div>

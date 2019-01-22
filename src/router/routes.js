@@ -53,27 +53,16 @@ export const routes = [
             /*
             {
                 path: "",
-                name: "ChallengeStart",
-                component: Challenge.Start,
-                meta: {
-                    requiresAuth: true,
-                    breadcrumb: "Transcribe",
-                    page: 'page-challenge'
-                }
-            },
-            */
-            {
-                path: "",
                 name: "ChallengeTask",
                 component: Challenge.Task,
                 meta: {
                     requiresAuth: true,
                     page: 'page-challenge'
                 }
-            },
+            },*/
             {
                 path: ":id",
-                name: "ChallengeTask",
+                name: "ChallengeTaskId",
                 component: Challenge.Task,
                 meta: {
                     requiresAuth: true,
@@ -81,7 +70,7 @@ export const routes = [
                 }
             },
             {
-                path: "complete",
+                path: "/complete",
                 name: "ChallengeComplete",
                 component: Challenge.Complete,
                 meta: {

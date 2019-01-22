@@ -214,6 +214,11 @@
     .search-select {
         position: relative;
 
+        &:disabled {
+            pointer-events: none;
+            opacity: 0.25;
+        }
+
         .custom-input {
             svg {
                 position: absolute;

@@ -21,10 +21,10 @@ router.beforeEach((to, from, next) => {
       store.dispatch('c3s/user/validate').then(v => {
         console.log('success');
         if (v) {
-          next()
+          next();
         } else {
           // TODO error here with user not validated
-            this.push({name: 'Login'})
+            this.router.push('/login');
         }
       })
     } else {

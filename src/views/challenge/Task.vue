@@ -16,9 +16,9 @@
 
 <template>
 
-    <div>
+    <div >
 
-        <div class="section-wrapper">
+        <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
 
             <app-content-section class="content-section-flat settings-section" color="light-greyish">
                 <div class="settings">
@@ -93,8 +93,8 @@
             </app-content-section>
 
             <app-content-section class="content-section-flat image-section" color="greyish">
-                <template v-if="taskMedia[0]">
-                    <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                <template>
+                    <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
                     <div class="image-info image-location">
                         <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
                         <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
@@ -114,6 +114,7 @@
 
                             <div class="form-field form-field-block">
                                 <search-select
+                                        :disabled="submission"
                                         placeholder="Binominal, Genus or Family"
                                         :optionContainers="searchOptionsContainers"
                                         v-model="value">
@@ -148,6 +149,22 @@
             </app-content-section>
 
         </div>
+        <app-content-section v-if="complete">
+            <div class="content-wrapper">
+                <div class="row row-centered">
+                    <div class="col col-large-6">
+
+                        <h2 class="heading">Challenge Complete</h2>
+
+                        <p>
+                            You did everything!
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </app-content-section>
+
 
         <app-content-section class="content-section-condensed" color="light-greyish">
             <div class="content-wrapper">
@@ -204,7 +221,7 @@
                     <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
                         <div>
                             <div class="extra-padding-h-big">
-                                <img src="img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                                <img src="/img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
                             </div>
                         </div>
                     </div>
@@ -229,7 +246,7 @@
                     <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
                         <div>
                             <div class="extra-padding-h">
-                                <img src="img/graphic-about.jpg" style="border-radius: 50%" />
+                                <img src="/img/graphic-about.jpg" style="border-radius: 50%" />
                             </div>
                         </div>
                     </div>
@@ -294,12 +311,16 @@ export default {
     },
     data() {
         return {
+            id: null,
+            hasSubmissionAlready: false,
             skips: 0,
             difficulty: '0',
+            completedDifficulties: [],
             region: 'All',
             searchOptionsContainers: [],
             value: null,
-            evaluation: null
+            evaluation: null,
+            complete: false
         }
     },
     computed: {
@@ -368,24 +389,20 @@ export default {
             }
         },
         difficulty: function(to, from) {
+            console.log("difficulty changed "+from +" "+ to);
             this.skips = 0;
             this.loadTask();
         },
         region: function(to, from) {
             this.skips = 0;
             this.loadTask();
-        },
-        taskMedia( to, from ) {
-            console.log('taskMedia from: ');
-            console.log( from );
-            console.log('taskMedia to: ');
-            console.log( to );
         }
     },
-    mounted() {
-
+    beforeCreate() {
         this.$store.commit('c3s/task/SET_TASKS', [] );
         this.$store.commit('c3s/task/SET_MEDIA', [] );
+    },
+    mounted() {
 
         // binominals
         let searchOptionsBinominal = [];
@@ -414,16 +431,28 @@ export default {
         this.searchOptionsContainers = [ searchOptionContainerBinominals, searchOptionContainerGenera, searchOptionContainerFamilies ];
 
 
-        //console.log('load activity');
+        //console.log('mount');
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
-            console.log('activity loaded');
+            //console.log('activity loaded');
 
             if( this.$route.params.id ) {
-                this.loadTask( this.$route.params.id );
+                if( this.$route.params.id.length != 36 ) {
+                    console.log('invalid id');
+                    delete this.$route.params.id;
+                    this.$router.replace('/challenge');
+                    this.id = null;
+                    this.loadTask();
+                }
+                else {
+                    this.id = this.$route.params.id;
+                    this.loadTask();
+                }
             }
             else {
+                this.id = null;
+                //console.log('load without id');
                 this.loadTask();
             }
 
@@ -433,14 +462,16 @@ export default {
 
     },
     methods: {
-        loadTask: function(id) {
+        loadTask: function() {
+
+            console.log('load task');
 
             this.evaluation = null;
 
             let taskQuery;
-            if( !id ) {
+            if( !this.id ) {
 
-                console.log('load task nr. ' + this.skips);
+                //console.log('load task nr. ' + this.skips);
 
                 taskQuery = {
                     'select': {
@@ -463,15 +494,13 @@ export default {
                             'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.user.id + "')",
                             'join': 'a',
                             'type': 'sql'
+                        },
+                        {
+                            'field': 'tasks.info ->> \'difficulty\'',
+                            'op': 'e',
+                            'val': this.difficulty.toString(),
+                            'join': 'a'
                         }
-                        /*
-                    {
-                        'field': 'tasks.info ->> \'difficulty\'',
-                        'op': 'e',
-                        'val': this.difficulty.toString(),
-                        'join': 'a'
-                    }
-                    */
                     ],
                     'offset': this.skips
                 };
@@ -489,7 +518,7 @@ export default {
 
             }
             else {
-                console.log('load task id ' + id);
+                //console.log('load task id ' + id);
 
                 taskQuery = {
                     'select': {
@@ -502,9 +531,9 @@ export default {
                     },
                     'where': [
                         {
-                            "field": 'tasks.id',
+                            "field": 'id',
                             'op': 'e',
-                            'val': id
+                            'val': this.id
                         }
                     ]
                 };
@@ -513,13 +542,54 @@ export default {
 
             this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
 
+                //console.log('responded tasks');
 
-                console.log( 'task loaded');
-                console.log( 'user '+this.user.id );
-                console.log( 'task '+this.tasks[0].id );
-                console.log('load media');
+                if( this.id ) {
 
-                if (this.tasks[0] ) {
+                    this.hasSubmissionAlready = false;
+
+                    let query = {
+                        'select': {
+                            'fields': [
+                                '*'
+                            ],
+                            'tables': [
+                                'submissions'
+                            ]
+                        },
+                        'where': [
+                            {
+                                'field': 'task_id',
+                                'op': 'e',
+                                'val': this.id
+                            },
+                            {
+                                'field': 'user_id',
+                                'op': 'e',
+                                'val': this.user.id,
+                                'join': 'a'
+                            }
+                        ]
+                    };
+
+                    this.$store.dispatch('c3s/submission/getSubmissionCount', query ).then(submissions => {
+
+                        if( submissions.body.length > 0 ) {
+                            this.hasSubmissionAlready = true;
+                        }
+                        else {
+                            this.hasSubmissionAlready = false;
+                        }
+
+                    });
+
+                }
+
+
+                if ( this.tasks[0] ) {
+
+                    console.log( 'task loaded');
+                    //console.log('load media');
 
                     const mediaQuery = {
                         'select': {
@@ -539,11 +609,10 @@ export default {
                         ]
                     };
 
+
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
-                        console.log('media loaded');
-
-                        console.log( this.taskMedia );
+                        //console.log('media loaded');
 
                         this.value = null;
 
@@ -553,7 +622,53 @@ export default {
 
                 else {
 
-                    alert('no more tasks');
+                    console.log('no more tasks');
+
+                    if( this.region !== 'All' ) {
+                        this.region = 'All';
+                    }
+                    else if( this.difficulty == 0 ) {
+                        if( this.skips == 0 ) {
+                            this.completedDifficulties.push(0);
+                        }
+                        if( this.completedDifficulties.indexOf(1) === -1 ) {
+                            this.difficulty = 1;
+                        }
+                        else if( this.completedDifficulties.indexOf(2) === -1 ) {
+                            this.difficulty = 2;
+                        }
+                        else {
+                            this.complete = true;
+                        }
+                    }
+                    else if( this.difficulty == 1 ) {
+                        if( this.skips == 0 ) {
+                            this.completedDifficulties.push(1);
+                        }
+                        if( this.completedDifficulties.indexOf(0) === -1 ) {
+                            this.difficulty = 0;
+                        }
+                        else if( this.completedDifficulties.indexOf(2) === -1 ) {
+                            this.difficulty = 2;
+                        }
+                        else {
+                            this.complete = true;
+                        }
+                    }
+                    else if( this.difficulty == 2 ) {
+                        if( this.skips == 0 ) {
+                            this.completedDifficulties.push(2);
+                        }
+                        if( this.completedDifficulties.indexOf(0) === -1 ) {
+                            this.difficulty = 0;
+                        }
+                        else if( this.completedDifficulties.indexOf(1) === -1 ) {
+                            this.difficulty = 1;
+                        }
+                        else {
+                            this.complete = true;
+                        }
+                    }
 
                 }
 

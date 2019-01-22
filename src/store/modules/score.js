@@ -51,7 +51,7 @@ const actions = {
                 ]
             };
 
-            store.dispatch('c3s/submission/getSubmissions', [submissionQuery]).then(submissions => {
+            store.dispatch('c3s/submission/getSubmissions', [submissionQuery, 0]).then(submissions => {
 
                 let score = 0;
                 for (let i = 0; i < submissions.body.length; i++) {
