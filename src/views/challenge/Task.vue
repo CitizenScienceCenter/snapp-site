@@ -114,33 +114,39 @@
 
                             <div class="form-field form-field-block">
                                 <search-select
-                                        :disabled="submission"
+                                        :disabled="hasSubmissionAlready"
                                         placeholder="Binominal, Genus or Family"
                                         :optionContainers="searchOptionsContainers"
                                         v-model="value">
                                 </search-select>
                             </div>
 
-                            <div v-if="tasks[0]" class="actions">
+                            <div class="info">
 
-                                <div class="button-group right-aligned">
-                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
-                                    <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
-                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
-                                </div>
-
-                                <div class="evaluation" v-if="evaluation" :class="{ 'positive' : evaluation.type === 'success' || evaluation.type === 'almost' , 'negative' : evaluation.type === 'fail' }">
-                                    <div class="message">
-                                        {{evaluation.type}} -> {{evaluation.score}}
+                                <div v-if="tasks[0]" class="actions">
+                                    <div class="button-group right-aligned">
+                                        <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
+                                        <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
+                                        <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
                                     </div>
                                 </div>
 
                                 <div class="mongo">
                                     <label>Binominal: </label>{{ tasks[0].info.binominal }}
-                                    <label style="margin-left: 8px">Genus: </label>{{ tasks[0].info.genus }}
-                                    <label style="margin-left: 8px">Family: </label>{{ tasks[0].info.family }}
+                                    <label>Genus: </label>{{ tasks[0].info.genus }}
+                                    <label>Family: </label>{{ tasks[0].info.family }}
                                 </div>
 
+                                <template v-if="evaluation" >
+                                    <div class="message" :class="{ 'positive' : evaluation.type === 'success' || evaluation.type === 'almost' , 'negative' : evaluation.type === 'fail' }">
+                                        {{evaluation.type}} -> {{evaluation.score}}
+                                    </div>
+                                </template>
+                                <template v-else-if="hasSubmissionAlready" >
+                                    <div class="message info">
+                                        done already
+                                    </div>
+                                </template>
                             </div>
 
                         </div>
@@ -544,9 +550,9 @@ export default {
 
                 //console.log('responded tasks');
 
-                if( this.id ) {
+                this.hasSubmissionAlready = false;
 
-                    this.hasSubmissionAlready = false;
+                if( this.id ) {
 
                     let query = {
                         'select': {
@@ -572,7 +578,8 @@ export default {
                         ]
                     };
 
-                    this.$store.dispatch('c3s/submission/getSubmissionCount', query ).then(submissions => {
+                    this.$store.dispatch('c3s/submission/getSubmissions', [query,0] ).then(submissions => {
+
 
                         if( submissions.body.length > 0 ) {
                             this.hasSubmissionAlready = true;
@@ -580,6 +587,8 @@ export default {
                         else {
                             this.hasSubmissionAlready = false;
                         }
+
+                        this.id = false;
 
                     });
 
@@ -808,6 +817,7 @@ export default {
 .section-wrapper {
 
     .image-section {
+
         .image-viewer {
             height: 360px;
         }
@@ -829,15 +839,12 @@ export default {
     }
 }
 
-.actions {
+.info {
     position: relative;
+    min-height: 40px;
 
-    .evaluation {
-        position: absolute;
-        bottom: $spacing-1;
-        left: 0;
+    .message {
         height: 40px;
-        padding: $spacing-1 0;
 
         &.positive {
             color: darkgreen;
@@ -845,6 +852,14 @@ export default {
         &.negative {
             color: darkred;
         }
+        &.info {
+            color: blue;
+        }
+    }
+
+    .actions {
+        position: absolute;
+        right: 0;
     }
 
     .mongo {
@@ -865,14 +880,14 @@ export default {
 
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
+    .info {
+        height: calc( 48px * 3 );
 
-    .actions {
-        position: relative;
-
-        .evaluation {
+        .message {
             height: 48px;
         }
     }
+
 
 }
 
@@ -887,11 +902,11 @@ export default {
             left: 0;
             width: 50%;
             height: 100%;
-
+            z-index: 1;
 
             .image-viewer {
+                position: relative;
                 height: 100%;
-                z-index: 1;
             }
 
             .image-info {

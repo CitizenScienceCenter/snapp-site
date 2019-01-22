@@ -1,7 +1,7 @@
 <template>
     <div class="search-select">
 
-        <div class="custom-input">
+        <div class="custom-input" :class="{'disabled':disabled}">
             <input type="text" ref="answer"
                 :placeholder="placeholder"
                 v-model="inputValue"
@@ -62,6 +62,10 @@
             optionContainers: {
                 type: Array,
                 default: function () { return [] }
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         watch: {
@@ -214,11 +218,6 @@
     .search-select {
         position: relative;
 
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.25;
-        }
-
         .custom-input {
             svg {
                 position: absolute;
@@ -227,6 +226,11 @@
                 height: 12px;
                 fill: $color-black;
                 pointer-events: none;
+            }
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.25;
             }
         }
 

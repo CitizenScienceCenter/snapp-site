@@ -2,6 +2,7 @@
     {
     "de": {
     "heading": "Dein Profil",
+    "label-username": "Benutzername",
     "label-email": "Email",
     "label-api-key": "API Key",
     "submission-heading": "Deine Statistik",
@@ -16,6 +17,7 @@
     },
     "en": {
     "heading": "Your Profile",
+    "label-username": "Username",
     "label-email": "Email",
     "label-api-key": "API Key",
     "submission-heading": "Your Stats",
@@ -42,37 +44,16 @@
                         <div class="content-subsection">
                             <h2 class="heading">{{ $t('heading') }}</h2>
 
-                            <form novalidate disabled>
-                                <div v-if="user" class="md-layout">
-                                    <div>
-                                        <label>{{ $t('label-email') }}</label>
-                                        <p>{{ user.email }}</p>
-                                    </div>
+                            <div class="form-field form-field-block">
+                                <label>{{ $t('label-username') }}</label>
+                                <p>{{ user.username }}</p>
+                            </div>
+                            <div class="form-field form-field-block">
+                                <label>{{ $t('label-email') }}</label>
+                                <p>{{ user.email }}</p>
+                            </div>
 
-                                    <!--
-                                    <div>
-                                        <label>{{ $t('label-api-key') }}</label>
-                                        <p>{{ user.api_key }}</p>
-                                    </div>
-                                    -->
-                                </div>
-                            </form>
                         </div>
-
-                        <!--
-                        <div class="content-subsection" v-if="submissions.length">
-                            <h3 class="subheading">{{ $t('submission-heading') }}</h3>
-                            <ul>
-                                <li>
-                                    {{ $t('challenge') }}99{{ $t('submission-transcription-between') }}{{this.submissionStats['Transkribieren']['count']}}{{ $t('submission-transcription-suffix') }}
-                                </li>
-                                <li>
-                                    {{ $t('submission-translation-prefix') }}{{this.submissionStats['Übersetzen']['count']}}{{ $t('submission-translation-suffix') }}
-                                </li>
-                            </ul>
-                            <p class="lead">{{ $t('thanks') }}</p>
-                        </div>
-                        -->
 
                         <div class="content-subsection">
                             <div class="button-group">
