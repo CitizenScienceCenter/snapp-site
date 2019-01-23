@@ -841,7 +841,6 @@ export default {
 
 .info {
     position: relative;
-    min-height: 40px;
 
     .message {
         height: 40px;
@@ -858,8 +857,6 @@ export default {
     }
 
     .actions {
-        position: absolute;
-        right: 0;
     }
 
     .mongo {
@@ -881,7 +878,6 @@ export default {
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
     .info {
-        height: calc( 48px * 3 );
 
         .message {
             height: 48px;

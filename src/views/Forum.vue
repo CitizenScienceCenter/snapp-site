@@ -30,36 +30,33 @@
     <div>
         <app-content-section>
 
-            <div class="content-subsection">
+            <div class="content-wrapper">
 
-                <div class="content-wrapper">
+                <div class="row row-centered">
+                    <div class="col col-large-6">
+                        <h2 class="heading">Comments & Discussions</h2>
 
-                    <div class="row row-centered">
-                        <div class="col col-large-6">
-                            <h2 class="heading">Comments & Discussions</h2>
-
-                            <comments :sourceId="activityId" withTitles></comments>
-                        </div>
+                        <comments :sourceId="activityId" withTitles></comments>
                     </div>
-
                 </div>
 
             </div>
-            <div class="content-subsection">
 
-                <div class="content-wrapper">
+        </app-content-section>
+        <app-content-section>
 
-                    <div class="row row-centered">
-                        <div class="col col-large-6">
-                            <h2 class="heading">Commented Tasks</h2>
+            <div class="content-wrapper">
 
-                            <commented-tasks :sourceId="activityId"></commented-tasks>
-                        </div>
+                <div class="row row-centered">
+                    <div class="col col-large-6">
+                        <h2 class="heading">Commented Tasks</h2>
+
+                        <commented-tasks :sourceId="activityId"></commented-tasks>
                     </div>
-
                 </div>
 
             </div>
+
         </app-content-section>
 
         <app-content-section color="greyish">
