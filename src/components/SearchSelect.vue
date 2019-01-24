@@ -20,17 +20,15 @@
                     </li>
                     <li v-for="option in filteredOptionContainer.options"
                         :ref="'option_'+option.id"
-                        @click="focusedOptionIndex = option.id; selectOptionByClick()"
+                        @click="focusedOptionIndex = option.id; selectOptionById(option.id)"
                         :class="{ 'focused' : focusedOptionIndex === option.id }"
                         :value="option.value"
                         :info="option.info">
                         {{ option.value }}
-                        <div v-if="option.synonyms && option.synonyms.length > 0">
-                            <template v-for="(synonym,index) in option.synonyms">
-                                <template v-if="index === 0">aka: {{synonym}}, </template>
-                                <template v-else-if="index < option.synonyms.length-1">{{synonym}}, </template>
-                                <template v-else>{{synonym}}</template>
-                            </template>
+                        <div v-if="inputValue != '' && option.synonyms && option.synonyms.length > 0">
+                            <span v-for="synonym in option.synonyms">
+                                {{synonym}}
+                            </span>
                         </div>
                     </li>
                 </template>
@@ -122,25 +120,31 @@
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
 
+                        let options;
+                        if( this.inputValue.length > 0 ) {
 
-                        //let options = this.optionContainers[i].options.filter( option => option.value.toUpperCase().includes( this.inputValue.toUpperCase() ) );
-                        let options = this.optionContainers[i].options.filter( function(option) {
+                            options = this.optionContainers[i].options.filter( function(option) {
 
-                            if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
-                                return true;
-                            }
-                            else {
-                                // check synonyms if exist
-                                if( option.synonyms && option.synonyms.length > 0 ) {
-                                    for( let j = 0; j < option.synonyms.length; j++ ) {
-                                        if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
-                                            return true;
+                                if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                    return true;
+                                }
+                                else {
+                                    // check synonyms if exist
+                                    if( option.synonyms && option.synonyms.length > 0 ) {
+                                        for( let j = 0; j < option.synonyms.length; j++ ) {
+                                            if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                                return true;
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            return false;
-                        });
+                                return false;
+                            });
+
+                        }
+                        else {
+                            options = this.optionContainers[i].options;
+                        }
 
                         for( let j = 0; j < options.length; j++ ) {
                             options[j] = JSON.parse(JSON.stringify( options[j] ));
@@ -175,12 +179,18 @@
             clickOnResults: function() {
                 this.$refs.answer.focus();
             },
-            selectOptionByClick: function() {
-                this.inputValue = this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('value');
-                let returnObject = {
-                    'value': this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('value'),
-                    'info': this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('info')
-                };
+            selectOptionById(id) {
+                let returnObject;
+                for( let i = 0; i < this.filteredOptionContainers.length; i++ ) {
+                    for( let j = 0; j < this.filteredOptionContainers[i].options.length; j++ ) {
+                        if( this.filteredOptionContainers[i].options[j].id === id ) {
+                            returnObject = this.filteredOptionContainers[i].options[j];
+                            break;
+                        }
+                    }
+                }
+                this.inputValue = returnObject.value;
+
                 this.$emit('input', returnObject );
             },
             handleInputKeys: function(event) {
@@ -201,12 +211,7 @@
                             break;
                         case 'Enter':
                             if( this.$refs['option_'+this.focusedOptionIndex][0] ) {
-                                this.inputValue = this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('value');
-                                let returnObject = {
-                                  'value': this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('value'),
-                                  'info': this.$refs['option_'+this.focusedOptionIndex][0].getAttribute('info')
-                                };
-                                this.$emit('input', returnObject );
+                                this.selectOptionById(this.focusedOptionIndex);
                             }
                             break;
                     }
@@ -256,7 +261,7 @@
 
             &.upwards {
                 top: auto;
-                bottom: 48px;
+                bottom: 40px;
             }
 
             ul {
@@ -264,11 +269,11 @@
                 li {
                     margin: 0;
                     padding: $spacing-1 $spacing-2;
-                    line-height: 1.2;
+                    line-height: 1.5;
                     color: $color-black-tint-50;
 
                     &.label {
-                        font-size: $font-size-small;
+                        font-size: $font-size-medium;
                         font-weight: 700;
                         color: $color-black;
                     }
@@ -287,39 +292,36 @@
                     div {
                         margin-top: 4px;
                         font-size: $font-size-small /1.25;
+
+                        span {
+                            margin-right: $spacing-1;
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
-
-/*
     @media only screen and (min-width: $viewport-tablet-portrait) {
 
         .search-select {
 
-            .custom-input {
-                svg {
-                    top: 17px;
-                }
-            }
-
             .results {
                 top: 48px;
-                max-height: calc( 48px * 5 );
 
-                ul {
-                    li {
-                        line-height: 48px;
-                    }
+                &.upwards {
+                    bottom: 48px;
                 }
+
             }
 
         }
 
     }
 
-*/
 
 </style>

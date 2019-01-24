@@ -687,8 +687,9 @@ export default {
         },
         submitResponse: function() {
 
-            console.log( this.value.value );
-            console.log( this.tasks[0].info.family );
+            console.log( this.value );
+            console.log( this.tasks[0].info );
+
             if( this.value.info === 'binomial' ) {
                 if( this.value.value === this.tasks[0].info.binomial ) {
                     this.evaluation = {
@@ -696,13 +697,13 @@ export default {
                         'score': this.binomialScore
                     };
                 }
-                else if( this.value.value === this.tasks[0].info.genus ) {
+                else if( this.value.genus === this.tasks[0].info.genus ) {
                     this.evaluation = {
                         'successRate': 2,
                         'score': this.genusScore
                     };
                 }
-                else if( this.value.value === this.tasks[0].info.family ) {
+                else if( this.value.family === this.tasks[0].info.family ) {
                     this.evaluation = {
                         'successRate': 1,
                         'score': this.familyScore
