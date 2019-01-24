@@ -75,17 +75,6 @@
                                 What Snake is This?
                                 <!-- {{ tasks[0].content.question.text }} -->
                             </h2>
-                            <ul>
-                                <li>
-                                    Earn {{binominalScore}} points for the correct binominal.
-                                </li>
-                                <li>
-                                    Earn {{genusScore}} points for the correct genus.
-                                </li>
-                                <li>
-                                    Earn {{familyScore}} points for the correct family.
-                                </li>
-                            </ul>
 
                         </div>
                     </div>
@@ -115,37 +104,72 @@
                             <div class="form-field form-field-block">
                                 <search-select
                                         :disabled="hasSubmissionAlready"
-                                        placeholder="Binominal, Genus or Family"
+                                        placeholder="Binomial, Genus or Family"
                                         :optionContainers="searchOptionsContainers"
                                         v-model="value">
                                 </search-select>
                             </div>
 
-                            <div class="info">
-
-                                <div v-if="tasks[0]" class="actions">
-                                    <div class="button-group right-aligned">
-                                        <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
-                                        <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
-                                        <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
-                                    </div>
+                            <div v-if="tasks[0]" class="actions margin-bottom">
+                                <div class="button-group right-aligned">
+                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
+                                    <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
+                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
                                 </div>
 
-                                <div class="mongo">
-                                    <label>Binominal: </label>{{ tasks[0].info.binominal }}
-                                    <label>Genus: </label>{{ tasks[0].info.genus }}
-                                    <label>Family: </label>{{ tasks[0].info.family }}
-                                </div>
-
-                                <template v-if="evaluation" >
-                                    <div class="message" :class="{ 'positive' : evaluation.type === 'success' || evaluation.type === 'almost' , 'negative' : evaluation.type === 'fail' }">
-                                        {{evaluation.type}} -> {{evaluation.score}}
+                                <div class="info">
+                                    <div v-if="hasSubmissionAlready">
+                                        Already did dis ting.
                                     </div>
+                                    <div v-else-if="evaluation">
+                                        evaluation here.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mongo">
+                                <label>Binomial: </label>{{ tasks[0].info.binomial }}
+                                <label>Genus: </label>{{ tasks[0].info.genus }}
+                                <label>Family: </label>{{ tasks[0].info.family }}
+                            </div>
+
+                            <div class="content-container">
+                                <template v-if="evaluation">
+                                    <ul class="evaluation-list">
+                                        <template v-if="evaluation.successRate === 3">
+                                            <li>Correct Binomial</li>
+                                            <li>Correct Genus</li>
+                                            <li>Correct Family</li>
+                                        </template>
+                                        <template v-if="evaluation.successRate === 2">
+                                            <li>Wrong Binomial</li>
+                                            <li>Correct Genus</li>
+                                            <li>Correct Family</li>
+                                        </template>
+                                        <template v-if="evaluation.successRate === 1">
+                                            <li>Wrong Binomial</li>
+                                            <li>Wrong Genus</li>
+                                            <li>Correct Family</li>
+                                        </template>
+                                        <template v-if="evaluation.successRate === 0">
+                                            <li>Wrong Binomial</li>
+                                            <li>Wrong Genus</li>
+                                            <li>Wrong Family</li>
+                                        </template>
+                                    </ul>
                                 </template>
-                                <template v-else-if="hasSubmissionAlready" >
-                                    <div class="message info">
-                                        done already
-                                    </div>
+                                <template v-else>
+                                    <ul :disabled="hasSubmissionAlready">
+                                        <li>
+                                            Earn {{binomialScore}} points for the correct binomial.
+                                        </li>
+                                        <li>
+                                            Earn {{genusScore}} points for the correct genus.
+                                        </li>
+                                        <li>
+                                            Earn {{familyScore}} points for the correct family.
+                                        </li>
+                                    </ul>
                                 </template>
                             </div>
 
@@ -211,7 +235,7 @@
                 <div class="row row-centered">
                     <div class="col col-large-6">
 
-                        <h2 class="heading">Comments & Discussions</h2>
+                        <h2 class="heading">Questions & Comments</h2>
 
                         <comments :sourceId="tasks[0].id"></comments>
 
@@ -305,6 +329,7 @@ import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/SearchSelect.vue'
 import Comments from '@/components/shared/Comments.vue'
 
+
 export default {
     name: 'Task',
     components: {
@@ -320,10 +345,9 @@ export default {
             id: null,
             hasSubmissionAlready: false,
             skips: 0,
-            difficulty: '0',
+            difficulty: 0,
             completedDifficulties: [],
             region: 'All',
-            searchOptionsContainers: [],
             value: null,
             evaluation: null,
             complete: false
@@ -333,9 +357,8 @@ export default {
         ...mapState({
             //user: state => state.user.user,
             activityId: state => state.consts.activityId,
-            families: state => state.consts.families,
-            genera: state => state.consts.genera,
-            binomials: state => state.consts.binomials,
+
+            searchOptionsContainers: state => state.consts.searchOptionsContainers,
 
             user: state => state.c3s.user.currentUser,
             activity: state => state.c3s.activity.activity,
@@ -348,39 +371,39 @@ export default {
         }),
         familyScore: function() {
             switch( this.difficulty ) {
-                case '0': {
+                case 0: {
                     return 6;
                 }
-                case '1': {
+                case 1: {
                     return 8;
                 }
-                case '2': {
+                case 1: {
                     return 10;
                 }
             }
         },
         genusScore: function() {
             switch( this.difficulty ) {
-                case '0': {
+                case 0: {
                     return 9;
                 }
-                case '1': {
+                case 1: {
                     return 12;
                 }
-                case '2': {
+                case 2: {
                     return 15;
                 }
             }
         },
-        binominalScore: function() {
+        binomialScore: function() {
             switch( this.difficulty ) {
-                case '0': {
+                case 0: {
                     return 12;
                 }
-                case '1': {
+                case 1: {
                     return 16;
                 }
-                case '2': {
+                case 2: {
                     return 20;
                 }
             }
@@ -410,35 +433,6 @@ export default {
     },
     mounted() {
 
-        // binominals
-        let searchOptionsBinominal = [];
-        for( let i=0; i < this.binomials.length; i++ ) {
-            let option = { 'value': this.binomials[i][0], 'synonyms': this.binomials[i][1], 'info': 'binominal', 'id': null };
-            searchOptionsBinominal.push( option );
-        }
-        let searchOptionContainerBinominals = { 'label': 'Binominals', 'showLabel': false, 'options': searchOptionsBinominal };
-
-        // genera
-        let searchOptionsGenera = [];
-        for( let i=0; i < this.genera.length; i++ ) {
-            let option = { 'value': this.genera[i], 'info': 'genus', 'id': null };
-            searchOptionsGenera.push( option );
-        }
-        let searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
-
-        // families
-        let searchOptionsFamilies = [];
-        for( let i=0; i < this.families.length; i++ ) {
-            let option = { 'value': this.families[i], 'info': 'family', 'id': null };
-            searchOptionsFamilies.push( option );
-        }
-        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
-
-        this.searchOptionsContainers = [ searchOptionContainerBinominals, searchOptionContainerGenera, searchOptionContainerFamilies ];
-
-
-        //console.log('mount');
-
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
             //console.log('activity loaded');
@@ -463,8 +457,6 @@ export default {
             }
 
         });
-
-
 
     },
     methods: {
@@ -679,6 +671,8 @@ export default {
                         }
                     }
 
+                    console.log( this.difficulty );
+
                 }
 
 
@@ -693,53 +687,65 @@ export default {
         },
         submitResponse: function() {
 
-            let score = 0;
-
-            if( this.value.info === 'binominal' ) {
-                if( this.value.value === this.tasks[0].info.binominal ) {
-                    score = this.binominalScore;
-
+            console.log( this.value.value );
+            console.log( this.tasks[0].info.family );
+            if( this.value.info === 'binomial' ) {
+                if( this.value.value === this.tasks[0].info.binomial ) {
                     this.evaluation = {
-                        'type': 'success',
-                        'score': score
+                        'successRate': 3,
+                        'score': this.binomialScore
+                    };
+                }
+                else if( this.value.value === this.tasks[0].info.genus ) {
+                    this.evaluation = {
+                        'successRate': 2,
+                        'score': this.genusScore
+                    };
+                }
+                else if( this.value.value === this.tasks[0].info.family ) {
+                    this.evaluation = {
+                        'successRate': 1,
+                        'score': this.familyScore
                     };
                 }
                 else {
                     this.evaluation = {
-                        'type': 'fail',
-                        'score': score
+                        'successRate': 0,
+                        'score': 0
                     };
                 }
             }
             else if( this.value.info === 'genus' ) {
                 if( this.value.value === this.tasks[0].info.genus ) {
-                    score = this.genusScore;
-
                     this.evaluation = {
-                        'type': 'almost',
-                        'score': score
+                        'successRate': 2,
+                        'score': this.genusScore
+                    };
+                }
+                else if( this.value.value === this.tasks[0].info.family ) {
+                    this.evaluation = {
+                        'successRate': 1,
+                        'score': this.familyScore
                     };
                 }
                 else {
                     this.evaluation = {
-                        'type': 'fail',
-                        'score': score
+                        'successRate': 0,
+                        'score': 0
                     };
                 }
             }
             else if( this.value.info === 'family' ) {
                 if( this.value.value === this.tasks[0].info.family ) {
-                    score = this.familyScore;
-
                     this.evaluation = {
-                        'type': 'almost',
-                        'score': score
+                        'successRate': 1,
+                        'score': this.familyScore
                     };
                 }
                 else {
                     this.evaluation = {
-                        'type': 'fail',
-                        'score': score
+                        'successRate': 0,
+                        'score': 0
                     };
                 }
             }
@@ -750,7 +756,7 @@ export default {
                     "responses": [{
                         "value": this.value.value,
                         "info": this.value.info,
-                        "score": score
+                        "score": this.evaluation.score
                     }]
                 },
                 "task_id": this.tasks[0].id,
@@ -766,7 +772,7 @@ export default {
                 const self = this;
                 setTimeout(function(){
                     self.loadTask();
-                }, 1000);
+                }, 2000);
 
             });
         }
@@ -781,40 +787,48 @@ export default {
 @import '@/styles/shared/variables.scss';
 
 
-.settings-select {
-    select {
-        border-bottom: none;
 
-        &:focus {
-            border-bottom: none;
-        }
-    }
-}
-
-.settings {
-
-    padding: $spacing-2 0;
-
-    .difficulty-select {
-        display: inline-block;
-        margin-right: $spacing-2;
-
-        label {
-            font-weight: bold;
-            margin-right: $spacing-2;
-        }
-    }
-    .region-select {
-        display: inline-block;
-
-        label {
-            font-weight: bold;
-            margin-right: $spacing-2;
-        }
-    }
-}
 
 .section-wrapper {
+
+    .settings-section {
+        .settings {
+
+            padding: $spacing-2 0;
+
+            .settings-select {
+                select {
+                    border-bottom: none;
+
+                    &:focus {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            .difficulty-select {
+                display: inline-block;
+                margin-right: $spacing-2;
+
+                label {
+                    font-weight: bold;
+                    margin-right: $spacing-2;
+                }
+            }
+            .region-select {
+                display: inline-block;
+
+                label {
+                    font-weight: bold;
+                    margin-right: $spacing-2;
+                }
+            }
+        }
+    }
+
+    .question-section {
+        padding-bottom: 0;
+    }
 
     .image-section {
 
@@ -837,53 +851,55 @@ export default {
             }
         }
     }
+
+    .response-section {
+        .actions {
+            position: relative;
+
+            .button-group {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+            .info {
+                min-height: 40px;
+            }
+        }
+    }
 }
 
-.info {
-    position: relative;
+.mongo {
+    position: absolute;
+    right: 0;
+    bottom: -32px;
+    font-size: $font-size-small/1.25;
+    color: $color-black-tint-50;
 
-    .message {
-        height: 40px;
-
-        &.positive {
-            color: darkgreen;
-        }
-        &.negative {
-            color: darkred;
-        }
-        &.info {
-            color: blue;
-        }
-    }
-
-    .actions {
-    }
-
-    .mongo {
-        position: absolute;
-        right: 0;
-        bottom: -$spacing-3;
-        font-size: $font-size-small/1.25;
-        color: $color-black-tint-50;
-
-        label {
-            font-size: $font-size-small/1.25/1.25;
-            font-weight: 700;
-            color: $color-black-tint-80;
-        }
+    label {
+        font-size: $font-size-small/1.25/1.25;
+        font-weight: 700;
+        color: $color-black-tint-80;
     }
 }
 
 
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
-    .info {
+    .section-wrapper {
 
-        .message {
-            height: 48px;
+        .response-section {
+            .actions {
+                .info {
+                    min-height: 48px;
+                }
+            }
         }
     }
 
+
+    .mongo {
+        bottom: -56px;
+    }
 
 }
 
@@ -914,8 +930,13 @@ export default {
 
         .response-section {
             padding-top: 0;
+
+            .content-container {
+                min-height: 180px;
+            }
         }
     }
+
 
 
 }

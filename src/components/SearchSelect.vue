@@ -27,9 +27,9 @@
                         {{ option.value }}
                         <div v-if="option.synonyms && option.synonyms.length > 0">
                             <template v-for="(synonym,index) in option.synonyms">
-                                <template v-if="index === 0">({{synonym}}, </template>
+                                <template v-if="index === 0">aka: {{synonym}}, </template>
                                 <template v-else-if="index < option.synonyms.length-1">{{synonym}}, </template>
-                                <template v-else>{{synonym}})</template>
+                                <template v-else>{{synonym}}</template>
                             </template>
                         </div>
                     </li>
@@ -113,6 +113,7 @@
         computed: {
             filteredOptionContainers: function() {
 
+
                 if( this.optionContainers.length > 0 ) {
 
                     let filteredOptionContainers = [];
@@ -120,6 +121,8 @@
 
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
+
+
                         //let options = this.optionContainers[i].options.filter( option => option.value.toUpperCase().includes( this.inputValue.toUpperCase() ) );
                         let options = this.optionContainers[i].options.filter( function(option) {
 
@@ -140,16 +143,20 @@
                         });
 
                         for( let j = 0; j < options.length; j++ ) {
+                            options[j] = JSON.parse(JSON.stringify( options[j] ));
                             options[j].id = id;
                             id++;
                         }
 
                         let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'options': options };
                         filteredOptionContainers.push( filteredOptionContainer );
+
                     }
+
 
                     this.focusedOptionIndex = 0;
                     this.maxOptionIndex = id-1;
+
 
                     return filteredOptionContainers;
                 }

@@ -38,12 +38,9 @@ router.beforeEach((to, from, next) => {
     }
     else {
 
-      console.log('no currentuser');
 
       store.dispatch('c3s/user/generateAnon').then(u => {
 
-        console.log('anon received:');
-        console.log( u );
 
         next();
 
