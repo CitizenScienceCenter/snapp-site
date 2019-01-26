@@ -1,7 +1,7 @@
 <template>
     <div class="search-select">
 
-        <div class="custom-input" :class="{'disabled':disabled}">
+        <div ref="input" class="custom-input" :class="{'disabled':disabled}">
             <input type="text" ref="answer"
                 :placeholder="placeholder"
                 v-model="inputValue"
@@ -23,8 +23,7 @@
                         @click="optionClick( (index+filteredOptionContainer.startId) )"
                         :class="{ 'focused' : focusedOptionIndex === index+filteredOptionContainer.startId }">
                         {{ option.value }}
-                        <!-- <div v-if="inputValue != '' && option.synonyms && option.synonyms.length > 0"> -->
-                        <div v-if="filteredOptionContainer.foundInSyn[index]">
+                        <div v-if="filteredOptionContainer.foundInSyn[index] > -1">
                             aka {{ option.synonyms[ filteredOptionContainer.foundInSyn[index] ] }}
                         </div>
                     </li>
@@ -66,15 +65,26 @@
         watch: {
             showResults: function(to, from) {
                 if( to ) {
-                    let maxHeight = parseInt( window.getComputedStyle( this.$refs.results ,null).getPropertyValue("max-height") );
-                    let elRect = this.$refs.results.getBoundingClientRect();
+                    let inputRect = this.$refs.input.getBoundingClientRect();
 
-                    if( elRect.y + maxHeight > window.innerHeight ) {
-                        this.$refs.results.classList.add('upwards');
-                    }
-                    else {
+                    let maxHeight;
+                    if( window.innerHeight - (inputRect.y+inputRect.height/2) > window.innerHeight/2 ) {
+                        //downwards
+                        maxHeight = window.innerHeight- (inputRect.y+inputRect.height);
                         this.$refs.results.classList.remove('upwards');
                     }
+                    else {
+                        //upwards
+                        maxHeight = inputRect.y;
+                        this.$refs.results.classList.add('upwards');
+                    }
+
+                    console.log( window.innerHeight );
+                    console.log( inputRect.y );
+                    console.log( inputRect.height );
+
+                    maxHeight *= 0.9;
+                    this.$refs.results.style.maxHeight = maxHeight+'px';
                 }
             },
             value: function() {
@@ -110,21 +120,19 @@
 
 
                 if( this.optionContainers.length > 0 ) {
-
                     let filteredOptionContainers = [];
 
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
 
-                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'foundInSyn': [] };
+                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'options': [], 'foundInSyn': [] };
 
                         let options;
                         if( this.inputValue.length > 0 ) {
 
-
                             options = this.optionContainers[i].options.filter( function(option) {
                                 if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
-                                    filteredOptionContainer.foundInSyn.push( null );
+                                    filteredOptionContainer.foundInSyn.push( -1 );
                                     return true;
                                 }
                                 else {
@@ -148,7 +156,7 @@
 
                         filteredOptionContainer.options =  options;
 
-
+                        // startIds for ref rendering
                         let startId = 0;
                         if( i > 0 ) {
 
@@ -260,12 +268,12 @@
         }
 
         .results {
-            z-index: 1;
+            z-index: 100;
             position: absolute;
             top: 40px;
             left: 0;
             width: 100%;
-            max-height: calc( 40px * 10 );
+            //max-height: calc( 40px * 10 );
             overflow: hidden;
             overflow-y: scroll;
 
@@ -283,7 +291,7 @@
                     margin: 0;
                     padding: $spacing-1 $spacing-2;
                     line-height: 1.5;
-                    color: $color-black-tint-50;
+                    color: $color-black-tint-40;
 
                     &.label {
                         font-size: $font-size-normal;

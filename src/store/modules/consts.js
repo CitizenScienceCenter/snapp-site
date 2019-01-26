@@ -60,6 +60,20 @@ for( let i=0; i < snakes.length; i++ ) {
     } );
 }
 
+function sortThings(a, b) {
+    if (a.value > b.value) {
+        return 1;
+    } else if (a.value < b.value) {
+        return -1;
+    } else if (a.value === b.value) {
+        return 0;
+    }
+}
+searchOptionsBinomials.sort( sortThings );
+searchOptionsGenera.sort( sortThings );
+searchOptionsFamilies.sort( sortThings );
+
+
 const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': false, 'options': searchOptionsBinomials };
 const searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
 const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
