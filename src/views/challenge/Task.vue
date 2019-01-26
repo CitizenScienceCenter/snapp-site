@@ -112,9 +112,8 @@
 
                             <div v-if="tasks[0]" class="actions margin-bottom">
                                 <div class="button-group right-aligned">
-                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
-                                    <!--<button ref="submit" id="submit" class="button button-primary" @click.prevent="submitResponse()">Send</button>-->
                                     <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
+                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
                                 </div>
 
                                 <div class="info">
@@ -854,6 +853,11 @@ export default {
     }
 
     .response-section {
+
+        .form-field {
+            margin-bottom: $spacing-2;
+        }
+
         .actions {
             position: relative;
 
@@ -889,6 +893,10 @@ export default {
     .section-wrapper {
 
         .response-section {
+
+            .form-field {
+                margin-bottom: $spacing-3;
+            }
             .actions {
                 .info {
                     min-height: 48px;

@@ -18,17 +18,14 @@
                     <li class="label" v-if="filteredOptionContainer.options.length > 0 && filteredOptionContainer.showLabel">
                         {{filteredOptionContainer.label}}
                     </li>
-                    <li v-for="option in filteredOptionContainer.options"
-                        :ref="'option_'+option.id"
-                        @click="focusedOptionIndex = option.id; selectOptionById(option.id)"
-                        :class="{ 'focused' : focusedOptionIndex === option.id }"
-                        :value="option.value"
-                        :info="option.info">
+                    <li v-for="(option,index) in filteredOptionContainer.options"
+                        :ref="'option_'+(index+filteredOptionContainer.startId)"
+                        @click="optionClick( (index+filteredOptionContainer.startId) )"
+                        :class="{ 'focused' : focusedOptionIndex === index+filteredOptionContainer.startId }">
                         {{ option.value }}
-                        <div v-if="inputValue != '' && option.synonyms && option.synonyms.length > 0">
-                            <span v-for="synonym in option.synonyms">
-                                {{synonym}}
-                            </span>
+                        <!-- <div v-if="inputValue != '' && option.synonyms && option.synonyms.length > 0"> -->
+                        <div v-if="filteredOptionContainer.foundInSyn[index]">
+                            aka {{ option.synonyms[ filteredOptionContainer.foundInSyn[index] ] }}
                         </div>
                     </li>
                 </template>
@@ -115,17 +112,19 @@
                 if( this.optionContainers.length > 0 ) {
 
                     let filteredOptionContainers = [];
-                    let id = 0;
 
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
 
+                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'foundInSyn': [] };
+
                         let options;
                         if( this.inputValue.length > 0 ) {
 
-                            options = this.optionContainers[i].options.filter( function(option) {
 
+                            options = this.optionContainers[i].options.filter( function(option) {
                                 if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                    filteredOptionContainer.foundInSyn.push( null );
                                     return true;
                                 }
                                 else {
@@ -133,34 +132,38 @@
                                     if( option.synonyms && option.synonyms.length > 0 ) {
                                         for( let j = 0; j < option.synonyms.length; j++ ) {
                                             if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                                filteredOptionContainer.foundInSyn.push( j );
                                                 return true;
                                             }
                                         }
                                     }
                                 }
                                 return false;
-                            });
+                            }, filteredOptionContainer);
 
                         }
                         else {
                             options = this.optionContainers[i].options;
                         }
 
-                        for( let j = 0; j < options.length; j++ ) {
-                            options[j] = JSON.parse(JSON.stringify( options[j] ));
-                            options[j].id = id;
-                            id++;
-                        }
+                        filteredOptionContainer.options =  options;
 
-                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'options': options };
+
+                        let startId = 0;
+                        if( i > 0 ) {
+
+                            startId = filteredOptionContainers[i-1].startId + filteredOptionContainers[i-1].options.length;
+
+                        }
+                        filteredOptionContainer.startId = startId;
+
                         filteredOptionContainers.push( filteredOptionContainer );
 
                     }
 
 
                     this.focusedOptionIndex = 0;
-                    this.maxOptionIndex = id-1;
-
+                    this.maxOptionIndex = filteredOptionContainers[filteredOptionContainers.length-1].startId + filteredOptionContainers[filteredOptionContainers.length-1].options.length -1;
 
                     return filteredOptionContainers;
                 }
@@ -179,18 +182,28 @@
             clickOnResults: function() {
                 this.$refs.answer.focus();
             },
+            optionClick(id) {
+                this.focusedOptionIndex = id;
+                this.selectOptionById(id);
+            },
             selectOptionById(id) {
                 let returnObject;
+                let counter = 0;
+                let found = false;
                 for( let i = 0; i < this.filteredOptionContainers.length; i++ ) {
                     for( let j = 0; j < this.filteredOptionContainers[i].options.length; j++ ) {
-                        if( this.filteredOptionContainers[i].options[j].id === id ) {
+                        if( counter === id ) {
+                            found = true;
                             returnObject = this.filteredOptionContainers[i].options[j];
                             break;
                         }
+                        counter++;
+                    }
+                    if( found ) {
+                        break;
                     }
                 }
                 this.inputValue = returnObject.value;
-
                 this.$emit('input', returnObject );
             },
             handleInputKeys: function(event) {
@@ -273,7 +286,7 @@
                     color: $color-black-tint-50;
 
                     &.label {
-                        font-size: $font-size-medium;
+                        font-size: $font-size-normal;
                         font-weight: 700;
                         color: $color-black;
                     }
@@ -291,7 +304,7 @@
 
                     div {
                         margin-top: 4px;
-                        font-size: $font-size-small /1.25;
+                        font-size: $font-size-small;
 
                         span {
                             margin-right: $spacing-1;
