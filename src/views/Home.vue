@@ -70,6 +70,7 @@
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-explanation-heading') }}</h2>
               <p>{{ $t('section-explanation-text') }}</p>
+              <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
             </div>
           </div>
 
@@ -83,7 +84,6 @@
 
           <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
             <h2 class="subheading">Challgenge open for 7 Days 5 Hours and 12 Minutes</h2>
-            <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
           </div>
           <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
             <h2 class="subheading centered"">Current High Score</h2>

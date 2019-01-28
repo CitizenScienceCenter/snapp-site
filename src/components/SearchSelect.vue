@@ -60,9 +60,16 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            initialInputFocus: {
+                type: Boolean,
+                default: false
             }
         },
         watch: {
+            initialInputFocus(to, from) {
+                this.$refs.answer.focus();
+            },
             showResults: function(to, from) {
                 if( to ) {
                     let inputRect = this.$refs.input.getBoundingClientRect();
@@ -113,7 +120,6 @@
         },
         computed: {
             filteredOptionContainers: function() {
-
 
                 if( this.optionContainers.length > 0 ) {
                     let filteredOptionContainers = [];

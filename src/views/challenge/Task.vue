@@ -105,7 +105,8 @@
                                         :disabled="hasSubmissionAlready"
                                         placeholder="Binomial, Genus or Family"
                                         :optionContainers="searchOptionsContainers"
-                                        v-model="value">
+                                        v-model="value"
+                                        :initialInputFocus="initialInputFocus">
                                 </search-select>
                             </div>
 
@@ -119,15 +120,15 @@
                                     <div class="message message-info" v-if="hasSubmissionAlready">
                                         <div class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"/>
+                                                <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                             </svg>
                                         </div>
                                         Already Done!
                                     </div>
-                                    <div class="message" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
+                                    <div ref="scoreinfo" class="message hidden" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
                                         <div v-if="evaluation.score === 0" class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"/>
+                                                <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
                                             </svg>
                                         </div>
                                         <div v-else class="icon">
@@ -154,23 +155,25 @@
                                     <template v-if="value">{{ value.genus }} </template>
                                     -->
 
-                                    <li ref="evaluation-step-1" :class="{
-                                        'correct': evaluation && evaluation.successRate >= 1,
-                                        'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
+
+                                    <li ref="evaluation-step-3" :class="{
+                                        'correct': evaluation && evaluation.successRate === 3,
+                                        'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
+                                        'missing': evaluation && evaluation && value.info !== 'binomial'
                                     }">
                                         <div class="evaluation">
-                                            <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
-                                                {{ tasks[0].info.family }}
+                                            <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
+                                                {{ tasks[0].info.binomial }}
                                             </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
-                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
+                                            <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
+                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
                                             </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
-                                                <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
+                                            <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
+                                                {{ tasks[0].info.binomial }}
                                             </template>
                                         </div>
                                         <div class="default">
-                                            Earn {{familyScore}} points for the correct family.
+                                            Earn {{binomialScore}} points for the correct binomial.
                                         </div>
                                     </li>
 
@@ -200,26 +203,26 @@
                                     </li>
 
 
-                                    <li ref="evaluation-step-3" :class="{
-                                        'correct': evaluation && evaluation.successRate === 3,
-                                        'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
-                                        'missing': evaluation && evaluation && value.info !== 'binomial'
+                                    <li ref="evaluation-step-1" :class="{
+                                        'correct': evaluation && evaluation.successRate >= 1,
+                                        'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
                                     }">
                                         <div class="evaluation">
-                                            <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
-                                                {{ tasks[0].info.binomial }}
+                                            <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
+                                                {{ tasks[0].info.family }}
                                             </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
-                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
+                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
+                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
                                             </template>
-                                            <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
-                                                {{ tasks[0].info.binomial }}
+                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
+                                                <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
                                             </template>
                                         </div>
                                         <div class="default">
-                                            Earn {{binomialScore}} points for the correct binomial.
+                                            Earn {{familyScore}} points for the correct family.
                                         </div>
                                     </li>
+
 
                                 </ul>
                             </div>
@@ -401,7 +404,8 @@ export default {
             region: 'All',
             value: null,
             evaluation: null,
-            complete: false
+            complete: false,
+            initialInputFocus: false
         }
     },
     computed: {
@@ -465,6 +469,7 @@ export default {
             if( this.value ) {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
                 this.$refs.submit.removeAttribute('disabled');
+
                 this.$refs.submit.focus();
             }
         },
@@ -665,8 +670,10 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         //console.log('media loaded');
-
                         this.value = null;
+                        if( !this.hasSubmissionAlready ) {
+                            this.initialInputFocus = true;
+                        }
 
                     });
 
@@ -737,6 +744,8 @@ export default {
 
         },
         submitResponse: function() {
+
+            // evaluation
 
             if( this.value.info === 'binomial' ) {
                 if( this.value.value === this.tasks[0].info.binomial ) {
@@ -830,16 +839,19 @@ export default {
                         self.$refs['evaluation-step-'+counter].classList.add('evaluated');
                     }
                     else if( counter === 4 ) {
+                        self.$refs.scoreinfo.classList.remove('hidden');
+                    }
+                    else if( counter === 7 ) {
                         self.$refs['evaluation-step-1'].classList.remove('evaluated');
                         self.$refs['evaluation-step-2'].classList.remove('evaluated');
                         self.$refs['evaluation-step-3'].classList.remove('evaluated');
                         self.$store.dispatch('score/calculateScore');
+                        self.$refs.scoreinfo.classList.add('hidden');
                         self.loadTask();
                         clearInterval( interval );
                     }
 
-
-                }, 900 );
+                }, 600 );
 
             });
         }
@@ -983,6 +995,10 @@ export default {
                             background-color: $color-success;
                         }
                     }
+
+                    &.hidden {
+                        display: none;
+                    }
                 }
             }
         }
@@ -1046,7 +1062,7 @@ export default {
 .mongo {
     position: absolute;
     right: 0;
-    bottom: -32px;
+    bottom: -40px;
     font-size: $font-size-small/1.25;
     color: $color-black-tint-50;
 
@@ -1092,7 +1108,7 @@ export default {
 
 
     .mongo {
-        bottom: -56px;
+        bottom: -72px;
     }
 
 }
