@@ -1,4 +1,4 @@
-import snakes from "@/assets/snakes.json";
+import snakes from "@/assets/snakes.min.json";
 
 let searchOptionsFamilies = [];
 let searchOptionsGenera = [];
@@ -6,58 +6,62 @@ let searchOptionsBinomials = [];
 
 for( let i=0; i < snakes.length; i++ ) {
 
-    let alreadyFound = false;
-    let j;
+    if( snakes[i].family !== '') {
+        let alreadyFound = false;
+        let j;
 
 
-    // !!!! FAMILIES AND GENERA ARE MIXED UP IN THE DATA !!!!
-
-
-    // add to families if not exist yet
-    for( j=0; j < searchOptionsFamilies.length; j++ ) {
-        if( searchOptionsFamilies[j].value === snakes[i].genus ) {
-            alreadyFound = true;
-            break;
+        // add to families if not exist yet
+        for( j=0; j < searchOptionsFamilies.length; j++ ) {
+            if( searchOptionsFamilies[j].value === snakes[i].family ) {
+                alreadyFound = true;
+                break;
+            }
         }
-    }
-    if( !alreadyFound ) {
-        searchOptionsFamilies.push( {
-            'value': snakes[i].genus,
-            'info': 'family'
+        if( !alreadyFound ) {
+            searchOptionsFamilies.push( {
+                'value': snakes[i].family,
+                'info': 'family'
+            } );
+        }
+
+        // add to genera if not exist yet
+        alreadyFound = false;
+        for( j=0; j < searchOptionsGenera.length; j++ ) {
+            if( searchOptionsGenera[j].value === snakes[i].genus ) {
+                alreadyFound = true;
+                break;
+            }
+        }
+        if( !alreadyFound ) {
+            searchOptionsGenera.push( {
+                'value': snakes[i].genus,
+                'info': 'genus',
+                'family': snakes[i].family
+            } );
+        }
+
+        // synoyms
+        let synonyms = [];
+
+        if( snakes[i].allNames.synonyms ) {
+            for (j = 0; j < snakes[i].allNames.synonyms.length; j++) {
+                if (synonyms.indexOf(snakes[i].allNames.synonyms[j]) === -1) {
+                    synonyms.push(snakes[i].allNames.synonyms[j]);
+                }
+            }
+        }
+
+        // add to binomials
+        searchOptionsBinomials.push( {
+            'value': snakes[i].allNames.binomial,
+            'synonyms': synonyms,
+            'info': 'binomial',
+            'genus': snakes[i].genus,
+            'family': snakes[i].family
         } );
     }
 
-    // add to genera if not exist yet
-    alreadyFound = false;
-    for( j=0; j < searchOptionsGenera.length; j++ ) {
-        if( searchOptionsGenera[j].value === snakes[i].family ) {
-            alreadyFound = true;
-            break;
-        }
-    }
-    if( !alreadyFound ) {
-        searchOptionsGenera.push( {
-            'value': snakes[i].family,
-            'info': 'genus',
-            'family': snakes[i].genus
-        } );
-    }
-
-    // synoyms
-    let synonymsFixed = [];
-    for( j=0; j < snakes[i].allNames.synonyms.length; j++ ) {
-        if( snakes[i].allNames.synonyms[j] !== '' ) {
-            synonymsFixed.push( snakes[i].allNames.synonyms[j] );
-        }
-    }
-    // add to binomials
-    searchOptionsBinomials.push( {
-        'value': snakes[i].allNames.binomial,
-        'synonyms': synonymsFixed,
-        'info': 'binomial',
-        'genus': snakes[i].family,
-        'family': snakes[i].genus
-    } );
 }
 
 function sortThings(a, b) {

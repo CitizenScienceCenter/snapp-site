@@ -79,10 +79,6 @@
                         this.$refs.results.classList.add('upwards');
                     }
 
-                    console.log( window.innerHeight );
-                    console.log( inputRect.y );
-                    console.log( inputRect.height );
-
                     maxHeight *= 0.9;
                     this.$refs.results.style.maxHeight = maxHeight+'px';
                 }
@@ -234,6 +230,9 @@
                             if( this.$refs['option_'+this.focusedOptionIndex][0] ) {
                                 this.selectOptionById(this.focusedOptionIndex);
                             }
+                            break;
+                        case 'Escape':
+                            this.showResults = false;
                             break;
                     }
                 }

@@ -16,7 +16,7 @@
 
 <template>
 
-    <div >
+    <div>
 
         <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
 
@@ -73,7 +73,6 @@
 
                             <h2 class="heading">
                                 What Snake is This?
-                                <!-- {{ tasks[0].content.question.text }} -->
                             </h2>
 
                         </div>
@@ -113,15 +112,30 @@
                             <div v-if="tasks[0]" class="actions margin-bottom">
                                 <div class="button-group right-aligned">
                                     <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
-                                    <button ref="submit" class="button button-primary" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
+                                    <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
                                 </div>
 
                                 <div class="info">
-                                    <div v-if="hasSubmissionAlready">
-                                        Already did dis ting.
+                                    <div class="message message-info" v-if="hasSubmissionAlready">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"/>
+                                            </svg>
+                                        </div>
+                                        Already Done!
                                     </div>
-                                    <div v-else-if="evaluation">
-                                        evaluation here.
+                                    <div class="message" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
+                                        <div v-if="evaluation.score === 0" class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"/>
+                                            </svg>
+                                        </div>
+                                        <div v-else class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                                            </svg>
+                                        </div>
+                                        {{ evaluation.score }}
                                     </div>
                                 </div>
                             </div>
@@ -133,43 +147,81 @@
                             </div>
 
                             <div class="content-container">
-                                <template v-if="evaluation">
-                                    <ul class="evaluation-list">
-                                        <template v-if="evaluation.successRate === 3">
-                                            <li>Correct Binomial</li>
-                                            <li>Correct Genus</li>
-                                            <li>Correct Family</li>
-                                        </template>
-                                        <template v-if="evaluation.successRate === 2">
-                                            <li>Wrong Binomial</li>
-                                            <li>Correct Genus</li>
-                                            <li>Correct Family</li>
-                                        </template>
-                                        <template v-if="evaluation.successRate === 1">
-                                            <li>Wrong Binomial</li>
-                                            <li>Wrong Genus</li>
-                                            <li>Correct Family</li>
-                                        </template>
-                                        <template v-if="evaluation.successRate === 0">
-                                            <li>Wrong Binomial</li>
-                                            <li>Wrong Genus</li>
-                                            <li>Wrong Family</li>
-                                        </template>
-                                    </ul>
-                                </template>
-                                <template v-else>
-                                    <ul :disabled="hasSubmissionAlready">
-                                        <li>
-                                            Earn {{binomialScore}} points for the correct binomial.
-                                        </li>
-                                        <li>
-                                            Earn {{genusScore}} points for the correct genus.
-                                        </li>
-                                        <li>
+                                <ul class="evaluation-list">
+                                    <!--
+                                    <template v-if="evaluation">{{ evaluation.successRate }} </template>
+                                    <template v-if="value">{{ value.info }} </template>
+                                    <template v-if="value">{{ value.genus }} </template>
+                                    -->
+
+                                    <li ref="evaluation-step-1" :class="{
+                                        'correct': evaluation && evaluation.successRate >= 1,
+                                        'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
+                                    }">
+                                        <div class="evaluation">
+                                            <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
+                                                {{ tasks[0].info.family }}
+                                            </template>
+                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
+                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
+                                            </template>
+                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
+                                                <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
+                                            </template>
+                                        </div>
+                                        <div class="default">
                                             Earn {{familyScore}} points for the correct family.
-                                        </li>
-                                    </ul>
-                                </template>
+                                        </div>
+                                    </li>
+
+
+                                    <li ref="evaluation-step-2" :class="{
+                                        'correct': evaluation && evaluation.successRate >= 2,
+                                        'wrong': evaluation && evaluation.successRate < 2 && ( value.info === 'genus' || value.hasOwnProperty('genus') ),
+                                        'missing': evaluation && evaluation && value.info !== 'genus' && value.info !== 'binomial'
+                                    }">
+                                        <div class="evaluation">
+                                            <template v-if="evaluation && evaluation.successRate >= 2"> <!-- correct -->
+                                                {{ tasks[0].info.genus }}
+                                            </template>
+                                            <template v-else-if="evaluation && evaluation.successRate < 2 && value.info === 'genus'"> <!-- wrong -->
+                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.genus }}
+                                            </template>
+                                            <template v-else-if="evaluation && evaluation.successRate < 2 && value.hasOwnProperty('genus')"> <!-- wrong because of parent -->
+                                                <span class="wrongAnswer">{{ value.genus }}</span>{{ tasks[0].info.genus }}
+                                            </template>
+                                            <template v-else-if="evaluation && value.info !== 'genus' && value.info !== 'binomial'"> <!-- missing -->
+                                                {{ tasks[0].info.genus }}
+                                            </template>
+                                        </div>
+                                        <div class="default">
+                                            Earn {{genusScore}} points for the correct genus.
+                                        </div>
+                                    </li>
+
+
+                                    <li ref="evaluation-step-3" :class="{
+                                        'correct': evaluation && evaluation.successRate === 3,
+                                        'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
+                                        'missing': evaluation && evaluation && value.info !== 'binomial'
+                                    }">
+                                        <div class="evaluation">
+                                            <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
+                                                {{ tasks[0].info.binomial }}
+                                            </template>
+                                            <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
+                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
+                                            </template>
+                                            <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
+                                                {{ tasks[0].info.binomial }}
+                                            </template>
+                                        </div>
+                                        <div class="default">
+                                            Earn {{binomialScore}} points for the correct binomial.
+                                        </div>
+                                    </li>
+
+                                </ul>
                             </div>
 
                         </div>
@@ -369,20 +421,20 @@ export default {
             loading: state => state.c3s.settings.loading
         }),
         familyScore: function() {
-            switch( this.difficulty ) {
+            switch( Number(this.difficulty) ) {
                 case 0: {
                     return 6;
                 }
                 case 1: {
                     return 8;
                 }
-                case 1: {
+                case 2: {
                     return 10;
                 }
             }
         },
         genusScore: function() {
-            switch( this.difficulty ) {
+            switch( Number(this.difficulty) ) {
                 case 0: {
                     return 9;
                 }
@@ -395,7 +447,7 @@ export default {
             }
         },
         binomialScore: function() {
-            switch( this.difficulty ) {
+            switch( Number(this.difficulty) ) {
                 case 0: {
                     return 12;
                 }
@@ -437,7 +489,7 @@ export default {
             //console.log('activity loaded');
 
             if( this.$route.params.id ) {
-                if( this.$route.params.id.length != 36 ) {
+                if( this.$route.params.id.length !== 36 ) {
                     console.log('invalid id');
                     delete this.$route.params.id;
                     this.$router.replace('/challenge');
@@ -627,8 +679,8 @@ export default {
                     if( this.region !== 'All' ) {
                         this.region = 'All';
                     }
-                    else if( this.difficulty == 0 ) {
-                        if( this.skips == 0 ) {
+                    else if( this.difficulty === 0 ) {
+                        if( this.skips === 0 ) {
                             this.completedDifficulties.push(0);
                         }
                         if( this.completedDifficulties.indexOf(1) === -1 ) {
@@ -641,22 +693,22 @@ export default {
                             this.complete = true;
                         }
                     }
-                    else if( this.difficulty == 1 ) {
-                        if( this.skips == 0 ) {
+                    else if( this.difficulty === 1 ) {
+                        if( this.skips === 0 ) {
                             this.completedDifficulties.push(1);
                         }
-                        if( this.completedDifficulties.indexOf(0) === -1 ) {
-                            this.difficulty = 0;
-                        }
-                        else if( this.completedDifficulties.indexOf(2) === -1 ) {
+                        if( this.completedDifficulties.indexOf(2) === -1 ) {
                             this.difficulty = 2;
+                        }
+                        else if( this.completedDifficulties.indexOf(0) === -1 ) {
+                            this.difficulty = 0;
                         }
                         else {
                             this.complete = true;
                         }
                     }
-                    else if( this.difficulty == 2 ) {
-                        if( this.skips == 0 ) {
+                    else if( this.difficulty === 2 ) {
+                        if( this.skips === 0 ) {
                             this.completedDifficulties.push(2);
                         }
                         if( this.completedDifficulties.indexOf(0) === -1 ) {
@@ -685,9 +737,6 @@ export default {
 
         },
         submitResponse: function() {
-
-            console.log( this.value );
-            console.log( this.tasks[0].info );
 
             if( this.value.info === 'binomial' ) {
                 if( this.value.value === this.tasks[0].info.binomial ) {
@@ -767,12 +816,30 @@ export default {
 
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
-                this.$store.dispatch('score/calculateScore');
-
                 const self = this;
-                setTimeout(function(){
-                    self.loadTask();
-                }, 2000);
+                var counter = 1;
+                this.$refs['evaluation-step-'+counter].classList.add('evaluated');
+                var interval = setInterval( function() {
+
+                    counter++;
+
+                    if( counter === 2 ) {
+                        self.$refs['evaluation-step-'+counter].classList.add('evaluated');
+                    }
+                    else if( counter === 3 ) {
+                        self.$refs['evaluation-step-'+counter].classList.add('evaluated');
+                    }
+                    else if( counter === 4 ) {
+                        self.$refs['evaluation-step-1'].classList.remove('evaluated');
+                        self.$refs['evaluation-step-2'].classList.remove('evaluated');
+                        self.$refs['evaluation-step-3'].classList.remove('evaluated');
+                        self.$store.dispatch('score/calculateScore');
+                        self.loadTask();
+                        clearInterval( interval );
+                    }
+
+
+                }, 900 );
 
             });
         }
@@ -868,6 +935,109 @@ export default {
             }
             .info {
                 min-height: 40px;
+                position: relative;
+                pointer-events: none;
+
+                .message {
+                    display: block;
+                    line-height: 40px;
+
+                    .icon {
+                        float: left;
+                        height: 40px;
+                        width: 40px;
+                        position: relative;
+                        border-radius: 50%;
+                        background-color: green;
+
+                        margin-right: $spacing-1;
+
+                        svg {
+                            fill: white;
+                            position: absolute;
+                            left: 12px;
+                            top: 11px;
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+
+                    &.message-info {
+                        .icon {
+                            background-color: $color-secondary;
+                        }
+                    }
+                    &.message-wrong {
+                        font-size: $font-size-medium;
+                        font-weight: 700;
+                        color: $color-error;
+                        .icon {
+                            background-color: $color-error;
+                        }
+                    }
+                    &.message-correct {
+                        font-size: $font-size-medium;
+                        font-weight: 700;
+                        color: $color-success;
+                        .icon {
+                            background-color: $color-success;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .evaluation-list {
+            li {
+                .evaluation {
+                    display: none;
+                }
+                .default {
+                    display: inline;
+                }
+
+                &.evaluated {
+
+                    &:before {
+                        width: 1rem;
+                        height: 1rem;
+                        top: 0.25rem;
+                        left: 0.25rem;
+
+                        transition: all $transition-duration-long $transition-timing-function;
+                    }
+
+                    .evaluation {
+                        display: inline;
+                    }
+                    .default {
+                        display: none;
+                    }
+
+
+                    &.correct {
+                        &:before {
+                            background-color: $color-success;
+                        }
+                    }
+                    &.wrong {
+                        &:before {
+                            background-color: $color-error;
+                        }
+
+                        .wrongAnswer {
+                            text-decoration: line-through;
+                            margin-right: $spacing-1;
+                        }
+                    }
+                    &.missing {
+                        &:before {
+                            background-color: $color-black-tint-50;
+                        }
+                    }
+                }
+
             }
         }
     }
@@ -900,6 +1070,21 @@ export default {
             .actions {
                 .info {
                     min-height: 48px;
+
+                    .message {
+                        line-height: 48px;
+
+                        .icon {
+                            height: 48px;
+                            width: 48px;
+                            margin-right: $spacing-2;
+
+                            svg {
+                                left: 16px;
+                                top: 15px;
+                            }
+                        }
+                    }
                 }
             }
         }
