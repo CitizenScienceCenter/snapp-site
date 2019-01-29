@@ -78,23 +78,26 @@
       </div>
     </app-content-section>
 
-    <app-content-section class="content-section-condensed" color="light-greyish">
+
+    <app-content-section class="content-section-condensed" color="greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
+          <div class="col">
 
-          <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
-            <h2 class="subheading">Challgenge open for 7 Days 5 Hours and 12 Minutes</h2>
-          </div>
-          <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
-            <h2 class="subheading centered"">Current High Score</h2>
-          </div>
+            <duration></duration>
 
+          </div>
         </div>
       </div>
     </app-content-section>
 
 
-    <app-content-section color="greyish">
+    <app-content-section class="content-section-condensed" color="light-greyish">
+      <scores></scores>
+    </app-content-section>
+
+
+    <app-content-section>
       <div class="content-wrapper">
         <div class="row row-centered row-middle">
 
@@ -169,18 +172,23 @@
 
 <script>
 
-import Cover from '@/components/shared/Cover.vue'
-import ContentSection from '@/components/shared/ContentSection.vue'
-import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
-import Footer from '@/components/shared/Footer.vue'
+import Cover from '@/components/shared/Cover.vue';
+import ContentSection from '@/components/shared/ContentSection.vue';
+import NewsletterSignup from '@/components/shared/NewsletterSignup.vue';
+import Footer from '@/components/shared/Footer.vue';
+import Scores from '@/components/Scores.vue';
+import Duration from "../components/Duration";
+
 
 export default {
   name: 'Home',
   components: {
+      Duration,
     'app-cover': Cover,
     'app-content-section': ContentSection,
     'app-newsletter-signup': NewsletterSignup,
-    'app-footer': Footer
+    'app-footer': Footer,
+    Scores
   }
 }
 

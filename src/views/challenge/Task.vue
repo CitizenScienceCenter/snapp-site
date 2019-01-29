@@ -251,36 +251,7 @@
 
 
         <app-content-section class="content-section-condensed" color="light-greyish">
-            <div class="content-wrapper">
-                <div class="row row-centered">
-
-                    <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>Your Score</label>
-                            value
-                        </div>
-                    </div>
-                    <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>Current Rank</label>
-                            24.
-                        </div>
-                    </div>
-                    <div class="col col-large-6 col-wrapping">
-                        <div class="form-field form-field-block form-field-right-aligned">
-                            <label>Highscore</label>
-                            value
-                        </div>
-                    </div>
-
-                    <div class="col col-wrapping col-large-no-bottom-margin">
-                        <div class="right-aligned">
-                            CREATE ACCOUNT
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <scores></scores>
         </app-content-section>
 
 
@@ -382,11 +353,13 @@ import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/SearchSelect.vue'
 import Comments from '@/components/shared/Comments.vue'
+import Scores from "../../components/Scores";
 
 
 export default {
     name: 'Task',
     components: {
+        Scores,
         'app-content-section': ContentSection,
         'app-footer': Footer,
         'app-newsletter-signup': NewsletterSignup,
@@ -683,53 +656,62 @@ export default {
 
                     console.log('no more tasks');
 
+
                     if( this.region !== 'All' ) {
                         this.region = 'All';
                     }
-                    else if( this.difficulty === 0 ) {
-                        if( this.skips === 0 ) {
-                            this.completedDifficulties.push(0);
-                        }
-                        if( this.completedDifficulties.indexOf(1) === -1 ) {
-                            this.difficulty = 1;
-                        }
-                        else if( this.completedDifficulties.indexOf(2) === -1 ) {
-                            this.difficulty = 2;
-                        }
-                        else {
-                            this.complete = true;
-                        }
-                    }
-                    else if( this.difficulty === 1 ) {
-                        if( this.skips === 0 ) {
-                            this.completedDifficulties.push(1);
-                        }
-                        if( this.completedDifficulties.indexOf(2) === -1 ) {
-                            this.difficulty = 2;
-                        }
-                        else if( this.completedDifficulties.indexOf(0) === -1 ) {
-                            this.difficulty = 0;
-                        }
-                        else {
-                            this.complete = true;
-                        }
-                    }
-                    else if( this.difficulty === 2 ) {
-                        if( this.skips === 0 ) {
-                            this.completedDifficulties.push(2);
-                        }
-                        if( this.completedDifficulties.indexOf(0) === -1 ) {
-                            this.difficulty = 0;
-                        }
-                        else if( this.completedDifficulties.indexOf(1) === -1 ) {
-                            this.difficulty = 1;
-                        }
-                        else {
-                            this.complete = true;
-                        }
-                    }
+                    else {
+                        console.log( this.difficulty === 0 );
 
-                    console.log( this.difficulty );
+                        if ( Number(this.difficulty) === 0) {
+                            if (this.skips === 0) {
+                                if (this.completedDifficulties.indexOf(0) === -1) {
+                                    this.completedDifficulties.push(0);
+                                }
+                            }
+                            if (this.completedDifficulties.indexOf(1) === -1) {
+                                this.difficulty = 1;
+                            }
+                            else if (this.completedDifficulties.indexOf(2) === -1) {
+                                this.difficulty = 2;
+                            }
+                            else {
+                                this.complete = true;
+                            }
+                        }
+                        else if ( Number(this.difficulty) === 1) {
+                            if (this.skips === 0) {
+                                if (this.completedDifficulties.indexOf(1) === -1) {
+                                    this.completedDifficulties.push(1);
+                                }
+                            }
+                            if (this.completedDifficulties.indexOf(2) === -1) {
+                                this.difficulty = 2;
+                            }
+                            else if (this.completedDifficulties.indexOf(0) === -1) {
+                                this.difficulty = 0;
+                            }
+                            else {
+                                this.complete = true;
+                            }
+                        }
+                        else if ( Number(this.difficulty) === 2) {
+                            if (this.skips === 0) {
+                                if (this.completedDifficulties.indexOf(2) === -1) {
+                                    this.completedDifficulties.push(2);
+                                }
+                            }
+                            if (this.completedDifficulties.indexOf(0) === -1) {
+                                this.difficulty = 0;
+                            }
+                            else if (this.completedDifficulties.indexOf(1) === -1) {
+                                this.difficulty = 1;
+                            }
+                            else {
+                                this.complete = true;
+                            }
+                        }
+                    }
 
                 }
 

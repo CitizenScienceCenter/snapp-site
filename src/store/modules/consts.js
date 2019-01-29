@@ -46,9 +46,12 @@ for( let i=0; i < snakes.length; i++ ) {
 
         if( snakes[i].allNames.synonyms ) {
             for (j = 0; j < snakes[i].allNames.synonyms.length; j++) {
+                /*
                 if (synonyms.indexOf(snakes[i].allNames.synonyms[j]) === -1) {
                     synonyms.push(snakes[i].allNames.synonyms[j]);
                 }
+                */
+                synonyms.push(snakes[i].allNames.synonyms[j]);
             }
         }
 
