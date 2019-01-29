@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <template v-if="user.currentUser">
+                <template>
 
                     <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                         <div class="form-field form-field-block form-field-right-aligned form-field-big">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <template v-if="!user.isAnon">
+                    <template v-if="!user.isAnon && user.currentUser">
                         <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                             <div class="form-field form-field-block form-field-big">
                                 <label>Your Rank</label>

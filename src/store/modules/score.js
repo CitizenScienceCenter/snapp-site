@@ -63,7 +63,7 @@ const actions = {
 
         }
         else {
-            commit('SET_SCORE', undefined);
+            commit('SET_SCORE', 0);
         }
     }
 }

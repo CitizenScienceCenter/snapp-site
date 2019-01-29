@@ -82,7 +82,7 @@
     <app-content-section class="content-section-condensed" color="light-greyish">
       <scores></scores>
     </app-content-section>
-    
+
     <app-content-section class="content-section-condensed" color="greyish">
       <div class="content-wrapper">
         <div class="row row-centered">

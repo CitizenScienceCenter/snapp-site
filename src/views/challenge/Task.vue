@@ -241,6 +241,16 @@
                 <scores></scores>
             </app-content-section>
 
+            <app-content-section class="content-section-condensed" color="greyish">
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+                        <div class="col">
+                            <duration></duration>
+                        </div>
+                    </div>
+                </div>
+            </app-content-section>
+
             <app-content-section v-if="tasks[0]" class="content-section-condensed">
                 <div class="content-wrapper">
                     <div class="row row-centered">
@@ -250,16 +260,6 @@
 
                             <comments :sourceId="tasks[0].id"></comments>
 
-                        </div>
-                    </div>
-                </div>
-            </app-content-section>
-
-            <app-content-section class="content-section-condensed" color="greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col">
-                            <duration></duration>
                         </div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
 
         </template>
 
-        <template v-if="tasks[0] && taskMedia[0]">
+        <template v-if="(tasks[0] && taskMedia[0]) || complete">
 
             <app-content-section color="light-greyish">
                 <div class="content-wrapper">
