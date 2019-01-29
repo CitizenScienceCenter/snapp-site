@@ -16,7 +16,7 @@
 
 <template>
 
-    <div>
+    <div v-if="tasks[0] && taskMedia[0]">
 
         <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
 
