@@ -7,7 +7,7 @@
     "cover-button-translate": "Learn more",
 
     "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
+    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers.",
 
     "section-newsletter-heading": "Abonniere unseren Newsletter"
   },
@@ -18,7 +18,7 @@
     "cover-button-translate": "Learn more",
 
     "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
+    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers.",
 
 
     "section-newsletter-heading": "Sign up for our Newsletter"
@@ -83,14 +83,11 @@
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col">
-
             <duration></duration>
-
           </div>
         </div>
       </div>
     </app-content-section>
-
 
     <app-content-section class="content-section-condensed" color="light-greyish">
       <scores></scores>

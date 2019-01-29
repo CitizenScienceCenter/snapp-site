@@ -3,14 +3,14 @@
         <div class="content-wrapper">
             <div class="row row-centered">
 
-                <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
+                <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block form-field-right-aligned form-field-big">
                         <label>High Score</label>
                         805
-                        <div class="small">by henry</div>
+                        <div class="small">by some.username</div>
                     </div>
                 </div>
-                <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
+                <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block">
                         <label>Number of Users</label>
                         87
@@ -23,7 +23,7 @@
 
                 <template v-if="user.currentUser">
 
-                    <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
+                    <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                         <div class="form-field form-field-block form-field-right-aligned form-field-big">
                             <label>Your Score</label>
                             {{ score }}
@@ -31,7 +31,7 @@
                     </div>
 
                     <template v-if="!user.isAnon">
-                        <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
+                        <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                             <div class="form-field form-field-block form-field-big">
                                 <label>Your Rank</label>
                                 <span style="font-weight: 400">87.</span>
@@ -39,7 +39,7 @@
                         </div>
                     </template>
                     <template v-else>
-                        <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
+                        <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                             <h2 class="subheading">Create an Account</h2>
                             <p>Create an account now or your score is lost.</p>
                             <router-link tag="button" to="/login" class="button button-primary">Register</router-link>

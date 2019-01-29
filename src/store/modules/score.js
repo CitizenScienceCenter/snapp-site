@@ -16,7 +16,7 @@ const actions = {
             const submissionQuery = {
                 "select": {
                     "fields": [
-                        "submissions.*"
+                        "DISTINCT submissions.*"
                     ],
                     "tables": [
                         "submissions",

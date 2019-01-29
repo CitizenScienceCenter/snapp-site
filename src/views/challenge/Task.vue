@@ -16,328 +16,354 @@
 
 <template>
 
-    <div v-if="tasks[0] && taskMedia[0]">
+    <div>
 
-        <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
+        <template v-if="tasks[0] && taskMedia[0] && !complete">
 
-            <app-content-section class="content-section-flat settings-section" color="light-greyish">
-                <div class="settings">
+            <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
+
+                <app-content-section class="content-section-flat settings-section" color="light-greyish">
+                    <div class="settings">
+
+                        <div class="content-wrapper">
+                            <div class="row row-centered row-large-right-aligned">
+                                <div class="col col-large-5">
+
+                                    <div class="difficulty-select">
+                                        <label>Difficulty</label>
+                                        <div class="custom-select settings-select">
+                                            <select v-model="difficulty">
+                                                <option selected value="0">Easy</option>
+                                                <option value="1">Medium</option>
+                                                <option value="2">Hard</option>
+                                            </select>
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="region-select">
+                                        <label>Region</label>
+                                        <div class="custom-select settings-select">
+                                            <select v-model="region">
+                                                <option selected value="All">All</option>
+                                                <option value="Africa">Africa</option>
+                                                <option value="Asia">Asia</option>
+                                                <option value="Europe">Europe</option>
+                                                <option value="Oceania">Oceania</option>
+                                                <option value="North America">North America</option>
+                                                <option value="South America">South America</option>
+                                            </select>
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </app-content-section>
+
+
+                <app-content-section class="content-section-condensed question-section">
 
                     <div class="content-wrapper">
                         <div class="row row-centered row-large-right-aligned">
                             <div class="col col-large-5">
 
-                                <div class="difficulty-select">
-                                    <label>Difficulty</label>
-                                    <div class="custom-select settings-select">
-                                        <select v-model="difficulty">
-                                            <option selected value="0">Easy</option>
-                                            <option value="1">Medium</option>
-                                            <option value="2">Hard</option>
-                                        </select>
-                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                            <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
-                                        </svg>
+                                <h2 class="heading">
+                                    What Snake is This?
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </app-content-section>
+
+                <app-content-section class="content-section-flat image-section" color="greyish">
+                    <template>
+                        <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                        <div class="image-info image-location">
+                            <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
+                            <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
+                            <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
+                        </div>
+                        <div class="image-info image-source">
+                            <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}, </span>
+                            <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
+                        </div>
+                    </template>
+                </app-content-section>
+
+                <app-content-section class="content-section-condensed response-section">
+                    <div class="content-wrapper">
+                        <div class="row row-centered row-large-right-aligned">
+                            <div class="col col-large-5">
+
+                                <div class="form-field form-field-block">
+                                    <search-select
+                                            :disabled="hasSubmissionAlready"
+                                            placeholder="Binomial, Genus or Family"
+                                            :optionContainers="searchOptionsContainers"
+                                            v-model="value"
+                                            :initialInputFocus="initialInputFocus">
+                                    </search-select>
+                                </div>
+
+                                <div v-if="tasks[0]" class="actions margin-bottom">
+                                    <div class="button-group right-aligned">
+                                        <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
+                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
+                                    </div>
+
+                                    <div class="info">
+                                        <div class="message message-info" v-if="hasSubmissionAlready">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
+                                                </svg>
+                                            </div>
+                                            Already Done!
+                                        </div>
+                                        <div ref="scoreinfo" class="message hidden" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
+                                            <div v-if="evaluation.score === 0" class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
+                                                </svg>
+                                            </div>
+                                            <div v-else class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                                                </svg>
+                                            </div>
+                                            {{ evaluation.score }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="region-select">
-                                    <label>Region</label>
-                                    <div class="custom-select settings-select">
-                                        <select v-model="region">
-                                            <option selected value="All">All</option>
-                                            <option value="Africa">Africa</option>
-                                            <option value="Asia">Asia</option>
-                                            <option value="Europe">Europe</option>
-                                            <option value="Oceania">Oceania</option>
-                                            <option value="North America">North America</option>
-                                            <option value="South America">South America</option>
-                                        </select>
-                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                            <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
-                                        </svg>
-                                    </div>
+
+                                <div class="mongo">
+                                    <label>Binomial: </label>{{ tasks[0].info.binomial }}
+                                    <label>Genus: </label>{{ tasks[0].info.genus }}
+                                    <label>Family: </label>{{ tasks[0].info.family }}
+                                </div>
+
+                                <div class="content-container">
+                                    <ul class="evaluation-list">
+                                        <!--
+                                        <template v-if="evaluation">{{ evaluation.successRate }} </template>
+                                        <template v-if="value">{{ value.info }} </template>
+                                        <template v-if="value">{{ value.genus }} </template>
+                                        -->
+
+
+                                        <li ref="evaluation-step-3" :class="{
+                                            'correct': evaluation && evaluation.successRate === 3,
+                                            'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
+                                            'missing': evaluation && evaluation && value.info !== 'binomial'
+                                        }">
+                                            <div class="evaluation">
+                                                <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
+                                                    {{ tasks[0].info.binomial }}
+                                                </template>
+                                                <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
+                                                    <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
+                                                </template>
+                                                <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
+                                                    {{ tasks[0].info.binomial }}
+                                                </template>
+                                            </div>
+                                            <div class="default">
+                                                Earn {{binomialScore}} points for the correct binomial.
+                                            </div>
+                                        </li>
+
+
+                                        <li ref="evaluation-step-2" :class="{
+                                            'correct': evaluation && evaluation.successRate >= 2,
+                                            'wrong': evaluation && evaluation.successRate < 2 && ( value.info === 'genus' || value.hasOwnProperty('genus') ),
+                                            'missing': evaluation && evaluation && value.info !== 'genus' && value.info !== 'binomial'
+                                        }">
+                                            <div class="evaluation">
+                                                <template v-if="evaluation && evaluation.successRate >= 2"> <!-- correct -->
+                                                    {{ tasks[0].info.genus }}
+                                                </template>
+                                                <template v-else-if="evaluation && evaluation.successRate < 2 && value.info === 'genus'"> <!-- wrong -->
+                                                    <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.genus }}
+                                                </template>
+                                                <template v-else-if="evaluation && evaluation.successRate < 2 && value.hasOwnProperty('genus')"> <!-- wrong because of parent -->
+                                                    <span class="wrongAnswer">{{ value.genus }}</span>{{ tasks[0].info.genus }}
+                                                </template>
+                                                <template v-else-if="evaluation && value.info !== 'genus' && value.info !== 'binomial'"> <!-- missing -->
+                                                    {{ tasks[0].info.genus }}
+                                                </template>
+                                            </div>
+                                            <div class="default">
+                                                Earn {{genusScore}} points for the correct genus.
+                                            </div>
+                                        </li>
+
+
+                                        <li ref="evaluation-step-1" :class="{
+                                            'correct': evaluation && evaluation.successRate >= 1,
+                                            'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
+                                        }">
+                                            <div class="evaluation">
+                                                <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
+                                                    {{ tasks[0].info.family }}
+                                                </template>
+                                                <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
+                                                    <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
+                                                </template>
+                                                <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
+                                                    <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
+                                                </template>
+                                            </div>
+                                            <div class="default">
+                                                Earn {{familyScore}} points for the correct family.
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                </div>
+                </app-content-section>
+
+            </div>
+
+
+            <app-content-section class="content-section-condensed" color="light-greyish">
+                <scores></scores>
             </app-content-section>
 
-
-            <app-content-section class="content-section-condensed question-section">
-
+            <app-content-section v-if="tasks[0]" class="content-section-condensed">
                 <div class="content-wrapper">
-                    <div class="row row-centered row-large-right-aligned">
-                        <div class="col col-large-5">
+                    <div class="row row-centered">
+                        <div class="col col-large-6">
 
-                            <h2 class="heading">
-                                What Snake is This?
-                            </h2>
+                            <h2 class="heading">Questions & Comments</h2>
+
+                            <comments :sourceId="tasks[0].id"></comments>
 
                         </div>
                     </div>
                 </div>
             </app-content-section>
 
-            <app-content-section class="content-section-flat image-section" color="greyish">
-                <template>
-                    <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
-                    <div class="image-info image-location">
-                        <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
-                        <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
-                        <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
-                    </div>
-                    <div class="image-info image-source">
-                        <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}, </span>
-                        <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
-                    </div>
-                </template>
-            </app-content-section>
-
-            <app-content-section class="content-section-condensed response-section">
+            <app-content-section class="content-section-condensed" color="greyish">
                 <div class="content-wrapper">
-                    <div class="row row-centered row-large-right-aligned">
-                        <div class="col col-large-5">
+                    <div class="row row-centered">
+                        <div class="col">
+                            <duration></duration>
+                        </div>
+                    </div>
+                </div>
+            </app-content-section>
 
-                            <div class="form-field form-field-block">
-                                <search-select
-                                        :disabled="hasSubmissionAlready"
-                                        placeholder="Binomial, Genus or Family"
-                                        :optionContainers="searchOptionsContainers"
-                                        v-model="value"
-                                        :initialInputFocus="initialInputFocus">
-                                </search-select>
-                            </div>
+        </template>
 
-                            <div v-if="tasks[0]" class="actions margin-bottom">
-                                <div class="button-group right-aligned">
-                                    <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
-                                    <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
-                                </div>
+        <template v-else-if="complete">
 
-                                <div class="info">
-                                    <div class="message message-info" v-if="hasSubmissionAlready">
-                                        <div class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
-                                            </svg>
-                                        </div>
-                                        Already Done!
-                                    </div>
-                                    <div ref="scoreinfo" class="message hidden" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
-                                        <div v-if="evaluation.score === 0" class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
-                                            </svg>
-                                        </div>
-                                        <div v-else class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                                            </svg>
-                                        </div>
-                                        {{ evaluation.score }}
-                                    </div>
-                                </div>
-                            </div>
+            <app-content-section>
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+                        <div class="col col-large-6">
 
-                            <div class="mongo">
-                                <label>Binomial: </label>{{ tasks[0].info.binomial }}
-                                <label>Genus: </label>{{ tasks[0].info.genus }}
-                                <label>Family: </label>{{ tasks[0].info.family }}
-                            </div>
+                            <h2 class="heading">Challenge Complete</h2>
 
-                            <div class="content-container">
-                                <ul class="evaluation-list">
-                                    <!--
-                                    <template v-if="evaluation">{{ evaluation.successRate }} </template>
-                                    <template v-if="value">{{ value.info }} </template>
-                                    <template v-if="value">{{ value.genus }} </template>
-                                    -->
-
-
-                                    <li ref="evaluation-step-3" :class="{
-                                        'correct': evaluation && evaluation.successRate === 3,
-                                        'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
-                                        'missing': evaluation && evaluation && value.info !== 'binomial'
-                                    }">
-                                        <div class="evaluation">
-                                            <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
-                                                {{ tasks[0].info.binomial }}
-                                            </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
-                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
-                                            </template>
-                                            <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
-                                                {{ tasks[0].info.binomial }}
-                                            </template>
-                                        </div>
-                                        <div class="default">
-                                            Earn {{binomialScore}} points for the correct binomial.
-                                        </div>
-                                    </li>
-
-
-                                    <li ref="evaluation-step-2" :class="{
-                                        'correct': evaluation && evaluation.successRate >= 2,
-                                        'wrong': evaluation && evaluation.successRate < 2 && ( value.info === 'genus' || value.hasOwnProperty('genus') ),
-                                        'missing': evaluation && evaluation && value.info !== 'genus' && value.info !== 'binomial'
-                                    }">
-                                        <div class="evaluation">
-                                            <template v-if="evaluation && evaluation.successRate >= 2"> <!-- correct -->
-                                                {{ tasks[0].info.genus }}
-                                            </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 2 && value.info === 'genus'"> <!-- wrong -->
-                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.genus }}
-                                            </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 2 && value.hasOwnProperty('genus')"> <!-- wrong because of parent -->
-                                                <span class="wrongAnswer">{{ value.genus }}</span>{{ tasks[0].info.genus }}
-                                            </template>
-                                            <template v-else-if="evaluation && value.info !== 'genus' && value.info !== 'binomial'"> <!-- missing -->
-                                                {{ tasks[0].info.genus }}
-                                            </template>
-                                        </div>
-                                        <div class="default">
-                                            Earn {{genusScore}} points for the correct genus.
-                                        </div>
-                                    </li>
-
-
-                                    <li ref="evaluation-step-1" :class="{
-                                        'correct': evaluation && evaluation.successRate >= 1,
-                                        'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
-                                    }">
-                                        <div class="evaluation">
-                                            <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
-                                                {{ tasks[0].info.family }}
-                                            </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
-                                                <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
-                                            </template>
-                                            <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
-                                                <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
-                                            </template>
-                                        </div>
-                                        <div class="default">
-                                            Earn {{familyScore}} points for the correct family.
-                                        </div>
-                                    </li>
-
-
-                                </ul>
-                            </div>
+                            <p>
+                                You did everything!
+                            </p>
 
                         </div>
                     </div>
                 </div>
             </app-content-section>
 
-        </div>
-        <app-content-section v-if="complete">
-            <div class="content-wrapper">
-                <div class="row row-centered">
-                    <div class="col col-large-6">
+            <app-content-section class="content-section-condensed" color="light-greyish">
+                <scores></scores>
+            </app-content-section>
 
-                        <h2 class="heading">Challenge Complete</h2>
+        </template>
 
-                        <p>
-                            You did everything!
-                        </p>
+        <template v-if="tasks[0] && taskMedia[0]">
 
-                    </div>
-                </div>
-            </div>
-        </app-content-section>
+            <app-content-section color="light-greyish">
+                <div class="content-wrapper">
+                    <div class="row row-centered row-middle">
 
-
-        <app-content-section class="content-section-condensed" color="light-greyish">
-            <scores></scores>
-        </app-content-section>
-
-
-        <app-content-section v-if="tasks[0]" class="content-section-condensed">
-            <div class="content-wrapper">
-                <div class="row row-centered">
-                    <div class="col col-large-6">
-
-                        <h2 class="heading">Questions & Comments</h2>
-
-                        <comments :sourceId="tasks[0].id"></comments>
-
-                    </div>
-                </div>
-            </div>
-        </app-content-section>
-
-        <app-content-section color="greyish">
-            <div class="content-wrapper">
-                <div class="row row-centered row-middle">
-
-                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-                        <div>
-                            <div class="extra-padding-h-big">
-                                <img src="/img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                        <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+                            <div>
+                                <div class="extra-padding-h-big">
+                                    <img src="/img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
-                        <div>
-                            <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
-                            <p>
-                                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </app-content-section>
-
-        <app-content-section color="dark">
-            <div class="content-wrapper">
-                <div class="row row-centered row-middle row-reverse-large">
-
-                    <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
-                        <div>
-                            <div class="extra-padding-h">
-                                <img src="/img/graphic-about.jpg" style="border-radius: 50%" />
+                        <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
+                            <div>
+                                <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
+                                <p>
+                                    Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                                </p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
-                        <div>
-                            <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
-                            <p>
-                                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
-                            </p>
-                            <p class="centered left-aligned-large">
-                                <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
-                            </p>
+                    </div>
+                </div>
+            </app-content-section>
+
+            <app-content-section color="dark">
+                <div class="content-wrapper">
+                    <div class="row row-centered row-middle row-reverse-large">
+
+                        <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+                            <div>
+                                <div class="extra-padding-h">
+                                    <img src="/img/graphic-about.jpg" style="border-radius: 50%" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
+                            <div>
+                                <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
+                                <p>
+                                    Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                                </p>
+                                <p class="centered left-aligned-large">
+                                    <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </app-content-section>
+
+            <app-content-section color="greyish">
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+                        <div class="col col-mobile-large-10">
+                            <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </app-content-section>
-
-        <app-content-section color="greyish">
-            <div class="content-wrapper">
-                <div class="row row-centered">
-                    <div class="col col-mobile-large-10">
-                        <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
+                    <div class="row row-centered">
+                        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
+                            <app-newsletter-signup></app-newsletter-signup>
+                        </div>
                     </div>
                 </div>
-                <div class="row row-centered">
-                    <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
-                        <app-newsletter-signup></app-newsletter-signup>
-                    </div>
-                </div>
-            </div>
-        </app-content-section>
+            </app-content-section>
 
-        <app-footer></app-footer>
+            <app-footer></app-footer>
+
+        </template>
 
     </div>
 
@@ -353,13 +379,15 @@ import Footer from '@/components/shared/Footer.vue'
 import ImageViewer from '@/components/ImageViewer.vue'
 import SearchSelect from '@/components/SearchSelect.vue'
 import Comments from '@/components/shared/Comments.vue'
-import Scores from "../../components/Scores";
+import Scores from "@/components/Scores";
+import Duration from "@/components/Duration";
 
 
 export default {
     name: 'Task',
     components: {
         Scores,
+        Duration,
         'app-content-section': ContentSection,
         'app-footer': Footer,
         'app-newsletter-signup': NewsletterSignup,
@@ -823,7 +851,7 @@ export default {
                     else if( counter === 4 ) {
                         self.$refs.scoreinfo.classList.remove('hidden');
                     }
-                    else if( counter === 7 ) {
+                    else if( counter === 6 ) {
                         self.$refs['evaluation-step-1'].classList.remove('evaluated');
                         self.$refs['evaluation-step-2'].classList.remove('evaluated');
                         self.$refs['evaluation-step-3'].classList.remove('evaluated');
@@ -1044,14 +1072,15 @@ export default {
 .mongo {
     position: absolute;
     right: 0;
-    bottom: -40px;
+    bottom: -48px;
     font-size: $font-size-small/1.25;
-    color: $color-black-tint-50;
+    color: $color-black-tint-80;
 
     label {
-        font-size: $font-size-small/1.25/1.25;
+        font-size: $font-size-small/1.25;
         font-weight: 700;
-        color: $color-black-tint-80;
+        color: $color-black-tint-90;
+        opacity: 0.5;
     }
 }
 
@@ -1090,7 +1119,7 @@ export default {
 
 
     .mongo {
-        bottom: -72px;
+        bottom: -80px;
     }
 
 }

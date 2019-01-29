@@ -91,7 +91,9 @@ console.log( searchOptionsContainers );
 
 const state = {
     searchOptionsContainers: searchOptionsContainers,
-    activityId: '6ed23678-aa60-4116-85cc-f5206679da2b'
+    activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
+    challengeStart: '2019-01-29T00:00:00',
+    challengeEnd: '2019-02-28T24:00:00'
 }
 
 export default {
