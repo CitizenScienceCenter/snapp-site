@@ -97,8 +97,8 @@
                                 <div v-if="tasks[0]" class="actions margin-bottom">
                                     <div class="button-group right-aligned">
                                         <!--<button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>-->
-                                        <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="submitResponse()">Don't know</button>
-                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
+                                        <button class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Don't know</button>
+                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || !value.hasOwnProperty('info') || evaluation" @click.prevent="submitResponse()">Submit Answer</button>
                                     </div>
 
                                     <div class="info">
@@ -208,8 +208,12 @@
                                             </div>
                                         </li>
 
-
                                     </ul>
+
+                                    <div class="button-group right-aligned">
+                                        <button class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openFeedbackForm()">Question/Feedback?</button>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -426,7 +430,8 @@ export default {
     },
     watch: {
         value: function() {
-            if( this.value ) {
+
+            if( this.value && this.value.hasOwnProperty('info') ) {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
                 this.$refs.submit.removeAttribute('disabled');
 
@@ -510,8 +515,6 @@ export default {
                             'join': 'a'
                         }
                     ]
-                    /*,
-                    'offset': this.skips*/
                 };
 
             }
@@ -630,6 +633,8 @@ export default {
                     console.log('no more tasks');
 
                     if ( this.difficulty === '0') {
+                        this.completedDifficulties.push('0');
+
                         if (this.completedDifficulties.indexOf('1') === -1) {
                             this.difficulty = '1';
                         }
@@ -638,6 +643,8 @@ export default {
                         }
                     }
                     else if ( this.difficulty === '1') {
+                        this.completedDifficulties.push('1');
+
                         if (this.completedDifficulties.indexOf('0') === -1) {
                             this.difficulty = '0';
                         }
@@ -658,7 +665,9 @@ export default {
             // evaluation if value
             let submissionQuery;
 
-            if( this.value ) {
+            console.log( this.value );
+
+            if( this.value && this.value.hasOwnProperty('info') ) {
 
                 if (this.value.info === 'binomial') {
                     if (this.value.value === this.tasks[0].info.binomial) {
@@ -754,7 +763,10 @@ export default {
 
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
-                if( this.value ) {
+
+                console.log( this.value );
+
+                if( this.value && this.value.hasOwnProperty('info') ) {
 
                     const self = this;
                     var counter = 1;

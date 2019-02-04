@@ -41,14 +41,12 @@
                 focusedOptionIndex: 0,
                 maxOptionIndex: 0,
                 inputValue: '',
+                returnObject: null,
                 showResults: false
             }
         },
         props: {
-            value: {
-                type: Object,
-                default: function () { return null }
-            },
+            value: Object,
             placeholder: {
                 type: String,
                 default: ''
@@ -91,15 +89,22 @@
                 }
             },
             value: function() {
-                if( this.value ) {
+                if( this.value && this.value.hasOwnProperty('info') ) {
                     this.showResults = false;
                 }
-                else {
+                else if( this.value === null ){
                     this.$refs.answer.focus();
+                    this.returnObject = null;
                     this.inputValue = '';
                 }
             },
             inputValue: function(to, from) {
+
+                if( !this.returnObject || !this.returnObject.hasOwnProperty('info') ) {
+                    this.returnObject = {'text': this.inputValue };
+                }
+                this.$emit('input', this.returnObject );
+
                 if( this.inputValue !== '' ) {
                     if( this.value ) {
                         if( this.inputValue !== this.value.value ) {
@@ -116,6 +121,7 @@
                 else {
                     this.showResults = false;
                 }
+
             }
         },
         computed: {
@@ -197,14 +203,13 @@
                 this.selectOptionById(id);
             },
             selectOptionById(id) {
-                let returnObject;
                 let counter = 0;
                 let found = false;
                 for( let i = 0; i < this.filteredOptionContainers.length; i++ ) {
                     for( let j = 0; j < this.filteredOptionContainers[i].options.length; j++ ) {
                         if( counter === id ) {
                             found = true;
-                            returnObject = this.filteredOptionContainers[i].options[j];
+                            this.returnObject = this.filteredOptionContainers[i].options[j];
                             break;
                         }
                         counter++;
@@ -213,8 +218,7 @@
                         break;
                     }
                 }
-                this.inputValue = returnObject.value;
-                this.$emit('input', returnObject );
+                this.inputValue = this.returnObject.value;
             },
             handleInputKeys: function(event) {
                 if( this.showResults ) {

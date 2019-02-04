@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header project-name="Snake<br/>Challenge" :score="score"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" :score="score"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
