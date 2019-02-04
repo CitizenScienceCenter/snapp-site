@@ -26,8 +26,8 @@
         },
         computed: {
             ...mapState({
-                challengeStart: state => state.consts.challengeStart,
-                challengeEnd: state => state.consts.challengeEnd,
+                challengeStartISO: state => state.consts.challengeStartISO,
+                challengeEndISO: state => state.consts.challengeEndISO,
             }),
             percentage() {
                 return ( (this.currentTimestamp-this.challengeStartTimestamp)/(this.challengeEndTimestamp-this.challengeStartTimestamp) )*100;
@@ -35,29 +35,26 @@
         },
         mounted() {
 
-            var challengeStartDate = new Date( this.challengeStart );
-            var challengeEndTimestamp = new Date( this.challengeEnd );
-            console.log( challengeStartDate );
-            console.log( challengeEndTimestamp );
+            var challengeStartDate = new Date( this.challengeStartISO );
+            var challengeEndTimestamp = new Date( this.challengeEndISO );
             this.challengeStartTimestamp = challengeStartDate.getTime();
             this.challengeEndTimestamp = challengeEndTimestamp.getTime();
 
-            this.setCurrentTime();
+            this.tick();
             const self = this;
             setInterval( function() {
-                self.setCurrentTime();
+                self.tick();
             }, 1000);
         },
         methods: {
-            setCurrentTime() {
+            tick() {
                 this.currentTimestamp = Date.now();
+
+                //console.log( this.challengeStartTimestamp );
+                //console.log( this.currentTimestamp );
                 this.calculateRemaining();
             },
             calculateRemaining() {
-
-                console.log( 'end: '+this.challengeEndTimestamp );
-                console.log( 'now: '+this.currentTimestamp );
-                console.log( 'subt: '+(this.challengeEndTimestamp-this.currentTimestamp) );
 
                 var remainingDays = (this.challengeEndTimestamp-this.currentTimestamp) / 1000 / 60 / 60 / 24;
                 this.remainingDays = Math.floor( remainingDays );

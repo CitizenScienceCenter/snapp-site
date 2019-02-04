@@ -34,25 +34,7 @@
                                         <div class="custom-select settings-select">
                                             <select v-model="difficulty">
                                                 <option selected value="0">Easy</option>
-                                                <option value="1">Medium</option>
-                                                <option value="2">Hard</option>
-                                            </select>
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                                <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="region-select">
-                                        <label>Region</label>
-                                        <div class="custom-select settings-select">
-                                            <select v-model="region">
-                                                <option selected value="All">All</option>
-                                                <option value="Africa">Africa</option>
-                                                <option value="Asia">Asia</option>
-                                                <option value="Europe">Europe</option>
-                                                <option value="Oceania">Oceania</option>
-                                                <option value="North America">North America</option>
-                                                <option value="South America">South America</option>
+                                                <option value="1">Hard</option>
                                             </select>
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                                 <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
@@ -105,7 +87,7 @@
                                 <div class="form-field form-field-block">
                                     <search-select
                                             :disabled="hasSubmissionAlready"
-                                            placeholder="Binomial, Genus or Family"
+                                            placeholder="Family, Genus or Binomial"
                                             :optionContainers="searchOptionsContainers"
                                             v-model="value"
                                             :initialInputFocus="initialInputFocus">
@@ -114,7 +96,8 @@
 
                                 <div v-if="tasks[0]" class="actions margin-bottom">
                                     <div class="button-group right-aligned">
-                                        <button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>
+                                        <!--<button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>-->
+                                        <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="submitResponse()">Don't know</button>
                                         <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || evaluation" @click.prevent="submitResponse()">Send</button>
                                     </div>
 
@@ -246,20 +229,6 @@
                     <div class="row row-centered">
                         <div class="col">
                             <duration></duration>
-                        </div>
-                    </div>
-                </div>
-            </app-content-section>
-
-            <app-content-section v-if="tasks[0]" class="content-section-condensed">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col col-large-6">
-
-                            <h2 class="heading">Questions & Comments</h2>
-
-                            <comments :sourceId="tasks[0].id"></comments>
-
                         </div>
                     </div>
                 </div>
@@ -399,11 +368,10 @@ export default {
         return {
             id: null,
             hasSubmissionAlready: false,
-            skips: 0,
-            difficulty: 0,
+            difficulty: '0',
             completedDifficulties: [],
-            region: 'All',
             value: null,
+            responseTime: null,
             evaluation: null,
             complete: false,
             initialInputFocus: false
@@ -426,41 +394,32 @@ export default {
             loading: state => state.c3s.settings.loading
         }),
         familyScore: function() {
-            switch( Number(this.difficulty) ) {
-                case 0: {
+            switch( this.difficulty ) {
+                case '0': {
                     return 6;
                 }
-                case 1: {
+                case '1': {
                     return 8;
-                }
-                case 2: {
-                    return 10;
                 }
             }
         },
         genusScore: function() {
-            switch( Number(this.difficulty) ) {
-                case 0: {
+            switch( this.difficulty ) {
+                case '0': {
                     return 9;
                 }
-                case 1: {
+                case '1': {
                     return 12;
-                }
-                case 2: {
-                    return 15;
                 }
             }
         },
         binomialScore: function() {
-            switch( Number(this.difficulty) ) {
-                case 0: {
+            switch( this.difficulty ) {
+                case '0': {
                     return 12;
                 }
-                case 1: {
+                case '1': {
                     return 16;
-                }
-                case 2: {
-                    return 20;
                 }
             }
         }
@@ -476,11 +435,6 @@ export default {
         },
         difficulty: function(to, from) {
             console.log("difficulty changed "+from +" "+ to);
-            this.skips = 0;
-            this.loadTask();
-        },
-        region: function(to, from) {
-            this.skips = 0;
             this.loadTask();
         }
     },
@@ -526,7 +480,6 @@ export default {
             let taskQuery;
             if( !this.id ) {
 
-                //console.log('load task nr. ' + this.skips);
 
                 taskQuery = {
                     'select': {
@@ -556,20 +509,10 @@ export default {
                             'val': this.difficulty.toString(),
                             'join': 'a'
                         }
-                    ],
-                    'offset': this.skips
+                    ]
+                    /*,
+                    'offset': this.skips*/
                 };
-
-                if (this.region !== 'All') {
-                    taskQuery.where.push(
-                        {
-                            'field': 'tasks.info ->> \'region\'',
-                            'op': 'e',
-                            'val': this.region.toString(),
-                            'join': 'a'
-                        }
-                    );
-                }
 
             }
             else {
@@ -671,6 +614,8 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         //console.log('media loaded');
+
+
                         this.value = null;
                         if( !this.hasSubmissionAlready ) {
                             this.initialInputFocus = true;
@@ -684,62 +629,23 @@ export default {
 
                     console.log('no more tasks');
 
-
-                    if( this.region !== 'All' ) {
-                        this.region = 'All';
-                    }
-                    else {
-                        console.log( this.difficulty === 0 );
-
-                        if ( Number(this.difficulty) === 0) {
-                            if (this.skips === 0) {
-                                if (this.completedDifficulties.indexOf(0) === -1) {
-                                    this.completedDifficulties.push(0);
-                                }
-                            }
-                            if (this.completedDifficulties.indexOf(1) === -1) {
-                                this.difficulty = 1;
-                            }
-                            else if (this.completedDifficulties.indexOf(2) === -1) {
-                                this.difficulty = 2;
-                            }
-                            else {
-                                this.complete = true;
-                            }
+                    if ( this.difficulty === '0') {
+                        if (this.completedDifficulties.indexOf('1') === -1) {
+                            this.difficulty = '1';
                         }
-                        else if ( Number(this.difficulty) === 1) {
-                            if (this.skips === 0) {
-                                if (this.completedDifficulties.indexOf(1) === -1) {
-                                    this.completedDifficulties.push(1);
-                                }
-                            }
-                            if (this.completedDifficulties.indexOf(2) === -1) {
-                                this.difficulty = 2;
-                            }
-                            else if (this.completedDifficulties.indexOf(0) === -1) {
-                                this.difficulty = 0;
-                            }
-                            else {
-                                this.complete = true;
-                            }
-                        }
-                        else if ( Number(this.difficulty) === 2) {
-                            if (this.skips === 0) {
-                                if (this.completedDifficulties.indexOf(2) === -1) {
-                                    this.completedDifficulties.push(2);
-                                }
-                            }
-                            if (this.completedDifficulties.indexOf(0) === -1) {
-                                this.difficulty = 0;
-                            }
-                            else if (this.completedDifficulties.indexOf(1) === -1) {
-                                this.difficulty = 1;
-                            }
-                            else {
-                                this.complete = true;
-                            }
+                        else {
+                            this.complete = true;
                         }
                     }
+                    else if ( this.difficulty === '1') {
+                        if (this.completedDifficulties.indexOf('0') === -1) {
+                            this.difficulty = '0';
+                        }
+                        else {
+                            this.complete = true;
+                        }
+                    }
+
 
                 }
 
@@ -747,121 +653,141 @@ export default {
             });
 
         },
-        nextTask: function () {
-
-             this.skips++;
-             this.loadTask();
-
-        },
         submitResponse: function() {
 
-            // evaluation
+            // evaluation if value
+            let submissionQuery;
 
-            if( this.value.info === 'binomial' ) {
-                if( this.value.value === this.tasks[0].info.binomial ) {
-                    this.evaluation = {
-                        'successRate': 3,
-                        'score': this.binomialScore
-                    };
-                }
-                else if( this.value.genus === this.tasks[0].info.genus ) {
-                    this.evaluation = {
-                        'successRate': 2,
-                        'score': this.genusScore
-                    };
-                }
-                else if( this.value.family === this.tasks[0].info.family ) {
-                    this.evaluation = {
-                        'successRate': 1,
-                        'score': this.familyScore
-                    };
-                }
-                else {
-                    this.evaluation = {
-                        'successRate': 0,
-                        'score': 0
-                    };
-                }
-            }
-            else if( this.value.info === 'genus' ) {
-                if( this.value.value === this.tasks[0].info.genus ) {
-                    this.evaluation = {
-                        'successRate': 2,
-                        'score': this.genusScore
-                    };
-                }
-                else if( this.value.value === this.tasks[0].info.family ) {
-                    this.evaluation = {
-                        'successRate': 1,
-                        'score': this.familyScore
-                    };
-                }
-                else {
-                    this.evaluation = {
-                        'successRate': 0,
-                        'score': 0
-                    };
-                }
-            }
-            else if( this.value.info === 'family' ) {
-                if( this.value.value === this.tasks[0].info.family ) {
-                    this.evaluation = {
-                        'successRate': 1,
-                        'score': this.familyScore
-                    };
-                }
-                else {
-                    this.evaluation = {
-                        'successRate': 0,
-                        'score': 0
-                    };
-                }
-            }
+            if( this.value ) {
 
-            const submissionQuery = {
-                "info": {},
-                "content": {
-                    "responses": [{
-                        "value": this.value.value,
-                        "info": this.value.info,
-                        "score": this.evaluation.score
-                    }]
-                },
-                "task_id": this.tasks[0].id,
-                "user_id": this.currentUser.id
-            };
+                if (this.value.info === 'binomial') {
+                    if (this.value.value === this.tasks[0].info.binomial) {
+                        this.evaluation = {
+                            'successRate': 3,
+                            'score': this.binomialScore
+                        };
+                    }
+                    else if (this.value.genus === this.tasks[0].info.genus) {
+                        this.evaluation = {
+                            'successRate': 2,
+                            'score': this.genusScore
+                        };
+                    }
+                    else if (this.value.family === this.tasks[0].info.family) {
+                        this.evaluation = {
+                            'successRate': 1,
+                            'score': this.familyScore
+                        };
+                    }
+                    else {
+                        this.evaluation = {
+                            'successRate': 0,
+                            'score': 0
+                        };
+                    }
+                }
+                else if (this.value.info === 'genus') {
+                    if (this.value.value === this.tasks[0].info.genus) {
+                        this.evaluation = {
+                            'successRate': 2,
+                            'score': this.genusScore
+                        };
+                    }
+                    else if (this.value.value === this.tasks[0].info.family) {
+                        this.evaluation = {
+                            'successRate': 1,
+                            'score': this.familyScore
+                        };
+                    }
+                    else {
+                        this.evaluation = {
+                            'successRate': 0,
+                            'score': 0
+                        };
+                    }
+                }
+                else if (this.value.info === 'family') {
+                    if (this.value.value === this.tasks[0].info.family) {
+                        this.evaluation = {
+                            'successRate': 1,
+                            'score': this.familyScore
+                        };
+                    }
+                    else {
+                        this.evaluation = {
+                            'successRate': 0,
+                            'score': 0
+                        };
+                    }
+                }
+
+                submissionQuery = {
+                    "info": {},
+                    "content": {
+                        "responses": [{
+                            "value": this.value.value,
+                            "info": this.value.info,
+                            "score": this.evaluation.score
+                        }]
+                    },
+                    "task_id": this.tasks[0].id,
+                    "user_id": this.currentUser.id
+                };
+
+            }
+            else {
+                submissionQuery = {
+                    "info": {},
+                    "content": {
+                        "responses": [{
+                            "value": null,
+                            "info": null,
+                            "score": 0
+                        }]
+                    },
+                    "task_id": this.tasks[0].id,
+                    "user_id": this.currentUser.id
+                };
+            }
 
             this.$store.commit('c3s/submission/SET_SUBMISSION', submissionQuery );
 
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
-                const self = this;
-                var counter = 1;
-                this.$refs['evaluation-step-'+counter].classList.add('evaluated');
-                var interval = setInterval( function() {
+                if( this.value ) {
 
-                    counter++;
+                    const self = this;
+                    var counter = 1;
+                    this.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                    var interval = setInterval(function () {
 
-                    if( counter === 2 ) {
-                        self.$refs['evaluation-step-'+counter].classList.add('evaluated');
-                    }
-                    else if( counter === 3 ) {
-                        self.$refs['evaluation-step-'+counter].classList.add('evaluated');
-                    }
-                    else if( counter === 4 ) {
-                        self.$refs.scoreinfo.classList.remove('hidden');
-                    }
-                    else if( counter === 6 ) {
-                        self.$refs['evaluation-step-1'].classList.remove('evaluated');
-                        self.$refs['evaluation-step-2'].classList.remove('evaluated');
-                        self.$refs['evaluation-step-3'].classList.remove('evaluated');
-                        self.$store.dispatch('score/calculateScore');
-                        self.$refs.scoreinfo.classList.add('hidden');
-                        self.loadTask();
-                        clearInterval( interval );
-                    }
+                        counter++;
 
-                }, 600 );
+                        if (counter === 2) {
+                            self.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                        }
+                        else if (counter === 3) {
+                            self.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                        }
+                        else if (counter === 4) {
+                            self.$refs.scoreinfo.classList.remove('hidden');
+                        }
+                        else if (counter === 6) {
+                            self.$refs['evaluation-step-1'].classList.remove('evaluated');
+                            self.$refs['evaluation-step-2'].classList.remove('evaluated');
+                            self.$refs['evaluation-step-3'].classList.remove('evaluated');
+                            self.$store.dispatch('score/calculateScore');
+                            self.$refs.scoreinfo.classList.add('hidden');
+                            self.loadTask();
+                            clearInterval(interval);
+                        }
+
+                    }, 600);
+
+                }
+                else {
+                    this.loadTask();
+                }
 
             });
         }

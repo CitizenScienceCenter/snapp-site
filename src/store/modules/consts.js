@@ -81,20 +81,19 @@ searchOptionsGenera.sort( sortThings );
 searchOptionsFamilies.sort( sortThings );
 
 
-const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': false, 'options': searchOptionsBinomials };
+const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'options': searchOptionsBinomials };
 const searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
 const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
 
-const searchOptionsContainers = [ searchOptionContainerBinomials, searchOptionContainerGenera, searchOptionContainerFamilies ];
+const searchOptionsContainers = [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ];
 
-console.log( searchOptionsContainers );
 
 const state = {
     searchOptionsContainers: searchOptionsContainers,
     activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
-    challengeStart: '2019-01-29T00:00:00',
-    challengeEnd: '2019-02-28T24:00:00'
-}
+    challengeStartISO: '2019-02-04T11:00:00Z',
+    challengeEndISO: '2019-02-04T16:00:00Z'
+};
 
 export default {
   namespaced: true,

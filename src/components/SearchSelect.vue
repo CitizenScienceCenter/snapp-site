@@ -86,7 +86,7 @@
                         this.$refs.results.classList.add('upwards');
                     }
 
-                    maxHeight *= 0.9;
+                    maxHeight *= 0.8;
                     this.$refs.results.style.maxHeight = maxHeight+'px';
                 }
             },
@@ -278,7 +278,6 @@
             top: 40px;
             left: 0;
             width: 100%;
-            //max-height: calc( 40px * 10 );
             overflow: hidden;
             overflow-y: scroll;
 
@@ -299,9 +298,10 @@
                     color: $color-black-tint-40;
 
                     &.label {
-                        font-size: $font-size-normal;
+                        font-size: $font-size-small;
                         font-weight: 700;
                         color: $color-black;
+                        line-height: 2;
                     }
 
                     &:before {
