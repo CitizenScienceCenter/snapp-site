@@ -89,8 +89,7 @@
                                             :disabled="hasSubmissionAlready"
                                             placeholder="Family, Genus or Binomial"
                                             :optionContainers="searchOptionsContainers"
-                                            v-model="value"
-                                            :initialInputFocus="initialInputFocus">
+                                            v-model="value">
                                     </search-select>
                                 </div>
 
@@ -98,7 +97,7 @@
                                     <div class="button-group right-aligned">
                                         <!--<button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>-->
                                         <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Skip</button>
-                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || !value.hasOwnProperty('info') || evaluation" @click.prevent="submitResponse()">Submit</button>
+                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">Submit</button>
                                     </div>
 
                                     <div class="info">
@@ -374,11 +373,10 @@ export default {
             hasSubmissionAlready: false,
             difficulty: '0',
             completedDifficulties: [],
-            value: null,
+            value: {},
             responseTime: null,
             evaluation: null,
-            complete: false,
-            initialInputFocus: false
+            complete: false
         }
     },
     computed: {
@@ -431,12 +429,14 @@ export default {
     watch: {
         value: function() {
 
-            if( this.value && this.value.hasOwnProperty('info') ) {
+            //if( this.value && this.value.hasOwnProperty('info') ) {
+            if( this.value && Object.keys(this.value).length > 0 ) {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
                 this.$refs.submit.removeAttribute('disabled');
 
                 this.$refs.submit.focus();
             }
+
         },
         difficulty: function(to, from) {
             console.log("difficulty changed "+from +" "+ to);
@@ -497,7 +497,13 @@ export default {
                         ],
                         'tables': [
                             'tasks'
-                        ]
+                        ],
+                        'group_by': [
+                            'submissions.task_id'
+                        ],
+                        'order_by': {
+                            'submissions.task_id': 'DESC'
+                        }
                     },
                     'where': [
                         {
@@ -622,11 +628,7 @@ export default {
 
                         //console.log('media loaded');
 
-
                         this.value = null;
-                        if( !this.hasSubmissionAlready ) {
-                            this.initialInputFocus = true;
-                        }
 
                     });
 
@@ -669,9 +671,9 @@ export default {
             // evaluation if value
             let submissionQuery;
 
-            console.log( this.value );
+            //console.log( this.value );
 
-            if( this.value && this.value.hasOwnProperty('info') ) {
+            if( this.value && Object.keys(this.value).length > 0 ) {
 
                 if (this.value.info === 'binomial') {
                     if (this.value.value === this.tasks[0].info.binomial) {
@@ -768,9 +770,8 @@ export default {
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
 
-                console.log( this.value );
-
-                if( this.value && this.value.hasOwnProperty('info') ) {
+                //if( this.value && this.value.hasOwnProperty('info') ) {
+                if( this.value && Object.keys(this.value).length > 0 ) {
 
                     const self = this;
                     var counter = 1;
@@ -955,6 +956,11 @@ export default {
 
 
         .evaluation-list {
+            li:first-child {
+                .evaluation {
+                    font-style: italic;
+                }
+            }
             li {
                 .evaluation {
                     display: none;

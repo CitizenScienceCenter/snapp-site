@@ -81,9 +81,9 @@ searchOptionsGenera.sort( sortThings );
 searchOptionsFamilies.sort( sortThings );
 
 
-const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'options': searchOptionsBinomials };
-const searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
-const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
+const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'fontStyle': 'italic', 'options': searchOptionsBinomials };
+const searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'fontStyle': 'normal', 'options': searchOptionsGenera };
+const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': false, 'fontStyle': 'normal', 'options': searchOptionsFamilies };
 
 const searchOptionsContainers = [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ];
 

@@ -12,6 +12,7 @@
                 <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
             </svg>
         </div>
+
         <div ref="results" class="results">
             <ul v-if="showResults" @click="clickOnResults">
                 <template v-for="filteredOptionContainer in filteredOptionContainers">
@@ -21,10 +22,11 @@
                     <li v-for="(option,index) in filteredOptionContainer.options"
                         :ref="'option_'+(index+filteredOptionContainer.startId)"
                         @click="optionClick( (index+filteredOptionContainer.startId) )"
-                        :class="{ 'focused' : focusedOptionIndex === index+filteredOptionContainer.startId }">
+                        :class="{ 'focused' : focusedOptionIndex === index+filteredOptionContainer.startId }"
+                        :style="{ 'font-style': filteredOptionContainer.fontStyle }">
                         {{ option.value }}
                         <div v-if="filteredOptionContainer.foundInSyn[index] > -1">
-                            aka {{ option.synonyms[ filteredOptionContainer.foundInSyn[index] ] }}
+                            <span style="font-style:normal">aka </span>{{ option.synonyms[ filteredOptionContainer.foundInSyn[index] ] }}
                         </div>
                     </li>
                 </template>
@@ -46,7 +48,10 @@
             }
         },
         props: {
-            value: Object,
+            value: {
+                type: Object,
+                default: function() { return {} }
+            },
             placeholder: {
                 type: String,
                 default: ''
@@ -58,16 +63,9 @@
             disabled: {
                 type: Boolean,
                 default: false
-            },
-            initialInputFocus: {
-                type: Boolean,
-                default: false
             }
         },
         watch: {
-            initialInputFocus(to, from) {
-                this.$refs.answer.focus();
-            },
             showResults: function(to, from) {
                 if( to ) {
                     let inputRect = this.$refs.input.getBoundingClientRect();
@@ -88,8 +86,9 @@
                     this.$refs.results.style.maxHeight = maxHeight+'px';
                 }
             },
-            value: function() {
-                if( this.value && this.value.hasOwnProperty('info') ) {
+            value: function(to, from) {
+                //if( this.value && this.value.hasOwnProperty('info') ) {
+                if( this.value && Object.keys(this.value).length > 0 ) {
                     this.showResults = false;
                 }
                 else if( this.value === null ){
@@ -100,10 +99,12 @@
             },
             inputValue: function(to, from) {
 
-                if( !this.returnObject || !this.returnObject.hasOwnProperty('info') ) {
-                    this.returnObject = {'text': this.inputValue };
+                //if( !this.returnObject || !this.returnObject.hasOwnProperty('info') ) {
+                if( !this.returnObject || Object.keys(this.returnObject).length === 0 ) {
+                    this.returnObject = {};
                 }
                 this.$emit('input', this.returnObject );
+
 
                 if( this.inputValue !== '' ) {
                     if( this.value ) {
@@ -133,7 +134,7 @@
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
 
-                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'options': [], 'foundInSyn': [] };
+                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'fontStyle': this.optionContainers[i].fontStyle, 'options': [], 'foundInSyn': [] };
 
                         let options;
                         if( this.inputValue.length > 0 ) {
