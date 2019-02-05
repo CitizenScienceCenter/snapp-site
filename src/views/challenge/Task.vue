@@ -97,8 +97,8 @@
                                 <div v-if="tasks[0]" class="actions margin-bottom">
                                     <div class="button-group right-aligned">
                                         <!--<button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>-->
-                                        <button class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Don't know</button>
-                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || !value.hasOwnProperty('info') || evaluation" @click.prevent="submitResponse()">Submit Answer</button>
+                                        <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Skip</button>
+                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || !value.hasOwnProperty('info') || evaluation" @click.prevent="submitResponse()">Submit</button>
                                     </div>
 
                                     <div class="info">
@@ -210,8 +210,8 @@
 
                                     </ul>
 
-                                    <div class="button-group right-aligned">
-                                        <button class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openFeedbackForm()">Question/Feedback?</button>
+                                    <div class="button-group">
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Task: ' + tasks[0].id + ')')">Send Feedback</button>
                                     </div>
 
                                 </div>
@@ -476,6 +476,10 @@ export default {
 
     },
     methods: {
+        openInNewTab: function(url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        },
         loadTask: function() {
 
             console.log('load task');
@@ -814,14 +818,12 @@ export default {
 @import '@/styles/shared/variables.scss';
 
 
-
-
 .section-wrapper {
 
     .settings-section {
         .settings {
 
-            padding: $spacing-2 0;
+            padding: $spacing-1 0;
 
             .settings-select {
                 select {
@@ -1027,6 +1029,12 @@ export default {
 
     .section-wrapper {
 
+        .settings-section {
+            .settings {
+                padding: $spacing-2 0;
+            }
+        }
+
         .response-section {
 
             .form-field {
@@ -1096,10 +1104,13 @@ export default {
         }
     }
 
+}
+
+
+@media only screen and (min-width: $viewport-xlarge) {
 
 
 }
-
 
 
 
