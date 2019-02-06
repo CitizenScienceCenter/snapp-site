@@ -1,26 +1,40 @@
 <i18n>
   {
   "de": {
-  "heading-1": "Unsere sprachliche Entwicklung verstehen",
-  "text-1": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
-  "heading-people": "Projektmitarbeitende",
-  "people-1-heading": "Elvira Glaser",
-  "people-1-text": "Elvira Glaser ist Professorin für Sprachwissenschaft am Deutschen Seminar der Universität Zürich und leitet das Citizen Science Projekt Schweizerdeutsch 1930 / 2020.",
-  "people-2-heading": "Sandro Bachmann",
-  "people-2-text": "Sandro ist Assistent am Lehrstuhl für Dialektologie der Universität Zürich und Mitarbeiter des Citizen Science Projekts Schweizerdeutsch 1930 / 2020.",
-  "people-3-heading": "Carmen Raggenbass",
-  "people-3-text": "Carmen hat an der Universität Zürich Germanistik und Romanistik studiert und ist Mitarbeiterin des Citizen Science Projekts Schweizerdeutsch 1930 / 2020."
+  "heading-1": "What is This Challenge About?",
+  "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
+  "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
+  "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
+
+  "heading-people": "Project Team",
+  "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
+
+  "people-1-heading": "Andrew Durso",
+  "people-1-text": "Andrew is a herpetologist and postdoctoral researcher at the Institute of Global Health. He was born in New York (USA) and grew up catching snakes in North Carolina. He earned a B.S. in Ecology from the University of Georgia in 2009, an M.S. in Biology from Eastern Illinois University in 2011, and a Ph.D. in Ecology from Utah State University in 2016. He writes a blog about snakes called <a href='http://snakesarelong.blogspot.com/' target='_blank'>'Life is Short, but Snakes are Long'</a>. His current project is to gather images of all snake species worldwide in order to create an app capable of identifying them using machine learning, with support from expert and citizen science communities.",
+
+  "people-2-heading": "Rafael Ruiz de Castañeda",
+  "people-2-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans.",
+
+  "people-3-heading": "Isabelle Bolon",
+  "people-3-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans."
   },
   "en": {
-  "heading-1": "What is This Challenge About?",
-  "text-1": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
-  "heading-people": "Project team",
-  "people-1-heading": "Elvira Glaser",
-  "people-1-text": "Elvira Glaser is a professor of linguistics at the Department of German at the University of Zurich and leads the Citizen Science project &quot;Schweizerdeutsch 1930 / 2020&quot;.",
-  "people-2-heading": "Sandro Bachmann",
-  "people-2-text": "Sandro Bachmann is an assistant at the Chair of Dialectology at the University of Zurich and works in the Citizen Science project &quot;Schweizerdeutsch 1930 / 2020&quot;.",
-  "people-3-heading": "Carmen Raggenbass",
-  "people-3-text": "Carmen Raggenbass studied German and Roman languages at the University of Zurich and works for the Citizen Science project &quot;Schweizerdeutsch 1930 / 2020&quot;."
+    "heading-1": "What is This Challenge About?",
+    "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
+    "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
+    "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
+
+    "heading-people": "Project Team",
+    "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
+
+    "people-1-heading": "Andrew Durso",
+    "people-1-text": "Andrew is a herpetologist and postdoctoral researcher at the Institute of Global Health. He was born in New York (USA) and grew up catching snakes in North Carolina. He earned a B.S. in Ecology from the University of Georgia in 2009, an M.S. in Biology from Eastern Illinois University in 2011, and a Ph.D. in Ecology from Utah State University in 2016. He writes a blog about snakes called <a href='http://snakesarelong.blogspot.com/' target='_blank'>'Life is Short, but Snakes are Long'</a>. His current project is to gather images of all snake species worldwide in order to create an app capable of identifying them using machine learning, with support from expert and citizen science communities.",
+
+    "people-2-heading": "Rafael Ruiz de Castañeda",
+    "people-2-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans.",
+
+    "people-3-heading": "Isabelle Bolon",
+    "people-3-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans."
   }
   }
 </i18n>
@@ -38,26 +52,26 @@
 
               <h2 class="heading">{{ $t('heading-1') }}</h2>
 
-              <p>
-              <div class='embed-container'>
-                <iframe src='https://www.youtube.com/embed/PfkwKEIdhUo' frameborder='0' allowfullscreen></iframe>
-              </div>
-              </p>
-
               <p v-html="$t('text-1')"></p>
+              <p v-html="$t('text-2')"></p>
+              <p v-html="$t('text-3')"></p>
 
+              <!--
               <p>
                 <figure>
                   <img src="img/graphic-about.jpg" style="min-width: 100%" />
                   <figcaption>A Snake is attacking its prey</figcaption>
                 </figure>
               </p>
+              -->
 
             </div>
 
             <div class="content-subsection">
 
               <h2 class="heading">{{ $t('heading-people') }}</h2>
+
+              <p v-html="$t('people-text')"></p>
 
               <h3 class="subheading">{{ $t('people-1-heading') }}</h3>
               <p v-html="$t('people-1-text')"></p>

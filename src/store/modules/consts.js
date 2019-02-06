@@ -83,7 +83,7 @@ searchOptionsFamilies.sort( sortThings );
 
 const searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'fontStyle': 'italic', 'options': searchOptionsBinomials };
 const searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'fontStyle': 'normal', 'options': searchOptionsGenera };
-const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': false, 'fontStyle': 'normal', 'options': searchOptionsFamilies };
+const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'fontStyle': 'normal', 'options': searchOptionsFamilies };
 
 const searchOptionsContainers = [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ];
 
@@ -92,7 +92,7 @@ const state = {
     searchOptionsContainers: searchOptionsContainers,
     activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
     challengeStartISO: '2019-02-04T11:00:00Z',
-    challengeEndISO: '2019-02-04T16:00:00Z'
+    challengeEndISO: '2019-02-10T16:00:00Z'
 };
 
 export default {

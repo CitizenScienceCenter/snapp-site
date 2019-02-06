@@ -2,24 +2,25 @@
 {
   "de": {
     "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Recognition Challenge",
+    "cover-subheading": "The Snake Identification Challenge",
     "cover-button-transcribe": "Start the Challenge",
     "cover-button-translate": "Learn more",
 
     "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers.",
+  "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
+  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world. <b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
 
-    "section-newsletter-heading": "Abonniere unseren Newsletter"
+  "section-newsletter-heading": "Abonniere unseren Newsletter"
   },
   "en": {
     "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Recognition Challenge",
+    "cover-subheading": "The Snake Identification Challenge",
     "cover-button-transcribe": "Start the Challenge",
     "cover-button-translate": "Learn more",
 
-    "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers.",
-
+    "section-explanation-heading": "How many species of snakes can you identify?",
+  "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
+  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world. <b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
 
     "section-newsletter-heading": "Sign up for our Newsletter"
   }
@@ -42,20 +43,26 @@
       </div>
       <div class="row row-centered">
         <div class="col col-large-8">
-          <p class="centered scroll-effect scroll-effect-delayed-2">
+          <div class="button-group centered scroll-effect scroll-effect-delayed-2">
             <!--
             <button class="button button-primary" v-scroll-to="'#projects'">{{ $t('cover-button-projects') }}</button>
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
             <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
             <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-translate') }}</router-link>
-          </p>
+          </div>
+        </div>
+      </div>
+      <div class="row row-centered">
+        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-6 scroll-effect scroll-effect-delayed-3">
+          <duration></duration>
         </div>
       </div>
     </app-cover>
 
     <app-content-section>
       <div class="content-wrapper">
+
         <div class="row row-centered row-middle row-reverse-large">
 
           <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
@@ -69,12 +76,16 @@
           <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-explanation-heading') }}</h2>
-              <p>{{ $t('section-explanation-text') }}</p>
-              <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
+              <p v-html="$t('section-explanation-text')"></p>
+              <p v-html="$t('section-explanation-text-2')"></p>
+              <div class="button-group centered left-aligned-large">
+                <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
+              </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </app-content-section>
 
@@ -83,19 +94,8 @@
       <scores></scores>
     </app-content-section>
 
-    <app-content-section class="content-section-condensed" color="greyish">
-      <div class="content-wrapper">
-        <div class="row row-centered">
-          <div class="col">
-            <duration></duration>
-          </div>
-        </div>
-      </div>
-    </app-content-section>
 
-
-
-    <app-content-section>
+    <app-content-section color="greyish">
       <div class="content-wrapper">
         <div class="row row-centered row-middle">
 
@@ -109,9 +109,12 @@
 
           <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
             <div>
-              <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
+              <h2 class="heading centered left-aligned-large">What's to win?</h2>
               <p>
-                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                <b>The top 3 snake identifiers receive a copy of Mark O’Shea’s new book <a href="https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html" target="_blank">«The Book of Snakes»</a>.</b> In addition they'll be mentioned on this website with a short bio, if wanted.
+              </p>
+              <p>
+                All participants who tag more than 30 images will get a limited-edition HerpMapper Snapp SnakeID challenge badge (if registered with the same email address as on <a href="https://www.herpmapper.org/" target="_blank">HerpMapper.org</a>)
               </p>
             </div>
           </div>
@@ -120,11 +123,12 @@
       </div>
     </app-content-section>
 
-    <app-content-section color="dark">
+
+    <app-content-section>
       <div class="content-wrapper">
         <div class="row row-centered row-middle row-reverse-large">
 
-          <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
             <div>
               <div class="extra-padding-h">
                 <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
@@ -132,18 +136,32 @@
             </div>
           </div>
 
-          <div class="col col-large-5 col-large-before-1 col-wrapping col-large-no-bottom-margin">
+          <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
             <div>
               <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
               <p>
-                Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
               </p>
               <p class="centered left-aligned-large">
-                <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
+                <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
               </p>
             </div>
           </div>
 
+        </div>
+      </div>
+    </app-content-section>
+
+    <app-content-section class="content-section-condensed">
+      <div class="content-wrapper">
+        <div class="row row-centered">
+          <div class="col col-large-10">
+            <div>
+              <div>
+                <img src="img/logos.png" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </app-content-section>

@@ -210,7 +210,7 @@
                                     </ul>
 
                                     <div class="button-group">
-                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Task: ' + tasks[0].id + ')')">Send Feedback</button>
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Image: ' + tasks[0].id + ')')">Give Feedback on this Image</button>
                                     </div>
 
                                 </div>
@@ -224,18 +224,20 @@
 
 
             <app-content-section class="content-section-condensed" color="light-greyish">
-                <scores></scores>
-            </app-content-section>
-
-            <app-content-section class="content-section-condensed" color="greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col">
-                            <duration></duration>
+                <div class="content-subsection">
+                    <scores></scores>
+                </div>
+                <div class="content-subsection">
+                    <div class="content-wrapper">
+                        <div class="row row-centered">
+                            <div class="col">
+                                <duration></duration>
+                            </div>
                         </div>
                     </div>
                 </div>
             </app-content-section>
+
 
         </template>
 
@@ -265,7 +267,8 @@
 
         <template v-if="(tasks[0] && taskMedia[0]) || complete">
 
-            <app-content-section color="light-greyish">
+
+            <app-content-section color="greyish">
                 <div class="content-wrapper">
                     <div class="row row-centered row-middle">
 
@@ -279,9 +282,12 @@
 
                         <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
                             <div>
-                                <h2 class="heading centered left-aligned-large">Win a Copy of ‘Venomous Snakes of the World’</h2>
+                                <h2 class="heading centered left-aligned-large">What's to win?</h2>
                                 <p>
-                                    Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                                    <b>The top 3 snake identifiers receive a copy of Mark O’Shea’s new book <a href="https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html" target="_blank">«The Book of Snakes»</a>.</b> In addition they'll be mentioned on this website with a short bio, if wanted.
+                                </p>
+                                <p>
+                                    All participants who tag more than 30 images will get a limited-edition HerpMapper Snapp SnakeID challenge badge (if registered with the same email address as on <a href="https://www.herpmapper.org/" target="_blank">HerpMapper.org</a>)
                                 </p>
                             </div>
                         </div>
@@ -290,14 +296,15 @@
                 </div>
             </app-content-section>
 
-            <app-content-section color="dark">
+
+            <app-content-section>
                 <div class="content-wrapper">
                     <div class="row row-centered row-middle row-reverse-large">
 
                         <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
                             <div>
                                 <div class="extra-padding-h">
-                                    <img src="/img/graphic-about.jpg" style="border-radius: 50%" />
+                                    <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -306,14 +313,28 @@
                             <div>
                                 <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
                                 <p>
-                                    Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.
+                                    The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
                                 </p>
                                 <p class="centered left-aligned-large">
-                                    <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">About the Challenge</router-link>
+                                    <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
                                 </p>
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </app-content-section>
+
+            <app-content-section class="content-section-condensed">
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+                        <div class="col col-large-10">
+                            <div>
+                                <div>
+                                    <img src="img/logos.png" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </app-content-section>

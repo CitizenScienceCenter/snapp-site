@@ -3,7 +3,7 @@
         <div class="bar">
             <div class="progress" :style="{ width: percentage+'%' }"></div>
         </div>
-        <h2 class="subheading centered">Challenge still open for <span>{{remainingDays}} Days</span>, <span>{{remainingHours}} Hours</span>, <span>{{remainingMinutes}} Minutes</span> and <span>{{remainingSeconds}} Seconds</span></h2>
+        <p class="centered">Challenge still open for <span>{{remainingDays}} Days</span>, <span>{{remainingHours}} Hours</span>, <span>{{remainingMinutes}} Mins</span> and <span>{{remainingSeconds}} Secs</span></p>
     </div>
 </template>
 
@@ -83,14 +83,14 @@
             position: relative;
             overflow: hidden;
 
-            margin-bottom: $spacing-4;
+            margin-bottom: $spacing-2;
 
             .progress {
                 height: 100%;
                 background: $color-secondary;
             }
         }
-        .subheading {
+        p {
             font-weight: 400;
             color: $color-secondary;
             span {
@@ -101,11 +101,51 @@
     }
 
 
+    .cover {
+        .duration {
+            margin-top: $spacing-3;
+            .bar {
+                background-color: rgba( white, 0.25);
+                .progress {
+                    background: white;
+                }
+            }
+            p {
+                font-size: $font-size-small;
+                color: white;
+                span {
+                    color: white;
+                }
+            }
+        }
+    }
+
+
+    @media only screen and (min-width: $viewport-mobile-large) {
+
+        .cover {
+            .duration {
+            }
+        }
+
+    }
+
+
     @media only screen and (min-width: $viewport-tablet-portrait) {
 
         .duration {
             .bar {
-                margin-bottom: $spacing-5;
+                margin-bottom: $spacing-3;
+            }
+        }
+
+        .cover {
+            .duration {
+                margin-top: $spacing-4;
+
+                p {
+                    font-size: $font-size-normal;
+                }
             }
         }
 
