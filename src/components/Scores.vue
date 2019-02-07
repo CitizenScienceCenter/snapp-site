@@ -30,18 +30,21 @@
                         </div>
                     </div>
 
-                    <template v-if="!user.isAnon && user.currentUser">
+                    <template>
                         <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
-                            <div class="form-field form-field-block form-field-big">
+                            <div class="form-field form-field-block">
                                 <label>Your Rank</label>
-                                <span style="font-weight: 400">87.</span>
+                                <span>87.</span>
+                            </div>
+                            <div class="form-field form-field-block">
+                                <label>Your Progress</label>
+                                <span>0% </span><span class="small">(0/1000)</span>
                             </div>
                         </div>
                     </template>
-                    <template v-else>
-                        <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
-                            <h2 class="subheading">Create an Account</h2>
-                            <p>Create an account now or your score is lost.</p>
+                    <template v-if="!user.currentUser || user.isAnon">
+                        <div class="col centered col-wrapping col-no-bottom-margin extra-margin-top">
+                            <h3 class="subheading"><b>Create an Account to Take Part</b></h3>
                             <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
                         </div>
                     </template>
@@ -84,24 +87,25 @@
             &.form-field-big {
                 font-size: $font-size-xxlarge;
                 font-weight: bold;
-                line-height: 1.35;
+                line-height: 1.3;
                 label {
                     line-height: 1.25;
                     font-size: $font-size-medium;
                 }
                 .small {
                     font-weight: 400;
-                    font-size: $font-size-small;
+                    font-size: $font-size-normal;
                 }
+            }
+
+            .small {
+                font-weight: 400;
+                font-size: $font-size-small;
             }
         }
 
         .subheading {
-            line-height: 1.25;
-            margin-bottom: calc( #{$spacing-1} /2 );
-        }
-        p {
-            margin-bottom: $spacing-1;
+            margin-bottom: $spacing-2;
         }
 
     }
@@ -120,10 +124,7 @@
             }
 
             .subheading {
-                margin-bottom: $spacing-1;
-            }
-            p {
-                margin-bottom: $spacing-2;
+                margin-bottom: $spacing-3;
             }
 
         }

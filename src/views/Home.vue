@@ -1,33 +1,58 @@
 <i18n>
 {
-  "de": {
-    "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Identification Challenge",
-    "cover-button-start": "Start the Challenge",
-    "cover-button-preview": "Preview the Challenge",
-    "cover-button-review": "See the Challenge",
-    "cover-button-about": "Learn more",
 
-    "section-explanation-heading": "How Good can you Classify Them?",
-  "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world. <b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
-
-  "section-newsletter-heading": "Abonniere unseren Newsletter"
-  },
   "en": {
-    "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Identification Challenge",
+
+  "cover-heading": "Do you Know These Snakes?",
+  "cover-subheading": "The Snake Identification Challenge",
   "cover-button-start": "Start the Challenge",
   "cover-button-preview": "Preview the Challenge",
   "cover-button-review": "See the Challenge",
   "cover-button-about": "Learn more",
 
-    "section-explanation-heading": "How many species of snakes can you identify?",
+  "section-explanation-heading": "How Many Species of Snakes can you Identify?",
   "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world. <b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
+  "section-explanation-text-2": "We’ll show you 1000 photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
 
-    "section-newsletter-heading": "Sign up for our Newsletter"
+  "section-prize-heading": "What Will you get for Your Participation?",
+  "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
+  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
+  "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
+  "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
+  "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
+  "section-prize-list-2-2": "Certificate of participation from the University of Zurich/University of Geneva Citizen Science Center",
+
+  "section-newsletter-heading": "Sign up for our Newsletter"
+
+  },
+
+  "de": {
+
+  "cover-heading": "Do you Know These Snakes?",
+  "cover-subheading": "The Snake Identification Challenge",
+  "cover-button-start": "Start the Challenge",
+  "cover-button-preview": "Preview the Challenge",
+  "cover-button-review": "See the Challenge",
+  "cover-button-about": "Learn more",
+
+  "section-explanation-heading": "How Good can you Classify Them?",
+  "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
+  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world.<br><b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
+
+
+  "section-prize-heading": "What Will you get for Your Participation?",
+  "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
+  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
+  "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
+  "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
+  "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
+  "section-prize-list-2-2": "Certificate of participation from the University of Zurich/University of Geneva Citizen Science Center",
+
+
+  "section-newsletter-heading": "Abonniere unseren Newsletter"
+
   }
+
 }
 </i18n>
 
@@ -82,7 +107,7 @@
           <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-explanation-heading') }}</h2>
-              <p v-html="$t('section-explanation-text')"></p>
+              <p class="reduced-bottom-margin" v-html="$t('section-explanation-text')"></p>
               <p v-html="$t('section-explanation-text-2')"></p>
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
@@ -110,20 +135,24 @@
           <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
             <div>
               <div class="extra-padding-h-big">
-                <img src="/img/graphic-price.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
               </div>
             </div>
           </div>
 
           <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
             <div>
-              <h2 class="heading centered left-aligned-large">What's to win?</h2>
-              <p>
-                <b>The top 3 snake identifiers receive a copy of Mark O’Shea’s new book <a href="https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html" target="_blank">«The Book of Snakes»</a>.</b> In addition they'll be mentioned on this website with a short bio, if wanted.
-              </p>
-              <p>
-                All participants who tag more than 30 images will get a limited-edition HerpMapper Snapp SnakeID challenge badge (if registered with the same email address as on <a href="https://www.herpmapper.org/" target="_blank">HerpMapper.org</a>)
-              </p>
+              <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+              <ul class="reduced-bottom-margin">
+                <li v-html="$t('section-prize-list-1-1')"></li>
+                <li v-html="$t('section-prize-list-1-2')"></li>
+              </ul>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
+              <ul class="reduced-bottom-margin">
+                <li v-html="$t('section-prize-list-2-1')"></li>
+                <li v-html="$t('section-prize-list-2-2')"></li>
+              </ul>
             </div>
           </div>
 
@@ -160,16 +189,57 @@
       </div>
     </app-content-section>
 
-    <app-content-section class="content-section-condensed">
+    <app-content-section color="light-greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
-          <div class="col col-large-8">
-            <div>
-              <div>
-                <img src="img/logos.png" />
-              </div>
-            </div>
+          <div class="col col-large-6">
+            <h2 class="heading centered">Project Partners</h2>
           </div>
+        </div>
+        <div class="row row-centered row-wrapping">
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/cyberlab.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/udg-fdm.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/herpmapper.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/msf.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/epfl.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/goethe.png" />
+          </div>
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/copenhagen.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/gti.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/melbourne.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/indiansnakes.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/gsi.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/fp-hug.png" />
+          </div>
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/hug.png" />
+          </div>
+
         </div>
       </div>
     </app-content-section>
