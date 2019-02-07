@@ -95,13 +95,33 @@
 
                                 <div v-if="tasks[0]" class="actions margin-bottom">
                                     <div class="button-group right-aligned">
-                                        <!--<button ref="skip" class="button button-secondary" @click.prevent="nextTask()" :disabled="loading || evaluation">Skip</button>-->
-                                        <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Skip</button>
-                                        <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">Submit</button>
+                                        <template v-if="challengeState === 'before'">
+                                            <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+                                        </template>
+                                        <template v-if="challengeState === 'ongoing'">
+                                            <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Skip</button>
+                                            <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">Submit</button>
+                                        </template>
                                     </div>
 
                                     <div class="info">
-                                        <div class="message message-info" v-if="hasSubmissionAlready">
+                                        <div v-if="challengeState === 'before'" class="message message-info">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
+                                                </svg>
+                                            </div>
+                                            Not started yet!
+                                        </div>
+                                        <div v-else-if="challengeState === 'after'" class="message message-info">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
+                                                </svg>
+                                            </div>
+                                            Challenge already over!
+                                        </div>
+                                        <div v-else-if="hasSubmissionAlready" class="message message-info">
                                             <div class="icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
@@ -109,7 +129,7 @@
                                             </div>
                                             Already Done!
                                         </div>
-                                        <div ref="scoreinfo" class="message hidden" v-else-if="evaluation" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
+                                        <div v-else-if="evaluation" ref="scoreinfo" class="message hidden" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
                                             <div v-if="evaluation.score === 0" class="icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
@@ -126,19 +146,13 @@
                                 </div>
 
                                 <div class="mongo">
-                                    <label>Binomial: </label>{{ tasks[0].info.binomial }}
+                                    <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
                                     <label>Genus: </label>{{ tasks[0].info.genus }}
                                     <label>Family: </label>{{ tasks[0].info.family }}
                                 </div>
 
                                 <div class="content-container">
                                     <ul class="evaluation-list">
-                                        <!--
-                                        <template v-if="evaluation">{{ evaluation.successRate }} </template>
-                                        <template v-if="value">{{ value.info }} </template>
-                                        <template v-if="value">{{ value.genus }} </template>
-                                        -->
-
 
                                         <li ref="evaluation-step-3" :class="{
                                             'correct': evaluation && evaluation.successRate === 3,
@@ -210,7 +224,7 @@
                                     </ul>
 
                                     <div class="button-group">
-                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Image: ' + tasks[0].id + ')')">Give Feedback on this Image</button>
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Image: ' + tasks[0].id + ')')">Send Feedback on this Image</button>
                                     </div>
 
                                 </div>
@@ -224,7 +238,7 @@
 
 
             <app-content-section class="content-section-condensed" color="light-greyish">
-                <div class="content-subsection">
+                <div v-if="challengeState !== 'before'" class="content-subsection">
                     <scores></scores>
                 </div>
                 <div class="content-subsection">
@@ -406,6 +420,7 @@ export default {
             activityId: state => state.consts.activityId,
 
             searchOptionsContainers: state => state.consts.searchOptionsContainers,
+            challengeState: state => state.consts.challengeState,
 
             user: state => state.c3s.user.currentUser,
             activity: state => state.c3s.activity.activity,
@@ -947,8 +962,9 @@ export default {
                     }
 
                     &.message-info {
+                        color: $color-info;
                         .icon {
-                            background-color: $color-secondary;
+                            background-color: $color-info;
                         }
                     }
                     &.message-wrong {
@@ -1037,16 +1053,20 @@ export default {
 }
 
 .mongo {
-    position: absolute;
+    position: fixed;
     right: 0;
-    bottom: -48px;
+    bottom: 0;
     font-size: $font-size-small/1.25;
-    color: $color-black-tint-80;
+    color: white;
+    background: $color-black;
+    z-index: 20;
+    padding: 0 $spacing-1;
+    border-top-left-radius: $border-radius;
 
     label {
-        font-size: $font-size-small/1.25;
+        font-size: $font-size-small/1.25/1.25;
         font-weight: 700;
-        color: $color-black-tint-90;
+        color: $color-black-tint-50;
         opacity: 0.5;
     }
 }
@@ -1090,10 +1110,6 @@ export default {
         }
     }
 
-
-    .mongo {
-        bottom: -80px;
-    }
 
 }
 

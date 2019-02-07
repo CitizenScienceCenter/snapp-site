@@ -88,14 +88,36 @@ const searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 
 const searchOptionsContainers = [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ];
 
 
+
+const actions = {
+    setChallengeState({state, commit, rootState}, values) {
+        commit('SET_CHALLENGE_STATE', values);
+    },
+    setDates({state, commit, rootState}, values) {
+        commit('SET_DATES', values);
+    }
+}
+const mutations = {
+    SET_CHALLENGE_STATE(state, value) {
+        state.challengeState = value;
+    },
+    SET_DATES(state, values) {
+        state.challengeStartISO = values[0];
+        state.challengeEndISO = values[1];
+    }
+}
+
 const state = {
     searchOptionsContainers: searchOptionsContainers,
     activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
-    challengeStartISO: '2019-02-04T11:00:00Z',
-    challengeEndISO: '2019-02-10T16:00:00Z'
+    challengeStartISO: null,
+    challengeEndISO: null,
+    challengeState: null
 };
 
 export default {
   namespaced: true,
-  state
+  state,
+    actions,
+    mutations
 }

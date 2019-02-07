@@ -1,9 +1,31 @@
 <template>
     <div class="duration">
-        <div class="bar">
+        <div class="bar" v-if="state === 'ongoing'">
             <div class="progress" :style="{ width: percentage+'%' }"></div>
         </div>
-        <p class="centered">Challenge still open for <span>{{remainingDays}} Days</span>, <span>{{remainingHours}} Hours</span>, <span>{{remainingMinutes}} Mins</span> and <span>{{remainingSeconds}} Secs</span></p>
+
+        <p class="centered">
+            <template v-if="state === 'before'">Challenge starts in </template>
+            <template v-else-if="state === 'after'">Challenge endend </template>
+            <template v-else>Challenge still open for </template>
+
+            <template v-if="days > 0">
+                <span v-if="days === 1">{{days}} Day</span>
+                <span v-else>{{days}} Days</span>,
+            </template>
+            <template v-if="hours > 0 || days > 0">
+                <span v-if="hours === 1">{{hours}} Hour</span>
+                <span v-else>{{hours}} Hours</span>,
+            </template>
+            <template v-if="minutes > 0 || hours > 0 || days > 0">
+                <span v-if="minutes === 1">{{minutes}} Minute</span>
+                <span v-else>{{minutes}} Minutes</span> and
+            </template>
+            <span v-if="seconds === 1">{{seconds}} Second</span>
+            <span v-else>{{seconds}} Seconds</span>
+
+            <template v-if="state === 'after'"> ago</template>
+        </p>
     </div>
 </template>
 
@@ -18,10 +40,13 @@
                 challengeStartTimestamp: null,
                 challengeEndTimestamp: null,
                 currentTimestamp: null,
-                remainingDays: null,
-                remainingHours: null,
-                remainingMinutes: null,
-                remainingSeconds: null
+
+                state: null,
+
+                days: null,
+                hours: null,
+                minutes: null,
+                seconds: null
             }
         },
         computed: {
@@ -50,20 +75,46 @@
             tick() {
                 this.currentTimestamp = Date.now();
 
-                //console.log( this.challengeStartTimestamp );
-                //console.log( this.currentTimestamp );
+                if( this.challengeEndTimestamp < this.currentTimestamp ) {
+                    this.state = 'after';
+                }
+                else if( this.challengeStartTimestamp > this.currentTimestamp ) {
+                    this.state = 'before';
+                }
+                else {
+                    this.state = 'ongoing';
+                }
+
+                this.$store.dispatch('consts/setChallengeState', this.state );
                 this.calculateRemaining();
             },
             calculateRemaining() {
 
-                var remainingDays = (this.challengeEndTimestamp-this.currentTimestamp) / 1000 / 60 / 60 / 24;
-                this.remainingDays = Math.floor( remainingDays );
-                var remainingHours = (remainingDays - this.remainingDays)*24;
-                this.remainingHours = Math.floor( remainingHours );
-                var remainingMinutes = (remainingHours - this.remainingHours)*60;
-                this.remainingMinutes = Math.floor( remainingMinutes );
-                var remainingSeconds = (remainingMinutes - this.remainingMinutes)*60;
-                this.remainingSeconds = Math.floor( remainingSeconds );
+                var days;
+                var hours;
+                var minutes;
+                var seconds;
+
+                switch( this.state ) {
+                    case 'before':
+                        days = (this.challengeStartTimestamp - this.currentTimestamp) / 1000 / 60 / 60 / 24;
+                        break;
+                    case 'after':
+                        days = (this.currentTimestamp - this.challengeEndTimestamp) / 1000 / 60 / 60 / 24;
+                        break;
+                    case 'ongoing':
+                        days = (this.challengeEndTimestamp-this.currentTimestamp) / 1000 / 60 / 60 / 24;
+                        break;
+                }
+
+                this.days = Math.floor( days );
+                hours = (days - this.days)*24;
+                this.hours = Math.floor( hours );
+                minutes = (hours - this.hours)*60;
+                this.minutes = Math.floor( minutes );
+                seconds = (minutes - this.minutes)*60;
+                this.seconds = Math.floor( seconds );
+
             }
         }
     }
@@ -96,6 +147,7 @@
             span {
                 color: $color-black;
                 font-weight: 700;
+                white-space:nowrap;
             }
         }
     }

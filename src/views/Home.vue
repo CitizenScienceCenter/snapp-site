@@ -3,8 +3,10 @@
   "de": {
     "cover-heading": "Do you Know These Snakes?",
     "cover-subheading": "The Snake Identification Challenge",
-    "cover-button-transcribe": "Start the Challenge",
-    "cover-button-translate": "Learn more",
+    "cover-button-start": "Start the Challenge",
+    "cover-button-preview": "Preview the Challenge",
+    "cover-button-review": "See the Challenge",
+    "cover-button-about": "Learn more",
 
     "section-explanation-heading": "How Good can you Classify Them?",
   "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
@@ -15,8 +17,10 @@
   "en": {
     "cover-heading": "Do you Know These Snakes?",
     "cover-subheading": "The Snake Identification Challenge",
-    "cover-button-transcribe": "Start the Challenge",
-    "cover-button-translate": "Learn more",
+  "cover-button-start": "Start the Challenge",
+  "cover-button-preview": "Preview the Challenge",
+  "cover-button-review": "See the Challenge",
+  "cover-button-about": "Learn more",
 
     "section-explanation-heading": "How many species of snakes can you identify?",
   "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
@@ -48,8 +52,10 @@
             <button class="button button-primary" v-scroll-to="'#projects'">{{ $t('cover-button-projects') }}</button>
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
-            <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
-            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-translate') }}</router-link>
+            <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
+            <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
+            <router-link v-else tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
+            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-about') }}</router-link>
           </div>
         </div>
       </div>
@@ -79,7 +85,9 @@
               <p v-html="$t('section-explanation-text')"></p>
               <p v-html="$t('section-explanation-text-2')"></p>
               <div class="button-group centered left-aligned-large">
-                <router-link tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-transcribe') }}</router-link>
+                <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
+                <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
+                <router-link v-else tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
               </div>
             </div>
           </div>
@@ -90,7 +98,7 @@
     </app-content-section>
 
 
-    <app-content-section class="content-section-condensed" color="light-greyish">
+    <app-content-section v-if="challengeState !== 'before'" class="content-section-condensed" color="light-greyish">
       <scores></scores>
     </app-content-section>
 
@@ -155,7 +163,7 @@
     <app-content-section class="content-section-condensed">
       <div class="content-wrapper">
         <div class="row row-centered">
-          <div class="col col-large-10">
+          <div class="col col-large-8">
             <div>
               <div>
                 <img src="img/logos.png" />
@@ -188,6 +196,8 @@
 
 <script>
 
+    import {mapState} from 'vuex'
+
 import Cover from '@/components/shared/Cover.vue';
 import ContentSection from '@/components/shared/ContentSection.vue';
 import NewsletterSignup from '@/components/shared/NewsletterSignup.vue';
@@ -205,7 +215,12 @@ export default {
     'app-newsletter-signup': NewsletterSignup,
     'app-footer': Footer,
     Scores
-  }
+  },
+    computed: {
+        ...mapState({
+            challengeState: state => state.consts.challengeState,
+        })
+    }
 }
 
 </script>

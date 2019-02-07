@@ -43,21 +43,7 @@
             </div>
 
         </app-content-section>
-        <app-content-section>
 
-            <div class="content-wrapper">
-
-                <div class="row row-centered">
-                    <div class="col col-large-6">
-                        <h2 class="heading">Commented Tasks</h2>
-
-                        <commented-tasks :sourceId="activityId"></commented-tasks>
-                    </div>
-                </div>
-
-            </div>
-
-        </app-content-section>
 
         <app-content-section color="greyish">
             <div class="content-wrapper">
