@@ -41,7 +41,7 @@
 
     <div v-if="(tasks[0] && taskMedia[0]) || complete">
 
-        <template v-show="!complete">
+        <template v-if="!complete">
 
             <div class="section-wrapper">
 
@@ -92,15 +92,26 @@
 
                         <image-viewer class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
 
-                        <div class="image-info image-location">
-                            <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
-                            <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
-                            <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
+                        <div class="image-info-wrapper">
+                            <div class="image-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M236.3,501.7C91,291,64,269.4,64,192C64,86,150,0,256,0s192,86,192,192c0,77.4-27,99-172.3,309.7C266.2,515.4,245.8,515.4,236.3,501.7L236.3,501.7z M256,272c44.2,0,80-35.8,80-80s-35.8-80-80-80s-80,35.8-80,80S211.8,272,256,272z"/>
+                                </svg>
+                                <b>
+                                <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
+                                <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
+                                <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
+                                </b>
+                            </div>
+                            <div class="image-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
+                                </svg>
+                                <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}, </span>
+                                <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}</span>
+                            </div>
                         </div>
-                        <div class="image-info image-source">
-                            <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}, </span>
-                            <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
-                        </div>
+
                     </template>
                 </app-content-section>
 
@@ -280,7 +291,7 @@
 
         </template>
 
-        <template v-show="complete">
+        <template v-else-if="complete">
 
             <app-content-section>
                 <div class="content-wrapper">
@@ -969,19 +980,34 @@ export default {
         .image-viewer {
             height: 360px;
         }
-        .image-info {
+        .image-info-wrapper {
             position: absolute;
-            color: white;
-            background: rgba(0, 0, 0, 0.8);
-            font-size: $font-size-small;
+            bottom: $spacing-1;
+            left: $spacing-1;
+            margin: calc( -#{$spacing-1} /2 );
+            font-size: 0;
 
-            &.image-location {
-                bottom: 0;
-                left: 0;
-            }
-            &.image-source {
-                bottom: 0;
-                right: 0;
+            .image-info {
+                color: white;
+                background: rgba( $color-black, 0.5);
+                border-radius: $border-radius;
+                font-size: $font-size-small;
+                position: relative;
+                padding: calc( ( 32px - #{$font-size-small} *1.5 ) / 2 ) 0;
+                padding-right: $spacing-2;
+                padding-left: 32px;
+
+                svg {
+                    position: absolute;
+                    top: calc( ( 32px - #{$font-size-small} ) /2 );
+                    left: calc( ( 32px - #{$font-size-small} ) /2 );
+                    width: $font-size-small;
+                    height: $font-size-small;
+                    fill: rgba( white, 0.8 );
+                }
+
+                display: inline-block;
+                margin: calc( #{$spacing-1} /2 );
             }
         }
     }
@@ -1150,6 +1176,13 @@ export default {
             }
         }
 
+        .image-section {
+
+            .image-viewer {
+                height: 480px;
+            }
+        }
+
         .response-section {
 
             .form-field {
@@ -1199,15 +1232,17 @@ export default {
                 height: 100%;
             }
 
-            .image-info {
-                &.image-location, &.image-source {
-                    z-index: 1;
-                }
+            .image-info-wrapper {
+                z-index: 1;
             }
         }
 
         .response-section {
             padding-top: 0;
+
+            .actions {
+                margin-bottom: $spacing-4;
+            }
 
             .content-container {
                 min-height: 180px;

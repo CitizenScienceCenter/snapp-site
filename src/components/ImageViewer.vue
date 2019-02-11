@@ -107,8 +107,8 @@
 
         .buttons {
             position: absolute;
-            top: $spacing-2;
-            left: $spacing-2;
+            top: $spacing-1;
+            left: $spacing-1;
 
             .button {
                 display: block;
@@ -116,7 +116,7 @@
                 background: white;
 
                 &:first-of-type {
-                    margin-bottom: $spacing-1;
+                    margin-bottom: calc( #{$spacing-1} /2 );
                 }
             }
         }
@@ -210,6 +210,29 @@
             }
 
         }
+    }
+
+
+
+
+
+    @media only screen and (min-width: $viewport-tablet-portrait) {
+
+        .croppa-container {
+
+            .buttons {
+                top: $spacing-2;
+                left: $spacing-2;
+
+                .button {
+                    &:first-of-type {
+                        margin-bottom: $spacing-1;
+                    }
+                }
+            }
+
+        }
+
     }
 
 </style>
