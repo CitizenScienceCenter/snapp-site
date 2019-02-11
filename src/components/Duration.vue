@@ -144,6 +144,7 @@
         p {
             font-weight: 400;
             color: $color-secondary;
+            font-size: $font-size-medium;
             span {
                 color: $color-black;
                 font-weight: 700;

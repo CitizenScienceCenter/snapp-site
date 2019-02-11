@@ -51,7 +51,7 @@
         props: {
             value: {
                 type: Object,
-                default: function() { return {'gagg':'badsf'} }
+                default: function() { return {} }
             },
             placeholder: {
                 type: String,
@@ -65,6 +65,9 @@
                 type: Boolean,
                 default: false
             }
+        },
+        mounted() {
+            this.$refs.answer.focus();
         },
         watch: {
             showResults: function(to, from) {

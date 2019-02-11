@@ -44,7 +44,7 @@
                     </template>
                     <template v-if="!user.currentUser || user.isAnon">
                         <div class="col centered col-wrapping col-no-bottom-margin extra-margin-top">
-                            <h3 class="subheading"><b>Create an Account to Take Part</b></h3>
+                            <h3 class="subheading">Create an Account to Take Part in the Challenge</h3>
                             <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
                         </div>
                     </template>

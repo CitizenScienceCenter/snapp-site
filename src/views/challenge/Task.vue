@@ -39,9 +39,9 @@
 
 <template>
 
-    <div v-show="tasks[0] && taskMedia[0]">
+    <div v-if="(tasks[0] && taskMedia[0]) || complete">
 
-        <template v-if="!complete">
+        <template v-show="!complete">
 
             <div class="section-wrapper">
 
@@ -88,8 +88,10 @@
                 </app-content-section>
 
                 <app-content-section class="content-section-flat image-section" color="greyish">
-                    <template v-if="tasks[0]">
-                        <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                    <template>
+
+                        <image-viewer class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+
                         <div class="image-info image-location">
                             <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
                             <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
@@ -278,7 +280,7 @@
 
         </template>
 
-        <template v-if="complete">
+        <template v-show="complete">
 
             <app-content-section>
                 <div class="content-wrapper">
@@ -595,7 +597,6 @@ export default {
             let taskQuery;
             if( !this.id ) {
 
-
                 taskQuery = {
                     'select': {
                         'fields': [
@@ -635,8 +636,6 @@ export default {
 
             }
             else {
-                //console.log('load task id ' + id);
-
                 taskQuery = {
                     'select': {
                         'fields': [
@@ -704,7 +703,6 @@ export default {
                     });
 
                 }
-
 
                 if ( this.tasks[0] ) {
 
