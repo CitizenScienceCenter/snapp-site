@@ -14,7 +14,7 @@
             </svg>
         </div>
 
-        <div v-show="showResults && maxOptionIndex > 0" ref="results" class="results">
+        <div v-show="showResults && maxOptionIndex >= 0" ref="results" class="results">
             <ul @click="clickOnResults">
                 <template v-for="filteredOptionContainer in filteredOptionContainers">
                     <li class="label" v-if="filteredOptionContainer.options.length > 0 && filteredOptionContainer.showLabel">

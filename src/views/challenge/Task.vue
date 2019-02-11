@@ -165,19 +165,26 @@
                                             </div>
                                             Already Done!
                                         </div>
-                                        <div v-else-if="evaluation" ref="scoreinfo" class="message hidden" :class="{'message-wrong': evaluation.score === 0, 'message-correct': evaluation.score > 0}">
-                                            <div v-if="evaluation.score === 0" class="icon">
+
+                                        <div v-else-if="evaluation" class="message message-evaluation">
+
+                                            <div ref="circle2" class="circle circle-2 hidden" :class="{ 'success': evaluation.score === binomialScore, 'fail': value.info === 'binomial' && evaluation.score < binomialScore, 'empty': value.info !== 'binomial' }"></div>
+                                            <div ref="circle1" class="circle circle-1 hidden" :class="{ 'success': value.info !== 'family' && evaluation.score >= genusScore, 'fail': value.info !== 'family' && evaluation.score < genusScore, 'empty': value.info !== 'binomial' && value.info !== 'genus' }"></div>
+
+                                            <div v-if="evaluation.score === 0" ref="scoreicon" class="icon fail hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
                                                 </svg>
                                             </div>
-                                            <div v-else class="icon">
+                                            <div v-else ref="scoreicon" class="icon success hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
                                                 </svg>
                                             </div>
-                                            {{ evaluation.score }}
+
+                                            <span ref="score" class="score hidden" :class="{ 'success': evaluation.score > 0, 'fail': evaluation.score === 0 }">{{ evaluation.score }}</span>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -190,7 +197,7 @@
                                 <div class="content-container">
                                     <ul class="evaluation-list">
 
-                                        <li ref="evaluation-step-1" :class="{
+                                        <li ref="evaluation-step-3" :class="{
                                             'correct': evaluation && evaluation.successRate === 3,
                                             'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
                                             'missing': evaluation && evaluation && value.info !== 'binomial'
@@ -237,7 +244,7 @@
                                         </li>
 
 
-                                        <li ref="evaluation-step-3" :class="{
+                                        <li ref="evaluation-step-1" :class="{
                                             'correct': evaluation && evaluation.successRate >= 1,
                                             'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
                                         }">
@@ -891,25 +898,27 @@ export default {
                     const self = this;
                     var counter = 1;
                     this.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                    this.$refs.scoreicon.classList.remove('hidden');
                     var interval = setInterval(function () {
 
                         counter++;
 
                         if (counter === 2) {
                             self.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                            self.$refs.circle1.classList.remove('hidden');
                         }
                         else if (counter === 3) {
                             self.$refs['evaluation-step-' + counter].classList.add('evaluated');
+                            self.$refs.circle2.classList.remove('hidden');
                         }
-                        else if (counter === 4) {
-                            self.$refs.scoreinfo.classList.remove('hidden');
+                        else if( counter === 4 ) {
+                            self.$refs.score.classList.remove('hidden');
                         }
                         else if (counter === 6) {
                             self.$refs['evaluation-step-1'].classList.remove('evaluated');
                             self.$refs['evaluation-step-2'].classList.remove('evaluated');
                             self.$refs['evaluation-step-3'].classList.remove('evaluated');
                             self.$store.dispatch('score/calculateScore');
-                            self.$refs.scoreinfo.classList.add('hidden');
                             self.loadTask();
                             clearInterval(interval);
                         }
@@ -1034,22 +1043,22 @@ export default {
                 .message {
                     display: block;
                     line-height: 40px;
+                    position: relative;
+                    padding-left: 48px;
 
                     .icon {
-                        float: left;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         height: 40px;
                         width: 40px;
-                        position: relative;
                         border-radius: 50%;
-                        background-color: green;
-
-                        margin-right: $spacing-1;
 
                         svg {
                             fill: white;
                             position: absolute;
+                            top: 12px;
                             left: 12px;
-                            top: 11px;
                             width: 16px;
                             height: 16px;
                         }
@@ -1061,26 +1070,87 @@ export default {
                             background-color: $color-info;
                         }
                     }
-                    &.message-wrong {
-                        font-size: $font-size-medium;
-                        font-weight: 700;
-                        color: $color-error;
-                        .icon {
-                            background-color: $color-error;
+
+                    &.message-evaluation {
+
+                        .circle {
+                            transition: all $transition-duration-long $transition-timing-function;
+
+                            position: absolute;
+                            border-radius: 50%;
+                            border: 1px solid white;
+
+                            &.success {
+                                background-color: $color-success;
+                            }
+                            &.fail {
+                                background-color: $color-error;
+                            }
+                            &.empty {
+                                background-color: $color-black-tint-50;
+                            }
+
+                            &.circle-2 {
+                                top: 0;
+                                left: 0;
+                                height: 40px;
+                                width: 40px;
+                            }
+                            &.circle-1 {
+                                top: 4px;
+                                left: 4px;
+                                height: 32px;
+                                width: 32px;
+                            }
+
+                            &.hidden {
+                                transform: scale( 0, 0 );
+                            }
                         }
-                    }
-                    &.message-correct {
-                        font-size: $font-size-medium;
-                        font-weight: 700;
-                        color: $color-success;
                         .icon {
-                            background-color: $color-success;
+                            transition: all $transition-duration-long $transition-timing-function;
+
+                            border: 1px solid white;
+                            top: 8px;
+                            left: 8px;
+                            height: 24px;
+                            width: 24px;
+
+                            svg {
+                                transition: all $transition-duration-long $transition-timing-function;
+
+                                left: 3px;
+                                top: 3px;
+                                width: 16px;
+                                height: 16px;
+                            }
+
+                            &.success {
+                                background-color: $color-success;
+                            }
+                            &.fail {
+                                background-color: $color-error;
+                            }
+
+                            &.hidden {
+                                transform: scale( 0, 0 );
+                            }
+                        }
+                        .score {
+                            font-weight: 700;
+                            &.success {
+                                color: $color-success;
+                            }
+                            &.fail {
+                                color: $color-error;
+                            }
+
+                            &.hidden {
+                                display: none;
+                            }
                         }
                     }
 
-                    &.hidden {
-                        display: none;
-                    }
                 }
             }
         }
@@ -1194,15 +1264,43 @@ export default {
 
                     .message {
                         line-height: 48px;
+                        padding-left: 56px;
 
                         .icon {
                             height: 48px;
                             width: 48px;
-                            margin-right: $spacing-2;
 
                             svg {
                                 left: 16px;
-                                top: 15px;
+                                top: 16px;
+                            }
+                        }
+
+                        &.message-evaluation {
+
+                            .circle {
+
+                                &.circle-2 {
+                                    top: 0;
+                                    left: 0;
+                                    height: 48px;
+                                    width: 48px;
+                                }
+                                &.circle-1 {
+                                    height: 40px;
+                                    width: 40px;
+                                }
+                            }
+                            .icon {
+                                top: 8px;
+                                left: 8px;
+                                height: 32px;
+                                width: 32px;
+
+                                svg {
+                                    left: 7px;
+                                    top: 7px;
+                                }
                             }
                         }
                     }
