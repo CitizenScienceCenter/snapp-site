@@ -7,14 +7,15 @@
                 v-model="inputValue"
                 v-on:keyup.prevent="handleInputKeys"
                 @click.prevent="!showResults ? showResults = true : showResults = false"
-                @blur="inputBlur"/>
+                @blur="inputBlur"
+                :class="{'italic': returnObject && Object.keys(returnObject).length > 0 && returnObject.info === 'binomial'}" />
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                 <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
             </svg>
         </div>
 
-        <div ref="results" class="results">
-            <ul v-if="showResults" @click="clickOnResults">
+        <div v-show="showResults && maxOptionIndex > 0" ref="results" class="results">
+            <ul @click="clickOnResults">
                 <template v-for="filteredOptionContainer in filteredOptionContainers">
                     <li class="label" v-if="filteredOptionContainer.options.length > 0 && filteredOptionContainer.showLabel">
                         {{filteredOptionContainer.label}}
@@ -50,7 +51,7 @@
         props: {
             value: {
                 type: Object,
-                default: function() { return {} }
+                default: function() { return {'gagg':'badsf'} }
             },
             placeholder: {
                 type: String,
@@ -87,11 +88,11 @@
                 }
             },
             value: function(to, from) {
-                //if( this.value && this.value.hasOwnProperty('info') ) {
+
                 if( this.value && Object.keys(this.value).length > 0 ) {
                     this.showResults = false;
                 }
-                else if( this.value === null ){
+                else if( this.value === null ) {
                     this.$refs.answer.focus();
                     this.returnObject = null;
                     this.inputValue = '';
@@ -123,6 +124,10 @@
                     this.showResults = false;
                 }
 
+                this.$refs.results.scrollTop = 0;
+
+                console.log( this.inputValue );
+
             }
         },
         computed: {
@@ -133,6 +138,7 @@
 
                     let self = this;
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
+
 
                         let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'fontStyle': this.optionContainers[i].fontStyle, 'options': [], 'foundInSyn': [] };
 
@@ -223,18 +229,32 @@
             },
             handleInputKeys: function(event) {
                 if( this.showResults ) {
+                    console.log('keys');
                     switch(event.key) {
                         case 'ArrowDown':
                             if( this.focusedOptionIndex < this.maxOptionIndex ) {
                                 this.focusedOptionIndex++;
-                                this.$refs['option_'+this.focusedOptionIndex][0].scrollIntoView({block: "end"});
+                                //this.$refs['option_'+this.focusedOptionIndex][0].scrollIntoView({block: "end"});
+
+                                if( this.$refs['option_'+this.focusedOptionIndex][0].offsetTop + this.$refs['option_'+this.focusedOptionIndex][0].offsetHeight - this.$refs.results.scrollTop > this.$refs.results.offsetHeight ) {
+                                    this.$refs.results.scrollTop = this.$refs['option_'+this.focusedOptionIndex][0].offsetTop - ( this.$refs.results.offsetHeight - this.$refs['option_'+this.focusedOptionIndex][0].offsetHeight );
+                                }
+
                             }
                             break;
                         case 'ArrowUp':
                             this.$refs.answer.setSelectionRange(this.inputValue.length,this.inputValue.length);
                             if( this.focusedOptionIndex > 0 ) {
                                 this.focusedOptionIndex--;
-                                this.$refs['option_'+this.focusedOptionIndex][0].scrollIntoView({block: "end"});
+                                //this.$refs['option_'+this.focusedOptionIndex][0].scrollIntoView({block: "end"});
+
+                                if( this.$refs['option_'+this.focusedOptionIndex][0].offsetTop < this.$refs.results.scrollTop ) {
+                                    this.$refs.results.scrollTop = this.$refs['option_'+this.focusedOptionIndex][0].offsetTop;
+                                }
+
+                            }
+                            else {
+                                this.$refs.results.scrollTop = 0;
                             }
                             break;
                         case 'Enter':
@@ -275,9 +295,14 @@
                 pointer-events: none;
                 opacity: 0.25;
             }
+
+            input.italic {
+                font-style: italic;
+            }
         }
 
         .results {
+
             z-index: 100;
             position: absolute;
             top: 40px;

@@ -4,7 +4,7 @@
     <div class="content-area">
       <router-view></router-view>
     </div>
-    <g-d-p-r></g-d-p-r>
+    <!-- <g-d-p-r></g-d-p-r> -->
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
   mounted: function() {
 
-    this.$store.dispatch('consts/setDates', ['2019-02-07T11:40:00Z', '2019-02-07T18:00:00Z'] );
+    this.$store.dispatch('consts/setDates', ['2019-02-10T11:40:00Z', '2019-02-12T18:00:00Z'] );
 
     var app = this.$el;
     window.setTimeout(function() {

@@ -1,10 +1,15 @@
 <i18n>
   {
-  "de": {
+
+  "en": {
+
   "heading-1": "What is This Challenge About?",
   "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
   "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
   "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
+
+  "subheading-sources": "Image Sources",
+  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
 
   "heading-people": "Project Team",
   "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
@@ -13,29 +18,37 @@
   "people-1-text": "Andrew is a herpetologist and postdoctoral researcher at the Institute of Global Health. He was born in New York (USA) and grew up catching snakes in North Carolina. He earned a B.S. in Ecology from the University of Georgia in 2009, an M.S. in Biology from Eastern Illinois University in 2011, and a Ph.D. in Ecology from Utah State University in 2016. He writes a blog about snakes called <a href='http://snakesarelong.blogspot.com/' target='_blank'>'Life is Short, but Snakes are Long'</a>. His current project is to gather images of all snake species worldwide in order to create an app capable of identifying them using machine learning, with support from expert and citizen science communities.",
 
   "people-2-heading": "Rafael Ruiz de Castañeda",
-  "people-2-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans.",
+  "people-2-text": "tbd",
 
   "people-3-heading": "Isabelle Bolon",
-  "people-3-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans."
+  "people-3-text": "tbd"
+
   },
-  "en": {
-    "heading-1": "What is This Challenge About?",
-    "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
-    "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
-    "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
-    "heading-people": "Project Team",
-    "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
+  "de": {
 
-    "people-1-heading": "Andrew Durso",
-    "people-1-text": "Andrew is a herpetologist and postdoctoral researcher at the Institute of Global Health. He was born in New York (USA) and grew up catching snakes in North Carolina. He earned a B.S. in Ecology from the University of Georgia in 2009, an M.S. in Biology from Eastern Illinois University in 2011, and a Ph.D. in Ecology from Utah State University in 2016. He writes a blog about snakes called <a href='http://snakesarelong.blogspot.com/' target='_blank'>'Life is Short, but Snakes are Long'</a>. His current project is to gather images of all snake species worldwide in order to create an app capable of identifying them using machine learning, with support from expert and citizen science communities.",
+  "heading-1": "What is This Challenge About?",
+  "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
+  "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
+  "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
-    "people-2-heading": "Rafael Ruiz de Castañeda",
-    "people-2-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans.",
+  "subheading-sources": "Image Sources",
+  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
 
-    "people-3-heading": "Isabelle Bolon",
-    "people-3-text": "Macaroon sesame snaps apple pie dragée. Soufflé fruitcake bear claw sugar plum. Dragée donut sweet roll powder cupcake sugar plum chocolate cake jelly gummies. Jujubes tiramisu gingerbread cake chocolate cake marzipan jelly beans."
+  "heading-people": "Project Team",
+  "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
+
+  "people-1-heading": "Andrew Durso",
+  "people-1-text": "Andrew is a herpetologist and postdoctoral researcher at the Institute of Global Health. He was born in New York (USA) and grew up catching snakes in North Carolina. He earned a B.S. in Ecology from the University of Georgia in 2009, an M.S. in Biology from Eastern Illinois University in 2011, and a Ph.D. in Ecology from Utah State University in 2016. He writes a blog about snakes called <a href='http://snakesarelong.blogspot.com/' target='_blank'>'Life is Short, but Snakes are Long'</a>. His current project is to gather images of all snake species worldwide in order to create an app capable of identifying them using machine learning, with support from expert and citizen science communities.",
+
+  "people-2-heading": "Rafael Ruiz de Castañeda",
+  "people-2-text": "tbd",
+
+  "people-3-heading": "Isabelle Bolon",
+  "people-3-text": "tbd"
+
   }
+
   }
 </i18n>
 
@@ -55,6 +68,9 @@
               <p v-html="$t('text-1')"></p>
               <p v-html="$t('text-2')"></p>
               <p v-html="$t('text-3')"></p>
+
+              <h3 class="subheading" v-html="$t('subheading-sources')"></h3>
+              <p v-html="$t('text-sources')"></p>
 
               <!--
               <p>

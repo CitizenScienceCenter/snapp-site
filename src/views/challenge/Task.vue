@@ -11,7 +11,7 @@
     "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the University of Zurich/University of Geneva Citizen Science Center",
+    "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
 
 "section-newsletter-heading": "Sign up for our Newsletter"
 
@@ -27,7 +27,7 @@
     "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the University of Zurich/University of Geneva Citizen Science Center",
+    "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
 
 "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -39,11 +39,11 @@
 
 <template>
 
-    <div>
+    <div v-show="tasks[0] && taskMedia[0]">
 
-        <template v-if="tasks[0] && taskMedia[0] && !complete">
+        <template v-if="!complete">
 
-            <div v-if="tasks[0] && taskMedia[0]" class="section-wrapper">
+            <div class="section-wrapper">
 
                 <app-content-section class="content-section-flat settings-section" color="light-greyish">
                     <div class="settings">
@@ -88,7 +88,7 @@
                 </app-content-section>
 
                 <app-content-section class="content-section-flat image-section" color="greyish">
-                    <template>
+                    <template v-if="tasks[0]">
                         <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
                         <div class="image-info image-location">
                             <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
@@ -142,7 +142,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            Challenge already over!
+                                            Already over!
                                         </div>
                                         <div v-else-if="hasSubmissionAlready" class="message message-info">
                                             <div class="icon">
@@ -168,7 +168,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mongo">
+                                <div v-if="tasks[0]" class="mongo">
                                     <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
                                     <label>Genus: </label>{{ tasks[0].info.genus }}
                                     <label>Family: </label>{{ tasks[0].info.family }}
@@ -247,7 +247,7 @@
                                     </ul>
 
                                     <div class="button-group">
-                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Image: ' + tasks[0].id + ')')">Send Feedback on this Image</button>
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback (Image: ' + tasks[0].id + ')')">Send Feedback on this Image</button>
                                     </div>
 
                                 </div>
@@ -278,7 +278,7 @@
 
         </template>
 
-        <template v-else-if="complete">
+        <template v-if="complete">
 
             <app-content-section>
                 <div class="content-wrapper">
@@ -302,143 +302,145 @@
 
         </template>
 
-        <template v-if="(tasks[0] && taskMedia[0]) || complete">
 
 
-            <app-content-section color="greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered row-middle">
 
-                        <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-                            <div>
-                                <div class="extra-padding-h-big">
-                                    <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
-                                </div>
+
+        <app-content-section color="greyish">
+            <div class="content-wrapper">
+                <div class="row row-centered row-middle">
+
+                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+                        <div>
+                            <div class="extra-padding-h-big">
+                                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
-                            <div>
-                                <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-                                <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-                                <ul class="reduced-bottom-margin">
-                                    <li v-html="$t('section-prize-list-1-1')"></li>
-                                    <li v-html="$t('section-prize-list-1-2')"></li>
-                                </ul>
-                                <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-                                <ul class="reduced-bottom-margin">
-                                    <li v-html="$t('section-prize-list-2-1')"></li>
-                                    <li v-html="$t('section-prize-list-2-2')"></li>
-                                </ul>
+                    <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
+                        <div>
+                            <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+                            <ul class="reduced-bottom-margin">
+                                <li v-html="$t('section-prize-list-1-1')"></li>
+                                <li v-html="$t('section-prize-list-1-2')"></li>
+                            </ul>
+                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
+                            <ul class="reduced-bottom-margin">
+                                <li v-html="$t('section-prize-list-2-1')"></li>
+                                <li v-html="$t('section-prize-list-2-2')"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </app-content-section>
+
+
+        <app-content-section>
+            <div class="content-wrapper">
+                <div class="row row-centered row-middle row-reverse-large">
+
+                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+                        <div>
+                            <div class="extra-padding-h">
+                                <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
                             </div>
                         </div>
+                    </div>
 
+                    <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
+                        <div>
+                            <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
+                            <p>
+                                The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
+                            </p>
+                            <p class="centered left-aligned-large">
+                                <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </app-content-section>
+
+        <app-content-section color="light-greyish">
+            <div class="content-wrapper">
+                <div class="row row-centered">
+                    <div class="col col-large-6">
+                        <h2 class="heading centered">Project Partners</h2>
                     </div>
                 </div>
-            </app-content-section>
+                <div class="row row-centered row-wrapping">
 
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/cyberlab.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/udg-fdm.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/herpmapper.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/msf.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/epfl.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/goethe.png" />
+                    </div>
 
-            <app-content-section>
-                <div class="content-wrapper">
-                    <div class="row row-centered row-middle row-reverse-large">
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/copenhagen.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/gti.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/melbourne.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/indiansnakes.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/gsi.png" />
+                    </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/fp-hug.png" />
+                    </div>
 
-                        <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-                            <div>
-                                <div class="extra-padding-h">
-                                    <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+                        <img src="img/logos/hug.png" />
+                    </div>
 
-                        <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
-                            <div>
-                                <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
-                                <p>
-                                    The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
-                                </p>
-                                <p class="centered left-aligned-large">
-                                    <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
-                                </p>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </app-content-section>
 
+        <app-content-section color="greyish">
+            <div class="content-wrapper">
+                <div class="row row-centered">
+                    <div class="col col-mobile-large-10">
+                        <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
                     </div>
                 </div>
-            </app-content-section>
-
-            <app-content-section color="light-greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col col-large-6">
-                            <h2 class="heading centered">Project Partners</h2>
-                        </div>
-                    </div>
-                    <div class="row row-centered row-wrapping">
-
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/cyberlab.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/udg-fdm.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/herpmapper.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/msf.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/epfl.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/goethe.png" />
-                        </div>
-
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/copenhagen.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/gti.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/melbourne.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/indiansnakes.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/gsi.png" />
-                        </div>
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/fp-hug.png" />
-                        </div>
-
-                        <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/hug.png" />
-                        </div>
-
+                <div class="row row-centered">
+                    <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
+                        <app-newsletter-signup></app-newsletter-signup>
                     </div>
                 </div>
-            </app-content-section>
+            </div>
+        </app-content-section>
 
-            <app-content-section color="greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col col-mobile-large-10">
-                            <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
-                        </div>
-                    </div>
-                    <div class="row row-centered">
-                        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
-                            <app-newsletter-signup></app-newsletter-signup>
-                        </div>
-                    </div>
-                </div>
-            </app-content-section>
+        <app-footer></app-footer>
 
-            <app-footer></app-footer>
 
-        </template>
+
 
     </div>
 
@@ -531,7 +533,7 @@ export default {
         }
     },
     watch: {
-        value: function() {
+        value: function(to,from) {
 
             //if( this.value && this.value.hasOwnProperty('info') ) {
             if( this.value && Object.keys(this.value).length > 0 ) {

@@ -3,8 +3,10 @@ $color-primary: #239A93;
 $color-secondary: #9A4B23;
 $color-black: #231f20;
 
+/*
 $color-primary: #EA6714;
 $color-secondary: #0A4D60;
+*/
 
 $color-gradient-start: $color-secondary;
 $color-gradient-end: mix( $color-primary, $color-secondary, 75%);
