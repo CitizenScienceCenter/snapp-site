@@ -22,7 +22,7 @@ export default {
   },
   mounted: function() {
 
-    this.$store.dispatch('consts/setDates', ['2019-02-10T11:40:00Z', '2019-02-12T18:00:00Z'] );
+    this.$store.dispatch('consts/setDates', ['2019-02-13T11:40:00Z', '2019-02-13T18:00:00Z'] );
 
     var app = this.$el;
     window.setTimeout(function() {

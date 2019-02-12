@@ -3,7 +3,6 @@
 
 "en": {
 
-"task-description": "Please transcribe the sentences from the picture above into the input field.",
 
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
@@ -18,8 +17,6 @@
     },
 
 "de": {
-
-"task-description": "Bitte übertragen Sie die im Bild ersichtlichen Sätze in das Eingabefeld.",
 
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
@@ -414,6 +411,9 @@
                         <img src="img/logos/goethe.png" />
                     </div>
 
+                </div>
+                <div class="row row-centered row-wrapping">
+
                     <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
                         <img src="img/logos/copenhagen.png" />
                     </div>
@@ -429,6 +429,10 @@
                     <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
                         <img src="img/logos/gsi.png" />
                     </div>
+
+                </div>
+                <div class="row row-centered row-wrapping">
+
                     <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
                         <img src="img/logos/fp-hug.png" />
                     </div>
@@ -557,9 +561,11 @@ export default {
             //if( this.value && this.value.hasOwnProperty('info') ) {
             if( this.value && Object.keys(this.value).length > 0 ) {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
-                this.$refs.submit.removeAttribute('disabled');
 
-                this.$refs.submit.focus();
+                if( this.challengeState === 'ongoing' ) {
+                    this.$refs.submit.removeAttribute('disabled');
+                    this.$refs.submit.focus();
+                }
             }
 
         },
@@ -1056,7 +1062,7 @@ export default {
                     display: block;
                     line-height: 40px;
                     position: relative;
-                    padding-left: 48px;
+                    padding-left: 56px;
 
                     .icon {
                         position: absolute;
@@ -1276,7 +1282,7 @@ export default {
 
                     .message {
                         line-height: 48px;
-                        padding-left: 56px;
+                        padding-left: 64px;
 
                         .icon {
                             height: 48px;

@@ -35,9 +35,9 @@
   "cover-button-review": "See the Challenge",
   "cover-button-about": "Learn more",
 
-  "section-explanation-heading": "How Good can you Classify Them?",
+  "section-explanation-heading": "How Many Species of Snakes can you Identify?",
   "section-explanation-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-explanation-text-2": "We’ll show you a large diversity of photos of snakes from all around the world.<br><b>Try to identify as many snake photos as possible at the species, genus, or family level.</b>",
+  "section-explanation-text-2": "We’ll show you 1000 photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
 
 
   "section-prize-heading": "What Will you get for Your Participation?",
@@ -218,6 +218,9 @@
             <img src="img/logos/goethe.png" />
           </div>
 
+        </div>
+        <div class="row row-centered row-wrapping">
+
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/copenhagen.png" />
           </div>
@@ -233,6 +236,10 @@
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/gsi.png" />
           </div>
+
+        </div>
+        <div class="row row-centered row-wrapping">
+
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/fp-hug.png" />
           </div>

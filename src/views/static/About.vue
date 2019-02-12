@@ -118,7 +118,6 @@
       </div>
     </app-content-section>
 
-
     <app-content-section color="light-greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
@@ -147,6 +146,9 @@
             <img src="img/logos/goethe.png" />
           </div>
 
+        </div>
+        <div class="row row-centered row-wrapping">
+
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/copenhagen.png" />
           </div>
@@ -162,6 +164,10 @@
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/gsi.png" />
           </div>
+
+        </div>
+        <div class="row row-centered row-wrapping">
+
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
             <img src="img/logos/fp-hug.png" />
           </div>
