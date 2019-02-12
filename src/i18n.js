@@ -25,38 +25,6 @@ language = store.state.settings.language;
 export const i18n = new VueI18n({
   locale: language,
   messages: {
-      'de': {
-            'page-homepage': {
-                'link': 'Home'
-            },
-            'page-challenge': {
-                'link': 'Challenge'
-            },
-            'page-forum': {
-                'link': 'Forum'
-            },
-            'page-about': {
-                'link': 'About'
-            },
-            'page-terms': {
-                'link': 'Privacy Policy & Terms of Use'
-            },
-            'page-login': {
-                'link': 'Anmelden'
-            },
-            'page-register': {
-                'link': 'Registrieren'
-            },
-            'page-logout': {
-                'link': 'Logout'
-            },
-            'page-reset': {
-                'link': 'Passwort zurücksetzen'
-            },
-            'page-profile': {
-                'link': 'Profil'
-            }
-      },
       'en': {
           'page-homepage': {
               'link': 'Home'
@@ -84,6 +52,38 @@ export const i18n = new VueI18n({
           },
           'page-reset': {
               'link': 'Reset Password'
+          },
+          'page-profile': {
+              'link': 'Profil'
+          }
+      },
+      'de': {
+          'page-homepage': {
+              'link': 'Home'
+          },
+          'page-challenge': {
+              'link': 'Challenge'
+          },
+          'page-forum': {
+              'link': 'Forum'
+          },
+          'page-about': {
+              'link': 'Über das Projekt'
+          },
+          'page-terms': {
+              'link': 'Privacy Policy & Terms of Use'
+          },
+          'page-login': {
+              'link': 'Anmelden'
+          },
+          'page-register': {
+              'link': 'Registrieren'
+          },
+          'page-logout': {
+              'link': 'Logout'
+          },
+          'page-reset': {
+              'link': 'Passwort zurücksetzen'
           },
           'page-profile': {
               'link': 'Profil'
