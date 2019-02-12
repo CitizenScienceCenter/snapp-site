@@ -4,7 +4,7 @@
     <div class="content-area">
       <router-view></router-view>
     </div>
-    <!-- <g-d-p-r></g-d-p-r> -->
+    <g-d-p-r></g-d-p-r>
   </div>
 </template>
 

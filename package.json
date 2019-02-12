@@ -30,7 +30,7 @@
     "eslint-plugin-html": "^5.0.0",
     "swagger-client": "^3.8.22",
     "vue-template-compiler": "^2.5.17",
-    "vuex-c3s": "^1.0.6"
+    "vuex-c3s": "^1.0.9"
   },
   "eslintConfig": {
     "root": true,

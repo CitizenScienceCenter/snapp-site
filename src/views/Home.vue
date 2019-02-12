@@ -80,7 +80,8 @@
             <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
             <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
             <router-link v-else tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
-            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-about') }}</router-link>
+
+            <button class="button button-secondary button-secondary-inverted" v-scroll-to="'#about'">{{ $t('cover-button-about') }}</button>
           </div>
         </div>
       </div>
@@ -130,18 +131,9 @@
 
     <app-content-section color="greyish">
       <div class="content-wrapper">
-        <div class="row row-centered row-middle">
+        <div class="row row-centered row-middle row-reverse-large">
 
-          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-            <div>
-              <div class="extra-padding-h-big">
-                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
-            <div>
+          <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin">
               <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
               <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
               <ul class="reduced-bottom-margin">
@@ -153,8 +145,16 @@
                 <li v-html="$t('section-prize-list-2-1')"></li>
                 <li v-html="$t('section-prize-list-2-2')"></li>
               </ul>
+          </div>
+
+          <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+            <div>
+              <div class="extra-padding-h">
+                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+              </div>
             </div>
           </div>
+
 
         </div>
       </div>
@@ -166,12 +166,12 @@
           <div class="row">
               <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
-                  <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
+                  <h2 id="about" class="heading centered left-aligned-large">Why this Challenge?</h2>
                   <p>
                       The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
                   </p>
                   <p class="centered left-aligned-large">
-                      <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
+                      <router-link tag="button" to="/about" class="button button-secondary">Read more</router-link>
                   </p>
               </div>
 
@@ -187,6 +187,8 @@
           </div>
       </div>
     </app-content-section>
+
+
 
     <app-content-section color="light-greyish">
       <div class="content-wrapper">

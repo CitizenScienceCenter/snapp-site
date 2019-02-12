@@ -68,6 +68,9 @@
                 user: state => state.c3s.user,
                 score: state => state.score.score
             })
+        },
+        mounted() {
+            this.$store.dispatch('score/calculateScore');
         }
     }
 

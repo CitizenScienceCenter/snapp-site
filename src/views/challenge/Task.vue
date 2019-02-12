@@ -87,28 +87,29 @@
                     </div>
                 </app-content-section>
 
-                <app-content-section class="content-section-flat image-section" color="greyish">
+                <app-content-section class="content-section-flat image-section">
                     <template>
 
-                        <image-viewer class="image-viewer" :src="'/img/tasks/'+taskMedia[0].name" disableScrollToZoom></image-viewer>
+                        <image-viewer class="image-viewer" :src="'https://api.citizenscience.ch/files/upload/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
 
                         <div class="image-info-wrapper">
-                            <div class="image-info">
+                            <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path d="M236.3,501.7C91,291,64,269.4,64,192C64,86,150,0,256,0s192,86,192,192c0,77.4-27,99-172.3,309.7C266.2,515.4,245.8,515.4,236.3,501.7L236.3,501.7z M256,272c44.2,0,80-35.8,80-80s-35.8-80-80-80s-80,35.8-80,80S211.8,272,256,272z"/>
                                 </svg>
                                 <b>
-                                <span v-if="tasks[0].info.province">{{ tasks[0].info.province }}, </span>
-                                <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}, </span>
-                                <span v-if="tasks[0].info.region">{{ tasks[0].info.region }}</span>
+                                <span v-if="tasks[0].info.state_province">{{ tasks[0].info.state_province }}</span>
+                                <span v-if="tasks[0].info.country">{{ tasks[0].info.country }}</span>
+                                <span v-if="tasks[0].info.global_region">{{ tasks[0].info.global_region }}</span>
                                 </b>
                             </div>
-                            <div class="image-info">
+                            <br>
+                            <div class="image-info" v-if="tasks[0].info.photographer || tasks[0].info.image_source">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
                                 </svg>
-                                <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}, </span>
-                                <span v-if="tasks[0].info.source">{{ tasks[0].info.source }}</span>
+                                <span v-if="tasks[0].info.photographer">{{ tasks[0].info.photographer }}</span>
+                                <span v-if="tasks[0].info.image_source">{{ tasks[0].info.image_source }}</span>
                             </div>
                         </div>
 
@@ -324,68 +325,66 @@
 
 
 
-
-
         <app-content-section color="greyish">
             <div class="content-wrapper">
-                <div class="row row-centered row-middle">
+                <div class="row row-centered row-middle row-reverse-large">
 
-                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
+                    <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin">
+                        <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+                        <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+                        <ul class="reduced-bottom-margin">
+                            <li v-html="$t('section-prize-list-1-1')"></li>
+                            <li v-html="$t('section-prize-list-1-2')"></li>
+                        </ul>
+                        <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
+                        <ul class="reduced-bottom-margin">
+                            <li v-html="$t('section-prize-list-2-1')"></li>
+                            <li v-html="$t('section-prize-list-2-2')"></li>
+                        </ul>
+                    </div>
+
+                    <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
                         <div>
-                            <div class="extra-padding-h-big">
+                            <div class="extra-padding-h">
                                 <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="col col-large-5 col-large-after-1 col-wrapping col-no-bottom-margin">
-                        <div>
-                            <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-                            <ul class="reduced-bottom-margin">
-                                <li v-html="$t('section-prize-list-1-1')"></li>
-                                <li v-html="$t('section-prize-list-1-2')"></li>
-                            </ul>
-                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-                            <ul class="reduced-bottom-margin">
-                                <li v-html="$t('section-prize-list-2-1')"></li>
-                                <li v-html="$t('section-prize-list-2-2')"></li>
-                            </ul>
-                        </div>
-                    </div>
 
                 </div>
             </div>
         </app-content-section>
 
 
-        <app-content-section>
+        <app-content-section class="overflow-hidden">
             <div class="content-wrapper">
-                <div class="row row-centered row-middle row-reverse-large">
+                <div class="row">
+                    <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
-                    <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-                        <div>
-                            <div class="extra-padding-h">
-                                <img src="/img/graphic-about.jpg" style="border-radius: 50%; min-width: 100%" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
-                        <div>
-                            <h2 class="heading centered left-aligned-large">Why this Challenge?</h2>
-                            <p>
-                                The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
-                            </p>
-                            <p class="centered left-aligned-large">
-                                <router-link tag="button" to="/about" class="button button-secondary">Learn more</router-link>
-                            </p>
-                        </div>
+                        <h2 id="about" class="heading centered left-aligned-large">Why this Challenge?</h2>
+                        <p>
+                            The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
+                        </p>
+                        <p class="centered left-aligned-large">
+                            <router-link tag="button" to="/about" class="button button-secondary">Read more</router-link>
+                        </p>
                     </div>
 
                 </div>
             </div>
+            <div class="background-wrapper background-wrapper-move-right">
+                <div class="content-wrapper">
+                    <div class="row row-centered row-in-background">
+                        <div class="col col-8 col-tablet-portrait-6 col-large-7">
+                            <img src="img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </app-content-section>
+
+
 
         <app-content-section color="light-greyish">
             <div class="content-wrapper">
@@ -927,6 +926,7 @@ export default {
 
                 }
                 else {
+                    this.value = {};
                     this.loadTask();
                 }
 
@@ -999,17 +999,17 @@ export default {
             .image-info {
                 color: white;
                 background: rgba( $color-black, 0.5);
-                border-radius: $border-radius;
+                border-radius: 16px;
                 font-size: $font-size-small;
                 position: relative;
                 padding: calc( ( 32px - #{$font-size-small} *1.5 ) / 2 ) 0;
                 padding-right: $spacing-2;
-                padding-left: 32px;
+                padding-left: 36px;
 
                 svg {
                     position: absolute;
                     top: calc( ( 32px - #{$font-size-small} ) /2 );
-                    left: calc( ( 32px - #{$font-size-small} ) /2 );
+                    left: calc( ( 32px - #{$font-size-small} ) /2 + 4px );
                     width: $font-size-small;
                     height: $font-size-small;
                     fill: rgba( white, 0.8 );
@@ -1017,6 +1017,18 @@ export default {
 
                 display: inline-block;
                 margin: calc( #{$spacing-1} /2 );
+
+                span {
+                    text-transform: capitalize;
+                    &:after {
+                        content: ', ';
+                    }
+                    &:last-child {
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
             }
         }
     }
@@ -1173,10 +1185,10 @@ export default {
                 &.evaluated {
 
                     &:before {
-                        width: 1rem;
-                        height: 1rem;
-                        top: 0.25rem;
-                        left: 0.25rem;
+                        width: 0.8rem;
+                        height: 0.8rem;
+                        top: 0.35rem;
+                        left: 0.35rem;
 
                         transition: all $transition-duration-long $transition-timing-function;
                     }

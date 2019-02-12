@@ -8,9 +8,6 @@
   "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
   "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
-  "subheading-sources": "Image Sources",
-  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
-
   "heading-people": "Project Team",
   "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
 
@@ -21,7 +18,12 @@
   "people-2-text": "tbd",
 
   "people-3-heading": "Isabelle Bolon",
-  "people-3-text": "tbd"
+  "people-3-text": "tbd",
+
+  "heading-sources": "Image Sources",
+  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
+
+  "section-newsletter-heading": "Sign up for our Newsletter"
 
   },
 
@@ -32,9 +34,6 @@
   "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
   "text-3": "Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person! We know that this already happens organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, with which we are collaborating to capture data on the speed & accuracy of the process. Eventually we’ll compare these results to an AI, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy! So do your best—if it helps, pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
-  "subheading-sources": "Image Sources",
-  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
-
   "heading-people": "Project Team",
   "people-text": "This is a highly interdiscplinary project bringing together herpetologists and key players in global health.",
 
@@ -45,7 +44,13 @@
   "people-2-text": "tbd",
 
   "people-3-heading": "Isabelle Bolon",
-  "people-3-text": "tbd"
+  "people-3-text": "tbd",
+
+
+  "heading-sources": "Image Sources",
+  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
+
+  "section-newsletter-heading": "Abonniere unseren Newsletter"
 
   }
 
@@ -65,21 +70,15 @@
 
               <h2 class="heading">{{ $t('heading-1') }}</h2>
 
-              <p v-html="$t('text-1')"></p>
-              <p v-html="$t('text-2')"></p>
-              <p v-html="$t('text-3')"></p>
-
-              <h3 class="subheading" v-html="$t('subheading-sources')"></h3>
-              <p v-html="$t('text-sources')"></p>
-
-              <!--
               <p>
                 <figure>
                   <img src="img/graphic-about.jpg" style="min-width: 100%" />
-                  <figcaption>A Snake is attacking its prey</figcaption>
                 </figure>
               </p>
-              -->
+
+              <p v-html="$t('text-1')"></p>
+              <p v-html="$t('text-2')"></p>
+              <p v-html="$t('text-3')"></p>
 
             </div>
 
@@ -105,11 +104,82 @@
       </div>
     </app-content-section>
 
+
+    <app-content-section>
+      <div class="content-wrapper">
+        <div class="row row-centered">
+          <div class="col col-large-6">
+
+            <h2 class="heading" v-html="$t('heading-sources')"></h2>
+            <p v-html="$t('text-sources')"></p>
+
+          </div>
+        </div>
+      </div>
+    </app-content-section>
+
+
+    <app-content-section color="light-greyish">
+      <div class="content-wrapper">
+        <div class="row row-centered">
+          <div class="col col-large-6">
+            <h2 class="heading centered">Project Partners</h2>
+          </div>
+        </div>
+        <div class="row row-centered row-wrapping">
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/cyberlab.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/udg-fdm.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/herpmapper.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/msf.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/epfl.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/goethe.png" />
+          </div>
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/copenhagen.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/gti.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/melbourne.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/indiansnakes.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/gsi.png" />
+          </div>
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/fp-hug.png" />
+          </div>
+
+          <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
+            <img src="img/logos/hug.png" />
+          </div>
+
+        </div>
+      </div>
+    </app-content-section>
+
+
     <app-content-section color="greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-mobile-large-10">
-            <h2 class="heading centered">Sign up for our Newsletter</h2>
+            <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
           </div>
         </div>
         <div class="row row-centered">

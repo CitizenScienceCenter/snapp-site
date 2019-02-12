@@ -109,7 +109,7 @@ const mutations = {
 
 const state = {
     searchOptionsContainers: searchOptionsContainers,
-    activityId: '6ed23678-aa60-4116-85cc-f5206679da2b',
+    activityId: '74033a29-4346-485d-b0e3-3f263a507837',
     challengeStartISO: null,
     challengeEndISO: null,
     challengeState: null
