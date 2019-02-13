@@ -20,7 +20,7 @@
   "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
   "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-  "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
+  "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
 
   "section-newsletter-heading": "Sign up for our Newsletter"
 
@@ -46,7 +46,7 @@
   "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
   "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-  "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
+  "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
 
 
   "section-newsletter-heading": "Abonniere unseren Newsletter"

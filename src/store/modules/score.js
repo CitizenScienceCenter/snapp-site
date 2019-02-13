@@ -1,14 +1,14 @@
 import store from "../store";
 
 const state = {
-    highscore: undefined,
-    allUsersCount: undefined,
-    allSubmissionsCount: undefined,
+    highscore: {score: 0, username: ''},
+    allUsersCount: 0,
+    allSubmissionsCount: 0,
 
-    score: undefined,
-    rank: undefined,
-    submissionsCount: undefined,
-    totalTaskCount: undefined
+    score: 0,
+    rank: 0,
+    submissionsCount: 0,
+    totalTaskCount: 0
 }
 
 const getters = {
@@ -25,48 +25,111 @@ const getters = {
 const actions = {
     calculateScore({state, commit, rootState}) {
 
-        // user count
-
-        /*
-
-        const allUsersCountQuery = {
-            "select": {
-                "fields": [
-                    "DISTINCT submissions.*"
-                ],
-                "tables": [
-                    "submissions",
-                    "users"
-                ]
-            },
-            'where': [
-                {
-                    "field": 'users.activity_id',
-                    'op': 'e',
-                    'val': store.state.consts.activityId
-                },
-                {
-                    "field":'submissions.user_id',
-                    'op': 'e',
-                    "val": store.state.c3s.user.currentUser.id,
-                    'join': 'a'
-                }
-            ]
-        };
-
-        store.dispatch('c3s/submission/getSubmissions', [allUsersCountQuery, 0]).then(submissions => {
-
-            commit('SET_ALLUSERSCOUNT', xy);
-
-        });
-
-        */
-
-
-
-
+        console.log('calculate score');
+        console.log( store.state.c3s.user.currentUser );
 
         if( store.state.c3s.user.currentUser ) {
+
+            console.log( 'has user' );
+
+            // total task count
+
+            const taskCountQuery = {
+                "select": {
+                    "fields": [
+                        "count(*)"
+                    ],
+                    "tables": [
+                        "tasks"
+                    ]
+                },
+                'where': [
+                    {
+                        "field": 'tasks.activity_id',
+                        'op': 'e',
+                        'val': store.state.consts.activityId
+                    }
+                ]
+            };
+            store.dispatch('c3s/task/getTaskCount', taskCountQuery).then(res => {
+
+                commit('SET_TOTALTASKCOUNT', res.body );
+
+                const taskCountQuery = {
+                    "select": {
+                        "fields": [
+                            "count(*)"
+                        ],
+                        "tables": [
+                            "submissions"
+                        ]
+                    },
+                    'where': [
+                        {
+                            "field": 'submissions.user_id',
+                            'op': 'e',
+                            'val': store.state.c3s.user.currentUser.id
+                        }
+                    ]
+                };
+                store.dispatch('c3s/task/getTaskCount', taskCountQuery).then(res => {
+
+                    commit('SET_SUBMISSIONSCOUNT', res.body );
+
+                });
+
+            });
+
+
+            // submission count
+
+            const allSubmissionsQuery = {
+                "select": {
+                    "fields": [
+                        "count(*)"
+                    ],
+                    "tables": [
+                        "submissions"
+                    ],
+                    "groupBy": [
+                        "user_id"
+                    ]
+                },
+                "join": {
+                    "type": "LEFT",
+                    "conditions":{
+                        "from": {
+                            "table": "tasks",
+                            "field": "id"
+                        },
+                        "to": {
+                            "table": "submissions",
+                            "field": "task_id"
+                        }
+                    }
+                },
+                'where': [
+                    {
+                        "field": 'tasks.activity_id',
+                        'op': 'e',
+                        'val': store.state.consts.activityId
+                    }
+                ]
+            };
+            store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 0]).then(res => {
+
+                let allUsersCount = 0;
+                let allSubmissionsCount = 0;
+                for (let i = 0; i < res.body.length; i++) {
+                    allUsersCount++;
+                    allSubmissionsCount += res.body[i].count;
+                }
+                commit('SET_ALLUSERSCOUNT', allUsersCount);
+                commit('SET_ALLSUBMISSIONSCOUNT', allSubmissionsCount);
+
+            });
+
+
 
             // user score
 
@@ -94,21 +157,78 @@ const actions = {
                     }
                 ]
             };
-
-            store.dispatch('c3s/submission/getSubmissions', [userSubmissionsQuery, 0]).then(submissions => {
+            store.dispatch('c3s/submission/getSubmissions', [userSubmissionsQuery, 0]).then(res => {
 
                 let score = 0;
-                for (let i = 0; i < submissions.body.length; i++) {
-                    score += submissions.body[i].content.responses[0].score;
+                for (let i = 0; i < res.body.length; i++) {
+                    score += res.body[i].content.responses[0].score;
                 }
                 commit('SET_SCORE', score);
+
+
+
+                // highscore
+
+                const highscoreQuery = {
+                    "select": {
+                        "fields": [
+                            "username",
+                            'count(content->\'responses\'->0->>\'score\') score'
+                        ],
+                        "tables": [
+                            "submissions"
+                        ],
+                        "groupBy": [
+                            "username"
+                        ],
+                        "orderBy": {
+                            "score": "DESC"
+                        }
+                    },
+                    "join": {
+                        "type": "LEFT",
+                        "conditions":{
+                            "from": {
+                                "table": "users",
+                                "field": "id"
+                            },
+                            "to": {
+                                "table": "submissions",
+                                "field": "user_id"
+                            }
+                        }
+                    }
+                };
+                store.dispatch('c3s/submission/getSubmissions', [highscoreQuery, 0]).then(res => {
+
+                    commit('SET_HIGHSCORE', res.body[0] );
+
+                    let allUsersCount = 0;
+                    let rank;
+                    let i;
+                    for (i = 0; i < res.body.length; i++) {
+
+                        if( state.score >= res.body[i].score && !rank) {
+                            rank = i+1;
+                        }
+
+                        allUsersCount++;
+                    }
+                    if( !rank ) {
+                        rank = allUsersCount;
+                    }
+                    commit('SET_ALLUSERSCOUNT', allUsersCount);
+                    commit('SET_RANK', rank);
+
+                });
 
             });
 
         }
         else {
-            commit('SET_SCORE', 0);
+            console.log( 'has NO user' );
         }
+
     }
 }
 
@@ -121,7 +241,7 @@ const mutations = {
         state.allUsersCount = allUsersCount;
     },
     SET_ALLSUBMISSIONSCOUNT(state, allSubmissionsCount) {
-        state.allUsersCount = allSubmissionsCount;
+        state.allSubmissionsCount = allSubmissionsCount;
     },
 
     SET_SCORE(state, score) {

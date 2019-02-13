@@ -34,7 +34,7 @@
 </i18n>
 
 <template>
-    <div>
+    <div v-if="user">
         <app-content-section>
             <div class="content-wrapper">
 
@@ -57,7 +57,8 @@
 
                         <div class="content-subsection">
                             <div class="button-group">
-                                <router-link tag="button" to="/logout" class="button button-secondary">{{ $t('button-logout') }}</router-link>
+                                <!-- <router-link tag="button" to="/logout" class="button button-secondary">{{ $t('button-logout') }}</router-link> -->
+                                <button class="button button-secondary" @click.prvent="logout()">{{ $t('button-logout') }}</button>
                                 <router-link tag="button" to="/reset" class="button button-secondary">{{ $t('button-reset') }}</router-link>
                             </div>
                         </div>
@@ -85,118 +86,20 @@
             'app-content-section': ContentSection,
             'app-footer': Footer
         },
-        data() {
-            return {
-                submissions: [],
-                submissionStats: {}
-            };
-        },
         computed: {
             ...mapState({
                 //user: state => state.user.user,
                 user: state => state.c3s.user.currentUser,
                 loading: state => state.settings.loading
-            }),
-            totalSubs: () => {
-                return this.submissions.length
-            }
-        },
-        mounted() {
-            const subQuery = {
-                "select": {
-                    "fields": [
-                        "submissions.created_at",
-                        "submissions.id as submission_id",
-                        "activities.name as activity_name",
-                        "submissions.user_id",
-                        "submissions.content",
-                        "submissions.task_id",
-                        "activities.id as activity_id"
-                    ],
-                    "tables": [
-                        "submissions",
-                        "activities",
-                        "tasks"
-                    ]
-                },
-                "where": [
-                    {
-                        "field": "submissions.user_id",
-                        "op": "e",
-                        "val": this.user.id,
-                        "join": "a"
-                    },
-                    {
-                        "field": "submissions.task_id",
-                        "op": "e",
-                        'type': 'sql',
-                        "val": "tasks.id",
-                        "join": "a"
-                    },
-                    {
-                        "field": "tasks.activity_id",
-                        "op": "e",
-                        'type': 'sql',
-                        "val": "activities.id",
-                        "join": "a"
-                    }
-                ],
-                /*
-                'where': {
-                    "submissions.user_id": {
-                        "op": "e",
-                            "val": this.user.id,
-                            "join": "a"
-                    },
-                    "submissions.task_id": {
-                        "op": "e",
-                            'type': 'sql',
-                            "val": "tasks.id",
-                            "join": "a"
-                    },
-                    "tasks.activity_id": {
-                        "op": "e",
-                            'type': 'sql',
-                            "val": "activities.id",
-                            "join": "a"
-                    }
-                }
-                */
-            };
-            this.$store.dispatch('c3s/submission/getSubmissions', [subQuery, 100]).then(s => {
-                if (s.ok) {
-                    this.submissions = s.body;
-                    for (let index in this.submissions) {
-                        const sub = this.submissions[index];
-                        const name = sub['activity_name'];
-                        if (name in this.submissionStats) {
-                            this.submissionStats[name]['subs'].push(sub);
-                            this.submissionStats[name]['count'] += 1;
-                        } else {
-                            this.submissionStats[name] = {};
-                            this.submissionStats[name]['subs'] = [];
-                            this.submissionStats[name]['subs'].push(sub);
-                            this.submissionStats[name]['count'] = 1;
-                        }
-                    }
-                    //    TODO set up submissions table for users to see each project and see/delete details
-                }
             })
         },
         methods: {
-            calcTaskResponse(task) {
-                let total = 0;
-
-                for (let i in task) {
-                    console.log(task[i].text.length)
-                    if (task[i].text.length > 0) total += 1;
-                }
-                return total;
+            logout() {
+                this.$store.commit('c3s/user/SET_CURRENT_USER', null);
+                this.$store.commit('c3s/user/SET_ANON', false);
+                this.$store.commit('score/SET_SCORE', 0);
+                this.$router.push('/');
             }
         }
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>

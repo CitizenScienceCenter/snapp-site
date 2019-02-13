@@ -1,16 +1,18 @@
-//import Activity from '@/views/Activity'
+
 import * as User from '@/views/shared/user'
 import Profile from '@/views/user/Profile'
 import * as Challenge from '@/views/challenge'
 import Forum from '@/views/Forum'
-import store from '../store/store.js'
 
+/*
 const logout = (to, from, next) => {
-    localStorage.removeItem('user');
+    //localStorage.removeItem('user');
     store.commit('c3s/user/SET_CURRENT_USER', null);
     store.commit('c3s/user/SET_ANON', false);
-    next()
+    console.log('logout');
+    next();
 };
+*/
 
 // lazy loading routes
 const Home = resolve => {
@@ -35,15 +37,24 @@ export const routes = [
         component: Home,
         name: 'Home',
         beforeEnter: null,
-        meta: {page: "page-homepage", nav: false}
+        meta: {
+            requiresAuth: true,
+            page: "page-homepage",
+            nav: false
+        }
     },
+    /*
     {
         path: "/logout",
         component: Home,
         name: "Logout",
         beforeEnter: logout,
-        meta: {page: 'page-logout', nav: false}
+        meta: {
+            page: 'page-logout',
+            nav: false
+        }
     },
+    */
     {
         path: "/challenge",
         component: Challenge.Task,

@@ -6,18 +6,19 @@
                 <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block form-field-right-aligned form-field-big">
                         <label>High Score</label>
-                        805
-                        <div class="small">by some.username</div>
+                        {{ highscore.score }}
+                        <div v-if="highscore.username.substring(0,5) !== '_anon'" class="small">by {{ highscore.username }}</div>
+                        <div v-else class="small">by Anonymous</div>
                     </div>
                 </div>
                 <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block">
                         <label>Number of Users</label>
-                        87
+                        {{ allUsersCount }}
                     </div>
                     <div class="form-field form-field-block">
                         <label>Number of Submissions</label>
-                        254
+                        {{ allSubmissionsCount }}
                     </div>
                 </div>
 
@@ -34,11 +35,11 @@
                         <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                             <div class="form-field form-field-block">
                                 <label>Your Rank</label>
-                                <span>87.</span>
+                                <span>{{ rank }}.</span>
                             </div>
                             <div class="form-field form-field-block">
                                 <label>Your Progress</label>
-                                <span>0% </span><span class="small">(0/1000)</span>
+                                <span>{{ Math.round( (submissionsCount/totalTaskCount)*1000 )/10 }}% </span><span class="small">({{submissionsCount}}/{{totalTaskCount}})</span>
                             </div>
                         </div>
                     </template>
@@ -66,11 +67,15 @@
         computed: {
             ...mapState({
                 user: state => state.c3s.user,
-                score: state => state.score.score
+
+                highscore: state => state.score.highscore,
+                allUsersCount: state => state.score.allUsersCount,
+                allSubmissionsCount: state => state.score.allSubmissionsCount,
+                score: state => state.score.score,
+                rank: state => state.score.rank,
+                submissionsCount: state => state.score.submissionsCount,
+                totalTaskCount: state => state.score.totalTaskCount,
             })
-        },
-        mounted() {
-            this.$store.dispatch('score/calculateScore');
         }
     }
 

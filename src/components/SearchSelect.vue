@@ -233,6 +233,7 @@
             handleInputKeys: function(event) {
                 if( this.showResults ) {
                     console.log('keys');
+                    console.log( event.key );
                     switch(event.key) {
                         case 'ArrowDown':
                             if( this.focusedOptionIndex < this.maxOptionIndex ) {
@@ -260,6 +261,7 @@
                                 this.$refs.results.scrollTop = 0;
                             }
                             break;
+                        case 'Tab':
                         case 'Enter':
                             if( this.$refs['option_'+this.focusedOptionIndex][0] ) {
                                 this.selectOptionById(this.focusedOptionIndex);

@@ -11,7 +11,10 @@ export const router = new VueRouter({
   }
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach( (to, from, next) => {
+
+  console.log('before each > '+to.path );
+
   const lang = store.state.settings.language || 'de';
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -24,24 +27,22 @@ router.beforeEach((to, from, next) => {
 
       store.dispatch('c3s/user/validate').then(v => {
 
-        console.log('success');
+        console.log('validation success');
 
         if (v) {
           next();
         }
         else {
-          // TODO error here with user not validated
-            this.router.push('/login');
+          this.router.push('/login');
         }
 
       });
     }
     else {
 
-
       store.dispatch('c3s/user/generateAnon').then(u => {
 
-
+        console.log('generate anon');
         next();
 
       });
@@ -53,6 +54,11 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+
 router.afterEach((to, from, next) => {
+
+    console.log('after each > '+to.path);
     store.dispatch('score/calculateScore');
+
 });
+
