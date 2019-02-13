@@ -123,7 +123,7 @@ const getters = {
 
 const state = {
     optionContainers: null,
-    containerVersion: 0.2,
+    containerVersion: null,
     activityId: '74033a29-4346-485d-b0e3-3f263a507837',
     challengeStartISO: null,
     challengeEndISO: null,

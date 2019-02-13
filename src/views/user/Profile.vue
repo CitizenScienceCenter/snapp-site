@@ -70,6 +70,21 @@
             </div>
         </app-content-section>
 
+        <app-content-section class="content-section-condensed" color="light-greyish">
+            <div v-if="challengeState !== 'before'" class="content-subsection">
+                <scores></scores>
+            </div>
+            <div class="content-subsection">
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+                        <div class="col">
+                            <duration></duration>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-content-section>
+
         <app-footer></app-footer>
 
     </div>
@@ -79,10 +94,14 @@
     import {mapState, mapGetters} from "vuex";
     import ContentSection from '@/components/shared/ContentSection.vue'
     import Footer from '@/components/shared/Footer.vue'
+    import Scores from "../../components/Scores";
+    import Duration from "../../components/Duration";
 
     export default {
         name: "ViewUser",
         components: {
+            Duration,
+            Scores,
             'app-content-section': ContentSection,
             'app-footer': Footer
         },

@@ -332,7 +332,7 @@
                     <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin">
                         <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
                         <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-                        <ul class="reduced-bottom-margin">
+                        <ul>
                             <li v-html="$t('section-prize-list-1-1')"></li>
                             <li v-html="$t('section-prize-list-1-2')"></li>
                         </ul>
@@ -918,7 +918,7 @@ export default {
                         else if( counter === 4 ) {
                             self.$refs.score.classList.remove('hidden');
                         }
-                        else if (counter === 6) {
+                        else if (counter === 8) {
                             self.$refs['evaluation-step-1'].classList.remove('evaluated');
                             self.$refs['evaluation-step-2'].classList.remove('evaluated');
                             self.$refs['evaluation-step-3'].classList.remove('evaluated');

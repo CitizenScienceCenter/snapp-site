@@ -13,8 +13,6 @@ export const router = new VueRouter({
 
 router.beforeEach( (to, from, next) => {
 
-  console.log('before each > '+to.path );
-
   const lang = store.state.settings.language || 'de';
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
