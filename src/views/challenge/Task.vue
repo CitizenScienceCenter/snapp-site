@@ -626,11 +626,8 @@ export default {
                         'tables': [
                             'tasks'
                         ],
-                        'group_by': [
-                            'submissions.task_id'
-                        ],
-                        'order_by': {
-                            'submissions.task_id': 'DESC'
+                        'orderBy': {
+                            'random()': ''
                         }
                     },
                     'where': [
@@ -676,6 +673,7 @@ export default {
                 };
 
             }
+
 
             this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
 
