@@ -24,13 +24,22 @@ export default {
 
     this.$store.dispatch('consts/setDates', ['2019-02-13T14:00:00Z', '2019-02-17T14:00:00Z'] );
 
+    if( this.containerVersion !== 0.2 || !this.optionContainers ) {
+        this.$store.dispatch('consts/createOptionContainers', 0.2);
+    }
+
     var app = this.$el;
     window.setTimeout(function() {
       app.classList.add("show");
     }, 1);
   },
   computed: mapState({
-      score: state => state.score.score
+      score: state => state.score.score,
+
+      containerVersion: state => state.consts.containerVersion,
+      optionContainers: state => state.consts.optionContainers,
+
+      gdpr: state => state.gdpr.accepted
   })
 }
 

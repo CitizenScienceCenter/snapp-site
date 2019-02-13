@@ -121,12 +121,14 @@
                                     <search-select
                                             :disabled="hasSubmissionAlready"
                                             placeholder="Family, Genus or Binomial"
-                                            :optionContainers="searchOptionsContainers"
+                                            :optionContainers="optionContainers"
                                             v-model="value">
                                     </search-select>
                                 </div>
 
                                 <div v-if="tasks[0]" class="actions margin-bottom">
+
+
                                     <div class="button-group right-aligned">
                                         <template v-if="challengeState === 'before'">
                                             <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
@@ -136,6 +138,8 @@
                                             <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">Submit</button>
                                         </template>
                                     </div>
+
+
 
                                     <div class="info">
                                         <div v-if="challengeState === 'before'" class="message message-info">
@@ -511,7 +515,7 @@ export default {
             //user: state => state.user.user,
             activityId: state => state.consts.activityId,
 
-            searchOptionsContainers: state => state.consts.searchOptionsContainers,
+            optionContainers: state => state.consts.optionContainers,
             challengeState: state => state.consts.challengeState,
 
             user: state => state.c3s.user.currentUser,
@@ -614,6 +618,7 @@ export default {
             console.log('load task');
 
             this.evaluation = null;
+            this.value = null;
 
             let taskQuery;
             if( !this.id ) {
@@ -750,8 +755,6 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         //console.log('media loaded');
-
-                        this.value = null;
 
                     });
 

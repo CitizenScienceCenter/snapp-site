@@ -57,7 +57,6 @@ router.beforeEach( (to, from, next) => {
 
 router.afterEach((to, from, next) => {
 
-    console.log('after each > '+to.path);
     store.dispatch('score/calculateScore');
 
 });

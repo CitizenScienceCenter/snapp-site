@@ -25,12 +25,8 @@ const getters = {
 const actions = {
     calculateScore({state, commit, rootState}) {
 
-        console.log('calculate score');
-        console.log( store.state.c3s.user.currentUser );
 
         if( store.state.c3s.user.currentUser ) {
-
-            console.log( 'has user' );
 
             // total task count
 
