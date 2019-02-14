@@ -58,11 +58,11 @@ export default {
               },
               {
                   property: 'og:url',
-                  content: 'https://www.citizenscience.ch'
+                  content: 'https://snakes.citizenscience.ch'
               },
               {
                   property: 'og:image',
-                  content: 'https://www.citizenscience.ch/img/citsci-promo.jpg'
+                  content: 'https://snakes.citizenscience.ch/img/promo.jpg'
               }
           ]
       }
