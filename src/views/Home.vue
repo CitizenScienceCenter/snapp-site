@@ -28,6 +28,8 @@
   "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
   "section-about-button": "Read more",
 
+  "section-partners-heading": "Project Partners",
+
   "section-newsletter-heading": "Sign up for our Newsletter"
 
   },
@@ -58,6 +60,8 @@
   "section-about-heading": "Why this Challenge?",
   "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
   "section-about-button": "Read more",
+
+  "section-partners-heading": "Projektpartner",
 
   "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -177,7 +181,7 @@
               <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
                   <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                  <p v-html="$t('section-about-heading')"></p>
+                  <p v-html="$t('section-about-text')"></p>
                   <p class="centered left-aligned-large">
                       <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
                   </p>
@@ -202,7 +206,7 @@
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
-            <h2 class="heading centered">Project Partners</h2>
+            <h2 class="heading centered">{{ $t('section-partners-heading') }}</h2>
           </div>
         </div>
         <div class="row row-centered row-wrapping">

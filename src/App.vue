@@ -72,7 +72,7 @@ export default {
     this.$store.dispatch('consts/setDates', ['2019-02-13T14:00:00Z', '2019-02-17T14:00:00Z'] );
 
     if( this.containerVersion !== 0.1 || !this.optionContainers ) {
-        this.$store.dispatch('consts/createOptionContainers', 0.1);
+        this.$store.dispatch('consts/createOptionContainers', 0.1 );
     }
 
     var app = this.$el;

@@ -129,8 +129,6 @@
 
                 this.$refs.results.scrollTop = 0;
 
-                console.log( this.inputValue );
-
             }
         },
         computed: {
@@ -232,8 +230,6 @@
             },
             handleInputKeys: function(event) {
                 if( this.showResults ) {
-                    console.log('keys');
-                    console.log( event.key );
                     switch(event.key) {
                         case 'ArrowDown':
                             if( this.focusedOptionIndex < this.maxOptionIndex ) {
