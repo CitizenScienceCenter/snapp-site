@@ -8,24 +8,22 @@ import Vuex from 'vuex'
 import { i18n } from './i18n.js'
 import c3s from 'vuex-c3s'
 import Croppa from 'vue-croppa';
+import Meta from 'vue-meta';
 
 //let swaggerURL = 'https://api.citizenscience.ch/api/v2/swagger.json';
 let swaggerURL = 'http://localhost:8080/api/v2/swagger.json';
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(c3s.plugin, { store, swaggerURL})
-Vue.use(VueRouter)
+Vue.use(c3s.plugin, { store, swaggerURL});
+Vue.use(VueRouter);
 Vue.use(VueScrollTo, {
   offset: -32
-})
-Vue.use(Croppa)
-Vue.use(Vuex)
-Vue.use(Croppa)
-
-
+});
 Vue.use(Croppa);
+Vue.use(Vuex);
+Vue.use(Meta);
 
 store.watch(
     (state) => state.c3s && state.c3s.client,

@@ -1,17 +1,10 @@
 <i18n>
     {
-    "de": {
-    "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Recognition Challenge",
-    "cover-button-transcribe": "Start the Challenge",
-    "cover-button-translate": "Learn more",
 
-    "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
-
-    "section-newsletter-heading": "Abonniere unseren Newsletter"
-    },
     "en": {
+
+    "page-title": "Forum",
+
     "cover-heading": "Do you Know These Snakes?",
     "cover-subheading": "The Snake Recognition Challenge",
     "cover-button-transcribe": "Start the Challenge",
@@ -22,7 +15,24 @@
 
 
     "section-newsletter-heading": "Sign up for our Newsletter"
+
+    },
+    "de": {
+
+    "page-title": "Forum",
+
+    "cover-heading": "Do you Know These Snakes?",
+    "cover-subheading": "The Snake Recognition Challenge",
+    "cover-button-transcribe": "Start the Challenge",
+    "cover-button-translate": "Learn more",
+
+    "section-explanation-heading": "How Good can you Classify Them?",
+    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
+
+    "section-newsletter-heading": "Abonniere unseren Newsletter"
+
     }
+
     }
 </i18n>
 
@@ -83,6 +93,11 @@
             'app-newsletter-signup': NewsletterSignup,
             'app-footer': Footer,
             Comments
+        },
+        metaInfo: function() {
+            return {
+                title: this.$t('page-title')
+            }
         },
         data() {
             return {

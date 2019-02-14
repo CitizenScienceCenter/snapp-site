@@ -1,3 +1,16 @@
+<i18n>
+  {
+  "en": {
+  "site-title": "Snake ID Challenge | Citizen Science Center Zurich",
+  "site-description": "The Snake Identification Challenge"
+  },
+  "de": {
+  "site-title": "Snake ID Challenge | Citizen Science Center Zurich",
+  "site-description": "The Snake Identification Challenge"
+  }
+  }
+</i18n>
+
 <template>
   <div id="app">
     <app-header project-name="Snake ID<br/>Challenge" :score="score"></app-header>
@@ -19,6 +32,40 @@ export default {
   components: {
       GDPR,
     'app-header': Header
+  },
+  metaInfo: function() {
+      return {
+          // if no subcomponents specify a metaInfo.title, this title will be used
+          title: '',
+          // all titles will be injected into this template
+          titleTemplate: '%s | '+this.$t('site-title'),
+          meta: [
+              {
+                  name: 'description',
+                  content: this.$t('site-description')
+              },
+              {
+                  property: 'og:title',
+                  content: this.$t('site-title')
+              },
+              {
+                  property: 'og:description',
+                  content: this.$t('site-description')
+              },
+              {
+                  property: 'og:type',
+                  content: 'website'
+              },
+              {
+                  property: 'og:url',
+                  content: 'https://www.citizenscience.ch'
+              },
+              {
+                  property: 'og:image',
+                  content: 'https://www.citizenscience.ch/img/citsci-promo.jpg'
+              }
+          ]
+      }
   },
   mounted: function() {
 

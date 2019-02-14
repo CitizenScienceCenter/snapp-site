@@ -3,6 +3,8 @@
 
   "en": {
 
+  "page-title": "About",
+
   "heading-1": "What is This Challenge About?",
   "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
   "text-2": "Our ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. This is important because <a href='https://www.who.int/snakebites/en/' target='_blank'>venomous snakebite is responsible for over 125,000 deaths</a> and 400,000 victims of disability/disfigurement every year, mostly affecting poor and rural communities <a href='https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31224-8/fulltext' target='_blank'>in the parts of the world where snake diversity is the highest</a>. Healthcare providers working in these areas are limited in their herpetological expertise & access to resources, and we especially want to support them build better tools to help them.",
@@ -28,6 +30,8 @@
   },
 
   "de": {
+
+  "page-title": "Über das Projekt",
 
   "heading-1": "What is This Challenge About?",
   "text-1": "The number of snake species is growing rapidly, projected to reach 4,000 by 2030! Through a combination of field work in remote areas of the world, better organized data portals for natural history museum collections, and new techniques in molecular systematics, scientists have access to new data about snake biodiversity nearly every day. Most laypeople can only identify a handful of species, and even most experts have expertise in only a certain geographic area or taxonomic group.",
@@ -215,7 +219,12 @@ export default {
     'app-content-section': ContentSection,
     'app-newsletter-signup': NewsletterSignup,
     'app-footer': Footer
-  }
+  },
+  metaInfo: function() {
+      return {
+          title: this.$t('page-title')
+      }
+  },
 }
 
 </script>

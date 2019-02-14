@@ -1,21 +1,10 @@
 <i18n>
     {
-    "de": {
-    "heading": "Dein Profil",
-    "label-username": "Benutzername",
-    "label-email": "Email",
-    "label-api-key": "API Key",
-    "submission-heading": "Deine Statistik",
-    "submission-transcription-prefix": "Du hast ",
-    "submission-transcription-between": " Sätze auf ",
-    "submission-transcription-suffix": " Bögen transkribiert.",
-    "submission-translation-prefix": "Du hast ",
-    "submission-translation-suffix": " Sätze übersetzt",
-    "thanks": "Vielen Dank für Deine Hilfe!",
-    "button-logout": "Ausloggen",
-    "button-reset": "Passwort zurücksetzen"
-    },
+
     "en": {
+
+    "page-title": "Your Profile",
+
     "heading": "Your Profile",
     "label-username": "Username",
     "label-email": "Email",
@@ -29,7 +18,28 @@
     "thanks": "Thanks for helping!",
     "button-logout": "Logout",
     "button-reset": "Reset Password"
+    },
+
+    "de": {
+
+    "page-title": "Dein Profil",
+
+    "heading": "Dein Profil",
+    "label-username": "Benutzername",
+    "label-email": "Email",
+    "label-api-key": "API Key",
+    "submission-heading": "Deine Statistik",
+    "submission-transcription-prefix": "Du hast ",
+    "submission-transcription-between": " Sätze auf ",
+    "submission-transcription-suffix": " Bögen transkribiert.",
+    "submission-translation-prefix": "Du hast ",
+    "submission-translation-suffix": " Sätze übersetzt",
+    "thanks": "Vielen Dank für Deine Hilfe!",
+    "button-logout": "Ausloggen",
+    "button-reset": "Passwort zurücksetzen"
+
     }
+
     }
 </i18n>
 
@@ -104,6 +114,11 @@
             Scores,
             'app-content-section': ContentSection,
             'app-footer': Footer
+        },
+        metaInfo: function() {
+            return {
+                title: this.$t('page-title')
+            }
         },
         computed: {
             ...mapState({

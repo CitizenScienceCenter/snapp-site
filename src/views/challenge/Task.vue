@@ -3,6 +3,7 @@
 
 "en": {
 
+    "page-title": "Challenge",
 
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
@@ -12,12 +13,14 @@
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
     "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
 
-"section-newsletter-heading": "Sign up for our Newsletter"
+    "section-newsletter-heading": "Sign up for our Newsletter"
 
     },
 
 "de": {
 
+    "page-title": "Challenge",
+
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
     "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
@@ -26,7 +29,7 @@
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
     "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
 
-"section-newsletter-heading": "Abonniere unseren Newsletter"
+    "section-newsletter-heading": "Abonniere unseren Newsletter"
 
 }
 
@@ -497,6 +500,11 @@ export default {
         'image-viewer': ImageViewer,
         'search-select': SearchSelect,
         'comments': Comments
+    },
+    metaInfo: function() {
+        return {
+            title: this.$t('page-title')
+        }
     },
     data() {
         return {

@@ -3,6 +3,8 @@
 
   "en": {
 
+  "page-title": "Snake ID Challenge | Citizen Science Center Zurich",
+
   "cover-heading": "Do you Know These Snakes?",
   "cover-subheading": "The Snake Identification Challenge",
   "cover-button-start": "Start the Challenge",
@@ -27,6 +29,10 @@
   },
 
   "de": {
+
+  "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
+
+  "page-title": "Citizen Science Center Zurich",
 
   "cover-heading": "Do you Know These Snakes?",
   "cover-subheading": "The Snake Identification Challenge",
@@ -274,7 +280,7 @@
 
 <script>
 
-    import {mapState} from 'vuex'
+import {mapState} from 'vuex'
 
 import Cover from '@/components/shared/Cover.vue';
 import ContentSection from '@/components/shared/ContentSection.vue';
@@ -294,11 +300,17 @@ export default {
     'app-footer': Footer,
     Scores
   },
-    computed: {
-        ...mapState({
-            challengeState: state => state.consts.challengeState,
-        })
-    }
+  metaInfo: function() {
+      return {
+          title: this.$t('page-title'),
+          titleTemplate: null
+      }
+  },
+  computed: {
+      ...mapState({
+          challengeState: state => state.consts.challengeState,
+      })
+  }
 }
 
 </script>
