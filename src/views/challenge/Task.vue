@@ -953,7 +953,7 @@ export default {
     .settings-section {
         .settings {
 
-            padding: $spacing-1 0;
+            padding: calc(#{$spacing-1}/2) 0;
 
             .settings-select {
                 select {
@@ -996,8 +996,9 @@ export default {
         }
         .image-info-wrapper {
             position: absolute;
-            bottom: $spacing-1;
+            top: $spacing-1;
             left: $spacing-1;
+
             margin: calc( -#{$spacing-1} /2 );
             font-size: 0;
 
@@ -1258,13 +1259,27 @@ export default {
 }
 
 
+
+@media only screen and (min-width: $viewport-mobile-large) {
+
+    .section-wrapper {
+
+        .settings-section {
+            .settings {
+                padding: $spacing-1 0;
+            }
+        }
+    }
+
+}
+
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
     .section-wrapper {
 
         .settings-section {
             .settings {
-                padding: $spacing-2 0;
+                padding: $spacing-1 0;
             }
         }
 
@@ -1272,6 +1287,10 @@ export default {
 
             .image-viewer {
                 height: 480px;
+            }
+            .image-info-wrapper {
+                top: $spacing-2;
+                left: $spacing-2;
             }
         }
 

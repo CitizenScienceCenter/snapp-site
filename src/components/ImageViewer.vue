@@ -107,8 +107,8 @@
 
         .buttons {
             position: absolute;
-            top: $spacing-1;
-            left: $spacing-1;
+            bottom: $spacing-1;
+            right: $spacing-1;
 
             .button {
                 display: block;
@@ -221,8 +221,8 @@
         .croppa-container {
 
             .buttons {
-                top: $spacing-2;
-                left: $spacing-2;
+                bottom: $spacing-2;
+                right: $spacing-2;
 
                 .button {
                     &:first-of-type {
