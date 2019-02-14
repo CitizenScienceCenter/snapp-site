@@ -1,3 +1,51 @@
+<i18n>
+    {
+    "en": {
+
+    "duration-prefix-before": "Challenge starts in",
+    "duration-prefix-after": "Challenge ended",
+    "duration-prefix-ongoing": "Challenge still open for",
+
+    "duration-days": "Days",
+    "duration-day": "Day",
+    "duration-hours": "Hours",
+    "duration-hour": "Hour",
+    "duration-minutes": "Minutes",
+    "duration-minute": "Minute",
+    "duration-seconds": "Seconds",
+    "duration-second": "Second",
+
+    "duration-and": "and",
+
+    "duration-suffix-after": "ago"
+
+    },
+    "de": {
+
+    "duration-prefix-before": "Challenge beginnt in",
+    "duration-prefix-after": "Challenge endete vor",
+    "duration-prefix-ongoing": "Challenge noch offen für",
+
+
+    "duration-days": "Tage",
+    "duration-day": "Tag",
+    "duration-hours": "Stunden",
+    "duration-hour": "Stunde",
+    "duration-minutes": "Minuten",
+    "duration-minute": "Minute",
+    "duration-seconds": "Sekunden",
+    "duration-second": "Sekunde",
+
+    "duration-and": "und",
+
+    "duration-suffix-after": ""
+
+    }
+    }
+</i18n>
+
+
+
 <template>
     <div class="duration">
         <div class="bar" v-if="state === 'ongoing'">
@@ -5,26 +53,26 @@
         </div>
 
         <p class="centered">
-            <template v-if="state === 'before'">Challenge starts in </template>
-            <template v-else-if="state === 'after'">Challenge endend </template>
-            <template v-else>Challenge still open for </template>
+            <template v-if="state === 'before'">{{ $t('duration-prefix-before') }} </template>
+            <template v-else-if="state === 'after'">{{ $t('duration-prefix-after') }} </template>
+            <template v-else>{{ $t('duration-prefix-ongoing') }} </template>
 
             <template v-if="days > 0">
-                <span v-if="days === 1">{{days}} Day</span>
-                <span v-else>{{days}} Days</span>,
+                <span v-if="days === 1">{{days}} {{ $t('duration-day') }}</span>
+                <span v-else>{{days}} {{ $t('duration-days') }}</span>,
             </template>
             <template v-if="hours > 0 || days > 0">
-                <span v-if="hours === 1">{{hours}} Hour</span>
-                <span v-else>{{hours}} Hours</span>,
+                <span v-if="hours === 1">{{hours}} {{ $t('duration-hour') }}</span>
+                <span v-else>{{hours}} {{ $t('duration-hours') }}</span>,
             </template>
             <template v-if="minutes > 0 || hours > 0 || days > 0">
-                <span v-if="minutes === 1">{{minutes}} Minute</span>
-                <span v-else>{{minutes}} Minutes</span> and
+                <span v-if="minutes === 1">{{minutes}} {{ $t('duration-minute') }}</span>
+                <span v-else>{{minutes}} {{ $t('duration-minutes') }}</span> {{ $t('duration-and') }}
             </template>
-            <span v-if="seconds === 1">{{seconds}} Second</span>
-            <span v-else>{{seconds}} Seconds</span>
+            <span v-if="seconds === 1">{{seconds}} {{ $t('duration-second') }}</span>
+            <span v-else>{{seconds}} {{ $t('duration-seconds') }}</span>
 
-            <template v-if="state === 'after'"> ago</template>
+            <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }} </template>
         </p>
     </div>
 </template>

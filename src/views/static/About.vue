@@ -25,6 +25,8 @@
   "heading-sources": "Image Sources",
   "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
 
+  "section-partners-heading": "Project Partners",
+
   "section-newsletter-heading": "Sign up for our Newsletter"
 
   },
@@ -50,9 +52,10 @@
   "people-3-heading": "Isabelle Bolon",
   "people-3-text": "tbd",
 
-
   "heading-sources": "Image Sources",
   "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
+
+  "section-partners-heading": "Projektpartner",
 
   "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -122,11 +125,12 @@
       </div>
     </app-content-section>
 
+
     <app-content-section color="light-greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
-            <h2 class="heading centered">Project Partners</h2>
+            <h2 class="heading centered">{{ $t('section-partners-heading') }}</h2>
           </div>
         </div>
         <div class="row row-centered row-wrapping">
@@ -183,7 +187,6 @@
         </div>
       </div>
     </app-content-section>
-
 
     <app-content-section color="greyish">
       <div class="content-wrapper">

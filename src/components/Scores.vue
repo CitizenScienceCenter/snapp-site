@@ -1,3 +1,37 @@
+<i18n>
+    {
+    "en": {
+
+    "scores-highscore": "High Score",
+    "scores-highscore-by": "by",
+    "scores-users": "Number of Users",
+    "scores-submissions": "Number of Submissions",
+    "scores-yourscore": "Your Score",
+    "scores-yourrank": "Your Rank",
+    "scores-yourprogress": "Your Progress",
+
+    "scores-register-text": "Create an Account to Take Part in the Challenge",
+    "scores-register-button": "Register Now"
+
+    },
+    "de": {
+
+    "scores-highscore": "High Score",
+    "scores-highscore-by": "von",
+    "scores-users": "Anzahl Benutzer",
+    "scores-submissions": "Anzahl Antworten",
+    "scores-yourscore": "Deine Punktzahl",
+    "scores-yourrank": "Dein Rang",
+    "scores-yourprogress": "Dein Fortschritt",
+
+    "scores-register-text": "Erstelle einen Account um teilzunehmen",
+    "scores-register-button": "Jetzt Registrieren"
+
+    }
+    }
+</i18n>
+
+
 <template>
     <div class="scores">
         <div class="content-wrapper">
@@ -5,19 +39,19 @@
 
                 <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block form-field-right-aligned form-field-big">
-                        <label>High Score</label>
+                        <label>{{ $t('scores-highscore') }}</label>
                         {{ highscore.score }}
-                        <div v-if="highscore.username.substring(0,5) !== '_anon'" class="small">by {{ highscore.username }}</div>
-                        <div v-else class="small">by Anonymous</div>
+                        <div v-if="highscore.username.substring(0,5) !== '_anon'" class="small">{{ $t('scores-highscore-by') }} {{ highscore.username }}</div>
+                        <div v-else class="small">{{ $t('scores-highscore-by') }} Anonymous</div>
                     </div>
                 </div>
                 <div class="col col-6 col-large-3 col-wrapping col-large-no-bottom-margin">
                     <div class="form-field form-field-block">
-                        <label>Number of Users</label>
+                        <label>{{ $t('scores-users') }}</label>
                         {{ allUsersCount }}
                     </div>
                     <div class="form-field form-field-block">
-                        <label>Number of Submissions</label>
+                        <label>{{ $t('scores-submissions') }}</label>
                         {{ allSubmissionsCount }}
                     </div>
                 </div>
@@ -26,7 +60,7 @@
 
                     <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                         <div class="form-field form-field-block form-field-right-aligned form-field-big">
-                            <label>Your Score</label>
+                            <label>{{ $t('scores-yourscore') }}</label>
                             {{ score }}
                         </div>
                     </div>
@@ -34,19 +68,19 @@
                     <template>
                         <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
                             <div class="form-field form-field-block">
-                                <label>Your Rank</label>
+                                <label>{{ $t('scores-yourrank') }}</label>
                                 <span>{{ rank }}.</span>
                             </div>
                             <div class="form-field form-field-block">
-                                <label>Your Progress</label>
+                                <label>{{ $t('scores-yourprogress') }}</label>
                                 <span>{{ Math.round( (submissionsCount/totalTaskCount)*1000 )/10 }}% </span><span class="small">({{submissionsCount}}/{{totalTaskCount}})</span>
                             </div>
                         </div>
                     </template>
                     <template v-if="!user.currentUser || user.isAnon">
                         <div class="col centered col-wrapping col-no-bottom-margin extra-margin-top">
-                            <h3 class="subheading">Create an Account to Take Part in the Challenge</h3>
-                            <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+                            <h3 class="subheading">{{ $t('scores-register-text') }}</h3>
+                            <router-link tag="button" to="/login" class="button button-primary">{{ $t('scores-register-button') }}</router-link>
                         </div>
                     </template>
 

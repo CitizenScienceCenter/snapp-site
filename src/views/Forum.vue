@@ -5,14 +5,7 @@
 
     "page-title": "Forum",
 
-    "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Recognition Challenge",
-    "cover-button-transcribe": "Start the Challenge",
-    "cover-button-translate": "Learn more",
-
-    "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
-
+    "forum-heading": "Questions & Discussions",
 
     "section-newsletter-heading": "Sign up for our Newsletter"
 
@@ -21,13 +14,7 @@
 
     "page-title": "Forum",
 
-    "cover-heading": "Do you Know These Snakes?",
-    "cover-subheading": "The Snake Recognition Challenge",
-    "cover-button-transcribe": "Start the Challenge",
-    "cover-button-translate": "Learn more",
-
-    "section-explanation-heading": "How Good can you Classify Them?",
-    "section-explanation-text": "Maroon pink bilge spyglass blow the man down schooner lateen sail measured fer yer chains chase driver. Sail ho Spanish Main barque bilged on her anchor coffer keel main sheet swing the lead swab Shiver me timbers. Jolly Roger gibbet transom lanyard driver list barkadeer bilge water Jack Ketch Shiver me timbers.",
+    "forum-heading": "Fragen & Diskussionen",
 
     "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -44,7 +31,7 @@
 
                 <div class="row row-centered">
                     <div class="col col-large-6">
-                        <h2 class="heading">Questions & Discussions</h2>
+                        <h2 class="heading">{{ $t('forum-heading') }}</h2>
 
                         <comments :sourceId="activityId" withTitles></comments>
                     </div>
@@ -83,12 +70,10 @@
     import Comments from '@/components/shared/Comments.vue'
     import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
     import Footer from '@/components/shared/Footer.vue'
-    import CommentedTasks from "../components/shared/CommentedTasks";
 
     export default {
         name: 'Forum',
         components: {
-            CommentedTasks,
             'app-content-section': ContentSection,
             'app-newsletter-signup': NewsletterSignup,
             'app-footer': Footer,

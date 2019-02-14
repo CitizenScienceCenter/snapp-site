@@ -201,7 +201,6 @@
     </app-content-section>
 
 
-
     <app-content-section color="light-greyish">
       <div class="content-wrapper">
         <div class="row row-centered">

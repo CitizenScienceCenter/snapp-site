@@ -5,13 +5,38 @@
 
     "page-title": "Challenge",
 
+    "challenge-difficulty": "Difficulty",
+    "challenge-difficulty-1": "Easy",
+    "challenge-difficulty-2": "Hard",
+    "challenge-heading": "What Snake is This?",
+    "challenge-placeholder": "Family, Genus or Binomial",
+    "challenge-button-register": "Register",
+    "challenge-button-skip": "Skip",
+    "challenge-button-submit": "Submit",
+    "challenge-info-before": "Not started yet.",
+    "challenge-info-after": "Already over.",
+    "challenge-info-done": "Already done.",
+    "challenge-scoreinfo-prefix": "Earn",
+    "challenge-scoreinfo-suffix-binomial": "points for the correct binomial.",
+    "challenge-scoreinfo-suffix-genus": "points for the correct genus.",
+    "challenge-scoreinfo-suffix-family": "points for the correct family.",
+    "challenge-button-feedback": "Send Feedback on this Image",
+    "challenge-complete-heading": "Challenge Complete",
+    "challenge-complete-text": "You did everything!",
+
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
     "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
     "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
+    "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+
+    "section-about-heading": "Why this Challenge?",
+    "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
+    "section-about-button": "Read more",
+
+    "section-partners-heading": "Project Partners",
 
     "section-newsletter-heading": "Sign up for our Newsletter"
 
@@ -21,13 +46,38 @@
 
     "page-title": "Challenge",
 
+    "challenge-difficulty": "Schwierigkeit",
+    "challenge-difficulty-1": "Einfach",
+    "challenge-difficulty-2": "Schwierig",
+    "challenge-heading": "Welche Schlange ist das?",
+    "challenge-placeholder": "Familie, Genus oder Binomial",
+    "challenge-button-register": "Registrieren",
+    "challenge-button-skip": "Auslassen",
+    "challenge-button-submit": "Senden",
+    "challenge-info-before": "Not started yet.",
+    "challenge-info-after": "Already over.",
+    "challenge-info-done": "Already done.",
+    "challenge-scoreinfo-prefix": "Erhalte",
+    "challenge-scoreinfo-suffix-binomial": "Punkte für den korrekten Binomial.",
+    "challenge-scoreinfo-suffix-genus": "Punkte für den korrekten Genus.",
+    "challenge-scoreinfo-suffix-family": "Punkte für die korrekte Familie.",
+    "challenge-button-feedback": "Sende Feedback zum Foto",
+    "challenge-complete-heading": "Challenge komplett",
+    "challenge-complete-text": "Du hast alles erledigt!",
+
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
     "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
     "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the Ciztizen Science Center Zurich",
+    "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+
+    "section-about-heading": "Why this Challenge?",
+    "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
+    "section-about-button": "Read more",
+
+    "section-partners-heading": "Projektpartner",
 
     "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -53,11 +103,11 @@
                                 <div class="col col-large-5">
 
                                     <div class="difficulty-select">
-                                        <label>Difficulty</label>
+                                        <label>{{ $t('challenge-difficulty') }}</label>
                                         <div class="custom-select settings-select">
                                             <select v-model="difficulty">
-                                                <option selected value="0">Easy</option>
-                                                <option value="1">Hard</option>
+                                                <option selected value="0">{{ $t('challenge-difficulty-1') }}</option>
+                                                <option value="1">{{ $t('challenge-difficulty-2') }}</option>
                                             </select>
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                                 <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
@@ -79,7 +129,7 @@
                             <div class="col col-large-5">
 
                                 <h2 class="heading">
-                                    What Snake is This?
+                                    {{ $t('challenge-heading') }}
                                 </h2>
 
                             </div>
@@ -123,7 +173,7 @@
                                 <div class="form-field form-field-block">
                                     <search-select
                                             :disabled="hasSubmissionAlready"
-                                            placeholder="Family, Genus or Binomial"
+                                            :placeholder="$t('challenge-placeholder')"
                                             :optionContainers="optionContainers"
                                             v-model="value">
                                     </search-select>
@@ -134,11 +184,11 @@
 
                                     <div class="button-group right-aligned">
                                         <template v-if="challengeState === 'before'">
-                                            <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+                                            <router-link tag="button" to="/login" class="button button-primary">{{ $t('challenge-button-register') }}</router-link>
                                         </template>
                                         <template v-if="challengeState === 'ongoing'">
-                                            <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">Skip</button>
-                                            <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">Submit</button>
+                                            <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">{{ $t('challenge-button-skip') }}</button>
+                                            <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
                                         </template>
                                     </div>
 
@@ -151,7 +201,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            Not started yet!
+                                            {{ $t('challenge-info-before') }}
                                         </div>
                                         <div v-else-if="challengeState === 'after'" class="message message-info">
                                             <div class="icon">
@@ -159,7 +209,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            Already over!
+                                            {{ $t('challenge-info-after') }}
                                         </div>
                                         <div v-else-if="hasSubmissionAlready" class="message message-info">
                                             <div class="icon">
@@ -167,7 +217,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            Already Done!
+                                            {{ $t('challenge-info-done') }}
                                         </div>
 
                                         <div v-else-if="evaluation" class="message message-evaluation">
@@ -218,7 +268,7 @@
                                                 </template>
                                             </div>
                                             <div class="default">
-                                                Earn {{binomialScore}} points for the correct binomial.
+                                                {{ $t('challenge-scoreinfo-prefix') }} {{binomialScore}} {{ $t('challenge-scoreinfo-suffix-binomial') }}
                                             </div>
                                         </li>
 
@@ -243,7 +293,7 @@
                                                 </template>
                                             </div>
                                             <div class="default">
-                                                Earn {{genusScore}} points for the correct genus.
+                                                {{ $t('challenge-scoreinfo-prefix') }} {{genusScore}} {{ $t('challenge-scoreinfo-suffix-genus') }}
                                             </div>
                                         </li>
 
@@ -264,14 +314,14 @@
                                                 </template>
                                             </div>
                                             <div class="default">
-                                                Earn {{familyScore}} points for the correct family.
+                                                {{ $t('challenge-scoreinfo-prefix') }} {{familyScore}} {{ $t('challenge-scoreinfo-suffix-family') }}
                                             </div>
                                         </li>
 
                                     </ul>
 
                                     <div class="button-group">
-                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback&body=https://snakes.citizenscience.ch/challenge/'+tasks[0].id)">Send Feedback on this Image</button>
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback&body=https://snakes.citizenscience.ch/challenge/'+tasks[0].id)">{{ $t('challenge-button-feedback') }}</button>
                                     </div>
 
                                 </div>
@@ -309,11 +359,8 @@
                     <div class="row row-centered">
                         <div class="col col-large-6">
 
-                            <h2 class="heading">Challenge Complete</h2>
-
-                            <p>
-                                You did everything!
-                            </p>
+                            <h2 class="heading">{{ $t('challenge-complete-heading') }}</h2>
+                            <p v-html="$t('challenge-complete-text')"></p>
 
                         </div>
                     </div>
@@ -365,12 +412,10 @@
                 <div class="row">
                     <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
-                        <h2 id="about" class="heading centered left-aligned-large">Why this Challenge?</h2>
-                        <p>
-                            The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!
-                        </p>
+                        <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
+                        <p v-html="$t('section-about-text')"></p>
                         <p class="centered left-aligned-large">
-                            <router-link tag="button" to="/about" class="button button-secondary">Read more</router-link>
+                            <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
                         </p>
                     </div>
 
@@ -393,7 +438,7 @@
             <div class="content-wrapper">
                 <div class="row row-centered">
                     <div class="col col-large-6">
-                        <h2 class="heading centered">Project Partners</h2>
+                        <h2 class="heading centered">{{ $t('section-partners-heading') }}</h2>
                     </div>
                 </div>
                 <div class="row row-centered row-wrapping">
@@ -467,8 +512,6 @@
         </app-content-section>
 
         <app-footer></app-footer>
-
-
 
 
     </div>
