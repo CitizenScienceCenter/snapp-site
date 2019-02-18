@@ -8,7 +8,7 @@
                 v-on:keyup.prevent="handleInputKeys"
                 @click.prevent="!showResults ? showResults = true : showResults = false"
                 @blur="inputBlur"
-                :class="{'italic': returnObject && Object.keys(returnObject).length > 0 && returnObject.info === 'binomial'}" />
+                :class="{'italic': returnObject && Object.keys(returnObject).length > 0 && returnObject.type === 'binomial' && !showResults}" />
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                 <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
             </svg>
@@ -16,21 +16,25 @@
 
         <div v-show="showResults && maxOptionIndex >= 0" ref="results" class="results">
             <ul @click="clickOnResults">
-                <template v-for="filteredOptionContainer in filteredOptionContainers">
+                <div v-for="filteredOptionContainer in filteredOptionContainers">
                     <li class="label" v-if="filteredOptionContainer.options.length > 0 && filteredOptionContainer.showLabel">
                         {{filteredOptionContainer.label}}
                     </li>
                     <li v-for="(option,index) in filteredOptionContainer.options"
                         :ref="'option_'+(index+filteredOptionContainer.startId)"
                         @click="optionClick( (index+filteredOptionContainer.startId) )"
-                        :class="{ 'focused' : focusedOptionIndex === index+filteredOptionContainer.startId }"
-                        :style="{ 'font-style': filteredOptionContainer.fontStyle }">
+                        :class="{
+                            'binomial' : filteredOptionContainer.label === 'Binomials',
+                            'focused' : focusedOptionIndex === index+filteredOptionContainer.startId
+                        }">
                         {{ option.value }}
-                        <div v-if="filteredOptionContainer.foundInSyn[index] > -1">
-                            <span style="font-style:normal">aka </span>{{ option.synonyms[ filteredOptionContainer.foundInSyn[index] ] }}
+                        <div class="aka" v-if="( filteredOptionContainer.foundInCommonName && filteredOptionContainer.foundInCommonName[index] ) || ( filteredOptionContainer.foundInSynonyms[index] && filteredOptionContainer.foundInSynonyms[index].length > 0 )">
+                            <span class="label">aka: </span>
+                            <span class="commonName" v-if="filteredOptionContainer.foundInCommonName[index]">{{ option.commonName }}</span>
+                            <span class="synonym" v-for="synonymIndex in filteredOptionContainer.foundInSynonyms[index]">{{ option.synonyms[synonymIndex] }}</span>
                         </div>
                     </li>
-                </template>
+                </div>
             </ul>
         </div>
     </div>
@@ -107,6 +111,12 @@
                 if( !this.returnObject || Object.keys(this.returnObject).length === 0 ) {
                     this.returnObject = {};
                 }
+                else {
+                    console.log(this.returnObject.value ===  this.inputValue);
+                    if( this.returnObject.value !== this.inputValue ) {
+                        this.returnObject = {};
+                    }
+                }
                 this.$emit('input', this.returnObject );
 
 
@@ -141,29 +151,44 @@
                     for( let i = 0; i < this.optionContainers.length; i++ ) {
 
 
-                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'fontStyle': this.optionContainers[i].fontStyle, 'options': [], 'foundInSyn': [] };
+                        let filteredOptionContainer = { 'label': this.optionContainers[i].label, 'showLabel': this.optionContainers[i].showLabel, 'options': [], 'foundInCommonName': [], 'foundInSynonyms': [] };
 
                         let options;
                         if( this.inputValue.length > 0 ) {
 
                             options = this.optionContainers[i].options.filter( function(option) {
+
+                                let foundInValue = false;
+                                let foundInCommonName = false;
+                                let foundInSynonyms = [];
+
                                 if( option.value.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
-                                    filteredOptionContainer.foundInSyn.push( -1 );
-                                    return true;
+                                    foundInValue = true;
                                 }
-                                else {
+
+                                if ( option.commonName && option.commonName.toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                    foundInCommonName = true;
+                                }
+
+                                if ( option.synonyms && option.synonyms.length > 0 ) {
                                     // check synonyms if exist
-                                    if( option.synonyms && option.synonyms.length > 0 ) {
-                                        for( let j = 0; j < option.synonyms.length; j++ ) {
-                                            if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
-                                                filteredOptionContainer.foundInSyn.push( j );
-                                                return true;
-                                            }
+                                    for( let j = 0; j < option.synonyms.length; j++ ) {
+                                        if( option.synonyms[j].toUpperCase().includes( self.inputValue.toUpperCase() ) ) {
+                                            foundInSynonyms.push( j );
                                         }
                                     }
                                 }
-                                return false;
-                            }, filteredOptionContainer);
+
+                                if( foundInValue || foundInCommonName || foundInSynonyms.length > 0 ) {
+                                    filteredOptionContainer.foundInCommonName.push(foundInCommonName);
+                                    filteredOptionContainer.foundInSynonyms.push(foundInSynonyms);
+                                    return true;
+                                }
+                                else {
+                                    return false;
+                                }
+
+                            } );
 
                         }
                         else {
@@ -184,7 +209,6 @@
                         filteredOptionContainers.push( filteredOptionContainer );
 
                     }
-
 
                     this.focusedOptionIndex = 0;
                     this.maxOptionIndex = filteredOptionContainers[filteredOptionContainers.length-1].startId + filteredOptionContainers[filteredOptionContainers.length-1].options.length -1;
@@ -230,6 +254,7 @@
             },
             handleInputKeys: function(event) {
                 if( this.showResults ) {
+
                     switch(event.key) {
                         case 'ArrowDown':
                             if( this.focusedOptionIndex < this.maxOptionIndex ) {
@@ -346,15 +371,28 @@
 
                     cursor: pointer;
 
-                    div {
-                        margin-top: 4px;
-                        font-size: $font-size-small;
+                    &.binomial {
+                        font-style: italic;
 
-                        span {
-                            margin-right: $spacing-1;
+                        .aka {
+                            margin-top: 4px;
+                            font-size: $font-size-small;
 
-                            &:last-child {
-                                margin-right: 0;
+                            .label {
+                                font-style: normal;
+                            }
+                            .commonName, .synonym {
+                                &:after {
+                                    content: ', ';
+                                }
+                                &:last-child {
+                                    &:after {
+                                        content: '';
+                                    }
+                                }
+                                .commonName {
+                                    font-style: normal;
+                                }
                             }
                         }
                     }

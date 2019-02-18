@@ -27,7 +27,7 @@ const actions = {
                 if( !alreadyFound ) {
                     searchOptionsFamilies.push( {
                         'value': snakes[i].family,
-                        'info': 'family'
+                        'type': 'family'
                     } );
                 }
 
@@ -42,32 +42,26 @@ const actions = {
                 if( !alreadyFound ) {
                     searchOptionsGenera.push( {
                         'value': snakes[i].genus,
-                        'info': 'genus',
+                        'type': 'genus',
                         'family': snakes[i].family
                     } );
                 }
 
                 // synoyms
                 let synonyms = [];
-
                 if( snakes[i].allNames.synonyms ) {
                     for (j = 0; j < snakes[i].allNames.synonyms.length; j++) {
-                        /*
-                        if (synonyms.indexOf(snakes[i].allNames.synonyms[j]) === -1) {
-                            synonyms.push(snakes[i].allNames.synonyms[j]);
-                        }
-                        */
                         synonyms.push(snakes[i].allNames.synonyms[j]);
                     }
                 }
-
                 // add to binomials
                 searchOptionsBinomials.push( {
                     'value': snakes[i].allNames.binomial,
                     'synonyms': synonyms,
-                    'info': 'binomial',
+                    'type': 'binomial',
                     'genus': snakes[i].genus,
-                    'family': snakes[i].family
+                    'family': snakes[i].family,
+                    'commonName': snakes[i].allNames.commonName
                 } );
             }
 
@@ -87,9 +81,9 @@ const actions = {
         searchOptionsFamilies.sort( sortThings );
 
 
-        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'fontStyle': 'normal', 'options': searchOptionsFamilies };
-        let searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'fontStyle': 'normal', 'options': searchOptionsGenera };
-        let searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'fontStyle': 'italic', 'options': searchOptionsBinomials };
+        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
+        let searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
+        let searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'options': searchOptionsBinomials };
 
         commit('SET_OPTIONCONTAINERS', [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ]);
         commit('SET_CONTAINERVERSION', newVersion );

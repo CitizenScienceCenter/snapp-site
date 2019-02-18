@@ -38,13 +38,11 @@
 
     "duration-and": "und",
 
-    "duration-suffix-after": ""
+    "duration-suffix-after": " "
 
     }
     }
 </i18n>
-
-
 
 <template>
     <div class="duration">
@@ -72,7 +70,7 @@
             <span v-if="seconds === 1">{{seconds}} {{ $t('duration-second') }}</span>
             <span v-else>{{seconds}} {{ $t('duration-seconds') }}</span>
 
-            <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }} </template>
+            <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }}</template>
         </p>
     </div>
 </template>

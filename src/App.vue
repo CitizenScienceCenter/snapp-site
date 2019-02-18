@@ -69,10 +69,10 @@ export default {
   },
   mounted: function() {
 
-    this.$store.dispatch('consts/setDates', ['2019-02-13T14:00:00Z', '2019-02-17T14:00:00Z'] );
+    this.$store.dispatch('consts/setDates', ['2019-02-25T11:00:00Z', '2019-03-03T11:00:00Z'] );
 
-    if( this.containerVersion !== 0.1 || !this.optionContainers ) {
-        this.$store.dispatch('consts/createOptionContainers', 0.1 );
+    if( this.containerVersion !== 0.4 || !this.optionContainers ) {
+        this.$store.dispatch('consts/createOptionContainers', 0.4 );
     }
 
     var app = this.$el;

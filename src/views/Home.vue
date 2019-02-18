@@ -19,13 +19,13 @@
   "section-prize-heading": "What Will you get for Your Participation?",
   "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
   "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
-  "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
+  "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
   "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
   "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
 
   "section-about-heading": "Why this Challenge?",
-  "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
+  "section-about-text": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise. Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
   "section-about-button": "Read more",
 
   "section-partners-heading": "Project Partners",
@@ -38,12 +38,12 @@
 
   "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
 
-  "cover-heading": "Do you Know These Snakes?",
-  "cover-subheading": "The Snake Identification Challenge",
-  "cover-button-start": "Start the Challenge",
-  "cover-button-preview": "Preview the Challenge",
-  "cover-button-review": "See the Challenge",
-  "cover-button-about": "Learn more",
+  "cover-heading": "Kennst du diese Schlangen?",
+  "cover-subheading": "Die Schlangen-Identifikations-Challenge",
+  "cover-button-start": "Challenge starten",
+  "cover-button-preview": "Challenge ansehen",
+  "cover-button-review": "Challenge ansehen",
+  "cover-button-about": "Mehr erfahren",
 
   "section-intro-heading": "How Many Species of Snakes can you Identify?",
   "section-intro-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
@@ -57,9 +57,9 @@
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
   "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
 
-  "section-about-heading": "Why this Challenge?",
-  "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
-  "section-about-button": "Read more",
+  "section-about-heading": "Warum diese Challenge?",
+  "section-about-text": "SSchlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.<br>Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
+  "section-about-button": "Mehr erfahren",
 
   "section-partners-heading": "Projektpartner",
 
@@ -100,7 +100,7 @@
         </div>
       </div>
       <div class="row row-centered">
-        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-6 scroll-effect scroll-effect-delayed-3">
+        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-8 scroll-effect scroll-effect-delayed-3">
           <duration></duration>
         </div>
       </div>

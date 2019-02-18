@@ -222,8 +222,8 @@
 
                                         <div v-else-if="evaluation" class="message message-evaluation">
 
-                                            <div ref="circle2" class="circle circle-2 hidden" :class="{ 'success': evaluation.score === binomialScore, 'fail': value.info === 'binomial' && evaluation.score < binomialScore, 'empty': value.info !== 'binomial' }"></div>
-                                            <div ref="circle1" class="circle circle-1 hidden" :class="{ 'success': value.info !== 'family' && evaluation.score >= genusScore, 'fail': value.info !== 'family' && evaluation.score < genusScore, 'empty': value.info !== 'binomial' && value.info !== 'genus' }"></div>
+                                            <div ref="circle2" class="circle circle-2 hidden" :class="{ 'success': evaluation.score === binomialScore, 'fail': value.type === 'binomial' && evaluation.score < binomialScore, 'empty': value.type !== 'binomial' }"></div>
+                                            <div ref="circle1" class="circle circle-1 hidden" :class="{ 'success': value.type !== 'family' && evaluation.score >= genusScore, 'fail': value.type !== 'family' && evaluation.score < genusScore, 'empty': value.type !== 'binomial' && value.type !== 'genus' }"></div>
 
                                             <div v-if="evaluation.score === 0" ref="scoreicon" class="icon fail hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -242,7 +242,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="tasks[0]" class="mongo">
+                                <div v-if="tasks[0] && false" class="mongo">
                                     <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
                                     <label>Genus: </label>{{ tasks[0].info.genus }}
                                     <label>Family: </label>{{ tasks[0].info.family }}
@@ -253,17 +253,17 @@
 
                                         <li ref="evaluation-step-3" :class="{
                                             'correct': evaluation && evaluation.successRate === 3,
-                                            'wrong': evaluation && evaluation.successRate < 3 && value.info === 'binomial',
-                                            'missing': evaluation && evaluation && value.info !== 'binomial'
+                                            'wrong': evaluation && evaluation.successRate < 3 && value.type === 'binomial',
+                                            'missing': evaluation && evaluation && value.type !== 'binomial'
                                         }">
                                             <div class="evaluation">
                                                 <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
                                                     {{ tasks[0].info.binomial }}
                                                 </template>
-                                                <template v-else-if="evaluation && evaluation.successRate < 3 && value.info === 'binomial'">  <!-- wrong -->
+                                                <template v-else-if="evaluation && evaluation.successRate < 3 && value.type === 'binomial'">  <!-- wrong -->
                                                     <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
                                                 </template>
-                                                <template v-else-if="evaluation && value.info !== 'binomial'"> <!-- missing -->
+                                                <template v-else-if="evaluation && value.type !== 'binomial'"> <!-- missing -->
                                                     {{ tasks[0].info.binomial }}
                                                 </template>
                                             </div>
@@ -275,20 +275,20 @@
 
                                         <li ref="evaluation-step-2" :class="{
                                             'correct': evaluation && evaluation.successRate >= 2,
-                                            'wrong': evaluation && evaluation.successRate < 2 && ( value.info === 'genus' || value.hasOwnProperty('genus') ),
-                                            'missing': evaluation && evaluation && value.info !== 'genus' && value.info !== 'binomial'
+                                            'wrong': evaluation && evaluation.successRate < 2 && ( value.type === 'genus' || value.hasOwnProperty('genus') ),
+                                            'missing': evaluation && evaluation && value.type !== 'genus' && value.type !== 'binomial'
                                         }">
                                             <div class="evaluation">
                                                 <template v-if="evaluation && evaluation.successRate >= 2"> <!-- correct -->
                                                     {{ tasks[0].info.genus }}
                                                 </template>
-                                                <template v-else-if="evaluation && evaluation.successRate < 2 && value.info === 'genus'"> <!-- wrong -->
+                                                <template v-else-if="evaluation && evaluation.successRate < 2 && value.type === 'genus'"> <!-- wrong -->
                                                     <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.genus }}
                                                 </template>
                                                 <template v-else-if="evaluation && evaluation.successRate < 2 && value.hasOwnProperty('genus')"> <!-- wrong because of parent -->
                                                     <span class="wrongAnswer">{{ value.genus }}</span>{{ tasks[0].info.genus }}
                                                 </template>
-                                                <template v-else-if="evaluation && value.info !== 'genus' && value.info !== 'binomial'"> <!-- missing -->
+                                                <template v-else-if="evaluation && value.type !== 'genus' && value.type !== 'binomial'"> <!-- missing -->
                                                     {{ tasks[0].info.genus }}
                                                 </template>
                                             </div>
@@ -300,13 +300,13 @@
 
                                         <li ref="evaluation-step-1" :class="{
                                             'correct': evaluation && evaluation.successRate >= 1,
-                                            'wrong': evaluation && evaluation.successRate < 1 && ( value.info === 'family' || value.hasOwnProperty('family') )
+                                            'wrong': evaluation && evaluation.successRate < 1 && ( value.type === 'family' || value.hasOwnProperty('family') )
                                         }">
                                             <div class="evaluation">
                                                 <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
                                                     {{ tasks[0].info.family }}
                                                 </template>
-                                                <template v-else-if="evaluation && evaluation.successRate < 1 && value.info === 'family'"> <!-- wrong -->
+                                                <template v-else-if="evaluation && evaluation.successRate < 1 && value.type === 'family'"> <!-- wrong -->
                                                     <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
                                                 </template>
                                                 <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
@@ -633,6 +633,8 @@ export default {
     },
     mounted() {
 
+        console.log( this.optionContainers );
+
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
             //console.log('activity loaded');
@@ -845,14 +847,13 @@ export default {
         },
         submitResponse: function() {
 
+            console.log( this.value );
             // evaluation if value
             let submissionQuery;
 
-            //console.log( this.value );
-
             if( this.value && Object.keys(this.value).length > 0 ) {
 
-                if (this.value.info === 'binomial') {
+                if (this.value.type === 'binomial') {
                     if (this.value.value === this.tasks[0].info.binomial) {
                         this.evaluation = {
                             'successRate': 3,
@@ -878,7 +879,7 @@ export default {
                         };
                     }
                 }
-                else if (this.value.info === 'genus') {
+                else if (this.value.type === 'genus') {
                     if (this.value.value === this.tasks[0].info.genus) {
                         this.evaluation = {
                             'successRate': 2,
@@ -898,7 +899,7 @@ export default {
                         };
                     }
                 }
-                else if (this.value.info === 'family') {
+                else if (this.value.type === 'family') {
                     if (this.value.value === this.tasks[0].info.family) {
                         this.evaluation = {
                             'successRate': 1,
@@ -918,7 +919,7 @@ export default {
                     "content": {
                         "responses": [{
                             "value": this.value.value,
-                            "info": this.value.info,
+                            "info": this.value.type,
                             "score": this.evaluation.score
                         }]
                     },
