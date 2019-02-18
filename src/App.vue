@@ -71,8 +71,8 @@ export default {
 
     this.$store.dispatch('consts/setDates', ['2019-02-25T11:00:00Z', '2019-03-03T11:00:00Z'] );
 
-    if( this.containerVersion !== 0.4 || !this.optionContainers ) {
-        this.$store.dispatch('consts/createOptionContainers', 0.4 );
+    if( this.containerVersion !== 0.5 || !this.optionContainers ) {
+        this.$store.dispatch('consts/createOptionContainers', 0.5 );
     }
 
     var app = this.$el;

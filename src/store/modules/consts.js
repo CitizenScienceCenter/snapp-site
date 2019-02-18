@@ -81,9 +81,9 @@ const actions = {
         searchOptionsFamilies.sort( sortThings );
 
 
-        let searchOptionContainerFamilies = { 'label': 'Families', 'showLabel': true, 'options': searchOptionsFamilies };
-        let searchOptionContainerGenera = { 'label': 'Genera', 'showLabel': true, 'options': searchOptionsGenera };
-        let searchOptionContainerBinomials = { 'label': 'Binomials', 'showLabel': true, 'options': searchOptionsBinomials };
+        let searchOptionContainerFamilies = { 'label': 'label-families', 'showLabel': true, 'options': searchOptionsFamilies };
+        let searchOptionContainerGenera = { 'label': 'label-genera', 'showLabel': true, 'options': searchOptionsGenera };
+        let searchOptionContainerBinomials = { 'label': 'label-binomials', 'showLabel': true, 'options': searchOptionsBinomials };
 
         commit('SET_OPTIONCONTAINERS', [ searchOptionContainerFamilies, searchOptionContainerGenera, searchOptionContainerBinomials ]);
         commit('SET_CONTAINERVERSION', newVersion );

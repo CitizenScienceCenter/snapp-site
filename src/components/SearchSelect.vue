@@ -1,3 +1,22 @@
+<i18n>
+    {
+    "en": {
+
+    "label-families": "Families",
+    "label-genera": "Genera",
+    "label-binomials": "Binomials"
+
+    },
+    "de": {
+
+    "label-families": "Familien",
+    "label-genera": "Genera",
+    "label-binomials": "Binomiale"
+
+    }
+    }
+</i18n>
+
 <template>
     <div class="search-select">
 
@@ -18,13 +37,13 @@
             <ul @click="clickOnResults">
                 <div v-for="filteredOptionContainer in filteredOptionContainers">
                     <li class="label" v-if="filteredOptionContainer.options.length > 0 && filteredOptionContainer.showLabel">
-                        {{filteredOptionContainer.label}}
+                        {{ $t(filteredOptionContainer.label) }}
                     </li>
                     <li v-for="(option,index) in filteredOptionContainer.options"
                         :ref="'option_'+(index+filteredOptionContainer.startId)"
                         @click="optionClick( (index+filteredOptionContainer.startId) )"
                         :class="{
-                            'binomial' : filteredOptionContainer.label === 'Binomials',
+                            'binomial' : filteredOptionContainer.label === 'label-binomials',
                             'focused' : focusedOptionIndex === index+filteredOptionContainer.startId
                         }">
                         {{ option.value }}

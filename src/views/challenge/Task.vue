@@ -26,14 +26,15 @@
 
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-    "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
-    "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
+    "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+    "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+    "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
 
     "section-about-heading": "Why this Challenge?",
-    "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
+    "section-about-text-1": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise.",
+    "section-about-text-2": "Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
     "section-about-button": "Read more",
 
     "section-partners-heading": "Project Partners",
@@ -49,7 +50,7 @@
     "challenge-difficulty": "Schwierigkeit",
     "challenge-difficulty-1": "Einfach",
     "challenge-difficulty-2": "Schwierig",
-    "challenge-heading": "Welche Schlange ist das?",
+    "challenge-heading": "Welche Schlange ist's?",
     "challenge-placeholder": "Familie, Genus oder Binomial",
     "challenge-button-register": "Registrieren",
     "challenge-button-skip": "Auslassen",
@@ -65,17 +66,18 @@
     "challenge-complete-heading": "Challenge komplett",
     "challenge-complete-text": "Du hast alles erledigt!",
 
-    "section-prize-heading": "What Will you get for Your Participation?",
-    "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-    "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
-    "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
-    "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
-    "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+    "section-prize-heading": "Was kannst Du gewinnen?",
+    "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
+    "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+    "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
+    "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
+    "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
+    "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
 
-    "section-about-heading": "Why this Challenge?",
-    "section-about-text": "The ultimate goal is to create tools that anyone can use to identify snakes, using a combination of humans and artificial intelligence, in order to improve snake conservation through educating people, help scientists discover new species, and help doctors better treat snakebite cases. Your knowledge is uniquely valuable & someday your rapid IDs could help save the life of a person!",
-    "section-about-button": "Read more",
+    "section-about-heading": "Warum diese Challenge?",
+    "section-about-text-1": "Schlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.",
+    "section-about-text-2": "Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
+    "section-about-button": "Mehr erfahren",
 
     "section-partners-heading": "Projektpartner",
 
@@ -413,7 +415,8 @@
                     <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
                         <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                        <p v-html="$t('section-about-text')"></p>
+                        <p v-html="$t('section-about-text-1')"></p>
+                        <p v-html="$t('section-about-text-2')"></p>
                         <p class="centered left-aligned-large">
                             <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
                         </p>
