@@ -14,18 +14,20 @@
 
   "section-intro-heading": "How Many Species of Snakes can you Identify?",
   "section-intro-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-intro-text-2": "We’ll show you 1000 photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
+  "section-intro-text-2-prefix": "We’ll show you",
+  "section-intro-text-2-suffix": "photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
 
   "section-prize-heading": "What Will you get for Your Participation?",
   "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
+  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
   "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
   "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-  "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+  "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
 
   "section-about-heading": "Why this Challenge?",
-  "section-about-text": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise. Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
+  "section-about-text-1": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise.",
+  "section-about-text-2": "Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
   "section-about-button": "Read more",
 
   "section-partners-heading": "Project Partners",
@@ -38,27 +40,29 @@
 
   "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
 
-  "cover-heading": "Kennst du diese Schlangen?",
+  "cover-heading": "Kennst Du diese Schlangen?",
   "cover-subheading": "Die Schlangen-Identifikations-Challenge",
   "cover-button-start": "Challenge starten",
   "cover-button-preview": "Challenge ansehen",
   "cover-button-review": "Challenge ansehen",
   "cover-button-about": "Mehr erfahren",
 
-  "section-intro-heading": "How Many Species of Snakes can you Identify?",
-  "section-intro-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-intro-text-2": "We’ll show you 1000 photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
+  "section-intro-heading": "Wieviele Schlangenarten kannst Du korrekt bestimmen?",
+  "section-intro-text": "Du hast den Winter satt und kannst es kaum erwarten im Frühling wieder Schlangen zu beobachten? Nutze die kalte Jahreszeit um deine Fähigkeiten im Bestimmen von Schlangen zu testen und zu verbessern – mit bei der Snake ID Challenge!",
+  "section-intro-text-2-prefix": "Wir zeigen Dir",
+  "section-intro-text-2-suffix": "Fotos von Schlangen aus der ganzen Welt. Versuche so viele Schlangen wie möglich nach Art, Genus oder Familie zu bestimmen.",
 
-  "section-prize-heading": "What Will you get for Your Participation?",
-  "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a>",
-  "section-prize-list-1-2": "A short profile/bio on this webpage, if wished",
-  "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
-  "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-  "section-prize-list-2-2": "Certificate of participation from the Citizen Science Center Zurich",
+  "section-prize-heading": "Was kannst Du gewinnen?",
+  "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
+  "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+  "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
+  "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
+  "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
+  "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
 
   "section-about-heading": "Warum diese Challenge?",
-  "section-about-text": "SSchlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.<br>Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
+  "section-about-text-1": "Schlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.",
+  "section-about-text-2": "Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
   "section-about-button": "Mehr erfahren",
 
   "section-partners-heading": "Projektpartner",
@@ -123,7 +127,9 @@
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-intro-heading') }}</h2>
               <p class="reduced-bottom-margin" v-html="$t('section-intro-text')"></p>
-              <p v-html="$t('section-intro-text-2')"></p>
+              <p>
+                <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
+              </p>
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
                 <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
@@ -181,7 +187,8 @@
               <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
                   <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                  <p v-html="$t('section-about-text')"></p>
+                  <p v-html="$t('section-about-text-1')"></p>
+                  <p v-html="$t('section-about-text-2')"></p>
                   <p class="centered left-aligned-large">
                       <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
                   </p>
@@ -314,6 +321,7 @@ export default {
   computed: {
       ...mapState({
           challengeState: state => state.consts.challengeState,
+          totalTaskCount: state => state.score.totalTaskCount
       })
   }
 }

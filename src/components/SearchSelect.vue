@@ -390,7 +390,7 @@
                                         content: '';
                                     }
                                 }
-                                .commonName {
+                                &.commonName {
                                     font-style: normal;
                                 }
                             }

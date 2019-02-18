@@ -27,7 +27,7 @@
     "duration-prefix-ongoing": "Challenge noch offen für",
 
 
-    "duration-days": "Tage",
+    "duration-days": "Tagen",
     "duration-day": "Tag",
     "duration-hours": "Stunden",
     "duration-hour": "Stunde",
