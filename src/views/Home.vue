@@ -48,7 +48,7 @@
   "cover-button-about": "Mehr erfahren",
 
   "section-intro-heading": "Wieviele Schlangenarten kannst Du korrekt bestimmen?",
-  "section-intro-text": "Du hast den Winter satt und kannst es kaum erwarten im Frühling wieder Schlangen zu beobachten? Nutze die kalte Jahreszeit um deine Fähigkeiten im Bestimmen von Schlangen zu testen und zu verbessern – mit bei der Snake ID Challenge!",
+  "section-intro-text": "Du hast den Winter satt und kannst es kaum erwarten im Frühling wieder Schlangen zu beobachten? Nutze die kalte Jahreszeit um deine Fähigkeiten im Bestimmen von Schlangen zu testen und zu verbessern – mit der Snake ID Challenge!",
   "section-intro-text-2-prefix": "Wir zeigen Dir",
   "section-intro-text-2-suffix": "Fotos von Schlangen aus der ganzen Welt. Versuche so viele Schlangen wie möglich nach Art, Genus oder Familie zu bestimmen.",
 
@@ -128,7 +128,8 @@
               <h2 class="heading centered left-aligned-large">{{ $t('section-intro-heading') }}</h2>
               <p class="reduced-bottom-margin" v-html="$t('section-intro-text')"></p>
               <p>
-                <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
+                <!-- <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span> -->
+                <span v-html="$t('section-intro-text-2-prefix')"></span> {{ ' ' }} <span v-html="$t('section-intro-text-2-suffix')"></span>
               </p>
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
