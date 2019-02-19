@@ -40,7 +40,7 @@
 
   "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
 
-  "cover-heading": "Kennst Du diese Schlangen?",
+  "cover-heading": "Wie gut kennst Du Schlangen?",
   "cover-subheading": "Die Schlangen-Identifikations-Challenge",
   "cover-button-start": "Challenge starten",
   "cover-button-preview": "Challenge ansehen",
@@ -52,7 +52,7 @@
   "section-intro-text-2-prefix": "Wir zeigen Dir",
   "section-intro-text-2-suffix": "Fotos von Schlangen aus der ganzen Welt. Versuche so viele Schlangen wie möglich nach Art, Genus oder Familie zu bestimmen.",
 
-  "section-prize-heading": "Was kannst Du gewinnen?",
+  "section-prize-heading": "Das gibt's zu gewinnen",
   "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
   "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
   "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
@@ -170,7 +170,7 @@
           <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
             <div>
               <div class="extra-padding-h">
-                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
               </div>
             </div>
           </div>

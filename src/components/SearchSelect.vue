@@ -90,7 +90,7 @@
             }
         },
         mounted() {
-            this.$refs.answer.focus();
+            this.setAnswerFocus();
         },
         watch: {
             showResults: function(to, from) {
@@ -119,10 +119,13 @@
                     this.showResults = false;
                 }
                 else if( this.value === null ) {
-                    this.$refs.answer.focus();
+                    this.setAnswerFocus();
                     this.returnObject = null;
                     this.inputValue = '';
                 }
+            },
+            returnObject( to, from ){
+                this.$emit('input', this.returnObject );
             },
             inputValue: function(to, from) {
 
@@ -131,11 +134,11 @@
                     this.returnObject = {};
                 }
                 else {
-                    console.log(this.returnObject.value ===  this.inputValue);
                     if( this.returnObject.value !== this.inputValue ) {
                         this.returnObject = {};
                     }
                 }
+
                 this.$emit('input', this.returnObject );
 
 
@@ -240,6 +243,13 @@
             }
         },
         methods: {
+            setAnswerFocus() {
+
+                if( window.innerWidth >= 1024 ) {
+                    this.$refs.answer.focus();
+                }
+
+            },
             inputBlur: function() {
                 const self = this;
                 setTimeout(function(){
@@ -247,7 +257,7 @@
                 }, 500);
             },
             clickOnResults: function() {
-                this.$refs.answer.focus();
+                this.setAnswerFocus();
             },
             optionClick(id) {
                 this.focusedOptionIndex = id;

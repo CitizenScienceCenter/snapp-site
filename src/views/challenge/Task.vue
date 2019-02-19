@@ -174,7 +174,7 @@
 
                                 <div class="form-field form-field-block">
                                     <search-select
-                                            :disabled="hasSubmissionAlready"
+                                            :disabled="hasSubmissionAlready || showNext"
                                             :placeholder="$t('challenge-placeholder')"
                                             :optionContainers="optionContainers"
                                             v-model="value">
@@ -189,8 +189,13 @@
                                             <router-link tag="button" to="/login" class="button button-primary">{{ $t('challenge-button-register') }}</router-link>
                                         </template>
                                         <template v-if="challengeState === 'ongoing'">
-                                            <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || evaluation" @click.prevent="value = null;submitResponse()">{{ $t('challenge-button-skip') }}</button>
-                                            <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
+                                            <template v-if="showNext">
+                                                <button ref="next" class="button button-primary" :disabled="loading" @click.prevent="next()">Next</button>
+                                            </template>
+                                            <template v-else>
+                                                <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading" @click.prevent="value = null;submitResponse()">{{ $t('challenge-button-skip') }}</button>
+                                                <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
+                                            </template>
                                         </template>
                                     </div>
 
@@ -203,7 +208,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            {{ $t('challenge-info-before') }}
+                                            <span class="text">{{ $t('challenge-info-before') }}</span>
                                         </div>
                                         <div v-else-if="challengeState === 'after'" class="message message-info">
                                             <div class="icon">
@@ -211,7 +216,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            {{ $t('challenge-info-after') }}
+                                            <span class="text">{{ $t('challenge-info-after') }}</span>
                                         </div>
                                         <div v-else-if="hasSubmissionAlready" class="message message-info">
                                             <div class="icon">
@@ -219,7 +224,7 @@
                                                     <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
                                                 </svg>
                                             </div>
-                                            {{ $t('challenge-info-done') }}
+                                            <span class="text">{{ $t('challenge-info-done') }}</span>
                                         </div>
 
                                         <div v-else-if="evaluation" class="message message-evaluation">
@@ -244,7 +249,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="tasks[0] && false" class="mongo">
+                                <div v-if="tasks[0]" class="mongo">
                                     <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
                                     <label>Genus: </label>{{ tasks[0].info.genus }}
                                     <label>Family: </label>{{ tasks[0].info.family }}
@@ -398,7 +403,7 @@
                     <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
                         <div>
                             <div class="extra-padding-h">
-                                <img src="/img/graphic-prize.jpg" style="transform: rotate(-4deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                                <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
                             </div>
                         </div>
                     </div>
@@ -561,7 +566,10 @@ export default {
             value: {},
             responseTime: null,
             evaluation: null,
-            complete: false
+            complete: false,
+            loadTime: null,
+            showNext: false,
+            loading: false
         }
     },
     computed: {
@@ -579,7 +587,7 @@ export default {
             currentUser: state => state.c3s.user.currentUser,
             submission: state => state.c3s.submission.submission,
 
-            loading: state => state.c3s.settings.loading
+            //loading: state => state.c3s.settings.loading
         }),
         familyScore: function() {
             switch( this.difficulty ) {
@@ -628,6 +636,14 @@ export default {
         },
         difficulty: function(to, from) {
             this.loadTask();
+        },
+        showNext( to, from ) {
+            if( to ) {
+                let self = this;
+                setTimeout( function() {
+                    self.$refs.next.focus();
+                }, 100 );
+            }
         }
     },
     beforeCreate() {
@@ -635,8 +651,6 @@ export default {
         this.$store.commit('c3s/task/SET_MEDIA', [] );
     },
     mounted() {
-
-        console.log( this.optionContainers );
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
@@ -671,10 +685,8 @@ export default {
         },
         loadTask: function() {
 
+            this.loading = true;
             console.log('load task');
-
-            this.evaluation = null;
-            this.value = null;
 
             let taskQuery;
             if( !this.id ) {
@@ -811,6 +823,11 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         //console.log('media loaded');
+                        this.evaluation = null;
+                        this.value = null;
+                        this.loadTime = new Date();
+                        this.loading = false;
+                        this.showNext = false;
 
                     });
 
@@ -850,7 +867,9 @@ export default {
         },
         submitResponse: function() {
 
-            console.log( this.value );
+            let timeNow = new Date();
+            let timeNeeded = timeNow.getTime() - this.loadTime.getTime();
+
             // evaluation if value
             let submissionQuery;
 
@@ -923,7 +942,8 @@ export default {
                         "responses": [{
                             "value": this.value.value,
                             "info": this.value.type,
-                            "score": this.evaluation.score
+                            "score": this.evaluation.score,
+                            "time": timeNeeded
                         }]
                     },
                     "task_id": this.tasks[0].id,
@@ -951,7 +971,6 @@ export default {
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
 
-                //if( this.value && this.value.hasOwnProperty('info') ) {
                 if( this.value && Object.keys(this.value).length > 0 ) {
 
                     const self = this;
@@ -972,14 +991,9 @@ export default {
                         }
                         else if( counter === 4 ) {
                             self.$refs.score.classList.remove('hidden');
-                        }
-                        else if (counter === 8) {
-                            self.$refs['evaluation-step-1'].classList.remove('evaluated');
-                            self.$refs['evaluation-step-2'].classList.remove('evaluated');
-                            self.$refs['evaluation-step-3'].classList.remove('evaluated');
+                            self.showNext = true;
                             self.$store.dispatch('score/calculateScore');
-                            self.loadTask();
-                            clearInterval(interval);
+                            clearInterval(interval)
                         }
 
                     }, 600);
@@ -991,6 +1005,12 @@ export default {
                 }
 
             });
+        },
+        next() {
+            this.$refs['evaluation-step-1'].classList.remove('evaluated');
+            this.$refs['evaluation-step-2'].classList.remove('evaluated');
+            this.$refs['evaluation-step-3'].classList.remove('evaluated');
+            this.loadTask();
         }
     }
 }
@@ -1047,7 +1067,7 @@ export default {
     .image-section {
 
         .image-viewer {
-            height: 360px;
+            height: 240px;
         }
         .image-info-wrapper {
             position: absolute;
@@ -1119,10 +1139,13 @@ export default {
                 pointer-events: none;
 
                 .message {
-                    display: block;
-                    line-height: 40px;
+                    height: 40px;
+                    width: 60%;
                     position: relative;
                     padding-left: 56px;
+
+                    display: flex;
+                    align-items: center;
 
                     .icon {
                         position: absolute;
@@ -1146,6 +1169,9 @@ export default {
                         color: $color-info;
                         .icon {
                             background-color: $color-info;
+                        }
+                        .text {
+                            line-height: 20px;
                         }
                     }
 
@@ -1324,6 +1350,14 @@ export default {
                 padding: $spacing-1 0;
             }
         }
+
+        .image-section {
+
+            .image-viewer {
+                height: 280px;
+            }
+
+        }
     }
 
 }
@@ -1359,7 +1393,7 @@ export default {
                     min-height: 48px;
 
                     .message {
-                        line-height: 48px;
+                        height: 48px;
                         padding-left: 64px;
 
                         .icon {
@@ -1369,6 +1403,12 @@ export default {
                             svg {
                                 left: 16px;
                                 top: 16px;
+                            }
+                        }
+
+                        &.message-info {
+                            .text {
+                                line-height: 24px;
                             }
                         }
 
