@@ -104,29 +104,26 @@
 
               <p v-html="$t('people-text')"></p>
 
-              <h3 class="subheading">{{ $t('people-1-heading') }}</h3>
-              <div class="row">
-                <div class="col col-6 col-tablet-portrait-4 margin-bottom">
-                  <img src="img/people/andrew.jpg" style="border-radius:50%"/>
-                </div>
-              </div>
-              <p v-html="$t('people-1-text')"></p>
-
-              <h3 class="subheading">{{ $t('people-2-heading') }}</h3>
-              <div class="row">
-                <div class="col col-6 col-tablet-portrait-4 margin-bottom">
-                  <img src="img/people/rafael.jpg" style="border-radius:50%"/>
-                </div>
-              </div>
-              <p v-html="$t('people-2-text')"></p>
-
-              <h3 class="subheading">{{ $t('people-3-heading') }}</h3>
-              <div class="row">
-                <div class="col col-6 col-tablet-portrait-4 margin-bottom">
-                  <img src="img/people/isabelle.jpg" style="border-radius:50%"/>
-                </div>
-              </div>
-              <p v-html="$t('people-3-text')"></p>
+              <ul>
+                <li>Dr. Rafael Ruiz de Castañeda, Institute of Global Health, UNIGE</li>
+                <li>Dr. Isabelle Bolon, Institute of Global Health, UNIGE</li>
+                <li>Dr. Andrew Durso, Institute of Global Health, UNIGE</li>
+                <li>Prof. François Chappuis, Division of humanitarian and tropical medicine, HUG/UNIGE</li>
+                <li>Dr. Gabriel Alcoba, MSF and Division of humanitarian and tropical medicine, HUG/UNIGE</li>
+                <li>Dr. Nicolas Ray, Institute of environmental sciences & Institute of Global Health, UNIGE</li>
+                <li>Prof. Marcel Salathe, Digital Epidemiology Lab, EPFL</li>
+                <li>Sharada Prasanna Mohanty, Digital Epidemiology Lab, EPFL</li>
+                <li>Prof. François Grey, Citizen Cyberlab, UNIGE</li>
+                <li>Dr. Jose Luis Fernandez, Citizen Cyberlab, UNIGE</li>
+                <li>Rosy Mondardini, Citizen Science Center Zurich, ETH / UNIZH</li>
+                <li>Prof. David Williams, Global Snakebite Initiative, University of Melbourne</li>
+                <li>Dr. Abiy Tamrat, Médecins Sans Frontières, Geneva</li>
+                <li>Hanne Epstein, Médecins Sans Frontières, Copenhagen</li>
+                <li>Donald Becker, Christopher Smith, Michael Pingleton, HerpMapper</li>
+                <li>M. Jose Louies, IUCN Viper Specialist Group, <a href="http://indiansnakes.org" target="_blank">indiansnakes.org</a> & <a href="http://snakebiteinitiative.in" target="_blank">snakebiteinitiative.in</a></li>
+                <li>Dr. Brian Lohse, AntiVenom Venture & University of Copenhagen</li>
+                <li>Dr. Ulrich Kuch, University of Frankfurt, Germany</li>
+              </ul>
 
             </div>
 
