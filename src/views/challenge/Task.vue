@@ -328,7 +328,7 @@
                                     </ul>
 
                                     <div class="button-group">
-                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback&body=https://snakes.citizenscience.ch/challenge/'+tasks[0].id)">{{ $t('challenge-button-feedback') }}</button>
+                                        <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" title="info@citizenscience.ch" @click.prevent="openInNewTab('mailto:info@citizenscience.ch?subject=Snake ID Challenge Feedback&body=https://snakes.citizenscience.ch/challenge/'+tasks[0].id)">{{ $t('challenge-button-feedback') }}</button>
                                     </div>
 
                                 </div>
