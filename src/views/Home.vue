@@ -164,7 +164,7 @@
               <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
               <ul class="reduced-bottom-margin">
                 <li v-html="$t('section-prize-list-2-1')"></li>
-                <li v-html="$t('section-prize-list-2-2')"></li>
+                <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
               </ul>
           </div>
 
