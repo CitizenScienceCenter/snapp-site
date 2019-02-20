@@ -124,7 +124,9 @@
             ...mapState({
                 //user: state => state.user.user,
                 user: state => state.c3s.user.currentUser,
-                loading: state => state.settings.loading
+                loading: state => state.settings.loading,
+
+                challengeState: state => state.consts.challengeState
             })
         },
         methods: {
