@@ -249,7 +249,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="tasks[0] && false" class="mongo">
+                                <div v-if="tasks[0]" class="mongo">
                                     <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
                                     <label>Genus: </label>{{ tasks[0].info.genus }}
                                     <label>Family: </label>{{ tasks[0].info.family }}
