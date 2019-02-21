@@ -169,7 +169,7 @@ const actions = {
                     "select": {
                         "fields": [
                             "username",
-                            'count(content->\'responses\'->0->>\'score\') score'
+                            'sum((content->\'responses\'->0->>\'score\') :: int ) score'
                         ],
                         "tables": [
                             "submissions"
