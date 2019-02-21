@@ -1,6 +1,11 @@
 
-import * as User from '@/views/shared/user'
+import Login from '@/views/user/Login'
+import Register from '@/views/user/Register'
 import Profile from '@/views/user/Profile'
+
+import RequestReset from '@/views/shared/user/RequestReset'
+import Reset from '@/views/shared/user/Reset'
+
 import * as Challenge from '@/views/challenge'
 import Forum from '@/views/Forum'
 
@@ -79,15 +84,6 @@ export const routes = [
                     requiresAuth: true,
                     page: 'page-challenge'
                 }
-            },
-            {
-                path: "/complete",
-                name: "ChallengeComplete",
-                component: Challenge.Complete,
-                meta: {
-                    requiresAuth: true,
-                    page: 'page-challenge'
-                }
             }
         ]
     },
@@ -110,32 +106,32 @@ export const routes = [
     {
         path: "/login",
         name: "Login",
-        component: User.Login,
+        component: Login,
         meta: {page: 'page-login', nav: false}
     },
     {
         path: "/register",
         name: "Register",
-        component: User.Register,
+        component: Register,
         meta: {page: 'page-register', nav: false}
     },
     {
         path: "/reset",
         name: "ResetRequest",
-        component: User.RequestReset,
+        component: RequestReset,
         meta: {page: 'page-reset', nav: false}
     },
     {
         path: "/reset/:token",
         name: "Reset",
-        component: User.Reset,
+        component: Reset,
         meta: {page: 'page-reset', nav: false}
     },
     {
         path: "/profile",
         name: "UserProfile",
         component: Profile,
-        meta: {requiresAuth: true, breadcrumb: 'View User', page: 'page-profile', nav: false}
+        meta: {requiresAuth: true, page: 'page-profile', nav: false}
     },
     {
         path: "/error",
