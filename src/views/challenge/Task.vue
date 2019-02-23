@@ -660,7 +660,7 @@ export default {
     mounted() {
 
 
-        let containerVersion = 0.8;
+        let containerVersion = 0.9;
         if( this.containerVersion !== containerVersion || !this.optionContainers ) {
             this.$store.dispatch('consts/createOptionContainers', containerVersion );
         }
