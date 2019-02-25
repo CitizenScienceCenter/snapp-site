@@ -128,8 +128,8 @@
               <h2 class="heading centered left-aligned-large">{{ $t('section-intro-heading') }}</h2>
               <p class="reduced-bottom-margin" v-html="$t('section-intro-text')"></p>
               <p>
-                <!-- <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span> -->
-                <span v-html="$t('section-intro-text-2-prefix')"></span> {{ ' ' }} <span v-html="$t('section-intro-text-2-suffix')"></span>
+                <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
+                <!-- <span v-html="$t('section-intro-text-2-prefix')"></span> {{ ' ' }} <span v-html="$t('section-intro-text-2-suffix')"></span> -->
               </p>
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
