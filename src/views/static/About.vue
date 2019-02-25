@@ -13,7 +13,15 @@
   "text-5": "For our applications, your knowledge is uniquely valuable, as someday your rapid IDs could help save the life of a person. This is already happening organically through email and platforms such as WhatsApp & <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook snake ID groups</a>, and we are collaborating with them to capture data on the speed & accuracy of the process. Eventually we’ll compare the results obtained with the crowd (you!) to the ones obtained with Artificial Intelligence, setting the stage for a human vs. machine showdown like those over chess, Go, and Jeopardy.",
   "text-6": "We count on you doing your best—if it helps, you can pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
+  "list-1": "You do not have to be a snake expert to participate.",
+  "list-2": "The challenge contains >1000 images of hundreds of snake species from more than 100 countries around the world.",
+  "list-3": "We'll measure how long it takes you to submit your ID, but there's no time limit.",
+  "list-4": "It's OK to use print & digital resources to help yourself narrow down or arrive at an ID.",
+  "list-5": "It's OK to make educated guesses, including at the genus or family level.",
+  "list-6": "You can enter common names in English as well as scientific names. We're using mostly the taxonomy from HerpMapper, with support from The Reptile Database. If you can't find a name you want, please send us feedback using the form. Most names should be available at least as synonyms. We do not intend to take any stance on taxonomy or nomenclature.",
+
   "heading-people": "Project Team",
+
   "people-text": "This is a highly interdisciplinary project bringing together herpetologists and key players in global health.",
 
   "people-1-heading": "Andrew Durso",
@@ -46,7 +54,15 @@
   "text-5": "Für unser geplantes Tool ist dein Wissen unersetzbar, denn deine schnelle Bestimmung einer Schlange auf einem Foto könnte eines Tages dazu beitragen, das Leben einer Person zu retten. Dies geschieht derzeit schon über E-Mails und Plattformen wie WhatsApp und <a href='https://www.facebook.com/groups/22137638452/' target='_blank'>Facebook-Schlangen-ID-Gruppen</a>, mit denen wir zusammenarbeiten, um deren Geschwindigkeit und Genauigkeit zu messen. Am Ende werden wir die Ergebnisse der Crowd (du!) mit denen von Künstlicher Intelligenz vergleichen und schauen, wer die Kraftprobe „Mensch-gegen-Maschine“ gewinnt, ähnlich wie bereits im Schach, Go und Jeopardy geschehen.",
   "text-6": "Wir zählen auf dich und deine Teilnahme an der Challenge! Stell dir einfach vor, die Schlange auf dem Foto hätte gerade jemanden gebissen und du wirst gefragt, welche Spezies es ist.",
 
+  "list-1": "You do not have to be a snake expert to participate.",
+  "list-2": "The challenge contains >1000 images of hundreds of snake species from more than 100 countries around the world.",
+  "list-3": "We'll measure how long it takes you to submit your ID, but there's no time limit.",
+  "list-4": "It's OK to use print & digital resources to help yourself narrow down or arrive at an ID.",
+  "list-5": "It's OK to make educated guesses, including at the genus or family level.",
+  "list-6": "You can enter common names in English as well as scientific names. We're using mostly the taxonomy from HerpMapper, with support from The Reptile Database. If you can't find a name you want, please send us feedback using the form. Most names should be available at least as synonyms. We do not intend to take any stance on taxonomy or nomenclature.",
+
   "heading-people": "Projektteam",
+
   "people-text": "Dies ist ein höchst interdisziplinäres Projekt, das Herpetologen und wichtige Akteure der globalen Gesundheit zusammenbringt.",
 
   "people-1-heading": "Andrew Durso",
@@ -96,11 +112,28 @@
               <p v-html="$t('text-5')"></p>
               <p v-html="$t('text-6')"></p>
 
+              <ul>
+                <li v-html="$t('list-1')"></li>
+                <li v-html="$t('list-2')"></li>
+                <li v-html="$t('list-3')"></li>
+                <li v-html="$t('list-4')"></li>
+                <li v-html="$t('list-5')"></li>
+                <li v-html="$t('list-6')"></li>
+              </ul>
+
             </div>
 
             <div class="content-subsection">
 
               <h2 class="heading">{{ $t('heading-people') }}</h2>
+
+              <h3 class="subheading">{{ $t('people-1-heading') }}</h3>
+              <div class="row margin-bottom">
+                <div class="col col-3">
+                  <img src="img/andrew.jpg" style="border-radius:50%" />
+                </div>
+              </div>
+              <p v-html="$t('people-1-text')"></p>
 
               <p v-html="$t('people-text')"></p>
 
