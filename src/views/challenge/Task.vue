@@ -889,6 +889,7 @@ export default {
 
             if( this.value && Object.keys(this.value).length > 0 ) {
 
+
                 if (this.value.type === 'binomial') {
                     if (this.value.value === this.tasks[0].info.binomial) {
                         this.evaluation = {
@@ -916,13 +917,14 @@ export default {
                     }
                 }
                 else if (this.value.type === 'genus') {
+
                     if (this.value.value === this.tasks[0].info.genus) {
                         this.evaluation = {
                             'successRate': 2,
                             'score': this.genusScore
                         };
                     }
-                    else if (this.value.value === this.tasks[0].info.family) {
+                    else if (this.value.family === this.tasks[0].info.family) {
                         this.evaluation = {
                             'successRate': 1,
                             'score': this.familyScore
