@@ -93,15 +93,13 @@
         mounted() {
             this.setAnswerFocus();
             window.addEventListener("resize", this.resize);
+            window.addEventListener("scroll", this.scroll);
         },
         watch: {
             showResults: function(to, from) {
                 if( to ) {
                     const self = this;
                     self.setResultSize();
-                    setTimeout( function() {
-                        self.setResultSize();
-                    }, 500 );
                 }
             },
             value: function(to, from) {
@@ -236,6 +234,8 @@
         methods: {
             setResultSize() {
 
+                this.$refs.answer.scrollIntoViewIfNeeded();
+
                 let inputRect = this.$refs.input.getBoundingClientRect();
 
                 let maxHeight;
@@ -259,6 +259,11 @@
               if( this.showResults ) {
                   this.setResultSize();
               }
+            },
+            scroll() {
+                if( this.showResults ) {
+                    this.setResultSize();
+                }
             },
             setAnswerFocus() {
 
