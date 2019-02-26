@@ -127,7 +127,7 @@
             margin-bottom: $spacing-2;
 
             &.form-field-big {
-                font-size: $font-size-xxlarge;
+                font-size: $font-size-xlarge;
                 font-weight: bold;
                 line-height: 1.3;
                 label {
@@ -160,6 +160,7 @@
                 margin-bottom: $spacing-2;
 
                 &.form-field-big {
+                    font-size: $font-size-xxlarge;
                     label {
                     }
                 }
