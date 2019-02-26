@@ -33,6 +33,7 @@
             </svg>
         </div>
 
+
         <div v-show="showResults && maxOptionIndex >= 0" ref="results" class="results">
             <ul @click="clickOnResults">
                 <div v-for="filteredOptionContainer in filteredOptionContainers">
@@ -91,26 +92,16 @@
         },
         mounted() {
             this.setAnswerFocus();
+            window.addEventListener("resize", this.resize);
         },
         watch: {
             showResults: function(to, from) {
                 if( to ) {
-                    let inputRect = this.$refs.input.getBoundingClientRect();
-
-                    let maxHeight;
-                    if( window.innerHeight - (inputRect.y+inputRect.height/2) > window.innerHeight/2 ) {
-                        //downwards
-                        maxHeight = window.innerHeight- (inputRect.y+inputRect.height);
-                        this.$refs.results.classList.remove('upwards');
-                    }
-                    else {
-                        //upwards
-                        maxHeight = inputRect.y;
-                        this.$refs.results.classList.add('upwards');
-                    }
-
-                    maxHeight *= 0.8;
-                    this.$refs.results.style.maxHeight = maxHeight+'px';
+                    const self = this;
+                    self.setResultSize();
+                    setTimeout( function() {
+                        self.setResultSize();
+                    }, 500 );
                 }
             },
             value: function(to, from) {
@@ -243,6 +234,32 @@
             }
         },
         methods: {
+            setResultSize() {
+
+                let inputRect = this.$refs.input.getBoundingClientRect();
+
+                let maxHeight;
+                if( window.innerHeight - (inputRect.y+inputRect.height/2) > window.innerHeight/2 ) {
+                    //downwards
+                    maxHeight = window.innerHeight- (inputRect.y+inputRect.height);
+                    this.$refs.results.classList.remove('upwards');
+                }
+                else {
+                    //upwards
+                    maxHeight = inputRect.y;
+                    this.$refs.results.classList.add('upwards');
+                }
+
+                maxHeight *= 0.8;
+                this.$refs.results.style.maxHeight = maxHeight+'px';
+
+
+            },
+            resize() {
+              if( this.showResults ) {
+                  this.setResultSize();
+              }
+            },
             setAnswerFocus() {
 
                 if( window.innerWidth >= 1024 ) {

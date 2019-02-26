@@ -175,7 +175,7 @@
 
                                     <div class="form-field form-field-block">
                                         <search-select
-                                                :disabled="hasSubmissionAlready || showNext"
+                                                :disabled="hasSubmissionAlready || showNext || loading"
                                                 :placeholder="$t('challenge-placeholder')"
                                                 :optionContainers="optionContainers"
                                                 v-model="value">
