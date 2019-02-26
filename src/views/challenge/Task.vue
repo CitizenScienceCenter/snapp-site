@@ -9,7 +9,7 @@
     "challenge-difficulty-1": "Easy",
     "challenge-difficulty-2": "Hard",
     "challenge-heading": "What Snake is This?",
-    "challenge-placeholder": "Family, Genus, Binomial, Common Name",
+    "challenge-placeholder": "Family, Genus, Binomial, Name",
     "challenge-button-register": "Register",
     "challenge-button-skip": "Skip",
     "challenge-button-submit": "Submit",

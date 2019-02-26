@@ -112,7 +112,7 @@ const actions = {
                     }
                 ]
             };
-            store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 0]).then(res => {
+            store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
 
                 let allUsersCount = 0;
                 let allSubmissionsCount = 0;
@@ -153,7 +153,7 @@ const actions = {
                     }
                 ]
             };
-            store.dispatch('c3s/submission/getSubmissions', [userSubmissionsQuery, 0]).then(res => {
+            store.dispatch('c3s/submission/getSubmissions', [userSubmissionsQuery, 99999]).then(res => {
 
                 let score = 0;
                 for (let i = 0; i < res.body.length; i++) {
@@ -195,7 +195,7 @@ const actions = {
                         }
                     }
                 };
-                store.dispatch('c3s/submission/getSubmissions', [highscoreQuery, 0]).then(res => {
+                store.dispatch('c3s/submission/getSubmissions', [highscoreQuery, 99999]).then(res => {
 
                     commit('SET_HIGHSCORE', res.body[0] );
 
