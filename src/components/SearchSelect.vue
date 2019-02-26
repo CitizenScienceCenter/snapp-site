@@ -359,6 +359,11 @@
         position: relative;
 
         .custom-input {
+
+            input {
+                padding-right: 32px!important;
+            }
+
             svg {
                 position: absolute;
                 top: 13px;

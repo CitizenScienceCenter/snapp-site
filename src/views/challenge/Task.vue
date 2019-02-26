@@ -9,7 +9,7 @@
     "challenge-difficulty-1": "Easy",
     "challenge-difficulty-2": "Hard",
     "challenge-heading": "What Snake is This?",
-    "challenge-placeholder": "Family, Genus, Binomial, Name",
+    "challenge-placeholder": "Family, Genus, Binomial or Common Name",
     "challenge-button-register": "Register",
     "challenge-button-skip": "Skip",
     "challenge-button-submit": "Submit",
@@ -51,7 +51,7 @@
     "challenge-difficulty-1": "Einfach",
     "challenge-difficulty-2": "Schwierig",
     "challenge-heading": "Welche Schlange ist's?",
-    "challenge-placeholder": "Familie, Genus, Binomial, Name",
+    "challenge-placeholder": "Familie, Genus, Binomial oder engl. Name",
     "challenge-button-register": "Registrieren",
     "challenge-button-skip": "Auslassen",
     "challenge-button-submit": "Senden",
@@ -1106,6 +1106,7 @@ export default {
                 &.image-info-small {
                     font-size: $font-size-mini;
                     line-height: calc( #{$font-size-small} *1.5);
+                    display: none;
                 }
 
                 svg {
@@ -1122,6 +1123,7 @@ export default {
 
                 span {
                     text-transform: capitalize;
+                    white-space: nowrap;
                     &:after {
                         content: ', ';
                     }
@@ -1394,6 +1396,12 @@ export default {
             .image-info-wrapper {
                 top: $spacing-2;
                 left: $spacing-2;
+
+                .image-info {
+                    &.image-info-small {
+                        display: inline-block;
+                    }
+                }
             }
         }
 
