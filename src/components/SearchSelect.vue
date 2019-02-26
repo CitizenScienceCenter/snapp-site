@@ -394,6 +394,7 @@
             overflow-y: scroll;
 
             background: white;
+            border-radius: $border-radius;
             box-shadow: 0px 0px 12px -4px rgba($color-black, 0.4);
 
             &.upwards {
