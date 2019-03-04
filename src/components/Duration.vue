@@ -6,6 +6,8 @@
     "duration-prefix-after": "Challenge ended",
     "duration-prefix-ongoing": "Challenge still open for",
 
+    "duration-after": "Challenge ended. Thank you for your contributions! Results coming soon.",
+
     "duration-days": "Days",
     "duration-day": "Day",
     "duration-hours": "Hours",
@@ -26,6 +28,7 @@
     "duration-prefix-after": "Challenge endete vor",
     "duration-prefix-ongoing": "Challenge noch offen für",
 
+    "duration-after": "Challenge beendet. Danke für Ihre Teilnahme! Ergebnisse in Kürze hier.",
 
     "duration-days": "Tagen",
     "duration-day": "Tag",
@@ -51,26 +54,32 @@
         </div>
 
         <p class="centered">
-            <template v-if="state === 'before'">{{ $t('duration-prefix-before') }} </template>
-            <template v-else-if="state === 'after'">{{ $t('duration-prefix-after') }} </template>
-            <template v-else>{{ $t('duration-prefix-ongoing') }} </template>
 
-            <template v-if="days > 0">
-                <span v-if="days === 1">{{days}} {{ $t('duration-day') }}</span>
-                <span v-else>{{days}} {{ $t('duration-days') }}</span>,
-            </template>
-            <template v-if="hours > 0 || days > 0">
-                <span v-if="hours === 1">{{hours}} {{ $t('duration-hour') }}</span>
-                <span v-else>{{hours}} {{ $t('duration-hours') }}</span>,
-            </template>
-            <template v-if="minutes > 0 || hours > 0 || days > 0">
-                <span v-if="minutes === 1">{{minutes}} {{ $t('duration-minute') }}</span>
-                <span v-else>{{minutes}} {{ $t('duration-minutes') }}</span> {{ $t('duration-and') }}
-            </template>
-            <span v-if="seconds === 1">{{seconds}} {{ $t('duration-second') }}</span>
-            <span v-else>{{seconds}} {{ $t('duration-seconds') }}</span>
+            <template v-if="state !== 'after'">
 
-            <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }}</template>
+                <template v-if="state === 'before'">{{ $t('duration-prefix-before') }} </template>
+                <template v-else>{{ $t('duration-prefix-ongoing') }} </template>
+
+
+                <template v-if="days > 0">
+                    <span v-if="days === 1">{{days}} {{ $t('duration-day') }}</span>
+                    <span v-else>{{days}} {{ $t('duration-days') }}</span>,
+                </template>
+                <template v-if="hours > 0 || days > 0">
+                    <span v-if="hours === 1">{{hours}} {{ $t('duration-hour') }}</span>
+                    <span v-else>{{hours}} {{ $t('duration-hours') }}</span>,
+                </template>
+                <template v-if="minutes > 0 || hours > 0 || days > 0">
+                    <span v-if="minutes === 1">{{minutes}} {{ $t('duration-minute') }}</span>
+                    <span v-else>{{minutes}} {{ $t('duration-minutes') }}</span> {{ $t('duration-and') }}
+                </template>
+                <span v-if="seconds === 1">{{seconds}} {{ $t('duration-second') }}</span>
+                <span v-else>{{seconds}} {{ $t('duration-seconds') }}</span>
+
+                <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }}</template>
+
+            </template>
+            <template v-else>{{ $t('duration-after') }} </template>
         </p>
     </div>
 </template>
