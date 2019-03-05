@@ -342,7 +342,7 @@
                 </div>
 
 
-                <app-content-section class="content-section-condensed" color="light-greyish">
+                <app-content-section v-if="challengeState !== 'after'" class="content-section-condensed" color="light-greyish">
                     <div v-if="challengeState !== 'before'" class="content-subsection">
                         <scores></scores>
                     </div>
@@ -356,6 +356,55 @@
                         </div>
                     </div>
                 </app-content-section>
+
+                <template v-else>
+
+                    <app-content-section class="content-section-condensed" color="light-greyish">
+                        <div class="content-wrapper">
+                            <div class="row row-centered row-middle row-reverse-large">
+
+                                <div class="col col-large-6">
+                                    <h2 class="subheading centered">Stay tuned for our next Challenge</h2>
+                                    <p class="centered reduced-bottom-margin">
+                                        This was only the beginning. The idea is to do this regularly. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                                    </p>
+                                    <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
+                                        <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </app-content-section>
+                    <app-content-section>
+                        <div class="content-wrapper">
+                            <div class="row row-centered row-reverse-large row-wrapping">
+
+                                <div class="col col-large-6 col-large-after-1 col-wrapping">
+                                    <h2 class="heading centered left-aligned-large">Winners of our First Challenge Announced!</h2>
+                                    <p class="reduced-bottom-margin">
+                                        Here are the winners of the spring 2019 challenge:
+                                    </p>
+                                    <ranking limit="3"></ranking>
+                                    <div class="button-group">
+                                        <router-link tag="button" to="/ranking" class="button button-primary">See the Top 30</router-link>
+                                    </div>
+                                </div>
+
+                                <div class="col col-10 col-large-4 col-large-before-1 col-wrapping">
+                                    <div>
+                                        <div class="extra-padding-h">
+                                            <img src="/img/graphic-winner.png" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </app-content-section>
+
+
+                </template>
 
 
             </template>
@@ -424,7 +473,7 @@
                             <p v-html="$t('section-about-text-1')"></p>
                             <p v-html="$t('section-about-text-2')"></p>
                             <p class="centered left-aligned-large">
-                                <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
+                                <router-link tag="button" to="/about" class="button button-primary">{{ $t('section-about-button') }}</router-link>
                             </p>
                         </div>
 
@@ -544,11 +593,13 @@ import Comments from '@/components/shared/Comments.vue'
 import Scores from "@/components/Scores";
 import Duration from "@/components/Duration";
 import Loader from "../../components/shared/Loader";
+import Ranking from "../../components/Ranking";
 
 
 export default {
     name: 'Task',
     components: {
+        Ranking,
         Loader,
         Scores,
         Duration,
@@ -587,7 +638,7 @@ export default {
             optionContainers: state => state.consts.optionContainers,
             challengeState: state => state.consts.challengeState,
 
-            user: state => state.c3s.user.currentUser,
+            user: state => state.c3s.user,
             activity: state => state.c3s.activity.activity,
             tasks: state => state.c3s.task.tasks,
             taskMedia: state => state.c3s.task.media,
@@ -726,7 +777,7 @@ export default {
                         {
                             'field': 'tasks.id',
                             'op': 'ni',
-                            'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.user.id + "')",
+                            'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.currentUser.id + "')",
                             'join': 'a',
                             'type': 'sql'
                         },
@@ -788,7 +839,7 @@ export default {
                             {
                                 'field': 'user_id',
                                 'op': 'e',
-                                'val': this.user.id,
+                                'val': this.currentUser.id,
                                 'join': 'a'
                             }
                         ]

@@ -35,6 +35,9 @@ export const i18n = new VueI18n({
           'page-forum': {
               'link': 'Forum'
           },
+          'page-ranking': {
+              'link': 'Winners'
+          },
           'page-about': {
               'link': 'About'
           },
@@ -66,6 +69,9 @@ export const i18n = new VueI18n({
           },
           'page-forum': {
               'link': 'Forum'
+          },
+          'page-ranking': {
+              'link': 'Gewinner'
           },
           'page-about': {
               'link': 'Über das Projekt'

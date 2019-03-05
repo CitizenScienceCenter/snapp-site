@@ -8,6 +8,7 @@ import Reset from '@/views/shared/user/Reset'
 
 import * as Challenge from '@/views/challenge'
 import Forum from '@/views/Forum'
+import Ranking from '@/views/Ranking'
 
 /*
 const logout = (to, from, next) => {
@@ -86,6 +87,12 @@ export const routes = [
                 }
             }
         ]
+    },
+    {
+        path: "/ranking",
+        component: Ranking,
+        name: "Ranking",
+        meta: {requiresAuth: true, page: 'page-ranking', nav: true},
     },
     {
         path: "/forum",

@@ -56,34 +56,31 @@
                     </div>
                 </div>
 
-                <template>
+                <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
+                    <div class="form-field form-field-block form-field-right-aligned form-field-big">
+                        <label>{{ $t('scores-yourscore') }}</label>
+                        {{ score }}
+                    </div>
+                </div>
 
+                <template>
                     <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
-                        <div class="form-field form-field-block form-field-right-aligned form-field-big">
-                            <label>{{ $t('scores-yourscore') }}</label>
-                            {{ score }}
+                        <div class="form-field form-field-block">
+                            <label>{{ $t('scores-yourrank') }}</label>
+                            <span>{{ rank }}.</span>
+                        </div>
+                        <div class="form-field form-field-block">
+                            <label>{{ $t('scores-yourprogress') }}</label>
+                            <span>{{ Math.round( (submissionsCount/totalTaskCount)*1000 )/10 }}% </span><span class="small">({{submissionsCount}}/{{totalTaskCount}})</span>
                         </div>
                     </div>
+                </template>
 
-                    <template>
-                        <div class="col col-6 col-large-3 col-wrapping col-no-bottom-margin">
-                            <div class="form-field form-field-block">
-                                <label>{{ $t('scores-yourrank') }}</label>
-                                <span>{{ rank }}.</span>
-                            </div>
-                            <div class="form-field form-field-block">
-                                <label>{{ $t('scores-yourprogress') }}</label>
-                                <span>{{ Math.round( (submissionsCount/totalTaskCount)*1000 )/10 }}% </span><span class="small">({{submissionsCount}}/{{totalTaskCount}})</span>
-                            </div>
-                        </div>
-                    </template>
-                    <template v-if="!user.currentUser || user.isAnon">
-                        <div class="col centered col-wrapping col-no-bottom-margin extra-margin-top">
-                            <h3 class="subheading">{{ $t('scores-register-text') }}</h3>
-                            <router-link tag="button" to="/login" class="button button-primary">{{ $t('scores-register-button') }}</router-link>
-                        </div>
-                    </template>
-
+                <template v-if="!user.currentUser || user.isAnon">
+                    <div class="col centered col-wrapping col-no-bottom-margin extra-margin-top">
+                        <h3 class="subheading">{{ $t('scores-register-text') }}</h3>
+                        <router-link tag="button" to="/login" class="button button-primary">{{ $t('scores-register-button') }}</router-link>
+                    </div>
                 </template>
 
             </div>

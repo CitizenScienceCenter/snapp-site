@@ -110,6 +110,56 @@
       </div>
     </app-cover>
 
+
+    <template v-if="challengeState === 'after'">
+
+      <app-content-section>
+        <div class="content-wrapper">
+          <div class="row row-centered row-reverse-large row-wrapping">
+
+            <div class="col col-large-6 col-large-after-1 col-wrapping">
+              <h2 class="heading centered left-aligned-large">Winners of our First Challenge Announced!</h2>
+              <p class="reduced-bottom-margin">
+                Here are the winners of the spring 2019 challenge:
+              </p>
+              <ranking limit="3"></ranking>
+              <div class="button-group centered left-aligned-large">
+                <router-link tag="button" to="/ranking" class="button button-primary">See the Top 30</router-link>
+              </div>
+            </div>
+
+            <div class="col col-10 col-large-4 col-large-before-1 col-wrapping">
+              <div>
+                <div class="extra-padding-h">
+                  <img src="/img/graphic-winner.png" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </app-content-section>
+      <app-content-section class="content-section-condensed" color="light-greyish">
+        <div class="content-wrapper">
+          <div class="row row-centered row-middle row-reverse-large">
+
+            <div class="col col-large-6">
+              <h2 class="subheading centered">Stay tuned for our next Challenge</h2>
+              <p class="centered reduced-bottom-margin">
+                This was only the beginning. The idea is to do this regularly. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+              </p>
+              <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
+                <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </app-content-section>
+
+    </template>
+
+
     <app-content-section>
       <div class="content-wrapper">
 
@@ -145,7 +195,7 @@
     </app-content-section>
 
 
-    <app-content-section v-if="challengeState !== 'before'" class="content-section-condensed" color="light-greyish">
+    <app-content-section v-if="challengeState === 'ongoing'" class="content-section-condensed" color="light-greyish">
       <scores></scores>
     </app-content-section>
 
@@ -191,7 +241,7 @@
                   <p v-html="$t('section-about-text-1')"></p>
                   <p v-html="$t('section-about-text-2')"></p>
                   <p class="centered left-aligned-large">
-                      <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
+                      <router-link tag="button" to="/about" class="button button-primary">{{ $t('section-about-button') }}</router-link>
                   </p>
               </div>
 
@@ -301,11 +351,13 @@ import NewsletterSignup from '@/components/shared/NewsletterSignup.vue';
 import Footer from '@/components/shared/Footer.vue';
 import Scores from '@/components/Scores.vue';
 import Duration from "../components/Duration";
+import Ranking from "../components/Ranking";
 
 
 export default {
   name: 'Home',
   components: {
+      Ranking,
       Duration,
     'app-cover': Cover,
     'app-content-section': ContentSection,
@@ -321,6 +373,8 @@ export default {
   },
   computed: {
       ...mapState({
+          user: state => state.c3s.user,
+
           challengeState: state => state.consts.challengeState,
           totalTaskCount: state => state.score.totalTaskCount
       })

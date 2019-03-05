@@ -6,7 +6,7 @@
     "duration-prefix-after": "Challenge ended",
     "duration-prefix-ongoing": "Challenge still open for",
 
-    "duration-after": "Challenge ended. Thank you for your contributions! Results coming soon.",
+    "duration-after": "Challenge ended. Thank you for your contributions! The next Challenge is coming soon.",
 
     "duration-days": "Days",
     "duration-day": "Day",
@@ -28,7 +28,7 @@
     "duration-prefix-after": "Challenge endete vor",
     "duration-prefix-ongoing": "Challenge noch offen für",
 
-    "duration-after": "Challenge beendet. Danke für Ihre Teilnahme! Ergebnisse in Kürze hier.",
+    "duration-after": "Challenge beendet. Danke für Ihre Teilnahme! Bald kommt die nächste Challenge",
 
     "duration-days": "Tagen",
     "duration-day": "Tag",

@@ -8,7 +8,9 @@ const state = {
     score: 0,
     rank: 0,
     submissionsCount: 0,
-    totalTaskCount: 0
+    totalTaskCount: 0,
+
+    top30: []
 }
 
 const getters = {
@@ -20,6 +22,8 @@ const getters = {
     rank: state => state.rank,
     submissionsCount: state => state.submissionsCount,
     totalTaskCount: state => state.totalTaskCount,
+
+    top30:  state => state.top30
 }
 
 const actions = {
@@ -201,11 +205,32 @@ const actions = {
 
                     let allUsersCount = 0;
                     let rank;
+                    let top30 = [];
+                    let top30rankCounter = 0;
+                    let top30complete = false;
                     let i;
                     for (i = 0; i < res.body.length; i++) {
 
                         if( state.score >= res.body[i].score && !rank) {
                             rank = i+1;
+                        }
+
+                        if( !top30complete ) {
+
+                            if( i === 0 || (res.body[i].score < res.body[i-1].score) ) {
+                                top30rankCounter++;
+                                if( top30rankCounter >= 30 ) {
+                                    top30complete = true;
+                                }
+                            }
+
+
+                            top30.push( {
+                                'rank': top30rankCounter+'.',
+                                'username': res.body[i].username,
+                                'score': res.body[i].score
+                            } );
+
                         }
 
                         allUsersCount++;
@@ -215,6 +240,8 @@ const actions = {
                     }
                     commit('SET_ALLUSERSCOUNT', allUsersCount);
                     commit('SET_RANK', rank);
+
+                    commit('SET_TOP30', top30 );
 
                 });
 
@@ -251,6 +278,10 @@ const mutations = {
     },
     SET_TOTALTASKCOUNT(state, totalTaskCount) {
         state.totalTaskCount = totalTaskCount;
+    },
+
+    SET_TOP30(state, top30) {
+        state.top30 = top30;
     }
 }
 
