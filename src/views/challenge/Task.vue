@@ -24,6 +24,14 @@
     "challenge-complete-heading": "Challenge Complete",
     "challenge-complete-text": "You did everything!",
 
+    "section-next-challenge-heading": "Stay tuned for our next Challenge",
+    "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
+    "section-next-challenge-button": "Register",
+
+    "section-winners-heading": "Winners of our First Challenge Announced!",
+    "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
+    "section-winners-button": "See the Top 30",
+
     "section-prize-heading": "What Will you get for Your Participation?",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
     "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
@@ -65,6 +73,14 @@
     "challenge-button-feedback": "Sende Feedback zum Foto",
     "challenge-complete-heading": "Challenge komplett",
     "challenge-complete-text": "Du hast alles erledigt!",
+
+    "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
+    "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
+    "section-next-challenge-button": "Registrieren",
+
+    "section-winners-heading": "Gewinner der ersten Challenge bekannt",
+    "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
+    "section-winners-button": "Zu den Top 30",
 
     "section-prize-heading": "Was kannst Du gewinnen?",
     "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
@@ -360,16 +376,17 @@
                 <template v-else>
 
                     <app-content-section class="content-section-condensed" color="light-greyish">
+                        <stats></stats>
+                    </app-content-section>
+                    <app-content-section class="content-section-condensed" color="greyish">
                         <div class="content-wrapper">
-                            <div class="row row-centered row-middle row-reverse-large">
+                            <div class="row row-centered">
 
                                 <div class="col col-large-6">
-                                    <h2 class="subheading centered">Stay tuned for our next Challenge</h2>
-                                    <p class="centered reduced-bottom-margin">
-                                        This was only the beginning. The idea is to do this regularly. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
-                                    </p>
+                                    <h2 class="subheading centered">{{ $t('section-next-challenge-heading') }}</h2>
+                                    <p class="centered reduced-bottom-margin" v-html="$t('section-next-challenge-text')"></p>
                                     <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
-                                        <router-link tag="button" to="/login" class="button button-primary">Register</router-link>
+                                        <router-link tag="button" to="/login" class="button button-primary">{{ $t('section-next-challenge-button') }}</router-link>
                                     </div>
                                 </div>
 
@@ -378,24 +395,22 @@
                     </app-content-section>
                     <app-content-section>
                         <div class="content-wrapper">
-                            <div class="row row-centered row-reverse-large row-wrapping">
+                            <div class="row row-centered row-wrapping">
 
-                                <div class="col col-large-6 col-large-after-1 col-wrapping">
-                                    <h2 class="heading centered left-aligned-large">Winners of our First Challenge Announced!</h2>
-                                    <p class="reduced-bottom-margin">
-                                        Here are the winners of the spring 2019 challenge:
-                                    </p>
-                                    <ranking limit="3"></ranking>
-                                    <div class="button-group">
-                                        <router-link tag="button" to="/ranking" class="button button-primary">See the Top 30</router-link>
-                                    </div>
-                                </div>
-
-                                <div class="col col-10 col-large-4 col-large-before-1 col-wrapping">
+                                <div class="col col-6 col-large-4 col-large-before-1 col-wrapping">
                                     <div>
                                         <div class="extra-padding-h">
                                             <img src="/img/graphic-winner.png" />
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="col col-large-5 col-large-after-2 col-wrapping">
+                                    <h2 class="heading centered left-aligned-large">{{ $t('section-winners-heading') }}</h2>
+                                    <p class="reduced-bottom-margin" v-html="$t('section-winners-text')"></p>
+                                    <ranking limit="3"></ranking>
+                                    <div class="button-group centered left-aligned-large">
+                                        <router-link tag="button" to="/ranking" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
                                     </div>
                                 </div>
 
@@ -594,11 +609,13 @@ import Scores from "@/components/Scores";
 import Duration from "@/components/Duration";
 import Loader from "../../components/shared/Loader";
 import Ranking from "../../components/Ranking";
+import Stats from "../../components/Stats";
 
 
 export default {
     name: 'Task',
     components: {
+        Stats,
         Ranking,
         Loader,
         Scores,
