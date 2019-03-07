@@ -31,7 +31,7 @@ router.beforeEach( (to, from, next) => {
           next();
         }
         else {
-          this.router.push('/login');
+          router.push('/login');
         }
 
       });
