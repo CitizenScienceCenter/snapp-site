@@ -45,45 +45,23 @@ export const routes = [
         beforeEnter: null,
         meta: {
             requiresAuth: true,
-            page: "page-homepage",
+            i18n: "page-homepage",
             nav: false
         }
     },
-    /*
-    {
-        path: "/logout",
-        component: Home,
-        name: "Logout",
-        beforeEnter: logout,
-        meta: {
-            page: 'page-logout',
-            nav: false
-        }
-    },
-    */
     {
         path: "/challenge",
         component: Challenge.Task,
         name: "Challenge",
-        meta: {requiresAuth: true, page: 'page-challenge', nav: true},
+        meta: {requiresAuth: true, i18n: 'page-challenge', nav: true},
         children: [
-            /*
-            {
-                path: "",
-                name: "ChallengeTask",
-                component: Challenge.Task,
-                meta: {
-                    requiresAuth: true,
-                    page: 'page-challenge'
-                }
-            },*/
             {
                 path: ":id",
                 name: "ChallengeTaskId",
                 component: Challenge.Task,
                 meta: {
                     requiresAuth: true,
-                    page: 'page-challenge'
+                    i18n: 'page-challenge'
                 }
             }
         ]
@@ -92,58 +70,58 @@ export const routes = [
         path: "/ranking",
         component: Ranking,
         name: "Ranking",
-        meta: {requiresAuth: true, page: 'page-ranking', nav: true},
+        meta: {requiresAuth: true, i18n: 'page-ranking', nav: true},
     },
     {
         path: "/forum",
         component: Forum,
         name: "Forum",
-        meta: {requiresAuth: true, page: 'page-forum', nav: true},
+        meta: {requiresAuth: true, i18n: 'page-forum', nav: true},
     },
     {
         path: "/about",
         component: About,
-        meta: {page: "page-about", nav: true}
+        meta: {i18n: "page-about", nav: true}
     },
     {
         path: "/terms",
         component: Terms,
-        meta: {page: "page-terms", nav: false}
+        meta: {i18n: "page-terms", nav: false}
     },
     {
         path: "/login",
         name: "Login",
         component: Login,
-        meta: {page: 'page-login', nav: false}
+        meta: {i18n: 'page-login', nav: false}
     },
     {
         path: "/register",
         name: "Register",
         component: Register,
-        meta: {page: 'page-register', nav: false}
+        meta: {i18n: 'page-register', nav: false}
     },
     {
         path: "/reset",
         name: "ResetRequest",
         component: RequestReset,
-        meta: {page: 'page-reset', nav: false}
+        meta: {i18n: 'page-reset', nav: false}
     },
     {
         path: "/reset/:token",
         name: "Reset",
         component: Reset,
-        meta: {page: 'page-reset', nav: false}
+        meta: {i18n: 'page-reset', nav: false}
     },
     {
         path: "/profile",
         name: "UserProfile",
         component: Profile,
-        meta: {requiresAuth: true, page: 'page-profile', nav: false}
+        meta: {requiresAuth: true, i18n: 'page-profile', nav: false}
     },
     {
         path: "/error",
         name: "Error",
         component: Home.Error,
-        meta: {page: 'page-profile', nav: false}
+        meta: {i18n: 'page-profile', nav: false}
     }
 ];
