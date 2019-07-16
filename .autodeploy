@@ -1,0 +1,5 @@
+{
+  "name": "snakes",
+  "namespace": "c3s-prod",
+  "port": 80
+}
