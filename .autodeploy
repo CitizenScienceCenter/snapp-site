@@ -1,5 +1,4 @@
 {
   "name": "snakes",
-  "namespace": "c3s-staging",
   "port": 80
 }
