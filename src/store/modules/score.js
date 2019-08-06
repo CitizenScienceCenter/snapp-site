@@ -172,14 +172,15 @@ const actions = {
                 const highscoreQuery = {
                     "select": {
                         "fields": [
-                            "username",
-                            'sum((content->\'responses\'->0->>\'score\') :: int ) score'
+                            "users.username",
+                            'sum((submissions.content->\'responses\'->0->>\'score\') :: int ) score'
                         ],
                         "tables": [
+                            "users",
                             "submissions"
                         ],
                         "groupBy": [
-                            "username"
+                            "users.username"
                         ],
                         "orderBy": {
                             "score": "DESC"
@@ -189,17 +190,40 @@ const actions = {
                         "type": "LEFT",
                         "conditions":{
                             "from": {
-                                "table": "users",
+                                "table": "tasks",
                                 "field": "id"
                             },
                             "to": {
                                 "table": "submissions",
-                                "field": "user_id"
+                                "field": "task_id"
                             }
                         }
-                    }
+                    },
+                    "where": [
+                        {
+                            "field": "tasks.activity_id",
+                            "op": "e",
+                            "val": store.state.consts.activityId
+                        },
+                        {
+                            "field": "users.id",
+                            "op": "e",
+                            "val": "submissions.user_id",
+                            "type": "sql",
+                            "join": "a"
+                        }
+                    ]
                 };
+
+
+                /*
+                SELECT users.username,sum((submissions.content->'responses'->0->>'score') :: int ) score FROM submissions LEFT JOIN users ON users.id = submissions.user_id LEFT JOIN tasks ON tasks.id = submissions.task_id  WHERE tasks.activity_id = '74033a29-4346-485d-b0e3-3f263a507837'  GROUP BY users.username ORDER BY score DESC;
+
+                 */
+
                 store.dispatch('c3s/submission/getSubmissions', [highscoreQuery, 99999]).then(res => {
+
+                    console.log( res );
 
                     commit('SET_HIGHSCORE', res.body[0] );
 
