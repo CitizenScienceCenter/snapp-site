@@ -40,14 +40,20 @@ export const i18n = new VueI18n({
           'navigation-homepage': {
               'link': 'Home'
           },
-          'navigation-challenge': {
-              'link': 'Challenge'
+          'navigation-identification': {
+              'link': 'Identification'
           },
           'navigation-forum': {
               'link': 'Forum'
           },
           'navigation-ranking': {
-              'link': 'Winners'
+              'link': 'Ranking'
+          },
+          'navigation-current-ranking': {
+              'link': 'Current Ranking'
+          },
+          'navigation-past-ranking': {
+              'link': 'Winners Spring 2019'
           },
           'navigation-about': {
               'link': 'About'
@@ -80,14 +86,20 @@ export const i18n = new VueI18n({
           'navigation-homepage': {
               'link': 'Home'
           },
-          'navigation-challenge': {
-              'link': 'Challenge'
+          'navigation-identification': {
+              'link': 'Identifikation'
           },
           'navigation-forum': {
               'link': 'Forum'
           },
           'navigation-ranking': {
-              'link': 'Gewinner'
+              'link': 'Rangliste'
+          },
+          'navigation-current-ranking': {
+              'link': 'Aktuelle Rangliste'
+          },
+          'navigation-past-ranking': {
+              'link': 'Gewinner Frühling 2019'
           },
           'navigation-about': {
               'link': 'Über das Projekt'

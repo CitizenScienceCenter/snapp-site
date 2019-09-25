@@ -6,9 +6,13 @@ import Profile from '@/views/user/Profile'
 import RequestReset from '@/views/shared/user/RequestReset'
 import Reset from '@/views/shared/user/Reset'
 
-import * as Challenge from '@/views/challenge'
+import Identification from '@/views/Identification'
 import Forum from '@/views/Forum'
-import Ranking from '@/views/Ranking'
+
+import Ranking from '@/views/ranking/Ranking'
+import PastRanking from '@/views/ranking/PastRanking'
+
+import ChildView from '@/views/shared/ChildView';
 
 /*
 const logout = (to, from, next) => {
@@ -55,14 +59,14 @@ export const routes = [
             },
             {
                 path: "challenge",
-                component: Challenge.Task,
+                component: Identification,
                 name: "Challenge",
-                meta: {requiresAuth: true, i18n: 'navigation-challenge', nav: true},
+                meta: {requiresAuth: true, i18n: 'navigation-identification', nav: true},
                 children: [
                     {
                         path: ":id",
                         name: "ChallengeTaskId",
-                        component: Challenge.Task,
+                        component: Identification,
                         meta: {
                             requiresAuth: true,
                             i18n: 'navigation-challenge'
@@ -71,21 +75,33 @@ export const routes = [
                 ]
             },
             {
-                path: "ranking",
-                component: Ranking,
-                name: "Ranking",
-                meta: {requiresAuth: true, i18n: 'navigation-ranking', nav: true},
+                path: "about",
+                component: About,
+                meta: {i18n: "navigation-about", nav: true}
+            },
+            {
+                path: 'ranking',
+                component: ChildView,
+                meta: {i18n: 'navigation-ranking', nav: true},
+                redirect: 'ranking/current',
+                children: [
+                    {
+                        path: 'current',
+                        component: Ranking,
+                        meta: {requiresAuth: true, i18n: 'navigation-current-ranking', nav: true}
+                    },
+                    {
+                        path: 'past',
+                        component: PastRanking,
+                        meta: {i18n: 'navigation-past-ranking', nav: true}
+                    },
+                ]
             },
             {
                 path: "forum",
                 component: Forum,
                 name: "Forum",
                 meta: {requiresAuth: true, i18n: 'navigation-forum', nav: true},
-            },
-            {
-                path: "about",
-                component: About,
-                meta: {i18n: "navigation-about", nav: true}
             },
             {
                 path: "terms",

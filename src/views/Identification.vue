@@ -594,10 +594,10 @@ import SearchSelect from '@/components/SearchSelect.vue'
 import Comments from '@/components/shared/Comments.vue'
 import Scores from "@/components/Scores";
 import Duration from "@/components/Duration";
-import Loader from "../../components/shared/Loader";
-import Ranking from "../../components/Ranking";
-import Stats from "../../components/Stats";
-import SectionNewsletterSignup from "../../components/shared/SectionNewsletterSignup";
+import Loader from "../components/shared/Loader";
+import Ranking from "../components/Ranking";
+import Stats from "../components/Stats";
+import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 
 
 export default {

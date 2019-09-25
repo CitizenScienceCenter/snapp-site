@@ -3,9 +3,9 @@
 
     "en": {
 
-    "page-title": "Ranking",
+    "page-title": "Past Challenge",
 
-    "section-ranking-heading": "The Top 30 Participants",
+    "section-ranking-heading": "Winners Spring 2019",
 
     "section-next-challenge-heading": "Stay tuned for our next Challenge",
     "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
@@ -22,9 +22,9 @@
 
     "de": {
 
-    "page-title": "Rangliste",
+    "page-title": "Vergangene Challenge",
 
-    "section-ranking-heading": "Die besten 30 Teilnehmer",
+    "section-ranking-heading": "Gewinner Frühling 2019",
 
     "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
     "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
@@ -132,21 +132,7 @@
         </app-content-section>
 
 
-        <app-content-section color="greyish">
-            <div class="content-wrapper">
-                <div class="row row-centered">
-                    <div class="col col-mobile-large-10">
-                        <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
-                    </div>
-                </div>
-                <div class="row row-centered">
-                    <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
-                        <app-newsletter-signup></app-newsletter-signup>
-                    </div>
-                </div>
-            </div>
-        </app-content-section>
-
+        <section-newsletter-signup></section-newsletter-signup>
 
         <app-footer></app-footer>
 
@@ -160,12 +146,14 @@
 
     import ContentSection from '@/components/shared/ContentSection.vue'
     import Footer from '@/components/shared/Footer.vue'
-    import Ranking from "../components/Ranking";
+    import Ranking from "../../components/Ranking";
     import NewsletterSignup from '@/components/shared/NewsletterSignup.vue';
-    import Stats from "../components/Stats";
+    import Stats from "../../components/Stats";
+    import SectionNewsletterSignup from "../../components/shared/SectionNewsletterSignup";
 
     export default {
         components: {
+            SectionNewsletterSignup,
             Stats,
             Ranking,
             'app-content-section': ContentSection,
