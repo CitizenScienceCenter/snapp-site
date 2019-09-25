@@ -93,6 +93,9 @@ const actions = {
     },
     setDates({state, commit, rootState}, values) {
         commit('SET_DATES', values);
+    },
+    setActivityId({state, commit, rootState}, value) {
+        commit('SET_ACTIVITY_ID', value);
     }
 }
 const mutations = {
@@ -108,6 +111,9 @@ const mutations = {
     SET_DATES(state, values) {
         state.challengeStartISO = values[0];
         state.challengeEndISO = values[1];
+    },
+    SET_ACTIVITY_ID(state, value) {
+        state.activityId = value;
     }
 }
 
@@ -118,7 +124,11 @@ const getters = {
 const state = {
     optionContainers: null,
     containerVersion: null,
+
+    projectId: 'b04bc186-1e0e-4fd3-87b8-a25262c1c79f',
     activityId: '74033a29-4346-485d-b0e3-3f263a507837',
+    // activityId: '1d2d7613-3856-4566-bdbb-785008016d6f', // new one
+
     challengeStartISO: null,
     challengeEndISO: null,
     challengeState: null

@@ -4,94 +4,110 @@ import store from './store/store.js'
 
 Vue.use(VueI18n);
 
-var language;
 if( !store.state.settings.language ) {
-    // no language in store, check browser
+    // no language in store
+    var language;
+
+    // check browser
     language = window.navigator.userLanguage || window.navigator.language;
-    if (language.indexOf('-') !== -1) {
-        language = language.split('-')[0];
-    }
-    else if (language.indexOf('_') !== -1) {
-        language = language.split('_')[0];
-    }
-    if( language !== 'en' && language !== 'de') {
+
+    // trim
+    language = language.substr(0,2);
+
+    // check if valid
+    if( language !== 'de' && language !== 'en' ) {
         language = "de";
+    }
+
+    // language for prerendering default routes
+    if( navigator.userAgent === 'ReactSnap' ) {
+        language = "en";
     }
 
     store.dispatch("settings/setLanguage", language );
 }
-language = store.state.settings.language;
 
 export const i18n = new VueI18n({
-  locale: language,
+    locale: store.state.settings.language,
+    silentTranslationWarn: true,
   messages: {
       'en': {
-          'page-homepage': {
+
+          "site-name": "Snake ID Challenge",
+          "site-title": "Snake ID Challenge | Citizen Science Center Zürich",
+          "site-description": "The Snake Identification Challenge",
+
+          'navigation-homepage': {
               'link': 'Home'
           },
-          'page-challenge': {
+          'navigation-challenge': {
               'link': 'Challenge'
           },
-          'page-forum': {
+          'navigation-forum': {
               'link': 'Forum'
           },
-          'page-ranking': {
+          'navigation-ranking': {
               'link': 'Winners'
           },
-          'page-about': {
+          'navigation-about': {
               'link': 'About'
           },
-          'page-terms': {
+          'navigation-terms': {
               'link': 'Privacy Policy & Terms of Use'
           },
-          'page-login': {
+          'navigation-login': {
               'link': 'Login'
           },
-          'page-register': {
+          'navigation-register': {
               'link': 'Register'
           },
-          'page-logout': {
+          'navigation-logout': {
               'link': 'Logout'
           },
-          'page-reset': {
+          'navigation-reset': {
               'link': 'Reset Password'
           },
-          'page-profile': {
+          'navigation-profile': {
               'link': 'Profil'
           }
       },
       'de': {
-          'page-homepage': {
+
+          "site-name": "Snake ID Challenge",
+          "site-title": "Snake ID Challenge | Citizen Science Center Zürich",
+          "site-description": "The Snake Identification Challenge",
+
+          'navigation-homepage': {
               'link': 'Home'
           },
-          'page-challenge': {
+          'navigation-challenge': {
               'link': 'Challenge'
           },
-          'page-forum': {
+          'navigation-forum': {
               'link': 'Forum'
           },
-          'page-ranking': {
+          'navigation-ranking': {
               'link': 'Gewinner'
           },
-          'page-about': {
+          'navigation-about': {
               'link': 'Über das Projekt'
           },
-          'page-terms': {
+          'navigation-terms': {
               'link': 'Privacy Policy & Terms of Use'
           },
-          'page-login': {
+          'navigation-login': {
               'link': 'Anmelden'
           },
-          'page-register': {
+          'navigation-register': {
               'link': 'Registrieren'
           },
-          'page-logout': {
+          'navigation-logout': {
               'link': 'Logout'
           },
-          'page-reset': {
+          'navigation-reset': {
               'link': 'Passwort zurücksetzen'
           },
-          'page-profile': {
+          'navigation-profile': {
               'link': 'Profil'
           }
       }

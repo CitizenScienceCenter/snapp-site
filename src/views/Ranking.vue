@@ -124,7 +124,7 @@
                 <div class="content-wrapper">
                     <div class="row row-centered row-in-background">
                         <div class="col col-8 col-tablet-portrait-6 col-large-7">
-                            <img src="img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
+                            <img src="/img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
                         </div>
                     </div>
                 </div>

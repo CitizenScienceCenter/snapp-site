@@ -498,7 +498,7 @@
                     <div class="content-wrapper">
                         <div class="row row-centered row-in-background">
                             <div class="col col-8 col-tablet-portrait-6 col-large-7">
-                                <img src="img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
+                                <img src="/img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
                             </div>
                         </div>
                     </div>
@@ -517,72 +517,59 @@
                     <div class="row row-centered row-wrapping">
 
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/cyberlab.png" />
+                            <img src="/img/logos/cyberlab.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/udg-fdm.png" />
+                            <img src="/img/logos/udg-fdm.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/herpmapper.png" />
+                            <img src="/img/logos/herpmapper.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/msf.png" />
+                            <img src="/img/logos/msf.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/epfl.png" />
+                            <img src="/img/logos/epfl.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/goethe.png" />
+                            <img src="/img/logos/goethe.png" />
                         </div>
 
                     </div>
                     <div class="row row-centered row-wrapping">
 
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/copenhagen.png" />
+                            <img src="/img/logos/copenhagen.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/gti.png" />
+                            <img src="/img/logos/gti.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/melbourne.png" />
+                            <img src="/img/logos/melbourne.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/indiansnakes.png" />
+                            <img src="/img/logos/indiansnakes.png" />
                         </div>
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/gsi.png" />
+                            <img src="/img/logos/gsi.png" />
                         </div>
 
                     </div>
                     <div class="row row-centered row-wrapping">
 
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/fp-hug.png" />
+                            <img src="/img/logos/fp-hug.png" />
                         </div>
 
                         <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-                            <img src="img/logos/hug.png" />
+                            <img src="/img/logos/hug.png" />
                         </div>
 
                     </div>
                 </div>
             </app-content-section>
 
-            <app-content-section color="greyish">
-                <div class="content-wrapper">
-                    <div class="row row-centered">
-                        <div class="col col-mobile-large-10">
-                            <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
-                        </div>
-                    </div>
-                    <div class="row row-centered">
-                        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
-                            <app-newsletter-signup></app-newsletter-signup>
-                        </div>
-                    </div>
-                </div>
-            </app-content-section>
+            <section-newsletter-signup></section-newsletter-signup>
 
             <app-footer></app-footer>
 
@@ -610,11 +597,13 @@ import Duration from "@/components/Duration";
 import Loader from "../../components/shared/Loader";
 import Ranking from "../../components/Ranking";
 import Stats from "../../components/Stats";
+import SectionNewsletterSignup from "../../components/shared/SectionNewsletterSignup";
 
 
 export default {
     name: 'Task',
     components: {
+        SectionNewsletterSignup,
         Stats,
         Ranking,
         Loader,

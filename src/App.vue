@@ -13,7 +13,7 @@
 
 <template>
   <div id="app">
-    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :score="score"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
@@ -26,6 +26,9 @@
 import {mapState} from 'vuex'
 import Header from './components/shared/Header.vue'
 import GDPR from "./components/shared/GDPR";
+
+
+const url = 'https://snakes.citizenscience.ch';
 
 export default {
   name: 'app',
@@ -57,33 +60,39 @@ export default {
                   content: 'website'
               },
               {
-                  property: 'og:url',
-                  content: 'https://snakes.citizenscience.ch'
+                property: 'og:url',
+                content: url+this.$route.path
               },
               {
-                  property: 'og:image',
-                  content: 'https://snakes.citizenscience.ch/img/promo.jpg'
+                property: 'og:image',
+                content: url+'/img/promo.jpg'
               }
-          ]
+          ],
+          link: [
+              {rel: 'canonical', href: url+this.$route.path},
+              { rel: 'icon', type: 'image/png', href: '@/assets/shared/favicon-16x16png', sizes: '16x16' },
+              { rel: 'icon', type: 'image/png', href: '@/assets/shared/favicon-32x32png', sizes: '32x32' }
+          ],
+          htmlAttrs: {
+              lang: this.language
+          }
       }
   },
   mounted: function() {
-
+    this.$store.dispatch('consts/setActivityId', '74033a29-4346-485d-b0e3-3f263a507837' );
     this.$store.dispatch('consts/setDates', ['2019-02-25T11:00:00Z', '2019-03-03T11:00:00Z'] );
 
+    // body fade
     var app = this.$el;
-    window.setTimeout(function() {
-      app.classList.add("show");
-    }, 1);
-  },
-  computed: mapState({
-      score: state => state.score.score,
+    var cover = new Image();
+    cover.src = '/img/cover.jpg';
+    cover.onload = function() {
+      if( navigator.userAgent !== 'ReactSnap' ) {
+        app.classList.add("show");
+      }
+    };
 
-      containerVersion: state => state.consts.containerVersion,
-      optionContainers: state => state.consts.optionContainers,
-
-      gdpr: state => state.gdpr.accepted
-  })
+  }
 }
 
 </script>

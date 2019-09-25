@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import settings from './modules/settings'
 import consts from './modules/consts'
-import score from './modules/score'
+import stats from './modules/stats'
 import gdpr from './modules/gdpr'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -15,7 +15,7 @@ export default new Vuex.Store({
   modules: {
     settings,
     consts,
-      score,
+      stats,
       gdpr
   },
   strict: debug,

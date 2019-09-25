@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "js-cookie": "^2.2.0",
     "node-sass": "^4.9.3",
+    "react-snap": "^1.23.0",
     "sass-loader": "^7.1.0",
+    "simple-analytics-vue": "^1.1.0",
     "vue": "^2.5.17",
     "vue-croppa": "^1.3.8",
     "vue-i18n": "^8.2.1",
@@ -51,6 +54,20 @@
     "plugins": {
       "autoprefixer": {}
     }
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "puppeteerArgs": [
+      "--disable-setuid-sandbox",
+      "--no-sandbox"
+    ],
+    "concurrency": 1,
+    "inlineCss": false,
+    "puppeteerExecutablePath": "/usr/bin/chromium-browser"
   },
   "browserslist": [
     "> 1%",

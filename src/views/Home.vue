@@ -93,7 +93,7 @@
 <template>
   <div>
 
-    <app-cover imageUrl="img/cover.jpg" logoUrl="img/unige-logo.svg">
+    <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg">
       <div class="row row-centered">
         <div class="col col-large-8">
           <h2 class="cover-heading scroll-effect" v-html="$t('cover-heading')"></h2>
@@ -127,7 +127,12 @@
     </app-cover>
 
 
+
+    <section-stats color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+
+    <!--
     <template v-if="challengeState === 'after'">
+
 
       <app-content-section>
         <div class="content-wrapper">
@@ -153,9 +158,11 @@
           </div>
         </div>
       </app-content-section>
+
       <app-content-section class="content-section-condensed" color="light-greyish">
         <stats></stats>
       </app-content-section>
+
       <app-content-section class="content-section-condensed" color="greyish">
         <div class="content-wrapper">
           <div class="row row-centered">
@@ -173,6 +180,7 @@
       </app-content-section>
 
     </template>
+    -->
 
 
     <app-content-section>
@@ -183,7 +191,7 @@
           <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
             <div>
               <div>
-                <img src="img/graphic-intro.png" />
+                <img src="/img/graphic-intro.png" />
               </div>
             </div>
           </div>
@@ -194,7 +202,6 @@
               <p class="reduced-bottom-margin" v-html="$t('section-intro-text')"></p>
               <p>
                 <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
-                <!-- <span v-html="$t('section-intro-text-2-prefix')"></span> {{ ' ' }} <span v-html="$t('section-intro-text-2-suffix')"></span> -->
               </p>
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
@@ -209,10 +216,11 @@
       </div>
     </app-content-section>
 
-
+    <!--
     <app-content-section v-if="challengeState === 'ongoing'" class="content-section-condensed" color="light-greyish">
       <scores></scores>
     </app-content-section>
+    -->
 
 
     <app-content-section color="greyish">
@@ -266,7 +274,7 @@
           <div class="content-wrapper">
               <div class="row row-centered row-in-background">
                   <div class="col col-8 col-tablet-portrait-6 col-large-7">
-                      <img src="img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
+                      <img src="/img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
                   </div>
               </div>
           </div>
@@ -284,72 +292,59 @@
         <div class="row row-centered row-wrapping">
 
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/cyberlab.png" />
+            <img src="/img/logos/cyberlab.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/udg-fdm.png" />
+            <img src="/img/logos/udg-fdm.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/herpmapper.png" />
+            <img src="/img/logos/herpmapper.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/msf.png" />
+            <img src="/img/logos/msf.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/epfl.png" />
+            <img src="/img/logos/epfl.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/goethe.png" />
+            <img src="/img/logos/goethe.png" />
           </div>
 
         </div>
         <div class="row row-centered row-wrapping">
 
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/copenhagen.png" />
+            <img src="/img/logos/copenhagen.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/gti.png" />
+            <img src="/img/logos/gti.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/melbourne.png" />
+            <img src="/img/logos/melbourne.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/indiansnakes.png" />
+            <img src="/img/logos/indiansnakes.png" />
           </div>
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/gsi.png" />
+            <img src="/img/logos/gsi.png" />
           </div>
 
         </div>
         <div class="row row-centered row-wrapping">
 
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/fp-hug.png" />
+            <img src="/img/logos/fp-hug.png" />
           </div>
 
           <div class="col col-wrapping col-6 col-tablet-portrait-4 col-large-2">
-            <img src="img/logos/hug.png" />
+            <img src="/img/logos/hug.png" />
           </div>
 
         </div>
       </div>
     </app-content-section>
 
-    <app-content-section color="greyish">
-      <div class="content-wrapper">
-        <div class="row row-centered">
-          <div class="col col-mobile-large-10">
-            <h2 class="heading centered">{{ $t('section-newsletter-heading') }}</h2>
-          </div>
-        </div>
-        <div class="row row-centered">
-          <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-12">
-            <app-newsletter-signup></app-newsletter-signup>
-          </div>
-        </div>
-      </div>
-    </app-content-section>
+    <section-newsletter-signup></section-newsletter-signup>
 
     <app-footer></app-footer>
 
@@ -368,11 +363,15 @@ import Scores from '@/components/Scores.vue';
 import Duration from "../components/Duration";
 import Ranking from "../components/Ranking";
 import Stats from "../components/Stats";
+import SectionStats from "../components/shared/SectionStats";
+import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 
 
 export default {
   name: 'Home',
   components: {
+    SectionNewsletterSignup,
+    SectionStats,
       Stats,
       Ranking,
       Duration,
@@ -393,8 +392,15 @@ export default {
           user: state => state.c3s.user,
 
           challengeState: state => state.consts.challengeState,
-          totalTaskCount: state => state.score.totalTaskCount
+
+          totalTaskCount: state => state.stats.totalTaskCount,
+          totalUserCount: state => state.stats.totalUserCount,
+          totalSubmissionCount: state => state.stats.totalSubmissionCount
       })
+  },
+  mounted() {
+      this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
+      this.$store.dispatch('stats/updateTotalTaskCount');
   }
 }
 

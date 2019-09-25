@@ -29,6 +29,7 @@ const getters = {
 const actions = {
     calculateScore({state, commit, rootState}) {
 
+        console.log( 'calculate Score ....');
 
         if( store.state.c3s.user.currentUser ) {
 
