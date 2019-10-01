@@ -79,12 +79,10 @@
 
             <div class="content-subsection">
 
-              <h2 class="heading">{{ $t('heading-1') }}</h2>
+              <h2 class="heading centered">{{ $t('heading-1') }}</h2>
 
-              <p>
-                <figure>
-                  <img src="/img/graphic-about.jpg" style="min-width: 100%" />
-                </figure>
+              <p class="centered">
+                <img src="/img/graphic-about.jpg" style="width: 50%;border-radius: 50%" />
               </p>
 
               <p v-html="$t('text-1')"></p>
@@ -107,7 +105,7 @@
 
             <div class="content-subsection">
 
-              <h2 class="heading">{{ $t('heading-people') }}</h2>
+              <h2 class="heading centered">{{ $t('heading-people') }}</h2>
 
               <p v-html="$t('people-text')"></p>
 
@@ -145,7 +143,7 @@
         <div class="row row-centered">
           <div class="col col-large-6">
 
-            <h2 class="heading" v-html="$t('heading-sources')"></h2>
+            <h2 class="heading centered" v-html="$t('heading-sources')"></h2>
             <p v-html="$t('text-sources')"></p>
 
           </div>

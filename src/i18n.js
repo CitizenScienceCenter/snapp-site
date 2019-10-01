@@ -15,8 +15,8 @@ if( !store.state.settings.language ) {
     language = language.substr(0,2);
 
     // check if valid
-    if( language !== 'de' && language !== 'en' ) {
-        language = "de";
+    if( !store.state.consts.languages.includes( language ) ) {
+        language = store.state.consts.languages[0];
     }
 
     // language for prerendering default routes
@@ -56,7 +56,7 @@ export const i18n = new VueI18n({
               'link': 'Winners Spring 2019'
           },
           'navigation-about': {
-              'link': 'About'
+              'link': 'About the Project'
           },
           'navigation-terms': {
               'link': 'Privacy Policy & Terms of Use'
@@ -102,7 +102,7 @@ export const i18n = new VueI18n({
               'link': 'Gewinner Frühling 2019'
           },
           'navigation-about': {
-              'link': 'Über das Projekt'
+              'link': 'Das Projekt'
           },
           'navigation-terms': {
               'link': 'Privacy Policy & Terms of Use'

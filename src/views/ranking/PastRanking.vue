@@ -52,7 +52,7 @@
                     <div class="row row-centered">
                         <div class="col col-large-6">
 
-                            <h2 class="heading">{{ $t('section-ranking-heading')}}</h2>
+                            <h2 class="heading centered">{{ $t('section-ranking-heading')}}</h2>
 
                             <ranking></ranking>
 

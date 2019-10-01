@@ -29,7 +29,7 @@
                 <div class="row row-centered">
                     <div class="col col-large-6">
 
-                        <h2 class="heading">{{ $t('heading-ranking')}}</h2>
+                        <h2 class="heading centered">{{ $t('heading-ranking')}}</h2>
 
                         <ranking></ranking>
 

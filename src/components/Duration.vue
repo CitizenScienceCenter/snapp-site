@@ -211,7 +211,7 @@
 
     .cover {
         .duration {
-            margin-top: $spacing-3;
+            margin-top: $spacing-2;
             .bar {
                 background-color: rgba( white, 0.25);
                 .progress {
@@ -233,6 +233,7 @@
 
         .cover {
             .duration {
+                margin-top: $spacing-2;
             }
         }
 
@@ -249,7 +250,7 @@
 
         .cover {
             .duration {
-                margin-top: $spacing-4;
+                margin-top: $spacing-3;
 
                 p {
                     font-size: $font-size-normal;

@@ -6,7 +6,7 @@
   "page-title": "Snake ID Challenge | Citizen Science Center Zurich",
 
   "cover-heading": "Do you Know These Snakes?",
-  "cover-subheading": "The Snake Identification Challenge",
+  "cover-subheading": "The Snake ID Challenge (Phase 2)",
   "cover-button-start": "Start the Challenge",
   "cover-button-preview": "Preview the Challenge",
   "cover-button-review": "See the Challenge",
@@ -21,22 +21,15 @@
   "section-next-challenge-button": "Register",
 
   "section-intro-heading": "How Many Species of Snakes can you Identify?",
-  "section-intro-text": "Stuck indoors this winter? Dreaming of seeing snakes in the spring? Take advantage of the cold weather to test and refine your identification skills with our SnakeID challenge!",
-  "section-intro-text-2-prefix": "We’ll show you",
-  "section-intro-text-2-suffix": "photos of snakes from all around the world. Try to identify as many snake photos as possible at the species, genus, or family level.",
+  "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
-  "section-prize-heading": "What Will you get for Your Participation?",
-  "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
-  "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
-  "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
-  "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-  "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
+  "section-about-heading": "Now With Unclassified Images",
+  "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
+  "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
+  "section-about-button": "About the Project",
 
-  "section-about-heading": "Why this Challenge?",
-  "section-about-text-1": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise.",
-  "section-about-text-2": "Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
-  "section-about-button": "Read more",
+  "section-prize-heading": "Prizes for Top Contributors",
+  "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
   "section-partners-heading": "Project Partners",
 
@@ -64,22 +57,15 @@
   "section-next-challenge-button": "Registrieren",
 
   "section-intro-heading": "Wieviele Schlangenarten kannst Du korrekt bestimmen?",
-  "section-intro-text": "Du hast den Winter satt und kannst es kaum erwarten im Frühling wieder Schlangen zu beobachten? Nutze die kalte Jahreszeit um deine Fähigkeiten im Bestimmen von Schlangen zu testen und zu verbessern – mit der Snake ID Challenge!",
-  "section-intro-text-2-prefix": "Wir zeigen Dir",
-  "section-intro-text-2-suffix": "Fotos von Schlangen aus der ganzen Welt. Versuche so viele Schlangen wie möglich nach Art, Genus oder Familie zu bestimmen.",
+  "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
-  "section-prize-heading": "Das gibt's zu gewinnen",
-  "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
-  "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
-  "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
-  "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
-  "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
-  "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
+  "section-about-heading": "Now With Unclassified Images",
+  "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
+  "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
+  "section-about-button": "Mehr zum Projekt",
 
-  "section-about-heading": "Warum diese Challenge?",
-  "section-about-text-1": "Schlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.",
-  "section-about-text-2": "Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
-  "section-about-button": "Mehr erfahren",
+  "section-prize-heading": "Prizes for Top Contributors",
+  "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
   "section-partners-heading": "Projektpartner",
 
@@ -95,12 +81,12 @@
 
     <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg">
       <div class="row row-centered">
-        <div class="col col-large-8">
+        <div class="col col-large-10 col-xlarge-8">
           <h2 class="cover-heading scroll-effect" v-html="$t('cover-heading')"></h2>
         </div>
       </div>
       <div class="row row-centered">
-        <div class="col col-large-6">
+        <div class="col col-large-10 col-xlarge-8">
           <p class="cover-subheading scroll-effect scroll-effect-delayed-1">{{ $t('cover-subheading') }}</p>
         </div>
       </div>
@@ -120,7 +106,7 @@
         </div>
       </div>
       <div class="row row-centered">
-        <div class="col col-mobile-large-10 col-tablet-portrait-8 col-large-8 scroll-effect scroll-effect-delayed-3">
+        <div class="col col-tablet-portrait-8 col-large-6 col-xlarge-8 scroll-effect scroll-effect-delayed-3">
           <duration></duration>
         </div>
       </div>
@@ -132,7 +118,6 @@
 
     <!--
     <template v-if="challengeState === 'after'">
-
 
       <app-content-section>
         <div class="content-wrapper">
@@ -186,23 +171,23 @@
     <app-content-section>
       <div class="content-wrapper">
 
-        <div class="row row-centered row-middle row-reverse-large">
+        <div class="row row-centered row-middle row-wrapping">
 
-          <div class="col col-10 col-large-6 col-wrapping col-large-no-bottom-margin">
-            <div>
-              <div>
-                <img src="/img/graphic-intro.png" />
-              </div>
+          <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
+            <div class="extra-padding-h">
+              <img src="/img/graphic-intro.png" />
             </div>
           </div>
 
-          <div class="col col-large-5 col-large-before-1 col-wrapping col-no-bottom-margin">
+          <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-intro-heading') }}</h2>
               <p class="reduced-bottom-margin" v-html="$t('section-intro-text')"></p>
+              <!--
               <p>
                 <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
               </p>
+              -->
               <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
                 <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
@@ -223,61 +208,54 @@
     -->
 
 
-    <app-content-section color="greyish">
+    <app-content-section color="light-greyish">
       <div class="content-wrapper">
-        <div class="row row-centered row-middle row-reverse-large">
+        <div class="row row-centered row-middle row-reverse-large row-wrapping">
 
-          <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin">
-              <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-              <ul>
-                <li v-html="$t('section-prize-list-1-1')"></li>
-                <li v-html="$t('section-prize-list-1-2')"></li>
-              </ul>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-              <ul class="reduced-bottom-margin">
-                <li v-html="$t('section-prize-list-2-1')"></li>
-                <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
-              </ul>
-          </div>
-
-          <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+          <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
             <div>
-              <div class="extra-padding-h">
-                <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+              <div class="extra-padding-large-h">
+                <img src="/img/graphic-about.jpg" style="border-radius:50%"/>
               </div>
             </div>
           </div>
 
+          <div class="col col-large-5 col-large-before-1 col-wrapping scroll-effect scroll-effect-delayed-1">
+            <div>
+              <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
+              <p v-html="$t('section-about-text-1')"></p>
+              <p v-html="$t('section-about-text-2')"></p>
+              <div class="button-group centered left-aligned-large">
+                <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
     </app-content-section>
 
 
-    <app-content-section class="overflow-hidden">
+    <app-content-section>
       <div class="content-wrapper">
-          <div class="row">
-              <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
 
-                  <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                  <p v-html="$t('section-about-text-1')"></p>
-                  <p v-html="$t('section-about-text-2')"></p>
-                  <p class="centered left-aligned-large">
-                      <router-link tag="button" to="/about" class="button button-primary">{{ $t('section-about-button') }}</router-link>
-                  </p>
-              </div>
+        <div class="row row-centered row-middle row-wrapping">
 
+          <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
+            <div class="extra-padding-h">
+              <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+            </div>
           </div>
-      </div>
-      <div class="background-wrapper background-wrapper-move-right">
-          <div class="content-wrapper">
-              <div class="row row-centered row-in-background">
-                  <div class="col col-8 col-tablet-portrait-6 col-large-7">
-                      <img src="/img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
-                  </div>
-              </div>
+
+          <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
+            <div>
+              <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+            </div>
           </div>
+
+        </div>
+
       </div>
     </app-content-section>
 

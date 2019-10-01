@@ -15,7 +15,7 @@ const getters = {
 const actions = {
     updateTotalTaskCount({state, commit, rootState}) {
 
-        //console.log('update task count');
+        console.log('update task count');
 
         const taskCountQuery = {
             "select": {
@@ -30,14 +30,14 @@ const actions = {
                 {
                     "field": 'tasks.activity_id',
                     'op': 'e',
-                    'val': store.state.consts.identificationActivity
+                    'val': store.state.consts.activityId
                 }
             ]
         };
         store.dispatch('c3s/task/getTaskCount', taskCountQuery).then(res => {
 
 
-            //console.log('task count returned');
+            console.log('task count returned');
 
             commit('SET_TOTAL_TASK_COUNT', res.body );
 
@@ -47,7 +47,7 @@ const actions = {
 
     updateTotalUserAndSubmissionCount({state, commit, rootState}) {
 
-        //console.log('update total user and submission count');
+        console.log('update total user and submission count');
 
         const allSubmissionsQuery = {
             "select": {
@@ -78,13 +78,13 @@ const actions = {
                 {
                     "field": 'tasks.activity_id',
                     'op': 'e',
-                    'val': store.state.consts.identificationActivity
+                    'val': store.state.consts.activityId
                 }
             ]
         };
         store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
 
-            //console.log('total user and submission count returned');
+            console.log('total user and submission count returned');
 
             let allUsersCount = 0;
             let allSubmissionsCount = 0;
@@ -100,7 +100,7 @@ const actions = {
 
     updateMySubmissionCount({state, commit, rootState}) {
 
-        //console.log('update my submissions count');
+        console.log('update my submissions count');
 
         const submissionCountQuery = {
             "select": {
@@ -122,7 +122,7 @@ const actions = {
         store.dispatch('c3s/task/getTaskCount', submissionCountQuery).then(res => {
 
 
-            //console.log('my submissions count returned');
+            console.log('my submissions count returned');
 
             commit('SET_MY_SUBMISSION_COUNT', res.body );
 
