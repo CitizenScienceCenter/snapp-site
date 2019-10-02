@@ -48,42 +48,43 @@ const actions = {
     updateTotalUserAndSubmissionCount({state, commit, rootState}) {
 
         console.log('update total user and submission count');
+        console.log('activity: '+store.state.consts.activityId);
 
         const allSubmissionsQuery = {
             "select": {
                 "fields": [
                     "users.username",
-                    "count(*) as total_subs"
+                    "count(*) as subs"
                 ],
                 "tables": [
-                    "users",
                     "submissions"
                 ],
                 "groupBy": [
-                    "user_id"
+                    "users.username"
                 ],
                 "orderBy": {
-                    "total_subs": 'DESC'
+                    "subs": 'DESC'
                 }
             },
             "join": {
                 "type": "LEFT",
                 "conditions":{
                     "from": {
-                        "table": "tasks",
+                        "table": "users",
                         "field": "id"
                     },
                     "to": {
                         "table": "submissions",
-                        "field": "task_id"
+                        "field": "user_id"
                     }
                 }
             },
             'where': [
                 {
-                    "field": 'tasks.activity_id',
-                    'op': 'e',
-                    'val': store.state.consts.activityId
+                    "field": 'submissions.task_id',
+                    'op': 'i',
+                    'val': "(select id from tasks where tasks.activity_id='"+store.state.consts.activityId+"')",
+                    'type': 'sql'
                 }
             ]
         };
@@ -107,6 +108,7 @@ const actions = {
     updateMySubmissionCount({state, commit, rootState}) {
 
         console.log('update my submissions count');
+        console.log('user: '+store.state.c3s.user.currentUser.id);
 
         const submissionCountQuery = {
             "select": {
@@ -124,9 +126,10 @@ const actions = {
                     'val': store.state.c3s.user.currentUser.id
                 },
                 {
-                    "field": 'tasks.activity_id',
-                    'op': 'e',
-                    'val': store.state.consts.activityId,
+                    "field": 'submissions.task_id',
+                    'op': 'i',
+                    'val': "(select id from tasks where tasks.activity_id='"+store.state.consts.activityId+"')",
+                    'type': 'sql',
                     "join": "a"
                 }
             ]
