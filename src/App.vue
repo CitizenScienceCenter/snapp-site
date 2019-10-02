@@ -86,7 +86,6 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch('consts/setDates', ['2019-09-04T11:00:00Z', '2019-11-14T11:00:00Z'] );
-    this.$store.dispatch('stats/updateMySubmissionCount');
 
     // body fade
     var app = this.$el;

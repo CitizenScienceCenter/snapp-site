@@ -63,7 +63,7 @@ const actions = {
                     "user_id"
                 ],
                 "orderBy": {
-                    "total_subs": DESC
+                    "total_subs": 'DESC'
                 }
             },
             "join": {
@@ -90,6 +90,7 @@ const actions = {
         store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
 
             console.log('total user and submission count returned');
+            console.log( res );
 
             let allUsersCount = 0;
             let allSubmissionsCount = 0;
@@ -121,6 +122,12 @@ const actions = {
                     "field": 'submissions.user_id',
                     'op': 'e',
                     'val': store.state.c3s.user.currentUser.id
+                },
+                {
+                    "field": 'tasks.activity_id',
+                    'op': 'e',
+                    'val': store.state.consts.activityId,
+                    "join": "a"
                 }
             ]
         };
@@ -128,6 +135,7 @@ const actions = {
 
 
             console.log('my submissions count returned');
+            console.log( res );
 
             commit('SET_MY_SUBMISSION_COUNT', res.body );
 

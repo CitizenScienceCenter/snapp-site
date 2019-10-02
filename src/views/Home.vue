@@ -377,8 +377,9 @@ export default {
       })
   },
   mounted() {
-      this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
-      this.$store.dispatch('stats/updateTotalTaskCount');
+      //this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
+      //this.$store.dispatch('stats/updateTotalTaskCount');
+      this.$store.dispatch('stats/updateMySubmissionCount');
   }
 }
 
