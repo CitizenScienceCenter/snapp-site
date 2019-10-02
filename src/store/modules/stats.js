@@ -52,14 +52,19 @@ const actions = {
         const allSubmissionsQuery = {
             "select": {
                 "fields": [
-                    "count(*)"
+                    "users.username",
+                    "count(*) as total_subs"
                 ],
                 "tables": [
+                    "users",
                     "submissions"
                 ],
                 "groupBy": [
                     "user_id"
-                ]
+                ],
+                "orderBy": {
+                    "total_subs": DESC
+                }
             },
             "join": {
                 "type": "LEFT",
@@ -85,7 +90,6 @@ const actions = {
         store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
 
             console.log('total user and submission count returned');
-            console.log( res );
 
             let allUsersCount = 0;
             let allSubmissionsCount = 0;
