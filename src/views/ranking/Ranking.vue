@@ -31,7 +31,7 @@
 
                         <h2 class="heading centered">{{ $t('heading-ranking')}}</h2>
 
-                        <ranking></ranking>
+                        <!-- <ranking></ranking> -->
 
                     </div>
                 </div>

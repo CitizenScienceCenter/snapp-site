@@ -5,15 +5,12 @@
 
     "page-title": "Challenge",
 
-    "challenge-difficulty": "Difficulty",
-    "challenge-difficulty-1": "Easy",
-    "challenge-difficulty-2": "Hard",
     "challenge-heading": "What Snake is This?",
     "challenge-placeholder": "Family, Genus, Binomial or Common Name",
     "challenge-button-register": "Register",
     "challenge-button-skip": "Skip",
     "challenge-button-submit": "Submit",
-    "challenge-info-before": "Not started yet.",
+    "challenge-info-before": "Challenge has not started yet.",
     "challenge-info-after": "Already over.",
     "challenge-info-done": "Already done.",
     "challenge-scoreinfo-prefix": "Earn",
@@ -32,18 +29,13 @@
     "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
     "section-winners-button": "See the Top 30",
 
-    "section-prize-heading": "What Will you get for Your Participation?",
-    "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-    "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
-    "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
-    "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
-    "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
-    "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
+    "section-about-heading": "Now With Unclassified Images",
+    "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
+    "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
+    "section-about-button": "About the Project",
 
-    "section-about-heading": "Why this Challenge?",
-    "section-about-text-1": "Venomous snakebite is responsible for over 100,000 deaths and around three times as many permanent disabilities every year, mostly affecting poor and rural communities in the parts of the world where snake diversity is the highest. Communities and healthcare providers working in these areas are often limited in their herpetological expertise.",
-    "section-about-text-2": "Our goal is to create digital tools that anyone can use to identify snakes in order to help clinicians better treat snakebite cases, and improve snake conservation through educating people and communities.",
-    "section-about-button": "Read more",
+    "section-prize-heading": "Prizes for Top Contributors",
+    "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
     "section-partners-heading": "Project Partners",
 
@@ -55,15 +47,12 @@
 
     "page-title": "Challenge",
 
-    "challenge-difficulty": "Schwierigkeit",
-    "challenge-difficulty-1": "Einfach",
-    "challenge-difficulty-2": "Schwierig",
     "challenge-heading": "Welche Schlange ist's?",
     "challenge-placeholder": "Familie, Genus, Binomial oder engl. Name",
     "challenge-button-register": "Registrieren",
     "challenge-button-skip": "Auslassen",
     "challenge-button-submit": "Senden",
-    "challenge-info-before": "Noch nicht gestartet.",
+    "challenge-info-before": "Challenge ist noch nicht gestartet.",
     "challenge-info-after": "Challenge schon vorüber.",
     "challenge-info-done": "Schon erledigt.",
     "challenge-scoreinfo-prefix": "Erhalte",
@@ -82,20 +71,15 @@
     "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
     "section-winners-button": "Zu den Top 30",
 
-    "section-prize-heading": "Was kannst Du gewinnen?",
-    "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
-    "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
-    "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
-    "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
-    "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
-    "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
+    "section-about-heading": "Now With Unclassified Images",
+    "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
+    "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
+    "section-about-button": "About the Project",
 
-    "section-about-heading": "Warum diese Challenge?",
-    "section-about-text-1": "Schlangenbisse kosten weltweit jedes Jahr über 100’000 Menschenleben und verursachen ungefähr drei mal so viele Fälle von permanenter Behinderung; oft trifft es gerade Menschen in den armen, ländlichen Gegenden der Welt mit einer grossen Artenvielfalt an Schlangen. Die Gemeinden und Gesundheitsversorger in diesen Gegenden haben oft nicht die nötigen Schlangenkenntnisse.",
-    "section-about-text-2": "Unser Ziel ist es, ein digitales Tool zu entwickeln das dabei unterstützt, Schlangen richtig zu bestimmen. Es soll klinischem Personal helfen, Schlangenbisse richtig zu behandeln aber auch ein Bildungsangebot für Menschen und Gemeinden sein um Schlangen besser zu schützen und zu erhalten.",
-    "section-about-button": "Mehr erfahren",
+    "section-prize-heading": "Prizes for Top Contributors",
+    "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
-    "section-partners-heading": "Projektpartner",
+    "section-partners-heading": "Project Partners",
 
     "section-newsletter-heading": "Abonniere unseren Newsletter"
 
@@ -114,34 +98,7 @@
 
                 <div class="section-wrapper">
 
-                    <app-content-section class="content-section-flat settings-section" color="light-greyish">
-                        <div class="settings">
-
-                            <div class="content-wrapper">
-                                <div class="row row-centered row-large-right-aligned">
-                                    <div class="col col-large-5">
-
-                                        <div class="difficulty-select">
-                                            <label>{{ $t('challenge-difficulty') }}</label>
-                                            <div class="custom-select settings-select">
-                                                <select v-model="difficulty">
-                                                    <option selected value="0">{{ $t('challenge-difficulty-1') }}</option>
-                                                    <option value="1">{{ $t('challenge-difficulty-2') }}</option>
-                                                </select>
-                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                                    <path d="M127.3,192h257.3c17.8,0,26.7,21.5,14.1,34.1L270.1,354.8c-7.8,7.8-20.5,7.8-28.3,0L113.2,226.1 C100.6,213.5,109.5,192,127.3,192z"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </app-content-section>
-
-
-                    <app-content-section class="content-section-condensed question-section">
+                    <app-content-section class="question-section">
 
                         <div class="content-wrapper">
                             <div class="row row-centered row-large-right-aligned">
@@ -159,7 +116,7 @@
                     <app-content-section class="content-section-flat image-section">
                         <template>
 
-                            <image-viewer class="image-viewer" :src="'https://api.citizenscience.ch/files/upload/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
+                            <image-viewer class="image-viewer" :src="'https://storage.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
 
                             <div class="image-info-wrapper">
                                 <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
@@ -184,7 +141,7 @@
                         </template>
                     </app-content-section>
 
-                    <app-content-section class="content-section-condensed response-section">
+                    <app-content-section class="response-section">
                         <div class="content-wrapper">
                             <div class="row row-centered row-large-right-aligned">
                                 <div class="col col-large-5">
@@ -210,8 +167,8 @@
                                                     <button ref="next" class="button button-primary" :disabled="loading" @click.prevent="next()">Next</button>
                                                 </template>
                                                 <template v-else>
-                                                    <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading" @click.prevent="value = null;submitResponse()">{{ $t('challenge-button-skip') }}</button>
-                                                    <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0 || evaluation" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
+                                                    <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading" @click.prevent="next()">{{ $t('challenge-button-skip') }}</button>
+                                                    <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
                                                 </template>
                                             </template>
                                         </div>
@@ -244,110 +201,7 @@
                                                 <span class="text">{{ $t('challenge-info-done') }}</span>
                                             </div>
 
-                                            <div v-else-if="evaluation" class="message message-evaluation">
-
-                                                <div ref="circle2" class="circle circle-2 hidden" :class="{ 'success': evaluation.score === binomialScore, 'fail': value.type === 'binomial' && evaluation.score < binomialScore, 'empty': value.type !== 'binomial' }"></div>
-                                                <div ref="circle1" class="circle circle-1 hidden" :class="{ 'success': value.type !== 'family' && evaluation.score >= genusScore, 'fail': value.type !== 'family' && evaluation.score < genusScore, 'empty': value.type !== 'binomial' && value.type !== 'genus' }"></div>
-
-                                                <div v-if="evaluation.score === 0" ref="scoreicon" class="icon fail hidden">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                        <path d="M322.72,256,422.79,155.93a31.46,31.46,0,0,0,0-44.48L400.55,89.21a31.46,31.46,0,0,0-44.48,0L256,189.28,155.93,89.21a31.46,31.46,0,0,0-44.48,0L89.21,111.45a31.46,31.46,0,0,0,0,44.48L189.28,256,89.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L256,322.72,356.07,422.79a31.46,31.46,0,0,0,44.48,0l22.24-22.24a31.46,31.46,0,0,0,0-44.48Z"></path>
-                                                    </svg>
-                                                </div>
-                                                <div v-else ref="scoreicon" class="icon success hidden">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                        <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                                                    </svg>
-                                                </div>
-
-                                                <span ref="score" class="score hidden" :class="{ 'success': evaluation.score > 0, 'fail': evaluation.score === 0 }">{{ evaluation.score }}</span>
-                                            </div>
-
                                         </div>
-                                    </div>
-
-                                    <div v-if="tasks[0] && false" class="mongo">
-                                        <label>Binomial: </label><i>{{ tasks[0].info.binomial }}</i>
-                                        <label>Genus: </label>{{ tasks[0].info.genus }}
-                                        <label>Family: </label>{{ tasks[0].info.family }}
-                                    </div>
-
-                                    <div class="content-container">
-                                        <ul class="evaluation-list">
-
-                                            <li ref="evaluation-step-3" :class="{
-                                                'correct': evaluation && evaluation.successRate === 3,
-                                                'wrong': evaluation && evaluation.successRate < 3 && value.type === 'binomial',
-                                                'missing': evaluation && evaluation && value.type !== 'binomial'
-                                            }">
-                                                <div class="evaluation">
-                                                    <template v-if="evaluation && evaluation.successRate === 3"> <!-- correct -->
-                                                        {{ tasks[0].info.binomial }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && evaluation.successRate < 3 && value.type === 'binomial'">  <!-- wrong -->
-                                                        <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.binomial }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && value.type !== 'binomial'"> <!-- missing -->
-                                                        {{ tasks[0].info.binomial }}
-                                                    </template>
-                                                </div>
-                                                <div class="default">
-                                                    {{ $t('challenge-scoreinfo-prefix') }} {{binomialScore}} {{ $t('challenge-scoreinfo-suffix-binomial') }}
-                                                </div>
-                                            </li>
-
-
-                                            <li ref="evaluation-step-2" :class="{
-                                                'correct': evaluation && evaluation.successRate >= 2,
-                                                'wrong': evaluation && evaluation.successRate < 2 && ( value.type === 'genus' || value.hasOwnProperty('genus') ),
-                                                'missing': evaluation && evaluation && value.type !== 'genus' && value.type !== 'binomial'
-                                            }">
-                                                <div class="evaluation">
-                                                    <template v-if="evaluation && evaluation.successRate >= 2"> <!-- correct -->
-                                                        {{ tasks[0].info.genus }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && evaluation.successRate < 2 && value.type === 'genus'"> <!-- wrong -->
-                                                        <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.genus }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && evaluation.successRate < 2 && value.hasOwnProperty('genus')"> <!-- wrong because of parent -->
-                                                        <span class="wrongAnswer">{{ value.genus }}</span>{{ tasks[0].info.genus }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && value.type !== 'genus' && value.type !== 'binomial'"> <!-- missing -->
-                                                        {{ tasks[0].info.genus }}
-                                                    </template>
-                                                </div>
-                                                <div class="default">
-                                                    {{ $t('challenge-scoreinfo-prefix') }} {{genusScore}} {{ $t('challenge-scoreinfo-suffix-genus') }}
-                                                </div>
-                                            </li>
-
-
-                                            <li ref="evaluation-step-1" :class="{
-                                                'correct': evaluation && evaluation.successRate >= 1,
-                                                'wrong': evaluation && evaluation.successRate < 1 && ( value.type === 'family' || value.hasOwnProperty('family') )
-                                            }">
-                                                <div class="evaluation">
-                                                    <template v-if="evaluation && evaluation.successRate >= 1"> <!-- correct -->
-                                                        {{ tasks[0].info.family }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && evaluation.successRate < 1 && value.type === 'family'"> <!-- wrong -->
-                                                        <span class="wrongAnswer">{{ value.value }}</span>{{ tasks[0].info.family }}
-                                                    </template>
-                                                    <template v-else-if="evaluation && evaluation.successRate < 1 && value.hasOwnProperty('family')"> <!-- wrong because of parent -->
-                                                        <span class="wrongAnswer">{{ value.family }}</span>{{ tasks[0].info.family }}
-                                                    </template>
-                                                </div>
-                                                <div class="default">
-                                                    {{ $t('challenge-scoreinfo-prefix') }} {{familyScore}} {{ $t('challenge-scoreinfo-suffix-family') }}
-                                                </div>
-                                            </li>
-
-                                        </ul>
-
-                                        <div class="button-group centered left-aligned-large">
-                                            <button style="padding:0" class="button button-secondary button-secondary-naked" v-if="!hasSubmissionAlready" title="snakeid@citizenscience.ch" @click.prevent="openInNewTab('mailto:snakeid@citizenscience.ch?subject=Snake ID Challenge Feedback&body=https://snakes.citizenscience.ch/challenge/'+tasks[0].id)">{{ $t('challenge-button-feedback') }}</button>
-                                        </div>
-
                                     </div>
 
                                 </div>
@@ -358,6 +212,10 @@
                 </div>
 
 
+                <section-stats v-if="challengeState !== 'before'" color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+
+
+                <!--
                 <app-content-section v-if="challengeState !== 'after'" class="content-section-condensed" color="light-greyish">
                     <div v-if="challengeState !== 'before'" class="content-subsection">
                         <scores></scores>
@@ -372,7 +230,9 @@
                         </div>
                     </div>
                 </app-content-section>
+                -->
 
+                <!--
                 <template v-else>
 
                     <app-content-section class="content-section-condensed" color="light-greyish">
@@ -418,8 +278,8 @@
                         </div>
                     </app-content-section>
 
-
                 </template>
+                -->
 
 
             </template>
@@ -447,67 +307,62 @@
 
 
 
-            <app-content-section color="greyish">
+
+
+
+            <app-content-section>
                 <div class="content-wrapper">
-                    <div class="row row-centered row-middle row-reverse-large">
+                    <div class="row row-centered row-middle row-reverse-large row-wrapping">
 
-                        <div class="col col-large-5 col-large-after-1 col-wrapping col-large-no-bottom-margin">
-                            <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-                            <ul>
-                                <li v-html="$t('section-prize-list-1-1')"></li>
-                                <li v-html="$t('section-prize-list-1-2')"></li>
-                            </ul>
-                            <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-                            <ul class="reduced-bottom-margin">
-                                <li v-html="$t('section-prize-list-2-1')"></li>
-                                <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
-                            </ul>
-                        </div>
-
-                        <div class="col col-10 col-large-6 col-wrapping col-no-bottom-margin">
+                        <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
                             <div>
-                                <div class="extra-padding-h">
-                                    <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                                <div class="extra-padding-large-h">
+                                    <img src="/img/graphic-about.jpg" style="border-radius:50%"/>
                                 </div>
                             </div>
                         </div>
 
-
-                    </div>
-                </div>
-            </app-content-section>
-
-
-            <app-content-section class="overflow-hidden">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col col-tablet-portrait-7 col-large-6 col-large-before-1 col-wrapping col-large-no-bottom-margin">
-
-                            <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                            <p v-html="$t('section-about-text-1')"></p>
-                            <p v-html="$t('section-about-text-2')"></p>
-                            <p class="centered left-aligned-large">
-                                <router-link tag="button" to="/about" class="button button-primary">{{ $t('section-about-button') }}</router-link>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="background-wrapper background-wrapper-move-right">
-                    <div class="content-wrapper">
-                        <div class="row row-centered row-in-background">
-                            <div class="col col-8 col-tablet-portrait-6 col-large-7">
-                                <img src="/img/graphic-about.jpg" style="border-radius:50%; width: 100%;"/>
+                        <div class="col col-large-5 col-large-before-1 col-wrapping scroll-effect scroll-effect-delayed-1">
+                            <div>
+                                <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
+                                <p v-html="$t('section-about-text-1')"></p>
+                                <p v-html="$t('section-about-text-2')"></p>
+                                <div class="button-group centered left-aligned-large">
+                                    <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </app-content-section>
-
 
 
             <app-content-section color="light-greyish">
+                <div class="content-wrapper">
+
+                    <div class="row row-centered row-middle row-wrapping">
+
+                        <div class="col col-6 col-large-4 col-large-before-2 col-wrapping scroll-effect">
+                            <div class="extra-padding-h">
+                                <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                            </div>
+                        </div>
+
+                        <div class="col col-large-4 col-large-after-2 col-wrapping scroll-effect scroll-effect-delayed-1">
+                            <div>
+                                <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+                                <p class="reduced-bottom-margin" v-html="$t('section-prize-text')"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </app-content-section>
+
+
+            <app-content-section color="greyish">
                 <div class="content-wrapper">
                     <div class="row row-centered">
                         <div class="col col-large-6">
@@ -569,6 +424,7 @@
                 </div>
             </app-content-section>
 
+
             <section-newsletter-signup></section-newsletter-signup>
 
             <app-footer></app-footer>
@@ -598,11 +454,13 @@ import Loader from "../components/shared/Loader";
 import Ranking from "../components/Ranking";
 import Stats from "../components/Stats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
+import SectionStats from "../components/shared/SectionStats";
 
 
 export default {
     name: 'Task',
     components: {
+        SectionStats,
         SectionNewsletterSignup,
         Stats,
         Ranking,
@@ -625,11 +483,8 @@ export default {
         return {
             id: null,
             hasSubmissionAlready: false,
-            difficulty: '0',
-            completedDifficulties: [],
             value: {},
             responseTime: null,
-            evaluation: null,
             complete: false,
             loadTime: null,
             showNext: false,
@@ -651,38 +506,12 @@ export default {
             currentUser: state => state.c3s.user.currentUser,
             submission: state => state.c3s.submission.submission,
 
+            totalTaskCount: state => state.stats.totalTaskCount,
+            totalUserCount: state => state.stats.totalUserCount,
+            totalSubmissionCount: state => state.stats.totalSubmissionCount
+
             //loading: state => state.c3s.settings.loading
-        }),
-        familyScore: function() {
-            switch( this.difficulty ) {
-                case '0': {
-                    return 6;
-                }
-                case '1': {
-                    return 8;
-                }
-            }
-        },
-        genusScore: function() {
-            switch( this.difficulty ) {
-                case '0': {
-                    return 9;
-                }
-                case '1': {
-                    return 12;
-                }
-            }
-        },
-        binomialScore: function() {
-            switch( this.difficulty ) {
-                case '0': {
-                    return 12;
-                }
-                case '1': {
-                    return 16;
-                }
-            }
-        }
+        })
     },
     watch: {
         value: function(to,from) {
@@ -697,9 +526,6 @@ export default {
                 }
             }
 
-        },
-        difficulty: function(to, from) {
-            this.loadTask();
         },
         showNext( to, from ) {
             if( to ) {
@@ -716,6 +542,8 @@ export default {
     },
     mounted() {
 
+        this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
+        this.$store.dispatch('stats/updateTotalTaskCount');
 
         let containerVersion = 0.9;
         if( this.containerVersion !== containerVersion || !this.optionContainers ) {
@@ -778,7 +606,7 @@ export default {
                         {
                             "field": 'tasks.activity_id',
                             'op': 'e',
-                            'val': this.activity.id
+                            'val': this.activityId
                         },
                         {
                             'field': 'tasks.id',
@@ -786,12 +614,6 @@ export default {
                             'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.currentUser.id + "')",
                             'join': 'a',
                             'type': 'sql'
-                        },
-                        {
-                            'field': 'tasks.info ->> \'difficulty\'',
-                            'op': 'e',
-                            'val': this.difficulty.toString(),
-                            'join': 'a'
                         }
                     ]
                 };
@@ -894,7 +716,6 @@ export default {
                     this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
 
                         //console.log('media loaded');
-                        this.evaluation = null;
                         this.value = null;
                         this.loadTime = new Date();
                         this.loading = false;
@@ -908,27 +729,7 @@ export default {
 
                     console.log('no more tasks');
 
-                    if ( this.difficulty === '0') {
-                        this.completedDifficulties.push('0');
-
-                        if (this.completedDifficulties.indexOf('1') === -1) {
-                            this.difficulty = '1';
-                        }
-                        else {
-                            this.complete = true;
-                        }
-                    }
-                    else if ( this.difficulty === '1') {
-                        this.completedDifficulties.push('1');
-
-                        if (this.completedDifficulties.indexOf('0') === -1) {
-                            this.difficulty = '0';
-                        }
-                        else {
-                            this.complete = true;
-                        }
-                    }
-
+                    this.complete = true;
 
                 }
 
@@ -941,148 +742,30 @@ export default {
             let timeNow = new Date();
             let timeNeeded = timeNow.getTime() - this.loadTime.getTime();
 
-            // evaluation if value
-            let submissionQuery;
-
-            if( this.value && Object.keys(this.value).length > 0 ) {
-
-
-                if (this.value.type === 'binomial') {
-                    if (this.value.value === this.tasks[0].info.binomial) {
-                        this.evaluation = {
-                            'successRate': 3,
-                            'score': this.binomialScore
-                        };
-                    }
-                    else if (this.value.genus === this.tasks[0].info.genus) {
-                        this.evaluation = {
-                            'successRate': 2,
-                            'score': this.genusScore
-                        };
-                    }
-                    else if (this.value.family === this.tasks[0].info.family) {
-                        this.evaluation = {
-                            'successRate': 1,
-                            'score': this.familyScore
-                        };
-                    }
-                    else {
-                        this.evaluation = {
-                            'successRate': 0,
-                            'score': 0
-                        };
-                    }
-                }
-                else if (this.value.type === 'genus') {
-
-                    if (this.value.value === this.tasks[0].info.genus) {
-                        this.evaluation = {
-                            'successRate': 2,
-                            'score': this.genusScore
-                        };
-                    }
-                    else if (this.value.family === this.tasks[0].info.family) {
-                        this.evaluation = {
-                            'successRate': 1,
-                            'score': this.familyScore
-                        };
-                    }
-                    else {
-                        this.evaluation = {
-                            'successRate': 0,
-                            'score': 0
-                        };
-                    }
-                }
-                else if (this.value.type === 'family') {
-                    if (this.value.value === this.tasks[0].info.family) {
-                        this.evaluation = {
-                            'successRate': 1,
-                            'score': this.familyScore
-                        };
-                    }
-                    else {
-                        this.evaluation = {
-                            'successRate': 0,
-                            'score': 0
-                        };
-                    }
-                }
-
-                submissionQuery = {
-                    "info": {},
-                    "content": {
-                        "responses": [{
-                            "value": this.value.value,
-                            "info": this.value.type,
-                            "score": this.evaluation.score,
-                            "time": timeNeeded
-                        }]
-                    },
-                    "task_id": this.tasks[0].id,
-                    "user_id": this.currentUser.id
-                };
-
-            }
-            else {
-                submissionQuery = {
-                    "info": {},
-                    "content": {
-                        "responses": [{
-                            "value": null,
-                            "info": null,
-                            "score": 0
-                        }]
-                    },
-                    "task_id": this.tasks[0].id,
-                    "user_id": this.currentUser.id
-                };
-            }
+            let submissionQuery = {
+                "info": {},
+                "content": {
+                    "responses": [{
+                        "value": this.value.value,
+                        "info": this.value.type,
+                        "time": timeNeeded
+                    }]
+                },
+                "task_id": this.tasks[0].id,
+                "user_id": this.currentUser.id,
+                "draft": true
+            };
 
             this.$store.commit('c3s/submission/SET_SUBMISSION', submissionQuery );
 
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
-
-                if( this.value && Object.keys(this.value).length > 0 ) {
-
-                    const self = this;
-                    var counter = 1;
-                    this.$refs['evaluation-step-' + counter].classList.add('evaluated');
-                    this.$refs.scoreicon.classList.remove('hidden');
-                    var interval = setInterval(function () {
-
-                        counter++;
-
-                        if (counter === 2) {
-                            self.$refs['evaluation-step-' + counter].classList.add('evaluated');
-                            self.$refs.circle1.classList.remove('hidden');
-                        }
-                        else if (counter === 3) {
-                            self.$refs['evaluation-step-' + counter].classList.add('evaluated');
-                            self.$refs.circle2.classList.remove('hidden');
-                        }
-                        else if( counter === 4 ) {
-                            self.$refs.score.classList.remove('hidden');
-                            self.showNext = true;
-                            self.$store.dispatch('score/calculateScore');
-                            clearInterval(interval)
-                        }
-
-                    }, 600);
-
-                }
-                else {
-                    this.value = {};
-                    this.loadTask();
-                }
+                this.value = {};
+                this.loadTask();
 
             });
         },
         next() {
-            this.$refs['evaluation-step-1'].classList.remove('evaluated');
-            this.$refs['evaluation-step-2'].classList.remove('evaluated');
-            this.$refs['evaluation-step-3'].classList.remove('evaluated');
             this.loadTask();
         }
     }
@@ -1097,41 +780,6 @@ export default {
 
 
 .section-wrapper {
-
-    .settings-section {
-        .settings {
-
-            padding: calc(#{$spacing-1}/2) 0;
-
-            .settings-select {
-                select {
-                    border-bottom: none;
-
-                    &:focus {
-                        border-bottom: none;
-                    }
-                }
-            }
-
-            .difficulty-select {
-                display: inline-block;
-                margin-right: $spacing-2;
-
-                label {
-                    font-weight: bold;
-                    margin-right: $spacing-2;
-                }
-            }
-            .region-select {
-                display: inline-block;
-
-                label {
-                    font-weight: bold;
-                    margin-right: $spacing-2;
-                }
-            }
-        }
-    }
 
     .question-section {
         padding-bottom: 0;
@@ -1250,179 +898,15 @@ export default {
                         }
                     }
 
-                    &.message-evaluation {
-
-                        .circle {
-                            transition: all $transition-duration-long $transition-timing-function;
-
-                            position: absolute;
-                            border-radius: 50%;
-                            border: 1px solid white;
-
-                            &.success {
-                                background-color: $color-success;
-                            }
-                            &.fail {
-                                background-color: $color-error;
-                            }
-                            &.empty {
-                                background-color: $color-black-tint-50;
-                            }
-
-                            &.circle-2 {
-                                top: 0;
-                                left: 0;
-                                height: 40px;
-                                width: 40px;
-                            }
-                            &.circle-1 {
-                                top: 4px;
-                                left: 4px;
-                                height: 32px;
-                                width: 32px;
-                            }
-
-                            &.hidden {
-                                transform: scale( 0, 0 );
-                            }
-                        }
-                        .icon {
-                            transition: all $transition-duration-long $transition-timing-function;
-
-                            border: 1px solid white;
-                            top: 8px;
-                            left: 8px;
-                            height: 24px;
-                            width: 24px;
-
-                            svg {
-                                transition: all $transition-duration-long $transition-timing-function;
-
-                                left: 3px;
-                                top: 3px;
-                                width: 16px;
-                                height: 16px;
-                            }
-
-                            &.success {
-                                background-color: $color-success;
-                            }
-                            &.fail {
-                                background-color: $color-error;
-                            }
-
-                            &.hidden {
-                                transform: scale( 0, 0 );
-                            }
-                        }
-                        .score {
-                            font-weight: 700;
-                            &.success {
-                                color: $color-success;
-                            }
-                            &.fail {
-                                color: $color-error;
-                            }
-
-                            &.hidden {
-                                display: none;
-                            }
-                        }
-                    }
-
                 }
             }
         }
-
-
-        .evaluation-list {
-            li:first-child {
-                .evaluation {
-                    font-style: italic;
-                }
-            }
-            li {
-                .evaluation {
-                    display: none;
-                }
-                .default {
-                    display: inline;
-                }
-
-                &.evaluated {
-
-                    &:before {
-                        width: 0.8rem;
-                        height: 0.8rem;
-                        top: 0.35rem;
-                        left: 0.35rem;
-
-                        transition: all $transition-duration-long $transition-timing-function;
-                    }
-
-                    .evaluation {
-                        display: inline;
-                    }
-                    .default {
-                        display: none;
-                    }
-
-
-                    &.correct {
-                        &:before {
-                            background-color: $color-success;
-                        }
-                    }
-                    &.wrong {
-                        &:before {
-                            background-color: $color-error;
-                        }
-
-                        .wrongAnswer {
-                            text-decoration: line-through;
-                            margin-right: $spacing-1;
-                        }
-                    }
-                    &.missing {
-                        &:before {
-                            background-color: $color-black-tint-50;
-                        }
-                    }
-                }
-
-            }
-        }
-    }
-}
-
-.mongo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    font-size: $font-size-small/1.25;
-    color: white;
-    background: $color-black;
-    z-index: 20;
-    padding: 0 $spacing-1;
-    border-top-left-radius: $border-radius;
-
-    label {
-        font-size: $font-size-small/1.25/1.25;
-        font-weight: 700;
-        color: $color-black-tint-50;
-        opacity: 0.5;
     }
 }
 
 @media only screen and (min-width: $viewport-mobile-large) {
 
     .section-wrapper {
-
-        .settings-section {
-            .settings {
-                padding: $spacing-1 0;
-            }
-        }
 
         .image-section {
 
@@ -1438,12 +922,6 @@ export default {
 @media only screen and (min-width: $viewport-tablet-portrait) {
 
     .section-wrapper {
-
-        .settings-section {
-            .settings {
-                padding: $spacing-1 0;
-            }
-        }
 
         .image-section {
 
@@ -1490,34 +968,6 @@ export default {
                                 line-height: 24px;
                             }
                         }
-
-                        &.message-evaluation {
-
-                            .circle {
-
-                                &.circle-2 {
-                                    top: 0;
-                                    left: 0;
-                                    height: 48px;
-                                    width: 48px;
-                                }
-                                &.circle-1 {
-                                    height: 40px;
-                                    width: 40px;
-                                }
-                            }
-                            .icon {
-                                top: 8px;
-                                left: 8px;
-                                height: 32px;
-                                width: 32px;
-
-                                svg {
-                                    left: 7px;
-                                    top: 7px;
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -1531,6 +981,7 @@ export default {
 
     .section-wrapper {
         position: relative;
+        min-height: 66.667vh;
 
         .image-section {
             position: absolute;
@@ -1555,10 +1006,6 @@ export default {
 
             .actions {
                 margin-bottom: $spacing-4;
-            }
-
-            .content-container {
-                min-height: 180px;
             }
         }
     }

@@ -13,14 +13,13 @@
 
 <template>
   <div id="app">
-    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :languages="languages"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :languages="languages" :score="mySubmissionCount"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
     <g-d-p-r></g-d-p-r>
   </div>
 </template>
-f
 <script>
 
 import {mapState} from 'vuex'
@@ -80,12 +79,14 @@ export default {
   },
   computed: {
     ...mapState({
-      languages: state => state.consts.languages
+      languages: state => state.consts.languages,
+
+      mySubmissionCount: state => state.stats.mySubmissionCount
     })
   },
   mounted: function() {
-    this.$store.dispatch('consts/setActivityId', '74033a29-4346-485d-b0e3-3f263a507837' );
-    this.$store.dispatch('consts/setDates', ['2019-11-04T11:00:00Z', '2019-11-14T11:00:00Z'] );
+    this.$store.dispatch('consts/setDates', ['2019-09-04T11:00:00Z', '2019-11-14T11:00:00Z'] );
+    this.$store.dispatch('stats/updateMySubmissionCount');
 
     // body fade
     var app = this.$el;

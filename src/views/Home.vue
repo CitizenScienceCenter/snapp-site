@@ -20,10 +20,10 @@
   "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
   "section-next-challenge-button": "Register",
 
-  "section-intro-heading": "How Many Species of Snakes can you Identify?",
+  "section-intro-heading": "Help us Identifying Species of Snakes.",
   "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
-  "section-about-heading": "Now With Unclassified Images",
+  "section-about-heading": "What's new?",
   "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
   "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
   "section-about-button": "About the Project",
@@ -114,7 +114,7 @@
 
 
 
-    <section-stats color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+    <section-stats v-if="challengeState !== 'before'" color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
 
     <!--
     <template v-if="challengeState === 'after'">
@@ -241,16 +241,16 @@
 
         <div class="row row-centered row-middle row-wrapping">
 
-          <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
+          <div class="col col-6 col-large-4 col-large-before-2 col-wrapping scroll-effect">
             <div class="extra-padding-h">
               <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
             </div>
           </div>
 
-          <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
+          <div class="col col-large-4 col-large-after-2 col-wrapping scroll-effect scroll-effect-delayed-1">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-text')"></p>
             </div>
           </div>
 
@@ -260,7 +260,7 @@
     </app-content-section>
 
 
-    <app-content-section color="light-greyish">
+    <app-content-section color="greyish">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">

@@ -124,8 +124,8 @@ const getters = {
 const state = {
     languages: ['en','de'],
     projectId: 'b04bc186-1e0e-4fd3-87b8-a25262c1c79f',
-    activityId: '74033a29-4346-485d-b0e3-3f263a507837',
-    // activityId: '1d2d7613-3856-4566-bdbb-785008016d6f', // new one
+    //activityId: '74033a29-4346-485d-b0e3-3f263a507837',
+    activityId: '75ebb66d-b93c-49cc-b5b1-89c0931ebe62', // new one
 
     optionContainers: null,
     containerVersion: null,
