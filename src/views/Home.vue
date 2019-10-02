@@ -23,12 +23,12 @@
   "section-intro-heading": "Help us Identifying Species of Snakes.",
   "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
-  "section-about-heading": "What's new?",
+  "section-about-heading": "Now With Unclassified Images",
   "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
   "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
   "section-about-button": "About the Project",
 
-  "section-prize-heading": "Prizes for Top Contributors",
+  "section-prize-heading": "Prizes for the Top Contributors",
   "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
   "section-partners-heading": "Project Partners",
@@ -56,7 +56,7 @@
   "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
   "section-next-challenge-button": "Registrieren",
 
-  "section-intro-heading": "Wieviele Schlangenarten kannst Du korrekt bestimmen?",
+  "section-intro-heading": "Hilf mit Schlangenarten korrekt zu bestimmen?",
   "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
   "section-about-heading": "Now With Unclassified Images",
@@ -64,7 +64,7 @@
   "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
   "section-about-button": "Mehr zum Projekt",
 
-  "section-prize-heading": "Prizes for Top Contributors",
+  "section-prize-heading": "Prizes for the Top Contributors",
   "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
   "section-partners-heading": "Projektpartner",
@@ -377,8 +377,8 @@ export default {
       })
   },
   mounted() {
-      //this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
-      //this.$store.dispatch('stats/updateTotalTaskCount');
+      this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
+      this.$store.dispatch('stats/updateTotalTaskCount');
       this.$store.dispatch('stats/updateMySubmissionCount');
   }
 }

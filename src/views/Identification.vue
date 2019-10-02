@@ -211,6 +211,7 @@
 
                 </div>
 
+                <section-stats v-if="challengeState !== 'before'" color="light-greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
 
                 <section-stats v-if="challengeState !== 'before'" color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
 
@@ -280,6 +281,18 @@
 
                 </template>
                 -->
+
+                <app-content-section>
+                    <div class="content-wrapper">
+                        <div class="row row-centered">
+                            <div class="col col-large-10">
+
+                                <duration></duration>
+
+                            </div>
+                        </div>
+                    </div>
+                </app-content-section>
 
 
             </template>
