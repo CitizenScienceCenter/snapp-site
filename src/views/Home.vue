@@ -114,7 +114,15 @@
 
 
 
-    <section-stats v-if="challengeState !== 'before'" color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+    <app-content-section v-if="challengeState !== 'before'" color="greyish" class="content-section-condensed stats-section">
+      <div class="content-wrapper">
+        <sub-section-stats
+                           :userCount="totalUserCount"
+                           :submissionCount="totalSubmissionCount"
+                           :taskCount="totalTaskCount" >
+        </sub-section-stats>
+      </div>
+    </app-content-section>
 
     <!--
     <template v-if="challengeState === 'after'">
@@ -343,11 +351,13 @@ import Ranking from "../components/Ranking";
 import Stats from "../components/Stats";
 import SectionStats from "../components/shared/SectionStats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
+import SubSectionStats from "../components/shared/SubSectionStats";
 
 
 export default {
   name: 'Home',
   components: {
+    SubSectionStats,
     SectionNewsletterSignup,
     SectionStats,
       Stats,
@@ -377,9 +387,7 @@ export default {
       })
   },
   mounted() {
-      this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
-      this.$store.dispatch('stats/updateTotalTaskCount');
-      this.$store.dispatch('stats/updateMySubmissionCount');
+      this.$store.dispatch('stats/updateSubmissionStats');
   }
 }
 

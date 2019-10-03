@@ -29,11 +29,6 @@
     "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
     "section-winners-button": "See the Top 30",
 
-    "section-about-heading": "Now With Unclassified Images",
-    "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
-    "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
-    "section-about-button": "About the Project",
-
     "section-prize-heading": "Prizes for Top Contributors",
     "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
@@ -71,11 +66,6 @@
     "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
     "section-winners-button": "Zu den Top 30",
 
-    "section-about-heading": "Now With Unclassified Images",
-    "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
-    "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
-    "section-about-button": "About the Project",
-
     "section-prize-heading": "Prizes for Top Contributors",
     "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
 
@@ -102,7 +92,7 @@
 
                         <div class="content-wrapper">
                             <div class="row row-centered row-large-right-aligned">
-                                <div class="col col-large-5">
+                                <div class="col col-large-5 scroll-effect">
 
                                     <h2 class="heading">
                                         {{ $t('challenge-heading') }}
@@ -116,7 +106,7 @@
                     <app-content-section class="content-section-flat image-section">
                         <template>
 
-                            <image-viewer class="image-viewer" :src="'https://storage.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
+                            <image-viewer class="image-viewer scroll-effect" :src="'https://storage.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
 
                             <div class="image-info-wrapper">
                                 <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
@@ -144,7 +134,7 @@
                     <app-content-section class="response-section">
                         <div class="content-wrapper">
                             <div class="row row-centered row-large-right-aligned">
-                                <div class="col col-large-5">
+                                <div class="col col-large-5 scroll-effect">
 
                                     <div class="form-field form-field-block">
                                         <search-select
@@ -211,10 +201,35 @@
 
                 </div>
 
-                <section-stats v-if="challengeState !== 'before'" color="light-greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+                <app-content-section v-if="challengeState !== 'before'" color="light-greyish" class="content-section-condensed stats-section">
+                    <div class="content-wrapper">
+                        <sub-section-stats
+                                       :mySubmissionCount="mySubmissionCount"
+                                       :myProgress="Math.round( (mySubmissionCount/totalTaskCount)*10000 )/100"
+                                       :myRank="myRank"
+                                       :ranking="ranking"
+                        ></sub-section-stats>
+                    </div>
+                </app-content-section>
 
-                <section-stats v-if="challengeState !== 'before'" color="greyish" :userCount="totalUserCount" :submissionCount="totalSubmissionCount" :taskCount="totalTaskCount" ></section-stats>
+                <app-content-section v-if="challengeState !== 'before'" color="greyish" class="content-section-condensed stats-section">
+                    <div class="content-wrapper">
+                        <sub-section-stats
+                                :userCount="totalUserCount"
+                                :submissionCount="totalSubmissionCount"
+                                :taskCount="totalTaskCount" >
+                        </sub-section-stats>
+                        <div class="content-subsection">
+                            <div class="row row-centered">
+                                <div class="col col-large-10">
 
+                                    <duration></duration>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </app-content-section>
 
                 <!--
                 <app-content-section v-if="challengeState !== 'after'" class="content-section-condensed" color="light-greyish">
@@ -282,18 +297,6 @@
                 </template>
                 -->
 
-                <app-content-section>
-                    <div class="content-wrapper">
-                        <div class="row row-centered">
-                            <div class="col col-large-10">
-
-                                <duration></duration>
-
-                            </div>
-                        </div>
-                    </div>
-                </app-content-section>
-
 
             </template>
 
@@ -321,37 +324,7 @@
 
 
 
-
-
             <app-content-section>
-                <div class="content-wrapper">
-                    <div class="row row-centered row-middle row-reverse-large row-wrapping">
-
-                        <div class="col col-10 col-tablet-portrait-8 col-large-6 col-wrapping scroll-effect">
-                            <div>
-                                <div class="extra-padding-large-h">
-                                    <img src="/img/graphic-about.jpg" style="border-radius:50%"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col col-large-5 col-large-before-1 col-wrapping scroll-effect scroll-effect-delayed-1">
-                            <div>
-                                <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
-                                <p v-html="$t('section-about-text-1')"></p>
-                                <p v-html="$t('section-about-text-2')"></p>
-                                <div class="button-group centered left-aligned-large">
-                                    <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </app-content-section>
-
-
-            <app-content-section color="light-greyish">
                 <div class="content-wrapper">
 
                     <div class="row row-centered row-middle row-wrapping">
@@ -467,13 +440,13 @@ import Loader from "../components/shared/Loader";
 import Ranking from "../components/Ranking";
 import Stats from "../components/Stats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
-import SectionStats from "../components/shared/SectionStats";
+import SubSectionStats from "../components/shared/SubSectionStats";
 
 
 export default {
     name: 'Task',
     components: {
-        SectionStats,
+        SubSectionStats,
         SectionNewsletterSignup,
         Stats,
         Ranking,
@@ -521,7 +494,10 @@ export default {
 
             totalTaskCount: state => state.stats.totalTaskCount,
             totalUserCount: state => state.stats.totalUserCount,
-            totalSubmissionCount: state => state.stats.totalSubmissionCount
+            totalSubmissionCount: state => state.stats.totalSubmissionCount,
+            mySubmissionCount: state => state.stats.mySubmissionCount,
+            myRank: state => state.stats.myRank,
+            ranking: state => state.stats.ranking
 
             //loading: state => state.c3s.settings.loading
         })
@@ -555,14 +531,10 @@ export default {
     },
     mounted() {
 
-        this.$store.dispatch('stats/updateTotalUserAndSubmissionCount');
-        this.$store.dispatch('stats/updateTotalTaskCount');
-
         let containerVersion = 0.9;
         if( this.containerVersion !== containerVersion || !this.optionContainers ) {
             this.$store.dispatch('consts/createOptionContainers', containerVersion );
         }
-
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
 
@@ -599,6 +571,8 @@ export default {
 
             this.loading = true;
             console.log('load task');
+
+            this.$store.dispatch('stats/updateSubmissionStats');
 
             let taskQuery;
             if( !this.id ) {

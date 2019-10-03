@@ -13,7 +13,7 @@
 
 <template>
   <div id="app">
-    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :languages="languages" :score="mySubmissionCount"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :languages="languages"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
@@ -86,6 +86,8 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch('consts/setDates', ['2019-09-04T11:00:00Z', '2019-11-14T11:00:00Z'] );
+
+    this.$store.dispatch('stats/updateTotalTaskCount');
 
     // body fade
     var app = this.$el;

@@ -75,7 +75,7 @@
     <app-content-section>
       <div class="content-wrapper">
         <div class="row row-centered">
-          <div class="col col-large-6">
+          <div class="col col-large-6 scroll-effect">
 
             <div class="content-subsection">
 
@@ -141,7 +141,7 @@
     <app-content-section>
       <div class="content-wrapper">
         <div class="row row-centered">
-          <div class="col col-large-6">
+          <div class="col col-large-6 scroll-effect">
 
             <h2 class="heading centered" v-html="$t('heading-sources')"></h2>
             <p v-html="$t('text-sources')"></p>

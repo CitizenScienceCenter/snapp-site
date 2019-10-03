@@ -5,7 +5,9 @@ const state = {
     totalUserCount: 0,
     totalSubmissionCount: 0,
 
-    mySubmissionCount: 0
+    mySubmissionCount: 0,
+    myRank: undefined,
+    ranking: []
 };
 
 const getters = {
@@ -45,61 +47,7 @@ const actions = {
 
     },
 
-    updateTotalUserAndSubmissionCount({state, commit, rootState}) {
-
-        const allSubmissionsQuery = {
-            "select": {
-                "fields": [
-                    "users.username",
-                    "count(*) as subs"
-                ],
-                "tables": [
-                    "submissions"
-                ],
-                "groupBy": [
-                    "users.username"
-                ],
-                "orderBy": {
-                    "subs": 'DESC'
-                }
-            },
-            "join": {
-                "type": "LEFT",
-                "conditions":{
-                    "from": {
-                        "table": "users",
-                        "field": "id"
-                    },
-                    "to": {
-                        "table": "submissions",
-                        "field": "user_id"
-                    }
-                }
-            },
-            'where': [
-                {
-                    "field": 'submissions.task_id',
-                    'op': 'i',
-                    'val': "(select id from tasks where tasks.activity_id='"+store.state.consts.activityId+"')",
-                    'type': 'sql'
-                }
-            ]
-        };
-        store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
-
-            let allUsersCount = 0;
-            let allSubmissionsCount = 0;
-            for (let i = 0; i < res.body.length; i++) {
-                allUsersCount++;
-                allSubmissionsCount += res.body[i].subs;
-            }
-            commit('SET_TOTAL_USER_COUNT', allUsersCount);
-            commit('SET_TOTAL_SUBMISSION_COUNT', allSubmissionsCount);
-
-        });
-    },
-
-    updateMySubmissionCount({state, commit, rootState}) {
+    updateSubmissionStats({state, commit, rootState}) {
 
         const submissionCountQuery = {
             "select": {
@@ -129,13 +77,115 @@ const actions = {
 
             commit('SET_MY_SUBMISSION_COUNT', res.body );
 
+
+
+            const allSubmissionsQuery = {
+                "select": {
+                    "fields": [
+                        "users.username",
+                        "count(*) as subs"
+                    ],
+                    "tables": [
+                        "submissions"
+                    ],
+                    "groupBy": [
+                        "users.username"
+                    ],
+                    "orderBy": {
+                        "subs": 'DESC'
+                    }
+                },
+                "join": {
+                    "type": "LEFT",
+                    "conditions":{
+                        "from": {
+                            "table": "users",
+                            "field": "id"
+                        },
+                        "to": {
+                            "table": "submissions",
+                            "field": "user_id"
+                        }
+                    }
+                },
+                'where': [
+                    {
+                        "field": 'submissions.task_id',
+                        'op': 'i',
+                        'val': "(select id from tasks where tasks.activity_id='"+store.state.consts.activityId+"')",
+                        'type': 'sql'
+                    }
+                ]
+            };
+            store.dispatch('c3s/submission/getSubmissions', [allSubmissionsQuery, 99999]).then(res => {
+
+                let allUsersCount = 0;
+                let allSubmissionsCount = 0;
+                let rankingCounter = 1;
+                let myRank = undefined;
+                let ranking = [];
+                for (let i = 0; i < res.body.length; i++) {
+                    allUsersCount++;
+                    allSubmissionsCount += res.body[i].subs;
+
+                    // fill complete ranking
+                    if( i>0 ) {
+                        if( res.body[i].subs < ranking[i-1].subs ) {
+                            // less submissions than previous
+                            rankingCounter = i+1;
+                            ranking.push( {
+                                'rank':rankingCounter,
+                                'sameAsPrevious':false,
+                                'username':res.body[i].username,
+                                'subs':res.body[i].subs
+                            });
+                        }
+                        else {
+                            // same submissions as previous
+                            ranking.push( {
+                                'rank':rankingCounter,
+                                'sameAsPrevious':true,
+                                'username':res.body[i].username,
+                                'subs':res.body[i].subs
+                            });
+                        }
+                    }
+                    else {
+                        ranking.push( {
+                            'rank':rankingCounter,
+                            'sameAsPrevious':false,
+                            'username':res.body[i].username,
+                            'subs':res.body[i].subs
+                        });
+                    }
+
+                    // set my rank
+                    if( state.mySubmissionCount === res.body[i].subs ) {
+                        myRank = rankingCounter;
+                    }
+
+                }
+                if( !myRank ) {
+                    console.log('not found in ranking');
+                    if( ranking.length > 0 ) {
+                        myRank = rankingCounter+1;
+                    }
+                    else {
+                        myRank = 1;
+                    }
+                }
+
+                commit('SET_TOTAL_USER_COUNT', allUsersCount);
+                commit('SET_TOTAL_SUBMISSION_COUNT', allSubmissionsCount);
+                commit('SET_MY_RANK', myRank);
+                commit('SET_RANKING', ranking);
+
+            });
+
         });
 
-    },
-
-    increaseMySubmissionCount({state, commit, rootState}) {
-        commit('INCREASE_MY_SUBMISSION_COUNT' );
     }
+
 };
 
 const mutations = {
@@ -151,9 +201,12 @@ const mutations = {
     SET_MY_SUBMISSION_COUNT(state, mySubmissionCount) {
         state.mySubmissionCount = mySubmissionCount;
     },
-    INCREASE_MY_SUBMISSION_COUNT(state) {
-        state.mySubmissionCount++;
+    SET_MY_RANK(state, myRank) {
+        state.myRank = myRank;
     },
+    SET_RANKING(state, ranking) {
+        state.ranking = ranking;
+    }
 };
 
 export default {

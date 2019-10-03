@@ -88,13 +88,20 @@
             </div>
         </app-content-section>
 
-        <section-stats color="white" :userCount="1027" :submissionCount="117897" ></section-stats>
+        <app-content-section v-if="challengeState !== 'before'" class="content-section-condensed stats-section">
+            <div class="content-wrapper">
+                <sub-section-stats
+                        :userCount="1027"
+                        :submissionCount="117897" >
+                </sub-section-stats>
+            </div>
+        </app-content-section>
 
         <app-content-section>
             <div class="content-wrapper">
 
                 <div class="row row-centered">
-                    <div class="col col-large-6">
+                    <div class="col col-large-6 scroll-effect">
 
                         <h2 class="heading centered">Statistics</h2>
 
@@ -148,9 +155,11 @@
     import Stats from "../../components/Stats";
     import SectionNewsletterSignup from "../../components/shared/SectionNewsletterSignup";
     import SectionStats from "../../components/shared/SectionStats";
+    import SubSectionStats from "../../components/shared/SubSectionStats";
 
     export default {
         components: {
+            SubSectionStats,
             SectionStats,
             SectionNewsletterSignup,
             Stats,
