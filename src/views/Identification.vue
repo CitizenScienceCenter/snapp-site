@@ -468,7 +468,7 @@ export default {
             responseTime: null,
             complete: false,
             loadTime: null,
-            loading: false,
+            loading: true,
             showSubmissionInfo: false
         }
     },
@@ -703,6 +703,7 @@ export default {
                         //console.log('media loaded');
                         this.value = null;
                         this.loadTime = new Date();
+                        console.log('set loading to false');
                         this.loading = false;
 
                     });

@@ -7,9 +7,9 @@
 
   "cover-heading": "Do you Know These Snakes?",
   "cover-subheading": "The Snake ID Challenge (Phase 2)",
-  "cover-button-start": "Start the Challenge",
-  "cover-button-preview": "Preview the Challenge",
-  "cover-button-review": "See the Challenge",
+  "cover-button-start": "Take part",
+  "cover-button-preview": "Take a look",
+  "cover-button-review": "Take part",
   "cover-button-about": "Learn more",
 
   "section-winners-heading": "Winners of our First Challenge Announced!",
@@ -43,9 +43,9 @@
 
   "cover-heading": "Wie gut kennst Du Schlangen?",
   "cover-subheading": "Die Schlangen-Identifikations-Challenge",
-  "cover-button-start": "Challenge starten",
-  "cover-button-preview": "Challenge ansehen",
-  "cover-button-review": "Challenge ansehen",
+  "cover-button-start": "Jetzt Mitmachen",
+  "cover-button-preview": "Jetzt Ansehen",
+  "cover-button-review": "Jetzt Mitmachen",
   "cover-button-about": "Mehr erfahren",
 
   "section-winners-heading": "Gewinner der ersten Challenge bekannt",
