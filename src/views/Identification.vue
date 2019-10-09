@@ -10,6 +10,7 @@
     "challenge-button-register": "Register",
     "challenge-button-skip": "Skip",
     "challenge-button-submit": "Submit",
+    "button-submit-confirmation": "Thanks!",
     "challenge-info-before": "Challenge has not started yet.",
     "challenge-info-after": "Already over.",
     "challenge-info-done": "Already done.",
@@ -47,6 +48,7 @@
     "challenge-button-register": "Registrieren",
     "challenge-button-skip": "Auslassen",
     "challenge-button-submit": "Senden",
+    "button-submit-confirmation": "Danke!",
     "challenge-info-before": "Challenge ist noch nicht gestartet.",
     "challenge-info-after": "Challenge schon vorüber.",
     "challenge-info-done": "Schon erledigt.",
@@ -82,7 +84,7 @@
 <template>
 
     <div>
-        <div v-if="(tasks[0] && taskMedia[0]) || complete">
+        <div>
 
             <template v-if="!complete">
 
@@ -104,11 +106,12 @@
                     </app-content-section>
 
                     <app-content-section class="content-section-flat image-section">
-                        <template>
 
-                            <image-viewer class="image-viewer scroll-effect" :src="'https://storage.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
+                        <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'https://storage.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
+                        <image-viewer v-else class="image-viewer" src="" disableScrollToZoom></image-viewer>
 
-                            <div class="image-info-wrapper">
+                        <template v-if="taskMedia[0]">
+                            <div class="image-info-wrapper scroll-effect">
                                 <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path d="M236.3,501.7C91,291,64,269.4,64,192C64,86,150,0,256,0s192,86,192,192c0,77.4-27,99-172.3,309.7C266.2,515.4,245.8,515.4,236.3,501.7L236.3,501.7z M256,272c44.2,0,80-35.8,80-80s-35.8-80-80-80s-80,35.8-80,80S211.8,272,256,272z"/>
@@ -127,8 +130,8 @@
                                     <span v-if="tasks[0].info.image_source">{{ tasks[0].info.image_source }}</span>
                                 </div>
                             </div>
-
                         </template>
+
                     </app-content-section>
 
                     <app-content-section class="response-section">
@@ -138,14 +141,14 @@
 
                                     <div class="form-field form-field-block">
                                         <search-select
-                                                :disabled="hasSubmissionAlready || showNext || loading"
+                                                :disabled="loading || showSubmissionInfo"
                                                 :placeholder="$t('challenge-placeholder')"
                                                 :optionContainers="optionContainers"
                                                 v-model="value">
                                         </search-select>
                                     </div>
 
-                                    <div v-if="tasks[0]" class="actions margin-bottom">
+                                    <div class="actions margin-bottom">
 
 
                                         <div class="button-group right-aligned">
@@ -153,13 +156,9 @@
                                                 <router-link tag="button" to="/login" class="button button-primary">{{ $t('challenge-button-register') }}</router-link>
                                             </template>
                                             <template v-if="challengeState === 'ongoing'">
-                                                <template v-if="showNext">
-                                                    <button ref="next" class="button button-primary" :disabled="loading" @click.prevent="next()">Next</button>
-                                                </template>
-                                                <template v-else>
-                                                    <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading" @click.prevent="next()">{{ $t('challenge-button-skip') }}</button>
-                                                    <button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>
-                                                </template>
+                                                <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || showSubmissionInfo" @click.prevent="next()">{{ $t('challenge-button-skip') }}</button>
+                                                <!--<button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>-->
+                                                <submit-button v-if="!hasSubmissionAlready" ref="submit" :disabled="loading || !value || Object.keys(value).length === 0" @click="submitResponse()" :submissionInfo="showSubmissionInfo" :infoMessage="$t('button-submit-confirmation')">{{ $t('challenge-button-submit') }}</submit-button>
                                             </template>
                                         </div>
 
@@ -315,10 +314,6 @@
                     </div>
                 </app-content-section>
 
-                <app-content-section class="content-section-condensed" color="light-greyish">
-                    <scores></scores>
-                </app-content-section>
-
             </template>
 
 
@@ -418,8 +413,6 @@
 
         </div>
 
-        <loader v-else></loader>
-
     </div>
 
 </template>
@@ -441,11 +434,13 @@ import Ranking from "../components/Ranking";
 import Stats from "../components/Stats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 import SubSectionStats from "../components/shared/SubSectionStats";
+import SubmitButton from "../components/shared/SubmitButton";
 
 
 export default {
     name: 'Task',
     components: {
+        SubmitButton,
         SubSectionStats,
         SectionNewsletterSignup,
         Stats,
@@ -473,8 +468,8 @@ export default {
             responseTime: null,
             complete: false,
             loadTime: null,
-            showNext: false,
-            loading: false
+            loading: false,
+            showSubmissionInfo: false
         }
     },
     computed: {
@@ -510,19 +505,15 @@ export default {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
 
                 if( this.challengeState === 'ongoing' ) {
-                    this.$refs.submit.removeAttribute('disabled');
-                    this.$refs.submit.focus();
+                    //this.$refs.submit.removeAttribute('disabled');
+                    let self = this;
+                    setTimeout( function() {
+                        self.$refs.submit.focus();
+                    }, 10);
+
                 }
             }
 
-        },
-        showNext( to, from ) {
-            if( to ) {
-                let self = this;
-                setTimeout( function() {
-                    self.$refs.next.focus();
-                }, 100 );
-            }
         }
     },
     beforeCreate() {
@@ -544,7 +535,7 @@ export default {
                 if( this.$route.params.id.length !== 36 ) {
                     console.log('invalid id');
                     delete this.$route.params.id;
-                    this.$router.replace('/challenge');
+                    this.$router.replace('/identification');
                     this.id = null;
                     this.loadTask();
                 }
@@ -570,6 +561,8 @@ export default {
         loadTask: function() {
 
             this.loading = true;
+            this.$store.commit('c3s/task/SET_TASKS', [] );
+            this.$store.commit('c3s/task/SET_MEDIA', [] );
             console.log('load task');
 
             this.$store.dispatch('stats/updateSubmissionStats');
@@ -632,8 +625,8 @@ export default {
 
                 //console.log('responded tasks');
 
+                /*
                 this.hasSubmissionAlready = false;
-
                 if( this.id ) {
 
                     let query = {
@@ -662,7 +655,6 @@ export default {
 
                     this.$store.dispatch('c3s/submission/getSubmissions', [query,0] ).then(submissions => {
 
-
                         if( submissions.body.length > 0 ) {
                             this.hasSubmissionAlready = true;
                         }
@@ -675,11 +667,17 @@ export default {
                     });
 
                 }
+                */
 
                 if ( this.tasks[0] ) {
 
                     console.log( 'task loaded');
                     //console.log('load media');
+
+                    if( navigator.userAgent !== 'ReactSnap' ) {
+                        this.$router.replace('/identification/'+this.tasks[0].id);
+                    }
+
 
                     const mediaQuery = {
                         'select': {
@@ -706,7 +704,6 @@ export default {
                         this.value = null;
                         this.loadTime = new Date();
                         this.loading = false;
-                        this.showNext = false;
 
                     });
 
@@ -747,12 +744,18 @@ export default {
 
             this.$store.dispatch('c3s/submission/createSubmission').then(submission => {
 
-                this.value = {};
-                this.loadTask();
+                this.showSubmissionInfo = true;
+                let self = this;
+                setTimeout( function() {
+                    self.showSubmissionInfo = false;
+                    self.value = {};
+                    self.loadTask();
+                }, 900 );
 
             });
         },
         next() {
+            this.id = null;
             this.loadTask();
         }
     }
@@ -767,6 +770,8 @@ export default {
 
 
 .section-wrapper {
+
+    z-index: 1;
 
     .question-section {
         padding-bottom: 0;

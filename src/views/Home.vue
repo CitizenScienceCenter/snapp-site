@@ -97,11 +97,12 @@
             <button class="button button-primary" v-scroll-to="'#projects'">{{ $t('cover-button-projects') }}</button>
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
-            <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
-            <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
-            <router-link v-else tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
+            <router-link v-if="challengeState === 'before'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
+            <router-link v-else-if="challengeState === 'after'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
+            <router-link v-else tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
 
-            <button class="button button-secondary button-secondary-inverted" v-scroll-to="'#about'">{{ $t('cover-button-about') }}</button>
+            <!--<button class="button button-secondary button-secondary-inverted" v-scroll-to="'#about'">{{ $t('cover-button-about') }}</button>-->
+            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-about') }}</router-link>
           </div>
         </div>
       </div>
@@ -197,9 +198,9 @@
               </p>
               -->
               <div class="button-group centered left-aligned-large">
-                <router-link v-if="challengeState === 'before'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
-                <router-link v-else-if="challengeState === 'after'" tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
-                <router-link v-else tag="button" to="/challenge" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
+                <router-link v-if="challengeState === 'before'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
+                <router-link v-else-if="challengeState === 'after'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
+                <router-link v-else tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
               </div>
             </div>
           </div>

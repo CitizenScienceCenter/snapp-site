@@ -58,9 +58,9 @@ export const routes = [
                 }
             },
             {
-                path: "challenge",
+                path: "identification",
                 component: Identification,
-                name: "Challenge",
+                name: "Identification",
                 meta: {requiresAuth: true, i18n: 'navigation-identification', nav: true},
                 children: [
                     {

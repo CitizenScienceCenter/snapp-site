@@ -17,7 +17,7 @@ const getters = {
 const actions = {
     updateTotalTaskCount({state, commit, rootState}) {
 
-        console.log('update task count');
+        //console.log('update task count');
 
         const taskCountQuery = {
             "select": {
@@ -39,7 +39,7 @@ const actions = {
         store.dispatch('c3s/task/getTaskCount', taskCountQuery).then(res => {
 
 
-            console.log('task count returned');
+            //console.log('task count returned');
 
             commit('SET_TOTAL_TASK_COUNT', res.body );
 
@@ -166,7 +166,7 @@ const actions = {
 
                 }
                 if( !myRank ) {
-                    console.log('not found in ranking');
+                    //console.log('not found in ranking');
                     if( ranking.length > 0 ) {
                         myRank = rankingCounter+1;
                     }

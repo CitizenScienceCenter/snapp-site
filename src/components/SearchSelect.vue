@@ -239,7 +239,7 @@
                 let inputRect = this.$refs.input.getBoundingClientRect();
 
                 let maxHeight;
-                if( window.innerHeight - (inputRect.y+inputRect.height/2) > window.innerHeight/2 ) {
+                if( window.innerHeight - (inputRect.y+inputRect.height/2) > window.innerHeight/3 ) {
                     //downwards
                     maxHeight = window.innerHeight- (inputRect.y+inputRect.height);
                     this.$refs.results.classList.remove('upwards');

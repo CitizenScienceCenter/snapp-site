@@ -1,15 +1,15 @@
 <template>
-    <div class="croppa-container">
+    <div class="croppa-container scroll-effect">
         <croppa class="croppa" ref="croppa"
                 @init="init"
                 @new-image-drawn="newImageDrawn"
-                canvas-color="transparent"
+                canvas-color="#e9e9e9"
                 :prevent-white-space="true"
                 :show-remove-button="false"
                 :show-loading="true"
                 :loading-size="100"
                 :zoom-speed="10"
-                :placeholder="'Loading'"
+                placeholder=""
                 :placeholder-font-size="20"
                 :disableScrollToZoom="disableScrollToZoom"
                 :accept="'image/*'"
@@ -37,12 +37,17 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352.201 425.775l-79.196 79.196c-9.373 9.373-24.568 9.373-33.941 0l-79.196-79.196c-15.119-15.119-4.411-40.971 16.971-40.97h51.162L228 284H127.196v51.162c0 21.382-25.851 32.09-40.971 16.971L7.029 272.937c-9.373-9.373-9.373-24.569 0-33.941L86.225 159.8c15.119-15.119 40.971-4.411 40.971 16.971V228H228V127.196h-51.23c-21.382 0-32.09-25.851-16.971-40.971l79.196-79.196c9.373-9.373 24.568-9.373 33.941 0l79.196 79.196c15.119 15.119 4.411 40.971-16.971 40.971h-51.162V228h100.804v-51.162c0-21.382 25.851-32.09 40.97-16.971l79.196 79.196c9.373 9.373 9.373 24.569 0 33.941L425.773 352.2c-15.119 15.119-40.971 4.411-40.97-16.971V284H284v100.804h51.23c21.382 0 32.09 25.851 16.971 40.971z"></path></svg>
             </div>
         </div>
+
+        <loader v-show="loading" class="croppa-loader"></loader>
     </div>
 </template>
 
 <script>
+    import Loader from "./shared/Loader";
+
     export default {
         name: "ImageViewer",
+        components: {Loader},
         props: {
             src: {
                 type: String,
@@ -55,11 +60,14 @@
         },
         data() {
             return {
-                croppaSettings: {}
+                croppaSettings: {},
+                loading: true
             }
         },
         watch: {
             src(to, from) {
+                console.log('croppa refresh');
+                this.loading = true;
                 this.$refs.croppa.refresh();
             }
         },
@@ -68,7 +76,7 @@
                 this.$refs.moveindicator.classList.remove("animation-h","animation-v","animation");
             },
             newImageDrawn: function(event) {
-
+                console.log('croppa image drawn');
                 if( this.$refs.croppa.getMetadata().startX < 0 ) {
                     this.$refs.moveindicator.classList.add("animation-h","animation");
                 }
@@ -76,6 +84,7 @@
                     this.$refs.moveindicator.classList.add("animation-v","animation");
                 }
 
+                this.loading = false;
             },
             zoom(out) {
                 if (out) {
@@ -209,6 +218,14 @@
 
             }
 
+        }
+
+        .croppa-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     }
 
