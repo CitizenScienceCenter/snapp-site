@@ -155,7 +155,7 @@
         computed: {
             filteredOptionContainers: function() {
 
-                if( this.optionContainers.length > 0 ) {
+                if( this.optionContainers && this.optionContainers.length > 0 ) {
                     let filteredOptionContainers = [];
 
                     let self = this;

@@ -1,3 +1,4 @@
+import Home from '@/views/Home'
 
 import Login from '@/views/user/Login'
 import Profile from '@/views/user/Profile'
@@ -24,11 +25,6 @@ const logout = (to, from, next) => {
 */
 
 // lazy loading routes
-const Home = resolve => {
-    require.ensure(["../views/Home.vue"], () => {
-        resolve(require("../views/Home.vue"));
-    });
-};
 const About = resolve => {
     require.ensure(["../views/static/About.vue"], () => {
         resolve(require("../views/static/About.vue"));

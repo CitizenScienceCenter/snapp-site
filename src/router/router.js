@@ -36,6 +36,7 @@ router.beforeEach((to, from, next) => {
         store.dispatch('c3s/user/validate').then(v => {
           //console.log('validation success');
           if (v) {
+            store.dispatch('stats/updateTotalTaskCount');
             next();
           }
           else {
