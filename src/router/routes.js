@@ -1,6 +1,5 @@
 
 import Login from '@/views/user/Login'
-import Register from '@/views/user/Register'
 import Profile from '@/views/user/Profile'
 
 import RequestReset from '@/views/shared/user/RequestReset'
@@ -113,12 +112,6 @@ export const routes = [
                 name: "Login",
                 component: Login,
                 meta: {i18n: 'navigation-login', nav: false}
-            },
-            {
-                path: "register",
-                name: "Register",
-                component: Register,
-                meta: {i18n: 'navigation-register', nav: false}
             },
             {
                 path: "reset",

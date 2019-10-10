@@ -183,8 +183,8 @@
 
     .duration {
         .bar {
-            height: $spacing-1;
-            border-radius: calc(#{$spacing-1}/2);
+            height: 4px;
+            border-radius: calc(4px / 2);
             background-color: rgba( $color-secondary, 0.25);
             position: relative;
             overflow: hidden;
