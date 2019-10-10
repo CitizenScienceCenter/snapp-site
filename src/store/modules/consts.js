@@ -94,6 +94,9 @@ const actions = {
     setDates({state, commit, rootState}, values) {
         commit('SET_DATES', values);
     },
+    setProjectId({state, commit, rootState}, value) {
+        commit('SET_PROJECT_ID', value);
+    },
     setActivityId({state, commit, rootState}, value) {
         commit('SET_ACTIVITY_ID', value);
     }
@@ -111,6 +114,9 @@ const mutations = {
     SET_DATES(state, values) {
         state.challengeStartISO = values[0];
         state.challengeEndISO = values[1];
+    },
+    SET_PROJECT_ID(state, value) {
+        state.projectId = value;
     },
     SET_ACTIVITY_ID(state, value) {
         state.activityId = value;

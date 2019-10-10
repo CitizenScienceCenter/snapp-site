@@ -13,7 +13,7 @@
 
 <template>
   <div id="app">
-    <app-header project-name="Snake ID<br/>Challenge" cyberlab-logo :languages="languages"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" :languages="languages"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>
@@ -86,6 +86,8 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch('consts/setDates', ['2019-09-04T11:00:00Z', '2019-11-14T11:00:00Z'] );
+    this.$store.dispatch('consts/setProjectId', 'b04bc186-1e0e-4fd3-87b8-a25262c1c79f');
+    this.$store.dispatch('consts/setActivityId', '75ebb66d-b93c-49cc-b5b1-89c0931ebe62');
 
     this.$store.dispatch('stats/updateTotalTaskCount');
 

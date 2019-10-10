@@ -79,7 +79,7 @@
 <template>
   <div>
 
-    <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg">
+    <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg" logo2Url="/img/cyberlab-logo.png">
       <div class="row row-centered">
         <div class="col col-large-10 col-xlarge-8">
           <h2 class="cover-heading scroll-effect" v-html="$t('cover-heading')"></h2>
@@ -107,7 +107,7 @@
         </div>
       </div>
       <div class="row row-centered">
-        <div class="col col-tablet-portrait-8 col-large-6 col-xlarge-8 scroll-effect scroll-effect-delayed-3">
+        <div class="col col-large-8 col-xlarge-8 scroll-effect scroll-effect-delayed-3">
           <duration></duration>
         </div>
       </div>
