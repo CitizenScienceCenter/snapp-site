@@ -120,7 +120,7 @@
             </div>
         </app-content-section>
 
-
+        <!--
         <app-content-section class="content-section-condensed" color="greyish">
             <div class="content-wrapper">
                 <div class="row row-centered">
@@ -136,6 +136,7 @@
                 </div>
             </div>
         </app-content-section>
+        -->
 
         <section-newsletter-signup></section-newsletter-signup>
 
