@@ -151,8 +151,9 @@
       </div>
     </app-content-section>
 
+    <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
-    <app-content-section color="light-greyish">
+    <app-content-section color="white">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
@@ -214,6 +215,10 @@
       </div>
     </app-content-section>
 
+    <section-s-d-g color="greyish" goal="3">
+      This project supports Goal 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </section-s-d-g>
+
     <section-newsletter-signup></section-newsletter-signup>
 
     <app-footer></app-footer>
@@ -228,10 +233,14 @@ import ContentSection from '@/components/shared/ContentSection.vue'
 import NewsletterSignup from '@/components/shared/NewsletterSignup.vue'
 import Footer from '@/components/shared/Footer.vue'
 import SectionNewsletterSignup from "../../components/shared/SectionNewsletterSignup";
+import SectionSDG from "../../components/shared/SectionSDG";
+import SectionFeedback from "../../components/shared/SectionFeedback";
 
 export default {
   name: 'About',
   components: {
+    SectionFeedback,
+    SectionSDG,
     SectionNewsletterSignup,
     'app-cover': Cover,
     'app-content-section': ContentSection,

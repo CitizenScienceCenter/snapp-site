@@ -89,7 +89,7 @@
 <template>
   <div>
 
-    <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg" logo2Url="/img/cyberlab-logo.png">
+    <app-cover imageUrl="/img/cover.jpg" logoUrl="/img/unige-logo.svg" logo2Url="/img/cyberlab-logo.png" goal="3">
       <div class="row row-centered">
         <div class="col col-large-10 col-xlarge-8">
           <h2 class="cover-heading scroll-effect" v-html="$t('cover-heading')"></h2>
@@ -287,8 +287,9 @@
       </div>
     </app-content-section>
 
+    <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
-    <app-content-section color="greyish">
+    <app-content-section color="white">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
@@ -350,6 +351,11 @@
       </div>
     </app-content-section>
 
+
+    <section-s-d-g color="greyish" goal="3">
+      This project supports Goal 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </section-s-d-g>
+
     <section-newsletter-signup></section-newsletter-signup>
 
     <app-footer></app-footer>
@@ -372,11 +378,15 @@ import Stats from "../components/Stats";
 import SectionStats from "../components/shared/SectionStats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 import SubSectionStats from "../components/shared/SubSectionStats";
+import SectionSDG from "../components/shared/SectionSDG";
+import SectionFeedback from "../components/shared/SectionFeedback";
 
 
 export default {
   name: 'Home',
   components: {
+    SectionFeedback,
+    SectionSDG,
     SubSectionStats,
     SectionNewsletterSignup,
     SectionStats,

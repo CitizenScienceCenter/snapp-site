@@ -361,8 +361,9 @@
                 </div>
             </app-content-section>
 
+            <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
-            <app-content-section color="greyish">
+            <app-content-section color="white">
                 <div class="content-wrapper">
                     <div class="row row-centered">
                         <div class="col col-large-6">
@@ -424,6 +425,10 @@
                 </div>
             </app-content-section>
 
+            <section-s-d-g color="greyish" goal="3">
+                This project supports Goal 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </section-s-d-g>
+
 
             <section-newsletter-signup></section-newsletter-signup>
 
@@ -454,11 +459,15 @@ import Stats from "../components/Stats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 import SubSectionStats from "../components/shared/SubSectionStats";
 import SubmitButton from "../components/shared/SubmitButton";
+import SectionFeedback from "../components/shared/SectionFeedback";
+import SectionSDG from "../components/shared/SectionSDG";
 
 
 export default {
     name: 'Task',
     components: {
+        SectionSDG,
+        SectionFeedback,
         SubmitButton,
         SubSectionStats,
         SectionNewsletterSignup,
