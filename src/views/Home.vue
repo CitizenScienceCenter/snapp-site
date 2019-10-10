@@ -6,7 +6,7 @@
   "page-title": "Snake ID Challenge | Citizen Science Center Zurich",
 
   "cover-heading": "Do you Know These Snakes?",
-  "cover-subheading": "The Snake ID Challenge (Phase 2)",
+  "cover-subheading": "The Snake ID Challenge <span style='white-space: nowrap;'>(Phase 2)</span>",
   "cover-button-start": "Take part",
   "cover-button-preview": "Take a look",
   "cover-button-review": "Take part",
@@ -29,7 +29,12 @@
   "section-about-button": "About the Project",
 
   "section-prize-heading": "Prizes for the Top Contributors",
-  "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
+  "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
+  "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+  "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
+  "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
+  "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
+  "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
 
   "section-partners-heading": "Project Partners",
 
@@ -42,7 +47,7 @@
   "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
 
   "cover-heading": "Wie gut kennst Du Schlangen?",
-  "cover-subheading": "Die Schlangen-Identifikations-Challenge",
+  "cover-subheading": "Die Schlangen-Identifikations-Challenge <span style='white-space: nowrap;'>(Phase 2)</span>",
   "cover-button-start": "Jetzt Mitmachen",
   "cover-button-preview": "Jetzt Ansehen",
   "cover-button-review": "Jetzt Mitmachen",
@@ -64,8 +69,13 @@
   "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
   "section-about-button": "Mehr zum Projekt",
 
-  "section-prize-heading": "Prizes for the Top Contributors",
-  "section-prize-text": "Gun bilge spanker nipperkin cackle fruit jack swing the lead squiffy wherry crow's nest. Gaff black spot gun hail-shot Sea Legs clipper piracy handsomely hempen halter Sail ho. ",
+  "section-prize-heading": "Das gibt's zu gewinnen",
+  "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
+  "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+  "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
+  "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
+  "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
+  "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
 
   "section-partners-heading": "Projektpartner",
 
@@ -87,7 +97,7 @@
       </div>
       <div class="row row-centered">
         <div class="col col-large-10 col-xlarge-8">
-          <p class="cover-subheading scroll-effect scroll-effect-delayed-1">{{ $t('cover-subheading') }}</p>
+          <p class="cover-subheading scroll-effect scroll-effect-delayed-1" v-html="$t('cover-subheading')"></p>
         </div>
       </div>
       <div class="row row-centered">
@@ -250,16 +260,25 @@
 
         <div class="row row-centered row-middle row-wrapping">
 
-          <div class="col col-6 col-large-4 col-large-before-2 col-wrapping scroll-effect">
+          <div class="col col-6 col-large-5 col-large-before-1 col-wrapping scroll-effect">
             <div class="extra-padding-h">
               <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
             </div>
           </div>
 
-          <div class="col col-large-4 col-large-after-2 col-wrapping scroll-effect scroll-effect-delayed-1">
+          <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
             <div>
               <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-text')"></p>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+              <ul>
+                <li v-html="$t('section-prize-list-1-1')"></li>
+                <li v-html="$t('section-prize-list-1-2')"></li>
+              </ul>
+              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
+              <ul class="reduced-bottom-margin">
+                <li v-html="$t('section-prize-list-2-1')"></li>
+                <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
+              </ul>
             </div>
           </div>
 
