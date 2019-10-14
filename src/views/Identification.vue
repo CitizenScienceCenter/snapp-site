@@ -228,7 +228,7 @@
                                 :submissionCount="totalSubmissionCount"
                                 :taskCount="totalTaskCount" >
                         </sub-section-stats>
-                        <div class="content-subsection">
+                        <div class="content-subsection" v-if="challengeState !== 'after'">
                             <div class="row row-centered">
                                 <div class="col col-large-10">
 
