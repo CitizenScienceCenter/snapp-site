@@ -121,7 +121,14 @@
                         <image-viewer v-else class="image-viewer" src="" disableScrollToZoom></image-viewer>
 
                         <template v-if="taskMedia[0]">
-                            <div class="image-info-wrapper scroll-effect">
+                            <div class="image-info-wrapper">
+                                <div class="image-info" v-if="tasks[0].info.tweet">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
+                                    </svg>
+                                    <label>Source: </label>
+                                    <a :href="tasks[0].info.tweet" target="_blank">Twitter</a>
+                                </div>
                                 <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path d="M236.3,501.7C91,291,64,269.4,64,192C64,86,150,0,256,0s192,86,192,192c0,77.4-27,99-172.3,309.7C266.2,515.4,245.8,515.4,236.3,501.7L236.3,501.7z M256,272c44.2,0,80-35.8,80-80s-35.8-80-80-80s-80,35.8-80,80S211.8,272,256,272z"/>
@@ -858,6 +865,19 @@ export default {
                         &:after {
                             display: none;
                         }
+                    }
+                }
+
+                label {
+                    color: white;
+                    font-size: $font-size-mini;
+                }
+
+                a {
+                    color: white;
+                    text-decoration: underline;
+                    &:hover {
+                        color: rgba( white, 0.8 );
                     }
                 }
             }
