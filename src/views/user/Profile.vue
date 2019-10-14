@@ -332,6 +332,10 @@
                         });
                     }
                 }
+                else {
+                    this.projectNotificationsStates.push( [ this.projectId, false ] );
+                    this.myProjectIndex = 0;
+                }
 
 
             });
@@ -388,6 +392,8 @@
             projectNotificationsStates(to,from) {
                 this.projectNotifications = [];
                 for( let i=0; i<this.projectNotificationsStates.length; i++ ) {
+                    console.log('watch states');
+                    console.log( this.projectNotificationsStates[i] );
                     if( this.projectNotificationsStates[i][1] ) {
                         this.projectNotifications.push( this.projectNotificationsStates[i][0] );
                     }
