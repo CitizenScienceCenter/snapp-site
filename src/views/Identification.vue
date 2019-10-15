@@ -738,7 +738,7 @@ export default {
                         //console.log('media loaded');
                         this.value = null;
                         this.loadTime = new Date();
-                        console.log('set loading to false');
+                        //console.log('set loading to false');
                         this.loading = false;
 
                     });
