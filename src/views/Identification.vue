@@ -7,6 +7,9 @@
 
     "challenge-heading": "What Snake is This?",
     "challenge-placeholder": "Family, Genus, Binomial or Common Name",
+
+    "challenge-button-no-snake": "no snake / multiple species visible",
+
     "challenge-button-register": "Register",
     "challenge-button-skip": "Skip",
     "challenge-button-submit": "Submit",
@@ -50,6 +53,9 @@
 
     "challenge-heading": "Welche Schlange ist's?",
     "challenge-placeholder": "Familie, Genus, Binomial oder engl. Name",
+
+    "challenge-button-no-snake": "keine Schlange / mehrere Spezies sichtbar",
+
     "challenge-button-register": "Registrieren",
     "challenge-button-skip": "Auslassen",
     "challenge-button-submit": "Senden",
@@ -158,27 +164,43 @@
 
                                     <div class="form-field form-field-block">
                                         <search-select
-                                                :disabled="loading || showSubmissionInfo"
+                                                :disabled="loading || showSubmissionInfo || noSnake"
                                                 :placeholder="$t('challenge-placeholder')"
                                                 :optionContainers="optionContainers"
                                                 v-model="value">
                                         </search-select>
                                     </div>
 
+                                    <div class="form-field form-field-block form-field-language-checkbox">
+                                        <div class="options">
+                                            <label :class="{disabled: loading }">
+                                                <input type="checkbox" v-model="noSnake">
+                                                <div class="checkbox">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                                                    </svg>
+                                                </div>
+                                                <span>{{ $t('challenge-button-no-snake') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
                                     <div class="actions margin-bottom">
 
 
                                         <div class="button-group right-aligned">
+
                                             <template v-if="challengeState === 'before'">
                                                 <router-link tag="button" to="/login" class="button button-primary">{{ $t('challenge-button-register') }}</router-link>
                                             </template>
+
                                             <template v-if="challengeState === 'ongoing'">
                                                 <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || showSubmissionInfo" @click.prevent="next()">{{ $t('challenge-button-skip') }}</button>
                                                 <!--<button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>-->
                                                 <submit-button v-if="!hasSubmissionAlready" ref="submit" :disabled="loading || !value || Object.keys(value).length === 0" @click="submitResponse()" :submissionInfo="showSubmissionInfo" :infoMessage="$t('button-submit-confirmation')">{{ $t('challenge-button-submit') }}</submit-button>
                                             </template>
-                                        </div>
 
+                                        </div>
 
 
                                         <div class="info">
@@ -208,6 +230,10 @@
                                             </div>
 
                                         </div>
+                                    </div>
+
+                                    <div class="button-group">
+                                        <button class="button button-secondary button-secondary-naked" style="padding: 0;" @click="openInNewTab('mailto:snakeid@citizenscience.ch?subject=Snake ID Challenge Feedback&body=URL: https://snakes.citizenscience.ch'+$router.currentRoute.fullPath)">{{ $t('challenge-button-feedback')}}</button>
                                     </div>
 
                                 </div>
@@ -504,7 +530,8 @@ export default {
             complete: false,
             loadTime: null,
             loading: true,
-            showSubmissionInfo: false
+            showSubmissionInfo: false,
+            noSnake: false,
         }
     },
     computed: {
@@ -535,7 +562,6 @@ export default {
     },
     watch: {
         value: function(to,from) {
-
             //if( this.value && this.value.hasOwnProperty('info') ) {
             if( this.value && Object.keys(this.value).length > 0 ) {
                 // v-bind for disabled is not done, workaround... ¯\_(ツ)_/¯
@@ -549,7 +575,16 @@ export default {
 
                 }
             }
-
+        },
+        noSnake(to,from) {
+            if( to ) {
+                this.value = {
+                    'value': 'no / multiple'
+                };
+            }
+            else {
+                this.value = null;
+            }
         }
     },
     beforeCreate() {
@@ -786,12 +821,14 @@ export default {
                 setTimeout( function() {
                     self.showSubmissionInfo = false;
                     self.value = {};
+                    self.noSnake = false;
                     self.loadTask();
                 }, 900 );
 
             });
         },
         next() {
+            this.noSnake = false;
             this.id = null;
             this.loadTask();
         }
