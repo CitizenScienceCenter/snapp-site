@@ -66,7 +66,7 @@
         },
         watch: {
             src(to, from) {
-                console.log('croppa refresh');
+                //console.log('croppa refresh');
                 this.loading = true;
                 this.$refs.croppa.refresh();
             }
@@ -76,7 +76,7 @@
                 this.$refs.moveindicator.classList.remove("animation-h","animation-v","animation");
             },
             newImageDrawn: function(event) {
-                console.log('croppa image drawn');
+                //console.log('croppa image drawn');
                 if( this.$refs.croppa.getMetadata().startX < 0 ) {
                     this.$refs.moveindicator.classList.add("animation-h","animation");
                 }

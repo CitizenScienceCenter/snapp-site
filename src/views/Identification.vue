@@ -513,6 +513,7 @@ export default {
             activityId: state => state.consts.activityId,
 
             optionContainers: state => state.consts.optionContainers,
+            containerVersion: state => state.consts.containerVersion,
             challengeState: state => state.consts.challengeState,
 
             user: state => state.c3s.user,

@@ -175,7 +175,9 @@
         },
         computed: {
         ...mapState({
-                user: state => state.c3s.user
+                user: state => state.c3s.user,
+
+                challengeState: state => state.consts.challengeState
             })
         },
         methods: {
