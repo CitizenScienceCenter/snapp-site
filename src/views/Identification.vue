@@ -25,8 +25,8 @@
     "challenge-complete-heading": "Challenge Complete",
     "challenge-complete-text": "You did everything!",
 
-    "section-next-challenge-heading": "Stay tuned for our next Challenge",
-    "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
+    "section-next-challenge-heading": "Stay Tuned",
+    "section-next-challenge-text": "Visit this page frequently and follow us on social media to stay updated on the timing of the new challenge. As the time approaches, we will be sharing exciting news, such as extended length, more difficult tasks, and new prizes!",
     "section-next-challenge-button": "Register",
 
     "section-winners-heading": "Winners of our First Challenge Announced!",
@@ -133,7 +133,7 @@
                                         <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
                                     </svg>
                                     <label>Source: </label>
-                                    <a :href="tasks[0].info.tweet" target="_blank">Twitter</a>
+                                    <a :href="tasks[0].info.tweet" target="_blank" @click="twitterLinkClicked = true">Twitter</a>
                                 </div>
                                 <div class="image-info" v-if="tasks[0].info.state_province || tasks[0].info.country || tasks[0].info.global_region">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -203,8 +203,8 @@
                                         </div>
 
 
-                                        <div class="info">
-                                            <div v-if="challengeState === 'before'" class="message message-info">
+                                        <div class="info" v-if="challengeState === 'before'">
+                                            <div class="message message-info">
                                                 <div class="icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                         <path d="M180,424.23h20V279.77H180a20,20,0,0,1-20-20V212a20,20,0,0,1,20-20H292a20,20,0,0,1,20,20V424.23h20a20,20,0,0,1,20,20V492a20,20,0,0,1-20,20H180a20,20,0,0,1-20-20V444.23A20,20,0,0,1,180,424.23ZM256,0a72,72,0,1,0,72,72A72,72,0,0,0,256,0Z"></path>
@@ -212,6 +212,7 @@
                                                 </div>
                                                 <span class="text">{{ $t('challenge-info-before') }}</span>
                                             </div>
+                                            <!--
                                             <div v-else-if="challengeState === 'after'" class="message message-info">
                                                 <div class="icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -228,7 +229,7 @@
                                                 </div>
                                                 <span class="text">{{ $t('challenge-info-done') }}</span>
                                             </div>
-
+                                            -->
                                         </div>
                                     </div>
 
@@ -243,74 +244,13 @@
 
                 </div>
 
-                <app-content-section v-if="challengeState !== 'before'" color="light-greyish" class="content-section-condensed stats-section">
-                    <div class="content-wrapper">
-                        <sub-section-stats
-                                       :mySubmissionCount="mySubmissionCount"
-                                       :myProgress="Math.round( (mySubmissionCount/totalTaskCount)*10000 )/100"
-                                       :myRank="myRank"
-                                       :ranking="ranking"
-                        ></sub-section-stats>
-                    </div>
-                </app-content-section>
-
-                <app-content-section v-if="challengeState !== 'before'" color="greyish" class="content-section-condensed stats-section">
-                    <div class="content-wrapper">
-                        <sub-section-stats
-                                :userCount="totalUserCount"
-                                :submissionCount="totalSubmissionCount"
-                                :taskCount="totalTaskCount" >
-                        </sub-section-stats>
-                        <div class="content-subsection" v-if="challengeState !== 'after'">
-                            <div class="row row-centered">
-                                <div class="col col-large-10">
-
-                                    <duration></duration>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </app-content-section>
-
-                <!--
-                <app-content-section v-if="challengeState !== 'after'" class="content-section-condensed" color="light-greyish">
-                    <div v-if="challengeState !== 'before'" class="content-subsection">
-                        <scores></scores>
-                    </div>
-                    <div class="content-subsection">
-                        <div class="content-wrapper">
-                            <div class="row row-centered">
-                                <div class="col">
-                                    <duration></duration>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </app-content-section>
-                -->
-
                 <!--
                 <template v-else>
 
                     <app-content-section class="content-section-condensed" color="light-greyish">
                         <stats></stats>
                     </app-content-section>
-                    <app-content-section class="content-section-condensed" color="greyish">
-                        <div class="content-wrapper">
-                            <div class="row row-centered">
 
-                                <div class="col col-large-6">
-                                    <h2 class="subheading centered">{{ $t('section-next-challenge-heading') }}</h2>
-                                    <p class="centered reduced-bottom-margin" v-html="$t('section-next-challenge-text')"></p>
-                                    <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
-                                        <router-link tag="button" to="/login" class="button button-primary">{{ $t('section-next-challenge-button') }}</router-link>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </app-content-section>
                     <app-content-section>
                         <div class="content-wrapper">
                             <div class="row row-centered row-wrapping">
@@ -339,7 +279,6 @@
                 </template>
                 -->
 
-
             </template>
 
             <template v-else-if="complete">
@@ -361,10 +300,38 @@
 
 
 
-
-            <app-content-section>
+            <app-content-section v-if="challengeState !== 'before'" color="light-greyish" class="content-section-condensed stats-section">
                 <div class="content-wrapper">
+                    <sub-section-stats
+                            :mySubmissionCount="mySubmissionCount"
+                            :myProgress="Math.round( (mySubmissionCount/totalTaskCount)*10000 )/100"
+                            :myRank="myRank"
+                            :ranking="ranking"
+                    ></sub-section-stats>
+                </div>
+            </app-content-section>
 
+            <app-content-section color="greyish" class="content-section-condensed stats-section">
+                <div class="content-wrapper">
+                    <sub-section-stats v-if="challengeState !== 'before'"
+                    :userCount="totalUserCount"
+                            :submissionCount="totalSubmissionCount"
+                            :taskCount="totalTaskCount" >
+                    </sub-section-stats>
+                    <div class="content-subsection">
+                        <div class="row row-centered">
+                            <div class="col col-large-10 scroll-effect">
+
+                                <duration></duration>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-content-section>
+
+            <app-content-section v-if="challengeState !== 'after'">
+                <div class="content-wrapper">
                     <div class="row row-centered row-middle row-wrapping">
 
                         <div class="col col-6 col-large-5 col-large-before-1 col-wrapping scroll-effect">
@@ -390,9 +357,26 @@
                         </div>
 
                     </div>
-
                 </div>
             </app-content-section>
+
+
+            <app-content-section v-else>
+                <div class="content-wrapper">
+                    <div class="row row-centered">
+
+                        <div class="col col-large-6">
+                            <h2 class="heading centered">{{ $t('section-next-challenge-heading') }}</h2>
+                            <p class="centered reduced-bottom-margin" v-html="$t('section-next-challenge-text')"></p>
+                            <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
+                                <router-link tag="button" to="/login" class="button button-primary">{{ $t('section-next-challenge-button') }}</router-link>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </app-content-section>
+
 
             <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
@@ -532,6 +516,7 @@ export default {
             loading: true,
             showSubmissionInfo: false,
             noSnake: false,
+            twitterLinkClicked: false
         }
     },
     computed: {
@@ -539,9 +524,10 @@ export default {
             //user: state => state.user.user,
             activityId: state => state.consts.activityId,
 
-            optionContainers: state => state.consts.optionContainers,
-            containerVersion: state => state.consts.containerVersion,
-            challengeState: state => state.consts.challengeState,
+            optionContainers: state => state.snakes.optionContainers,
+            containerVersion: state => state.snakes.containerVersion,
+
+            challengeState: state => state.timer.challengeState,
 
             user: state => state.c3s.user,
             activity: state => state.c3s.activity.activity,
@@ -595,7 +581,7 @@ export default {
 
         let containerVersion = 0.9;
         if( this.containerVersion !== containerVersion || !this.optionContainers ) {
-            this.$store.dispatch('consts/createOptionContainers', containerVersion );
+            this.$store.dispatch('snakes/createOptionContainers', containerVersion );
         }
 
         this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
@@ -776,6 +762,7 @@ export default {
                         this.loadTime = new Date();
                         //console.log('set loading to false');
                         this.loading = false;
+                        this.twitterLinkClicked = false;
 
                     });
 
@@ -804,7 +791,8 @@ export default {
                     "responses": [{
                         "value": this.value.value,
                         "info": this.value.type,
-                        "time": timeNeeded
+                        "time": timeNeeded,
+                        "twitterLinkClicked": this.twitterLinkClicked
                     }]
                 },
                 "task_id": this.tasks[0].id,
@@ -822,6 +810,7 @@ export default {
                     self.showSubmissionInfo = false;
                     self.value = {};
                     self.noSnake = false;
+                    self.id = null;
                     self.loadTask();
                 }, 900 );
 

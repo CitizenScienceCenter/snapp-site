@@ -255,7 +255,7 @@
     </app-content-section>
 
 
-    <app-content-section>
+    <app-content-section v-if="challengeState !== 'after'">
       <div class="content-wrapper">
 
         <div class="row row-centered row-middle row-wrapping">
@@ -287,9 +287,9 @@
       </div>
     </app-content-section>
 
-    <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
+    <section-feedback :color="(challengeState !== 'after') ? 'light-greyish' : ''" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
-    <app-content-section color="white">
+    <app-content-section :color="(challengeState === 'after') ? 'light-greyish' : ''">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
@@ -409,7 +409,7 @@ export default {
       ...mapState({
           user: state => state.c3s.user,
 
-          challengeState: state => state.consts.challengeState,
+          challengeState: state => state.timer.challengeState,
 
           totalTaskCount: state => state.stats.totalTaskCount,
           totalUserCount: state => state.stats.totalUserCount,

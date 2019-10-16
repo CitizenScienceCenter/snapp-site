@@ -266,7 +266,7 @@
                 projectId: state => state.consts.projectId,
                 loading: state => state.settings.loading,
 
-                challengeState: state => state.consts.challengeState,
+                challengeState: state => state.timer.challengeState,
 
                 totalTaskCount: state => state.stats.totalTaskCount,
                 totalUserCount: state => state.stats.totalUserCount,

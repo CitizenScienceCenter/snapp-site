@@ -14,11 +14,14 @@
   "text-6": "We count on you doing your best—if it helps, you can pretend the snake in the photo has just bitten someone & you’ve been asked to provide an ID!",
 
   "list-1": "You do not have to be a snake expert to participate.",
-  "list-2": "The challenge contains >1000 images of hundreds of snake species from more than 100 countries around the world.",
+  "list-2": "The challenge contains more than 2000 images of hundreds of snake species from around the world.",
   "list-3": "We'll measure how long it takes you to submit your ID, but there's no time limit.",
   "list-4": "It's OK to use print & digital resources to help yourself narrow down or arrive at an ID.",
   "list-5": "It's OK to make educated guesses, including at the genus or family level.",
-  "list-6": "You can enter common names in English as well as scientific names. We're using mostly the taxonomy from HerpMapper, with support from The Reptile Database. If you can't find a name you want, please send us feedback using the form. Most names should be available at least as synonyms. We do not intend to take any stance on taxonomy or nomenclature.",
+  "list-6": "It’s OK to use the context of the original tweet to help narrow down your ID.",
+  "list-7": "You may see the same images more than once, although we have tried to filter these out. You may occasionally see a few images of things that are not snakes, which you can tag as “Not a snake”.",
+  "list-8": "Unlike last time, you may also see images of dead snakes.",
+  "list-9": "You can enter common names in English as well as scientific names. We're using mostly the taxonomy from HerpMapper, with support from The Reptile Database. If you can't find a name you want, please send us feedback using the form. Most names should be available at least as synonyms. We do not intend to take any stance on taxonomy or nomenclature.",
 
   "heading-people": "Project Team",
 
@@ -46,11 +49,14 @@
   "text-6": "Wir zählen auf dich und deine Teilnahme an der Challenge! Stell dir einfach vor, die Schlange auf dem Foto hätte gerade jemanden gebissen und du wirst gefragt, welche Spezies es ist.",
 
   "list-1": "Du musst nicht Schlangenexperte sein um teilzunehmen.",
-  "list-2": "Die Identifikations-Challenge enthält mehr als 1000 Bilder von Hunderten von Schlangenarten aus mehr als 100 Ländern der Welt.",
+  "list-2": "Die Identifikations-Challenge enthält mehr als 2000 Bilder aus aller Welt.",
   "list-3": "Wir messen, wie lange es dauert, bis Du deine Antwort einreichst, aber es gibt keine Frist.",
   "list-4": "Es ist erlaubt, Print & Digital-Ressourcen zu verwenden, um sich zu helfen, eine ID einzuschränken oder zu erreichen.",
   "list-5": "Es ist erlaubt, fundierte Vermutungen zu machen, auch auf Gattungs- oder Familienebene.",
-  "list-6": "Du kannst sowohl allgemeine als auch wissenschaftliche Namen in englischer Sprache eingeben. Wir verwenden hauptsächlich die Taxonomie von HerpMapper mit Unterstützung der Reptile Database. Wenn Du den gewünschten Namen nicht finden kannst, send uns bitte ein Feedback über das Formular. Die meisten Namen sollten mindestens als Synonyme verfügbar sein. Wir beabsichtigen nicht, zu Taxonomie oder Nomenklatur Haltung einzunehmen.",
+  "list-6": "It’s OK to use the context of the original tweet to help narrow down your ID.",
+  "list-7": "You may see the same images more than once, although we have tried to filter these out. You may occasionally see a few images of things that are not snakes, which you can tag as “Not a snake”.",
+  "list-8": "Unlike last time, you may also see images of dead snakes.",
+  "list-9": "Du kannst sowohl allgemeine als auch wissenschaftliche Namen in englischer Sprache eingeben. Wir verwenden hauptsächlich die Taxonomie von HerpMapper mit Unterstützung der Reptile Database. Wenn Du den gewünschten Namen nicht finden kannst, send uns bitte ein Feedback über das Formular. Die meisten Namen sollten mindestens als Synonyme verfügbar sein. Wir beabsichtigen nicht, zu Taxonomie oder Nomenklatur Haltung einzunehmen.",
 
   "heading-people": "Projektteam",
 
@@ -99,6 +105,9 @@
                 <li v-html="$t('list-4')"></li>
                 <li v-html="$t('list-5')"></li>
                 <li v-html="$t('list-6')"></li>
+                <li v-html="$t('list-7')"></li>
+                <li v-html="$t('list-8')"></li>
+                <li v-html="$t('list-9')"></li>
               </ul>
 
             </div>

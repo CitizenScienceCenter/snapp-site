@@ -6,7 +6,7 @@
     "duration-prefix-after": "Challenge ended",
     "duration-prefix-ongoing": "Challenge still open for",
 
-    "duration-after": "Challenge ended. Thank you for your contributions! The next Challenge is coming soon.",
+    "duration-after": "Winners are already announced but you can keep contributing.",
 
     "duration-days": "Days",
     "duration-day": "Day",
@@ -28,7 +28,7 @@
     "duration-prefix-after": "Challenge endete vor",
     "duration-prefix-ongoing": "Challenge noch offen für",
 
-    "duration-after": "Challenge beendet. Danke für Ihre Teilnahme! Bald kommt die nächste Challenge",
+    "duration-after": "Gewinner sind schon verkündet. Sie können aber weiterhin mitmachen.",
 
     "duration-days": "Tagen",
     "duration-day": "Tag",
@@ -79,6 +79,7 @@
                 <template v-if="state === 'after'"> {{ $t('duration-suffix-after') }}</template>
 
             </template>
+
             <template v-else>{{ $t('duration-after') }} </template>
         </p>
     </div>
@@ -106,8 +107,8 @@
         },
         computed: {
             ...mapState({
-                challengeStartISO: state => state.consts.challengeStartISO,
-                challengeEndISO: state => state.consts.challengeEndISO,
+                challengeStartISO: state => state.timer.challengeStartISO,
+                challengeEndISO: state => state.timer.challengeEndISO,
             }),
             percentage() {
                 return ( (this.currentTimestamp-this.challengeStartTimestamp)/(this.challengeEndTimestamp-this.challengeStartTimestamp) )*100;
@@ -140,7 +141,7 @@
                     this.state = 'ongoing';
                 }
 
-                this.$store.dispatch('consts/setChallengeState', this.state );
+                this.$store.dispatch('timer/setChallengeState', this.state );
                 this.calculateRemaining();
             },
             calculateRemaining() {

@@ -109,7 +109,7 @@
         ...mapState({
                 user: state => state.c3s.user,
 
-                challengeState: state => state.consts.challengeState,
+                challengeState: state => state.timer.challengeState,
 
                 totalTaskCount: state => state.stats.totalTaskCount,
                 totalUserCount: state => state.stats.totalUserCount,
