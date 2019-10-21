@@ -187,14 +187,13 @@
 
                                     <div class="actions margin-bottom">
 
-
                                         <div class="button-group right-aligned">
 
                                             <template v-if="challengeState === 'before'">
                                                 <router-link tag="button" to="/login" class="button button-primary">{{ $t('challenge-button-register') }}</router-link>
                                             </template>
 
-                                            <template v-if="challengeState === 'ongoing'">
+                                            <template v-else>
                                                 <button class="button button-secondary" v-if="!hasSubmissionAlready" :disabled="loading || showSubmissionInfo" @click.prevent="next()">{{ $t('challenge-button-skip') }}</button>
                                                 <!--<button ref="submit" class="button button-primary" v-if="!hasSubmissionAlready" :disabled="loading || !value || Object.keys(value).length === 0" @click.prevent="submitResponse()">{{ $t('challenge-button-submit') }}</button>-->
                                                 <submit-button v-if="!hasSubmissionAlready" ref="submit" :disabled="loading || !value || Object.keys(value).length === 0" @click="submitResponse()" :submissionInfo="showSubmissionInfo" :infoMessage="$t('button-submit-confirmation')">{{ $t('challenge-button-submit') }}</submit-button>
@@ -233,7 +232,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="button-group">
+                                    <div class="button-group centered left-aligned-large">
                                         <button class="button button-secondary button-secondary-naked" style="padding: 0;" @click="openInNewTab('mailto:snakeid@citizenscience.ch?subject=Snake ID Challenge Feedback&body=URL: https://snakes.citizenscience.ch'+$router.currentRoute.fullPath)">{{ $t('challenge-button-feedback')}}</button>
                                     </div>
 
@@ -243,41 +242,6 @@
                     </app-content-section>
 
                 </div>
-
-                <!--
-                <template v-else>
-
-                    <app-content-section class="content-section-condensed" color="light-greyish">
-                        <stats></stats>
-                    </app-content-section>
-
-                    <app-content-section>
-                        <div class="content-wrapper">
-                            <div class="row row-centered row-wrapping">
-
-                                <div class="col col-6 col-large-4 col-large-before-1 col-wrapping">
-                                    <div>
-                                        <div class="extra-padding-h">
-                                            <img src="/img/graphic-winner.png" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col col-large-5 col-large-after-2 col-wrapping">
-                                    <h2 class="heading centered left-aligned-large">{{ $t('section-winners-heading') }}</h2>
-                                    <p class="reduced-bottom-margin" v-html="$t('section-winners-text')"></p>
-                                    <ranking limit="3"></ranking>
-                                    <div class="button-group centered left-aligned-large">
-                                        <router-link tag="button" to="/ranking" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </app-content-section>
-
-                </template>
-                -->
 
             </template>
 
@@ -318,7 +282,8 @@
                             :submissionCount="totalSubmissionCount"
                             :taskCount="totalTaskCount" >
                     </sub-section-stats>
-                    <div class="content-subsection">
+
+                    <div class="content-subsection" v-if="challengeState !== 'after'">
                         <div class="row row-centered">
                             <div class="col col-large-10 scroll-effect">
 
@@ -329,6 +294,8 @@
                     </div>
                 </div>
             </app-content-section>
+
+            <duration v-if="challengeState === 'after'" v-show="false"></duration> <!-- because timer is in it -->
 
             <app-content-section v-if="challengeState !== 'after'">
                 <div class="content-wrapper">
@@ -361,6 +328,7 @@
             </app-content-section>
 
 
+            <!--
             <app-content-section v-else>
                 <div class="content-wrapper">
                     <div class="row row-centered">
@@ -376,7 +344,7 @@
                     </div>
                 </div>
             </app-content-section>
-
+            -->
 
             <section-feedback color="light-greyish" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
@@ -919,6 +887,7 @@ export default {
 
         .actions {
             position: relative;
+            height: 40px;
 
             .button-group {
                 position: absolute;
@@ -1015,6 +984,8 @@ export default {
                 margin-bottom: $spacing-3;
             }
             .actions {
+                height: 48px;
+
                 .info {
                     min-height: 48px;
 

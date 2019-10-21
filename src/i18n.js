@@ -52,7 +52,7 @@ export const i18n = new VueI18n({
           'navigation-current-ranking': {
               'link': 'Current Ranking'
           },
-          'navigation-past-ranking': {
+          'navigation-ranking-spring-2019': {
               'link': 'Spring 2019'
           },
           'navigation-about': {
@@ -98,7 +98,7 @@ export const i18n = new VueI18n({
           'navigation-current-ranking': {
               'link': 'Aktuelle Rangliste'
           },
-          'navigation-past-ranking': {
+          'navigation-ranking-spring-2019': {
               'link': 'Frühling 2019'
           },
           'navigation-about': {

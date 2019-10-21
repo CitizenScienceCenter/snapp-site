@@ -1,16 +1,3 @@
-<i18n>
-  {
-  "en": {
-  "site-title": "Snake ID Challenge | Citizen Science Center Zurich",
-  "site-description": "The Snake Identification Challenge"
-  },
-  "de": {
-  "site-title": "Snake ID Challenge | Citizen Science Center Zurich",
-  "site-description": "The Snake Identification Challenge"
-  }
-  }
-</i18n>
-
 <template>
   <div id="app">
     <app-header project-name="Snake ID<br/>Challenge" :languages="languages"></app-header>
@@ -38,7 +25,7 @@ export default {
   metaInfo: function() {
       return {
           // if no subcomponents specify a metaInfo.title, this title will be used
-          title: '',
+          title: this.$t('site-title'),
           // all titles will be injected into this template
           titleTemplate: '%s | '+this.$t('site-title'),
           meta: [
@@ -83,7 +70,7 @@ export default {
     })
   },
   mounted: function() {
-    this.$store.dispatch('timer/setDates', ['2019-11-08T11:00:00Z', '2019-11-15T11:00:00Z'] );
+    this.$store.dispatch('timer/setDates', ['2019-10-08T11:00:00Z', '2019-11-15T11:00:00Z'] );
 
     this.$store.dispatch('consts/setProjectId', 'b04bc186-1e0e-4fd3-87b8-a25262c1c79f');
     this.$store.dispatch('consts/setActivityId', '75ebb66d-b93c-49cc-b5b1-89c0931ebe62');

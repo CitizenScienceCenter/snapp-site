@@ -10,7 +10,7 @@ import Identification from '@/views/Identification'
 import Forum from '@/views/Forum'
 
 import Ranking from '@/views/ranking/Ranking'
-import PastRanking from '@/views/ranking/PastRanking'
+import RankingSpring2019 from "@/views/ranking/RankingSpring2019";
 
 import ChildView from '@/views/shared/ChildView';
 
@@ -86,9 +86,9 @@ export const routes = [
                         meta: {requiresAuth: true, i18n: 'navigation-current-ranking', nav: true}
                     },
                     {
-                        path: 'past',
-                        component: PastRanking,
-                        meta: {i18n: 'navigation-past-ranking', nav: true}
+                        path: 'spring-2019',
+                        component: RankingSpring2019,
+                        meta: {i18n: 'navigation-ranking-spring-2019', nav: true}
                     },
                 ]
             },

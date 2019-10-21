@@ -14,7 +14,9 @@
 
   "section-winners-heading": "Winners of our First Challenge Announced!",
   "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
-  "section-winners-button": "See the Top 30",
+  "label-username": "Username",
+  "label-submissions": "Submissions",
+  "section-winners-button": "See the Winners",
 
   "section-next-challenge-heading": "Stay tuned for our next Challenge",
   "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
@@ -55,7 +57,9 @@
 
   "section-winners-heading": "Gewinner der ersten Challenge bekannt",
   "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
-  "section-winners-button": "Zu den Top 30",
+  "label-username": "Benutzername",
+  "label-submissions": "Antworten",
+  "section-winners-button": "Zu den Gewinnern",
 
   "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
   "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
@@ -135,57 +139,6 @@
       </div>
     </app-content-section>
 
-    <!--
-    <template v-if="challengeState === 'after'">
-
-      <app-content-section>
-        <div class="content-wrapper">
-          <div class="row row-centered row-wrapping">
-
-            <div class="col col-6 col-large-4 col-large-before-1 col-wrapping">
-              <div>
-                <div class="extra-padding-h">
-                  <img src="/img/graphic-winner.png" />
-                </div>
-              </div>
-            </div>
-
-            <div class="col col-large-5 col-large-after-2 col-wrapping">
-              <h2 class="heading centered left-aligned-large">{{ $t('section-winners-heading') }}</h2>
-              <p class="reduced-bottom-margin" v-html="$t('section-winners-text')"></p>
-              <ranking limit="3"></ranking>
-              <div class="button-group centered left-aligned-large">
-                <router-link tag="button" to="/ranking" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </app-content-section>
-
-      <app-content-section class="content-section-condensed" color="light-greyish">
-        <stats></stats>
-      </app-content-section>
-
-      <app-content-section class="content-section-condensed" color="greyish">
-        <div class="content-wrapper">
-          <div class="row row-centered">
-
-            <div class="col col-large-6">
-              <h2 class="subheading centered">{{ $t('section-next-challenge-heading') }}</h2>
-              <p class="centered reduced-bottom-margin" v-html="$t('section-next-challenge-text')"></p>
-              <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
-                <router-link tag="button" to="/login" class="button button-primary">{{ $t('section-next-challenge-button') }}</router-link>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </app-content-section>
-
-    </template>
-    -->
-
 
     <app-content-section>
       <div class="content-wrapper">
@@ -254,38 +207,111 @@
       </div>
     </app-content-section>
 
+    <template v-if="challengeState !== 'after'">
+        <app-content-section>
+          <div class="content-wrapper">
 
-    <app-content-section v-if="challengeState !== 'after'">
-      <div class="content-wrapper">
+            <div class="row row-centered row-middle row-wrapping">
 
-        <div class="row row-centered row-middle row-wrapping">
+              <div class="col col-6 col-large-5 col-large-before-1 col-wrapping scroll-effect">
+                <div class="extra-padding-h">
+                  <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+                </div>
+              </div>
 
-          <div class="col col-6 col-large-5 col-large-before-1 col-wrapping scroll-effect">
-            <div class="extra-padding-h">
-              <img src="/img/graphic-prize.jpg" style="transform: rotate(-1deg); box-shadow: 0px 0px 48px -16px rgba(0,0,0, 0.8);" />
+              <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
+                <div>
+                  <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
+                  <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
+                  <ul>
+                    <li v-html="$t('section-prize-list-1-1')"></li>
+                    <li v-html="$t('section-prize-list-1-2')"></li>
+                  </ul>
+                  <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
+                  <ul class="reduced-bottom-margin">
+                    <li v-html="$t('section-prize-list-2-1')"></li>
+                    <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
+                  </ul>
+                </div>
+              </div>
+
             </div>
-          </div>
 
-          <div class="col col-large-5 col-large-after-1 col-wrapping scroll-effect scroll-effect-delayed-1">
-            <div>
-              <h2 class="heading centered left-aligned-large">{{ $t('section-prize-heading') }}</h2>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-1')"></p>
-              <ul>
-                <li v-html="$t('section-prize-list-1-1')"></li>
-                <li v-html="$t('section-prize-list-1-2')"></li>
-              </ul>
-              <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-              <ul class="reduced-bottom-margin">
-                <li v-html="$t('section-prize-list-2-1')"></li>
-                <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
-              </ul>
+          </div>
+        </app-content-section>
+    </template>
+
+    <template v-else>
+      <app-content-section>
+        <div class="content-wrapper">
+          <div class="row row-centered row-wrapping">
+
+            <div class="col col-6 col-large-4 col-large-before-1 col-wrapping">
+              <div>
+                <div class="extra-padding-h">
+                  <img src="/img/graphic-winner.png" />
+                </div>
+              </div>
             </div>
-          </div>
 
+            <div class="col col-large-5 col-large-after-2 col-wrapping">
+              <h2 class="heading centered left-aligned-large">{{ $t('section-winners-heading') }}</h2>
+              <p class="reduced-bottom-margin" v-html="$t('section-winners-text')"></p>
+
+              <table class="ranking">
+                <tr>
+                  <th></th>
+                  <th>{{ $t('label-username') }}</th>
+                  <th>{{ $t('label-submissions') }}</th>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td><b>Username</b></td>
+                  <td>12434</td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td><b>Username</b></td>
+                  <td>12434</td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td><b>Username</b></td>
+                  <td>12434</td>
+                </tr>
+              </table>
+
+              <div class="button-group centered left-aligned-large">
+                <router-link tag="button" to="/ranking" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </app-content-section>
 
-      </div>
-    </app-content-section>
+      <app-content-section color="greyish">
+        <div class="content-wrapper">
+          <div class="row row-centered">
+
+            <div class="col col-large-6">
+              <h2 class="heading centered">{{ $t('section-next-challenge-heading') }}</h2>
+              <p v-html="$t('section-next-challenge-text')"></p>
+
+              <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
+                <router-link tag="button" to="/login" class="button button-secondary">{{ $t('section-next-challenge-button') }}</router-link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </app-content-section>
+
+    </template>
+
+
+
+
 
     <section-feedback :color="(challengeState !== 'after') ? 'light-greyish' : ''" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
@@ -401,8 +427,14 @@ export default {
   },
   metaInfo: function() {
       return {
-          title: this.$t('page-title'),
-          titleTemplate: null
+          title: this.$t('site-title'),
+          titleTemplate: null,
+          meta: [
+            {
+              property: 'og:title',
+              content: this.$t('site-title')
+            }
+          ]
       }
   },
   computed: {
