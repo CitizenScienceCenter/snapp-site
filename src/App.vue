@@ -55,9 +55,7 @@ export default {
               }
           ],
           link: [
-              {rel: 'canonical', href: url+this.$route.path},
-              { rel: 'icon', type: 'image/png', href: '@/assets/shared/favicon-16x16png', sizes: '16x16' },
-              { rel: 'icon', type: 'image/png', href: '@/assets/shared/favicon-32x32png', sizes: '32x32' }
+              {rel: 'canonical', href: url+this.$route.path}
           ],
           htmlAttrs: {
               lang: this.language
