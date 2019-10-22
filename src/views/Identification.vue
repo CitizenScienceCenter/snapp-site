@@ -40,6 +40,7 @@
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
     "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
+    "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
 
     "section-partners-heading": "Project Partners",
 
@@ -86,6 +87,7 @@
     "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
     "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
     "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
+    "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
 
     "section-partners-heading": "Projektpartner",
 
@@ -316,10 +318,11 @@
                                     <li v-html="$t('section-prize-list-1-2')"></li>
                                 </ul>
                                 <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
-                                <ul class="reduced-bottom-margin">
+                                <ul>
                                     <li v-html="$t('section-prize-list-2-1')"></li>
                                     <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
                                 </ul>
+                                <p class="small" v-html="$t('section-prize-disclaimer')"></p>
                             </div>
                         </div>
 

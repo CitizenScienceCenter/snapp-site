@@ -28,7 +28,7 @@
   "people-text": "This is a highly interdisciplinary project bringing together herpetologists and key players in global health.",
 
   "heading-sources": "Image Sources",
-  "text-sources": "You may see images from different sources including online biodiversity platforms such as <a href='http://herpmapper.org/' target='_blank'>HerpMapper</a> and <a href='http://inaturalist.org/' target='_blank'>iNaturalist</a>, from Flickr, social media, or private collections from researchers or natural history museums. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
+  "text-sources": "All images in this challenge were collected from Twitter, in accordance with their terms of service. Links to the original context may be found in the top left corner of each image. The photographers retain the copyright to their images. If you recognize an image that you don’t think should be available for use, please flag it for our review.",
 
   "section-partners-heading": "Project Partners",
 
