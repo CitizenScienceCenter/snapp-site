@@ -64,7 +64,8 @@ export default {
   },
   computed: {
     ...mapState({
-      languages: state => state.consts.languages
+      languages: state => state.consts.languages,
+      language: state => state.settings.language
     })
   },
   mounted: function() {

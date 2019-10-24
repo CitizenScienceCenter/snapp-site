@@ -14,7 +14,7 @@ if( !store.state.settings.language ) {
     // trim
     language = language.substr(0,2);
 
-    // check if valid
+    // check if not valid
     if( !store.state.consts.languages.includes( language ) ) {
         language = store.state.consts.languages[0];
     }
