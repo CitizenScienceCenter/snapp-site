@@ -35,7 +35,7 @@
 
     "section-prize-heading": "Prizes for the Top Contributors",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
-    "section-prize-list-1-1": "A copy of Mark O’Shea’s new book <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+    "section-prize-list-1-1": "A copy of David A. Sheens book <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
@@ -82,7 +82,7 @@
 
     "section-prize-heading": "Das gibt's zu gewinnen",
     "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
-    "section-prize-list-1-1": "Eine Ausgabe von Mark O’Shea’s neuem Buch <b><a href='https://press.uchicago.edu/ucp/books/book/chicago/B/bo33852453.html' target='_blank'>The Book of Snakes</a></b>",
+    "section-prize-list-1-1": "Eine Ausgabe von David A. Sheens Buch <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
     "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
     "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
