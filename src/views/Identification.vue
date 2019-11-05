@@ -26,13 +26,13 @@
     "challenge-complete-text": "You did everything!",
 
     "section-prize-heading": "Prizes for the Top Contributors",
-    "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
+    "section-prize-intro-1": "<b>The 3 snake identifiers with the most answers will receive:</b>",
     "section-prize-list-1-1": "A copy of David A. Sheens book <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
     "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
-    "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
+    "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions. If there are more than three top contributors at the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
 
     "section-partners-heading": "Project Partners",
 
@@ -65,13 +65,13 @@
     "challenge-complete-text": "Du hast alles erledigt!",
 
     "section-prize-heading": "Das gibt's zu gewinnen",
-    "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer und -bestimmerinnen bekommen:</b>",
+    "section-prize-intro-1": "<b>Die 3 Schlangenbestimmer und -bestimmerinnen mit den meisten Antworten bekommen:</b>",
     "section-prize-list-1-1": "Eine Ausgabe von David A. Sheens Buch <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
     "section-prize-intro-2": "<b>Alle Teilnehmenden, die mehr als 30 Bilder bestimmen, bekommen:</b>",
     "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
     "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
-    "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
+    "section-prize-disclaimer": "Das Ranking basiert auf der Anzahl Antworten. Teilen sich am Ende mehr als drei Personen die ersten drei Plätze, werden die Genauigkeiten der Klassifizierungen betrachtet. Es sind etwa 1% klassifizierte Bilder in der Challenge enthalten, die zur Auswertung der Qualität der Antworten dienen. Diese Bilder sind nicht speziell gekennzeichnet.",
 
     "section-partners-heading": "Projektpartner",
 
