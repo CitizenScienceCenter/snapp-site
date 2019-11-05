@@ -69,7 +69,7 @@ export default {
     })
   },
   mounted: function() {
-    this.$store.dispatch('timer/setDates', ['2019-11-08T11:00:00Z', '2019-11-15T11:00:00Z'] );
+    this.$store.dispatch('timer/setDates', ['2019-11-11T11:00:00Z', '2019-11-18T11:00:00Z'] );
 
     this.$store.dispatch('consts/setProjectId', 'b04bc186-1e0e-4fd3-87b8-a25262c1c79f');
     this.$store.dispatch('consts/setActivityId', '75ebb66d-b93c-49cc-b5b1-89c0931ebe62');

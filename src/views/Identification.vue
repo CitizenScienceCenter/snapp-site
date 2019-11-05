@@ -25,14 +25,6 @@
     "challenge-complete-heading": "Challenge Complete",
     "challenge-complete-text": "You did everything!",
 
-    "section-next-challenge-heading": "Stay Tuned",
-    "section-next-challenge-text": "Visit this page frequently and follow us on social media to stay updated on the timing of the new challenge. As the time approaches, we will be sharing exciting news, such as extended length, more difficult tasks, and new prizes!",
-    "section-next-challenge-button": "Register",
-
-    "section-winners-heading": "Winners of our First Challenge Announced!",
-    "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
-    "section-winners-button": "See the Top 30",
-
     "section-prize-heading": "Prizes for the Top Contributors",
     "section-prize-intro-1": "<b>The top 3 snake identifiers will receive:</b>",
     "section-prize-list-1-1": "A copy of David A. Sheens book <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
@@ -72,19 +64,11 @@
     "challenge-complete-heading": "Challenge komplett",
     "challenge-complete-text": "Du hast alles erledigt!",
 
-    "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
-    "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
-    "section-next-challenge-button": "Registrieren",
-
-    "section-winners-heading": "Gewinner der ersten Challenge bekannt",
-    "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
-    "section-winners-button": "Zu den Top 30",
-
     "section-prize-heading": "Das gibt's zu gewinnen",
-    "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
+    "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer und -bestimmerinnen bekommen:</b>",
     "section-prize-list-1-1": "Eine Ausgabe von David A. Sheens Buch <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
-    "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
+    "section-prize-intro-2": "<b>Alle Teilnehmenden, die mehr als 30 Bilder bestimmen, bekommen:</b>",
     "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
     "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
     "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",

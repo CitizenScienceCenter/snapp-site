@@ -12,16 +12,6 @@
   "cover-button-review": "Take part",
   "cover-button-about": "Learn more",
 
-  "section-winners-heading": "Winners of our First Challenge Announced!",
-  "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the spring 2019 challenge:",
-  "label-username": "Username",
-  "label-submissions": "Submissions",
-  "section-winners-button": "See the Winners",
-
-  "section-next-challenge-heading": "Stay tuned for our next Challenge",
-  "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
-  "section-next-challenge-button": "Register",
-
   "section-intro-heading": "Help us Identifying Species of Snakes.",
   "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
 
@@ -38,6 +28,16 @@
   "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
   "section-prize-list-2-2": "A Certificate of participation from the Citizen Science Center Zurich",
   "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
+
+  "section-winners-heading": "Winners of our Second Challenge Announced!",
+  "section-winners-text": "Thank you for participating and congratulations! Here are the winners of the autumn 2019 challenge:",
+  "label-username": "Username",
+  "label-submissions": "Submissions",
+  "section-winners-button": "See the Winners",
+
+  "section-next-challenge-heading": "Stay tuned for our next Challenge",
+  "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
+  "section-next-challenge-button": "Register",
 
   "section-partners-heading": "Project Partners",
 
@@ -56,8 +56,25 @@
   "cover-button-review": "Jetzt Mitmachen",
   "cover-button-about": "Mehr erfahren",
 
-  "section-winners-heading": "Gewinner der ersten Challenge bekannt",
-  "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinner der ersten Challenge:",
+  "section-intro-heading": "Hilf mit Schlangenarten korrekt zu bestimmen.",
+  "section-intro-text": "Der Herbst ist da! Nutzt das kühlere Wetter, um eure Identifikationsfähigkeiten in der zweiten Phase der SnakeID-Challenge zu testen und zu verfeinern. Wir zeigen euch mehr als 2000 Fotos von Schlangen, die wir auf Twitter gefunden haben; sie wurden überall auf der Welt gepostet. Helft uns, so viele Schlangen wie möglich auf Spezies-, Gattungs- oder Familien-Ebene zu identifizieren.",
+
+  "section-about-heading": "Jetzt mit nicht klassifizierten Bildern",
+  "section-about-text-1": "In Phase 1 der Snake ID Challenge im März 2019 haben wir euch Bilder von Schlangen gezeigt, die bereits von Expert*innen klassifiziert worden waren. So konnten wir die Kompetenz (und Geschwindigkeit) der Crowd bei der korrekten Zuordnung der Bilder untersuchen. Dieses Mal geht es um nicht klassifizierte Bilder und wir benötigen wiederum eure Hilfe: Gemeinsam möchten wir herausfinden, welche Spezies auf den Bildern zu sehen sind um einen neuen Datensatz erstellen zu können.",
+  "section-about-text-2": "<b>Letztes Mal kannten wir die Antworten. Dieses Mal nicht, also seid ihr nun die Expert*innen!</b>",
+  "section-about-button": "Mehr zum Projekt",
+
+  "section-prize-heading": "Das gibt's zu gewinnen",
+  "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer und -bestimmerinnen bekommen:</b>",
+  "section-prize-list-1-1": "Eine Ausgabe von David A. Sheens Buch <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
+  "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
+  "section-prize-intro-2": "<b>Alle Teilnehmenden, die mehr als 30 Bilder bestimmen, bekommen:</b>",
+  "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
+  "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
+  "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
+
+  "section-winners-heading": "Gewinner*innen der zweiten Challenge bekannt",
+  "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinnerinnen und Gwinner der zweiten Challenge:",
   "label-username": "Benutzername",
   "label-submissions": "Antworten",
   "section-winners-button": "Zu den Gewinnern",
@@ -65,23 +82,6 @@
   "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
   "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
   "section-next-challenge-button": "Registrieren",
-
-  "section-intro-heading": "Hilf mit Schlangenarten korrekt zu bestimmen?",
-  "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
-
-  "section-about-heading": "Now With Unclassified Images",
-  "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
-  "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
-  "section-about-button": "Mehr zum Projekt",
-
-  "section-prize-heading": "Das gibt's zu gewinnen",
-  "section-prize-intro-1": "<b>Die 3 besten Schlangenbestimmer bekommen:</b>",
-  "section-prize-list-1-1": "Eine Ausgabe von David A. Sheens Buch <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
-  "section-prize-list-1-2": "Ein Kurzportrait auf dieser Webseite (optional)",
-  "section-prize-intro-2": "<b>Alle Teilnehmer, die mehr als 30 Bilder bestimmen, bekommen:</b>",
-  "section-prize-list-2-1": "Ein Limited-edition HerpMapper “Snake ID Challenge-Badge” (bitte dafür hier die gleiche Email-Adresse für die Registrierung verwenden wie im <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> Account)",
-  "section-prize-list-2-2": "Ein Teilnahme-Zertifikat des Citizen Science Centers Zürich",
-  "section-prize-disclaimer": "You will only see the ranking change based on the number of submissions in real time. At the end of the challenge, any ties will be broken by comparing the accuracy of IDs on a secret subset of images making up less than 1% of the challenge. You won’t know when you’ve been asked to identify one of these images!",
 
   "section-partners-heading": "Projektpartner",
 
@@ -246,7 +246,7 @@
     </template>
 
     <template v-else>
-      <app-content-section>
+      <app-content-section v-if="false">
         <div class="content-wrapper">
           <div class="row row-centered row-wrapping">
 
