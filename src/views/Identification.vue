@@ -398,7 +398,7 @@
             </app-content-section>
 
             <section-s-d-g color="greyish" goal="3">
-                This project supports Goal 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                This project supports Goal 3 of the UN SDGs: Ensure healthy lives and promote well-being for all at all ages, and in particular Target 3.3 on ending neglected tropical disease.
             </section-s-d-g>
 
 
