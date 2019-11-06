@@ -27,7 +27,7 @@
 
     "section-prize-heading": "Prizes for the Top Contributors",
     "section-prize-intro-1": "<b>The 3 snake identifiers with the most answers will receive:</b>",
-    "section-prize-list-1-1": "A copy of David A. Sheens book <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
+    "section-prize-list-1-1": "A copy of David A. Sheen's book <b><a href='https://www.amazon.com/Secrets-Snakes-Science-Natural-History/dp/1623497973' target='_blank'>Secrets of Snakes: The Science beyond the Myths</a></b>",
     "section-prize-list-1-2": "A short profile/bio on this webpage (optional)",
     "section-prize-intro-2": "<b>All participants who tag more than 30 images will receive:</b>",
     "section-prize-list-2-1": "A Limited-edition HerpMapper Snake ID challenge badge (if the same email was used to register as for the <a href='https://herpmapper.org' target='_blank'>HerpMapper.org</a> account)",
