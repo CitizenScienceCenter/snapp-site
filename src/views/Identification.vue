@@ -752,7 +752,7 @@ export default {
                 },
                 "task_id": this.tasks[0].id,
                 "user_id": this.currentUser.id,
-                "draft": true
+                "draft": false
             };
 
             this.$store.commit('c3s/submission/SET_SUBMISSION', submissionQuery );
