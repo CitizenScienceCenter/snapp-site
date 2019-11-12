@@ -534,7 +534,7 @@ export default {
     },
     mounted() {
 
-        let containerVersion = 0.9;
+        let containerVersion = 0.91;
         if( this.containerVersion !== containerVersion || !this.optionContainers ) {
             this.$store.dispatch('snakes/createOptionContainers', containerVersion );
         }
