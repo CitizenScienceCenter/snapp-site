@@ -1,4 +1,4 @@
-import snakes from "@/assets/snakes.min.json";
+import snakes from "@/assets/snakes2.min.json";
 
 
 const actions = {
