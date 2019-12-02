@@ -35,7 +35,7 @@
   "label-submissions": "Submissions",
   "section-winners-button": "See the Winners",
 
-  "section-next-challenge-heading": "Stay tuned for our next Challenge",
+  "section-next-challenge-heading": "Thank your for contributing in the challenge, we will notify the winners soon.",
   "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
   "section-next-challenge-button": "Register",
 
@@ -79,7 +79,7 @@
   "label-submissions": "Antworten",
   "section-winners-button": "Zu den Gewinnern",
 
-  "section-next-challenge-heading": "Mach mit bei der nächsten Challenge",
+  "section-next-challenge-heading": "Vielen Dank fürs Mitmachen bei der Challenge. Die Gewinner werden in kürze benachrichtigt.",
   "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
   "section-next-challenge-button": "Registrieren",
 
