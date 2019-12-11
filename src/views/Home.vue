@@ -74,7 +74,7 @@
   "section-prize-disclaimer": "Das Ranking basiert auf der Anzahl Antworten. Teilen sich am Ende mehr als drei Personen die ersten drei Plätze, werden die Genauigkeiten der Klassifizierungen betrachtet. Es sind etwa 1% klassifizierte Bilder in der Challenge enthalten, die zur Auswertung der Qualität der Antworten dienen. Diese Bilder sind nicht speziell gekennzeichnet.",
 
   "section-winners-heading": "Gewinner*innen der zweiten Challenge bekannt",
-  "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinnerinnen und Gwinner der zweiten Challenge:",
+  "section-winners-text": "Vielen Dank für die Teilnahme und herzlichen Glückwunsch! Hier sind die Gewinnerinnen und Gewinner der zweiten Challenge:",
   "label-username": "Benutzername",
   "label-submissions": "Antworten",
   "section-winners-button": "Zu den Gewinnern",
@@ -246,7 +246,7 @@
     </template>
 
     <template v-else>
-      <app-content-section v-if="false">
+      <app-content-section>
         <div class="content-wrapper">
           <div class="row row-centered row-wrapping">
 
@@ -270,23 +270,23 @@
                 </tr>
                 <tr>
                   <td>1.</td>
-                  <td><b>Username</b></td>
-                  <td>12434</td>
+                  <td><b>PMoof1</b></td>
+                  <td>7855</td>
                 </tr>
                 <tr>
                   <td>1.</td>
-                  <td><b>Username</b></td>
-                  <td>12434</td>
+                  <td><b>Gary Lee</b></td>
+                  <td>7224</td>
                 </tr>
                 <tr>
                   <td>1.</td>
-                  <td><b>Username</b></td>
-                  <td>12434</td>
+                  <td><b>yatinkalki</b></td>
+                  <td>6996</td>
                 </tr>
               </table>
 
               <div class="button-group centered left-aligned-large">
-                <router-link tag="button" to="/ranking" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
+                <router-link tag="button" to="/ranking/autumn-2019" class="button button-primary">{{ $t('section-winners-button') }}</router-link>
               </div>
             </div>
 

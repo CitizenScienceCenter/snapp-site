@@ -13,6 +13,7 @@ import Ranking from '@/views/ranking/Ranking'
 import RankingSpring2019 from "@/views/ranking/RankingSpring2019";
 
 import ChildView from '@/views/shared/ChildView';
+import RankingAutumn2019 from "../views/ranking/RankingAutumn2019";
 
 /*
 const logout = (to, from, next) => {
@@ -84,6 +85,11 @@ export const routes = [
                         path: 'current',
                         component: Ranking,
                         meta: {requiresAuth: true, i18n: 'navigation-current-ranking', nav: true}
+                    },
+                    {
+                        path: 'autumn-2019',
+                        component: RankingAutumn2019,
+                        meta: {i18n: 'navigation-ranking-autumn-2019', nav: true}
                     },
                     {
                         path: 'spring-2019',
