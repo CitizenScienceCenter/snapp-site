@@ -3,14 +3,14 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service --host 127.0.0.1 --port 8080 serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "js-cookie": "^2.2.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.13.0",
     "react-snap": "^1.23.0",
     "sass-loader": "^7.1.0",
     "simple-analytics-vue": "^1.1.0",
@@ -33,7 +33,7 @@
     "eslint-plugin-html": "^5.0.0",
     "swagger-client": "^3.8.22",
     "vue-template-compiler": "^2.5.17",
-    "vuex-c3s": "^1.1.0"
+    "vuex-c3s": "^2.3.1-beta"
   },
   "eslintConfig": {
     "root": true,

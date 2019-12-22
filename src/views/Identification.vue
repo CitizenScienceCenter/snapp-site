@@ -539,7 +539,7 @@ export default {
             this.$store.dispatch('snakes/createOptionContainers', containerVersion );
         }
 
-        this.$store.dispatch("c3s/activity/getActivity", [this.activityId, false]).then(activity => {
+        this.$store.dispatch("c3s/project/getProject", [this.activityId, false]).then(activity => {
 
             //console.log('activity loaded');
 
@@ -577,140 +577,23 @@ export default {
             this.$store.commit('c3s/task/SET_MEDIA', [] );
             console.log('load task');
 
-            this.$store.dispatch('stats/updateSubmissionStats');
-
-            let taskQuery;
-            if( !this.id ) {
-
-                taskQuery = {
-                    'select': {
-                        'fields': [
-                            '*'
-                        ],
-                        'tables': [
-                            'tasks'
-                        ],
-                        'orderBy': {
-                            'random()': ''
-                        }
-                    },
-                    'where': [
-                        {
-                            "field": 'tasks.activity_id',
-                            'op': 'e',
-                            'val': this.activityId
-                        },
-                        {
-                            'field': 'tasks.id',
-                            'op': 'ni',
-                            'val': "(SELECT task_id FROM submissions WHERE submissions.task_id = tasks.id AND user_id = '" + this.currentUser.id + "')",
-                            'join': 'a',
-                            'type': 'sql'
-                        }
-                    ]
-                };
-
-            }
-            else {
-                taskQuery = {
-                    'select': {
-                        'fields': [
-                            '*'
-                        ],
-                        'tables': [
-                            'tasks'
-                        ]
-                    },
-                    'where': [
-                        {
-                            "field": 'id',
-                            'op': 'e',
-                            'val': this.id
-                        }
-                    ]
-                };
-
-            }
+            // this.$store.dispatch('stats/updateSubmissionStats');
 
 
-            this.$store.dispatch('c3s/task/getTasks', [taskQuery, 1]).then(tasks => {
+            this.$store.dispatch('c3s/project/getProjectTask', {pid: this.activityId, random: false, index: 0}).then(tasks => {
+               console.dir(tasks)
 
-                //console.log('responded tasks');
-
-                /*
-                this.hasSubmissionAlready = false;
-                if( this.id ) {
-
-                    let query = {
-                        'select': {
-                            'fields': [
-                                '*'
-                            ],
-                            'tables': [
-                                'submissions'
-                            ]
-                        },
-                        'where': [
-                            {
-                                'field': 'task_id',
-                                'op': 'e',
-                                'val': this.id
-                            },
-                            {
-                                'field': 'user_id',
-                                'op': 'e',
-                                'val': this.currentUser.id,
-                                'join': 'a'
-                            }
-                        ]
-                    };
-
-                    this.$store.dispatch('c3s/submission/getSubmissions', [query,0] ).then(submissions => {
-
-                        if( submissions.body.length > 0 ) {
-                            this.hasSubmissionAlready = true;
-                        }
-                        else {
-                            this.hasSubmissionAlready = false;
-                        }
-
-                        this.id = false;
-
-                    });
-
-                }
-                */
+               this.$store.commit('c3s/task/SET_TASKS', tasks.body.data)
 
                 if ( this.tasks[0] ) {
-
-                    console.log( 'task loaded');
-                    //console.log('load media');
 
                     if( navigator.userAgent !== 'ReactSnap' ) {
                         this.$router.replace('/identification/'+this.tasks[0].id);
                     }
 
 
-                    const mediaQuery = {
-                        'select': {
-                            'fields': [
-                                '*'
-                            ],
-                            'tables': [
-                                'media'
-                            ]
-                        },
-                        'where': [
-                            {
-                                "field": "source_id",
-                                'op': 'e',
-                                'val': this.tasks[0].id
-                            }
-                        ]
-                    };
 
-
-                    this.$store.dispatch('c3s/media/getMedia', [mediaQuery, 'c3s/task/SET_MEDIA', 1]).then(media => {
+                    this.$store.dispatch('c3s/task/getTaskMedia', this.tasks[0].id).then(media => {
 
                         //console.log('media loaded');
                         this.value = null;

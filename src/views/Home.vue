@@ -453,7 +453,7 @@ export default {
       })
   },
   mounted() {
-      this.$store.dispatch('stats/updateSubmissionStats');
+      // this.$store.dispatch('stats/updateSubmissionStats');
   }
 }
 

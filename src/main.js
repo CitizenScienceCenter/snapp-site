@@ -11,13 +11,16 @@ import SimpleAnalytics from "simple-analytics-vue";
 
 import Croppa from 'vue-croppa';
 
-let swaggerURL = 'https://api.citizenscience.ch/api/v2/swagger.json';
-//let swaggerURL = 'http://localhost:8080/api/v2/swagger.json';
-//let swaggerURL = 'https://api-staging.citizenscience.ch/api/v3/openapi.json';
-
 Vue.config.productionTip = false;
 
-Vue.use(c3s.plugin, { store, swaggerURL});
+const apiURL = 'http://localhost:9000/v3/openapi.json'                      
+const server = 'http://localhost:9000/v3/'                                  
+console.log(apiURL, server)                                                             
+Vue.use(c3s.plugin, {                                                                   
+   store,                                                                                
+   apiURL,                                                                               
+   server                                                                                
+})  
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(Meta);
