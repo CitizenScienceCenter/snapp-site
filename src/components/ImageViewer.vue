@@ -9,7 +9,7 @@
                 :show-loading="true"
                 :loading-size="100"
                 :zoom-speed="10"
-                placeholder=""
+                placeholder="
                 :placeholder-font-size="20"
                 :disableScrollToZoom="disableScrollToZoom"
                 :accept="'image/*'"

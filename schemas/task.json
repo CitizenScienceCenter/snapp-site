@@ -16,12 +16,12 @@
     "SchoolPlace": "Herblingen",
     "SchoolState": "Schaffhausen",
     "SheetNumber": "44483",
-    "SchoolRegion": "",
-    "TeacherState": "",
-    "TeacherRegion": "",
+    "SchoolRegion": ",
+    "TeacherState": ",
+    "TeacherRegion": ",
     "SchoolDistrict": "Herblingen",
-    "TeacherDistrict": "",
-    "TeacherBirthPlace": ""
+    "TeacherDistrict": ",
+    "TeacherBirthPlace": "
   },
   "project_id": "e4b5ebc5-47a2-430b-84a9-a03b1d4dda34",
   "sequence": 0,

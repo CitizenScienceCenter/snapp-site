@@ -110,7 +110,7 @@
                     <app-content-section class="content-section-flat image-section">
 
                         <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'https://objects.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
-                        <image-viewer v-else class="image-viewer" src="" disableScrollToZoom></image-viewer>
+                        <!-- <image-viewer v-else class="image-viewer" src="" disableScrollToZoom></image-viewer> -->
 
                         <template v-if="taskMedia[0]">
                             <div class="image-info-wrapper">
@@ -595,7 +595,7 @@ export default {
 
                     this.$store.dispatch('c3s/task/getTaskMedia', this.tasks[0].id).then(media => {
 
-                        //console.log('media loaded');
+                        console.log(media.body.data);
                         this.value = null;
                         this.loadTime = new Date();
                         //console.log('set loading to false');

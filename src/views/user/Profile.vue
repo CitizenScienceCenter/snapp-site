@@ -111,7 +111,7 @@
                                 <label>{{ $t("label-region") }}</label>
                                 <div class="custom-select">
                                     <select v-model="region" :class="{'placeholder':!region}">
-                                        <option value="" disabled selected>{{ $t("label-region-select") }}</option>
+                                        <option value=" disabled selected>{{ $t("label-region-select") }}</option>
                                         <option value="north-america">{{ $t("label-region-north-america") }}</option>
                                         <option value="south-america">{{ $t("label-region-south-america") }}</option>
                                         <option value="europe">{{ $t("label-region-europe") }}</option>

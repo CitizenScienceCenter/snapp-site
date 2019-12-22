@@ -16,21 +16,21 @@ const debug = process.env.NODE_ENV !== 'production';
 
 
 let store;
-// if( window.localStorage ) {
-//   store = new Vuex.Store({
-//     modules: {
-//       settings,
-//       consts,
-//       snakes,
-//       timer,
-//       gdpr,
-//       stats
-//     },
-//     strict: debug,
-//     plugins: [createPersistedState({ storage: window.localStorage})]
-//   });
-// }
-// else {
+if( window.localStorage ) {
+  store = new Vuex.Store({
+    modules: {
+      settings,
+      consts,
+      snakes,
+      timer,
+      gdpr,
+      stats
+    },
+    strict: debug,
+    plugins: [createPersistedState({ storage: window.localStorage})]
+  });
+}
+else {
   store = new Vuex.Store({
     modules: {
       settings,
@@ -42,6 +42,6 @@ let store;
     },
     strict: debug
   });
-// }
+}
 
 export default store;
