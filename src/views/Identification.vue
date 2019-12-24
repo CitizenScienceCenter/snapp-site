@@ -469,6 +469,7 @@ export default {
             complete: false,
             loadTime: null,
             loading: true,
+            index: 0,
             showSubmissionInfo: false,
             noSnake: false,
             twitterLinkClicked: false
@@ -580,7 +581,7 @@ export default {
             // this.$store.dispatch('stats/updateSubmissionStats');
 
 
-            this.$store.dispatch('c3s/project/getProjectTask', {pid: this.activityId, random: false, index: 0}).then(tasks => {
+            this.$store.dispatch('c3s/project/getProjectTask', {pid: this.activityId, random: true, index: -1}).then(tasks => {
                console.dir(tasks)
 
                this.$store.commit('c3s/task/SET_TASKS', tasks.body.data)

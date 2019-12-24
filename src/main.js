@@ -13,13 +13,13 @@ import Croppa from 'vue-croppa';
 
 Vue.config.productionTip = false;
 
-const apiURL = 'http://localhost:9000/v3/openapi.json'                      
-const server = 'http://localhost:9000/v3/'                                  
-console.log(apiURL, server)                                                             
-Vue.use(c3s.plugin, {                                                                   
-   store,                                                                                
-   apiURL,                                                                               
-   server                                                                                
+const apiURL = 'http://localhost:9000/v3/openapi.json'
+const server = 'http://localhost:9000/v3/'
+console.log(apiURL, server)
+Vue.use(c3s.plugin, {
+   store,
+   apiURL,
+   server
 })  
 Vue.use(VueRouter);
 Vue.use(Vuex);
