@@ -109,7 +109,7 @@
 
                     <app-content-section class="content-section-flat image-section">
 
-                        <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'https://objects.citizenscience.ch/'+taskMedia[0].path" disableScrollToZoom></image-viewer>
+                        <image-viewer v-if="taskMedia[0]" class="image-viewer" :src="'https://objects.citizenscience.ch/'+taskMedia[0].path"></image-viewer>
                         <!-- <image-viewer v-else class="image-viewer" src="" disableScrollToZoom></image-viewer> -->
 
                         <template v-if="taskMedia[0]">
@@ -576,13 +576,11 @@ export default {
             this.loading = true;
             this.$store.commit('c3s/task/SET_TASKS', [] );
             this.$store.commit('c3s/task/SET_MEDIA', [] );
-            console.log('load task');
 
             // this.$store.dispatch('stats/updateSubmissionStats');
 
 
             this.$store.dispatch('c3s/project/getProjectTask', {pid: this.activityId, random: true, index: -1}).then(tasks => {
-               console.dir(tasks)
 
                this.$store.commit('c3s/task/SET_TASKS', tasks.body.data)
 
@@ -596,7 +594,6 @@ export default {
 
                     this.$store.dispatch('c3s/task/getTaskMedia', this.tasks[0].id).then(media => {
 
-                        console.log(media.body.data);
                         this.value = null;
                         this.loadTime = new Date();
                         //console.log('set loading to false');

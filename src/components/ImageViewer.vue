@@ -1,5 +1,5 @@
 <template>
-    <div class="croppa-container scroll-effect">
+    <div class="croppa-container">
         <croppa class="croppa" ref="croppa"
                 @init="init"
                 @new-image-drawn="newImageDrawn"
@@ -9,7 +9,7 @@
                 :show-loading="true"
                 :loading-size="100"
                 :zoom-speed="10"
-                placeholder="
+                placeholder=""
                 :placeholder-font-size="20"
                 :disableScrollToZoom="disableScrollToZoom"
                 :accept="'image/*'"

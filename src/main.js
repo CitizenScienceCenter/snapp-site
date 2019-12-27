@@ -13,9 +13,11 @@ import Croppa from 'vue-croppa';
 
 Vue.config.productionTip = false;
 
-const apiURL = 'http://localhost:9000/v3/openapi.json'
-const server = 'http://localhost:9000/v3/'
-console.log(apiURL, server)
+
+// const apiURL = 'http://localhost:9000/v3/openapi.json'
+// const server = 'http://localhost:9000/v3/'
+const apiURL = 'https://staging.citizenscience.ch/v3/openapi.json'
+const server = 'https://staging.citizenscience.ch/v3/'
 Vue.use(c3s.plugin, {
    store,
    apiURL,
