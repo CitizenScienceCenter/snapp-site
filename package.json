@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "now-build": "vue-cli-service build",
+    "now-static": "vue-cli-service build && react-snap && cp config/now.json dist && cd dist && now --prod",
+    "deploy": "now --prod"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1",
