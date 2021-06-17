@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header project-name="Snake ID<br/>Challenge" :languages="languages"></app-header>
+    <app-header project-name="Snake ID<br/>Challenge" :languages="languages" :hideLogin="true"></app-header>
     <div class="content-area">
       <router-view></router-view>
     </div>

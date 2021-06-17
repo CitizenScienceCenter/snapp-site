@@ -113,12 +113,12 @@
             <button class="button button-primary" v-scroll-to="'#projects'">{{ $t('cover-button-projects') }}</button>
             <button class="button button-primary" v-scroll-to="'#start-project'">{{ $t('cover-button-your-project') }}</button>
             -->
-            <router-link v-if="challengeState === 'before'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
+            <!-- <router-link v-if="challengeState === 'before'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
             <router-link v-else-if="challengeState === 'after'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
-            <router-link v-else tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
+            <router-link v-else tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-start') }}</router-link> -->
 
             <!--<button class="button button-secondary button-secondary-inverted" v-scroll-to="'#about'">{{ $t('cover-button-about') }}</button>-->
-            <router-link tag="button" to="/about" class="button button-secondary button-secondary-inverted">{{ $t('cover-button-about') }}</router-link>
+            <router-link tag="button" to="/about" class="button button-primary">{{ $t('cover-button-about') }}</router-link>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
 
 
 
-    <app-content-section v-if="challengeState !== 'before'" color="greyish" class="content-section-condensed stats-section">
+    <!-- <app-content-section v-if="challengeState !== 'before'" color="greyish" class="content-section-condensed stats-section">
       <div class="content-wrapper">
         <sub-section-stats
                            :userCount="totalUserCount"
@@ -140,7 +140,7 @@
                            :taskCount="totalTaskCount" >
         </sub-section-stats>
       </div>
-    </app-content-section>
+    </app-content-section> -->
 
 
     <app-content-section>
@@ -163,11 +163,11 @@
                 <span v-html="$t('section-intro-text-2-prefix')"></span> {{ totalTaskCount }} <span v-html="$t('section-intro-text-2-suffix')"></span>
               </p>
               -->
-              <div class="button-group centered left-aligned-large">
+              <!-- <div class="button-group centered left-aligned-large">
                 <router-link v-if="challengeState === 'before'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-preview') }}</router-link>
                 <router-link v-else-if="challengeState === 'after'" tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-review') }}</router-link>
                 <router-link v-else tag="button" to="/identification" class="button button-primary">{{ $t('cover-button-start') }}</router-link>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -302,9 +302,9 @@
               <h2 class="heading centered">{{ $t('section-next-challenge-heading') }}</h2>
               <p v-html="$t('section-next-challenge-text')"></p>
 
-              <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
+              <!-- <div v-if="!user.currentUser || user.isAnon" class="button-group centered">
                 <router-link tag="button" to="/login" class="button button-secondary">{{ $t('section-next-challenge-button') }}</router-link>
-              </div>
+              </div> -->
             </div>
 
           </div>
@@ -443,17 +443,17 @@ export default {
   },
   computed: {
       ...mapState({
-          user: state => state.c3s.user,
+          // user: state => state.c3s.user,
 
           challengeState: state => state.timer.challengeState,
 
-          totalTaskCount: state => state.stats.totalTaskCount,
-          totalUserCount: state => state.stats.totalUserCount,
-          totalSubmissionCount: state => state.stats.totalSubmissionCount
+          // totalTaskCount: state => state.stats.totalTaskCount,
+          // totalUserCount: state => state.stats.totalUserCount,
+          // totalSubmissionCount: state => state.stats.totalSubmissionCount
       })
   },
   mounted() {
-      this.$store.dispatch('stats/updateSubmissionStats');
+      // this.$store.dispatch('stats/updateSubmissionStats');
   }
 }
 
