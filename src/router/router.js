@@ -22,45 +22,44 @@ router.beforeEach((to, from, next) => {
   if (filteredPath.length > 0 && filteredPath[0].length === 2) {
     //console.log( 'url has language: '+ to.params.lang);
     let language = to.params.lang;
-    // store.dispatch("settings/setLanguage", language);
+    store.dispatch("settings/setLanguage", language);
     i18n.locale = language;
-    next();
 
     // --- auth / account
 
-    // if (to.matched.some((record) => record.meta.requiresAuth)) {
-    //   next();
-    //   // if( store.state.c3s.user.currentUser ) {
-    //   //   //console.log('validate user '+store.state.c3s.user.currentUser.username);
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next();
+      // if( store.state.c3s.user.currentUser ) {
+      //   //console.log('validate user '+store.state.c3s.user.currentUser.username);
 
-    //   //   store.dispatch('c3s/user/validate').then(v => {
-    //   //     //console.log('validation success');
-    //   //     if (v) {
-    //   //       store.dispatch('stats/updateTotalTaskCount');
-    //   //       next();
-    //   //     }
-    //   //     else {
-    //   //       router.push('/login');
-    //   //     }
-    //   //   });
-    //   // }
-    //   // else {
-    //   //   store.dispatch('c3s/user/generateAnon').then(u => {
-    //   //     //console.log('generate anon');
-    //   //     next();
-    //   //   });
-    //   // }
-    // } else if (to.matched.some((record) => record.meta.requiresAccount)) {
-    //   next();
-    //   // if( !store.state.c3s.user.currentUser || store.state.c3s.user.isAnon ) {
-    //   //   router.push('/login');
-    //   // }
-    //   // else {
-    //   //   next();
-    //   // }
-    // } else {
-    //   next();
-    // }
+      //   store.dispatch('c3s/user/validate').then(v => {
+      //     //console.log('validation success');
+      //     if (v) {
+      //       store.dispatch('stats/updateTotalTaskCount');
+      //       next();
+      //     }
+      //     else {
+      //       router.push('/login');
+      //     }
+      //   });
+      // }
+      // else {
+      //   store.dispatch('c3s/user/generateAnon').then(u => {
+      //     //console.log('generate anon');
+      //     next();
+      //   });
+      // }
+    } else if (to.matched.some((record) => record.meta.requiresAccount)) {
+      next();
+      // if( !store.state.c3s.user.currentUser || store.state.c3s.user.isAnon ) {
+      //   router.push('/login');
+      // }
+      // else {
+      //   next();
+      // }
+    } else {
+      next();
+    }
 
     // ----
   } else {

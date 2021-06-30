@@ -122,12 +122,12 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row row-centered" v-if="challengeState !== 'after'">
+      <div class="row row-centered" v-if="challengeState !== 'after'">
         <div class="col col-large-8 col-xlarge-8 scroll-effect scroll-effect-delayed-3">
           <duration></duration>
         </div>
       </div>
-      <duration v-if="challengeState === 'after'" v-show="false"></duration> -->
+      <duration v-if="challengeState === 'after'" v-show="false"></duration>
     </app-cover>
 
 
@@ -210,7 +210,7 @@
       </div>
     </app-content-section>
 
-    <!-- <template v-if="challengeState !== 'after'">
+    <template v-if="challengeState !== 'after'">
         <app-content-section>
           <div class="content-wrapper">
 
@@ -233,6 +233,7 @@
                   <p class="reduced-bottom-margin" v-html="$t('section-prize-intro-2')"></p>
                   <ul>
                     <li v-html="$t('section-prize-list-2-1')"></li>
+                    <!-- <li v-html="$t('section-prize-list-2-2')"></li> -->
                   </ul>
                   <p class="small" v-html="$t('section-prize-disclaimer')"></p>
                 </div>
@@ -242,9 +243,9 @@
 
           </div>
         </app-content-section>
-    </template> -->
+    </template>
 
-    <template>
+    <template v-else>
       <app-content-section>
         <div class="content-wrapper">
           <div class="row row-centered row-wrapping">
@@ -316,9 +317,9 @@
 
 
 
-    <section-feedback :color=" 'light-greyish' " email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
+    <section-feedback :color="(challengeState !== 'after') ? 'light-greyish' : ''" email="help@citizenscience.ch" :subject="$t('site-name')"></section-feedback>
 
-    <app-content-section :color="'light-greyish'">
+    <app-content-section :color="(challengeState === 'after') ? 'light-greyish' : ''">
       <div class="content-wrapper">
         <div class="row row-centered">
           <div class="col col-large-6">
@@ -393,65 +394,71 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 
-import Cover from "@/components/shared/Cover.vue";
-import ContentSection from "@/components/shared/ContentSection.vue";
-import NewsletterSignup from "@/components/shared/NewsletterSignup.vue";
-import Footer from "@/components/shared/Footer.vue";
-import Scores from "@/components/Scores.vue";
-// import Duration from "../components/Duration";
-// import Ranking from "../components/Ranking";
-// import Stats from "../components/Stats";
-// import SectionStats from "../components/shared/SectionStats";
+import {mapState} from 'vuex'
+
+import Cover from '@/components/shared/Cover.vue';
+import ContentSection from '@/components/shared/ContentSection.vue';
+import NewsletterSignup from '@/components/shared/NewsletterSignup.vue';
+import Footer from '@/components/shared/Footer.vue';
+import Scores from '@/components/Scores.vue';
+import Duration from "../components/Duration";
+import Ranking from "../components/Ranking";
+import Stats from "../components/Stats";
+import SectionStats from "../components/shared/SectionStats";
 import SectionNewsletterSignup from "../components/shared/SectionNewsletterSignup";
 import SubSectionStats from "../components/shared/SubSectionStats";
 import SectionSDG from "../components/shared/SectionSDG";
 import SectionFeedback from "../components/shared/SectionFeedback";
 
+
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     SectionFeedback,
     SectionSDG,
     SubSectionStats,
     SectionNewsletterSignup,
-    // SectionStats,
-    //   Stats,
-    //   Ranking,
-    //   Duration,
-    "app-cover": Cover,
-    "app-content-section": ContentSection,
-    "app-newsletter-signup": NewsletterSignup,
-    "app-footer": Footer,
-    Scores,
+    SectionStats,
+      Stats,
+      Ranking,
+      Duration,
+    'app-cover': Cover,
+    'app-content-section': ContentSection,
+    'app-newsletter-signup': NewsletterSignup,
+    'app-footer': Footer,
+    Scores
   },
   metaInfo: function() {
-    return {
-      title: this.$t("site-title"),
-      titleTemplate: null,
-      meta: [
-        {
-          property: "og:title",
-          content: this.$t("site-title"),
-        },
-      ],
-    };
+      return {
+          title: this.$t('site-title'),
+          titleTemplate: null,
+          meta: [
+            {
+              property: 'og:title',
+              content: this.$t('site-title')
+            }
+          ]
+      }
   },
   computed: {
-    // ...mapState({
-    //   // user: state => state.c3s.user,
-    //   // challengeState: (state) => state.timer.challengeState,
-    //   // totalTaskCount: state => state.stats.totalTaskCount,
-    //   // totalUserCount: state => state.stats.totalUserCount,
-    //   // totalSubmissionCount: state => state.stats.totalSubmissionCount
-    // }),
+      ...mapState({
+          // user: state => state.c3s.user,
+
+          challengeState: state => state.timer.challengeState,
+
+          // totalTaskCount: state => state.stats.totalTaskCount,
+          // totalUserCount: state => state.stats.totalUserCount,
+          // totalSubmissionCount: state => state.stats.totalSubmissionCount
+      })
   },
   mounted() {
-    // this.$store.dispatch('stats/updateSubmissionStats');
-  },
-};
+      // this.$store.dispatch('stats/updateSubmissionStats');
+  }
+}
+
 </script>
 
 <style lang="scss">
+
 </style>
