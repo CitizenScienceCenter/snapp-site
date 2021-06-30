@@ -5,7 +5,7 @@ import App from './App.vue';
 import store from './store/store.js';
 import Vuex from 'vuex';
 import { i18n } from './i18n.js';
-import c3s from 'vuex-c3s';
+// import c3s from 'vuex-c3s';
 import Meta from 'vue-meta';
 import SimpleAnalytics from "simple-analytics-vue";
 
@@ -17,7 +17,7 @@ let swaggerURL = 'https://api.citizenscience.ch/api/v2/swagger.json';
 
 Vue.config.productionTip = false;
 
-Vue.use(c3s.plugin, { store, swaggerURL});
+// Vue.use(c3s.plugin, { store, swaggerURL});
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(Meta);
@@ -33,7 +33,7 @@ Vue.use(VueScrollTo, {
 
 
 store.watch(
-    (state) => state.c3s && state.c3s.client,
+    // (state) => state.c3s && state.c3s.client,
     (value) => {
         if (value !== null) {
             new Vue({

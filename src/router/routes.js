@@ -52,7 +52,7 @@ export const routes = [
                name: "Home",
                beforeEnter: null,
                meta: {
-                 requiresAuth: true,
+                 requiresAuth: false,
                  i18n: "navigation-homepage",
                  nav: false,
                },
