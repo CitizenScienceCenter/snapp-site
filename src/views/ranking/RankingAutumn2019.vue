@@ -18,13 +18,13 @@
 
     "page-title": "Herbst-Challenge 2019",
 
-    "section-ranking-heading": "Gewinner Herbst 2019",
+    "section-ranking-heading": "Gewinner*innen Herbst 2019",
 
     "label-username": "Benutzername",
     "label-score": "Antworten",
 
 
-    "heading-bios": "Gewinner-Portraits"
+    "heading-bios": "Gewinner*innen-Portraits"
 
 
     }

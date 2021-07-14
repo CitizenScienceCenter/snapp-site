@@ -6,18 +6,17 @@
   "page-title": "Snake ID Challenge | Citizen Science Center Zurich",
 
   "cover-heading": "Do you Know These Snakes?",
-  "cover-subheading": "The Snake ID Challenge <span style='white-space: nowrap;'>(Phase 2)</span>",
+  "cover-subheading": "The Snake ID Challenge <span style='white-space: nowrap;'>(Phases 1 & 2)</span>",
   "cover-button-start": "Take part",
   "cover-button-preview": "Take a look",
   "cover-button-review": "Take part",
   "cover-button-about": "Learn more",
 
-  "section-intro-heading": "Help us Identifying Species of Snakes.",
-  "section-intro-text": "Fall is here! You can take advantage of the cooler weather to test and refine your identification skills with the second phase of the SnakeID challenge.  We’ll show you more than 2000 photos of snakes collected from Twitter, and originally posted from everywhere in the world! Help us identify as many snakes as possible at the species, genus, or family level.",
+  "section-intro-heading": "Venomous snakebites and the Challenge",
+  "section-intro-text": "Venomous snakebite is responsible for over 125,000 deaths and around three times as many permanent disabilities every year. One of the reasons for this is that healthcare providers are limited in their herpetological expertise and access to resources. The project team behind the Snake ID Challenge works on creating tools that anyone can use to identify snakes. The goal is to help clinicians better treat snakebite cases, educate people, and at the same time improve snake conservation and help scientists discover new species.",
 
-  "section-about-heading": "Now With Unclassified Images",
-  "section-about-text-1": "In Phase 1 of the Snake Id Challenge (March 2019) we showed you images of snakes already classified by experts, and studied the competence (and speed) of the crowd in matching the expert identification. This time, we are showing you unclassified images, and we need your help to discover which species are in the images in order to create a new dataset.",
-  "section-about-text-2": "<b>Last time we knew the answers, this time we don’t so you are the expert!</b>",
+  "section-about-heading": "What the Challenge is all about",
+  "section-about-text-1": "In Phase 1 of the Snake ID Challenge (March 2019) we showed images of snakes already classified by experts to citizen scientists and asked them to identify as many snakes as possible at the species, genus, or family level. We studied the competence (and speed) of the crowd in matching the expert identification. In Phase 2 (Autumn 2019), unclassified images were shown, and again citizen scientists identified which species are in the images. This time it was to create a new dataset.",
   "section-about-button": "About the Project",
 
   "section-prize-heading": "Prizes for the Top Contributors",
@@ -35,8 +34,8 @@
   "label-submissions": "Submissions",
   "section-winners-button": "See the Winners",
 
-  "section-next-challenge-heading": "Thank your for contributing in the challenge, we will notify the winners soon.",
-  "section-next-challenge-text": "A big thank you to everyone who took part in this challenge! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, we are already thinking of the next challenge. Stay tuned and become part of the next step.",
+  "section-next-challenge-heading": "Thank you for having contributed to these challenges!",
+  "section-next-challenge-text": "A big thank you to everyone who took part in these two challenges! Every single contribution brings us closer to our overall goal: to protect snakes and humans and to support the treatment of snake bite. But this was only the beginning, other challenges have followed and will follow in the future. They are held on the new platform – our <a href='https://lab.citizenscience.ch/en/' target='_blank'>Citizen Science Project Builder</a>. Stay tuned and become part of those challenges as well.",
   "section-next-challenge-button": "Register",
 
   "section-partners-heading": "Project Partners",
@@ -50,18 +49,17 @@
   "page-title": "Snake ID Challenge | Citizen Science Center Zürich",
 
   "cover-heading": "Wie gut kennst Du Schlangen?",
-  "cover-subheading": "Die Schlangen-Identifikations-Challenge <span style='white-space: nowrap;'>(Phase 2)</span>",
+  "cover-subheading": "Die Schlangen-Identifikations-Challenge <span style='white-space: nowrap;'>(Phases 1 & 2)</span>",
   "cover-button-start": "Jetzt Mitmachen",
   "cover-button-preview": "Jetzt Ansehen",
   "cover-button-review": "Jetzt Mitmachen",
   "cover-button-about": "Mehr erfahren",
 
-  "section-intro-heading": "Hilf mit Schlangenarten korrekt zu bestimmen.",
-  "section-intro-text": "Der Herbst ist da! Nutzt das kühlere Wetter, um eure Identifikationsfähigkeiten in der zweiten Phase der SnakeID-Challenge zu testen und zu verfeinern. Wir zeigen euch mehr als 2000 Fotos von Schlangen, die wir auf Twitter gefunden haben; sie wurden überall auf der Welt gepostet. Helft uns, so viele Schlangen wie möglich auf Spezies-, Gattungs- oder Familien-Ebene zu identifizieren.",
+  "section-intro-heading": "Giftige Schlangenbisse und die Challenge",
+  "section-intro-text": "Giftige Schlangenbisse sind jedes Jahr für über 125.000 Todesfälle verantwortlich. Einer der Gründe dafür ist, dass Gesundheitsversorger oft wenig herpetologisches Artenwissen und nur einen begrenzten Zugang zu Ressourcen haben. Das Projektteam hinter der Snake-ID-Challenge arbeitet an Tools, die allen zur Identifizierung von Schlangen zur Verfügung stehen. Das Ziel ist es, Ärzt*innen zu helfen, Schlangenbisse besser zu behandeln. Sie können auch in der Bildung zur Aufklärung und zum Schutz von Schlangen genutzt werden und helfen Forschenden, neue Arten zu entdecken.",
 
-  "section-about-heading": "Jetzt mit nicht klassifizierten Bildern",
-  "section-about-text-1": "In Phase 1 der Snake ID Challenge im März 2019 haben wir euch Bilder von Schlangen gezeigt, die bereits von Expert*innen klassifiziert worden waren. So konnten wir die Kompetenz (und Geschwindigkeit) der Crowd bei der korrekten Zuordnung der Bilder untersuchen. Dieses Mal geht es um nicht klassifizierte Bilder und wir benötigen wiederum eure Hilfe: Gemeinsam möchten wir herausfinden, welche Spezies auf den Bildern zu sehen sind um einen neuen Datensatz erstellen zu können.",
-  "section-about-text-2": "<b>Letztes Mal kannten wir die Antworten. Dieses Mal nicht, also seid ihr nun die Expert*innen!</b>",
+  "section-about-heading": "Um was ging es in den Challenges?",
+  "section-about-text-1": "In Phase 1 der Snake-ID-Challenge im März 2019 zeigten wir Citizen Scientists Bilder von Schlangen, die bereits von Expert*innen klassifiziert wurden. So konnten wir die Kompetenz (und Geschwindigkeit) der Crowd bei der korrekten Zuordnung der Bilder untersuchen. In Phase 2 im Herbst 2019 wurden nicht klassifizierte Bilder gezeigt. Wieder identifizierten Citizen Scientists, welche Spezies auf den Bildern zu sehen sind. Dieses Mal ging es darum, einen neuen Datensatz zu erstellen.",
   "section-about-button": "Mehr zum Projekt",
 
   "section-prize-heading": "Das gibt's zu gewinnen",
@@ -79,8 +77,8 @@
   "label-submissions": "Antworten",
   "section-winners-button": "Zu den Gewinnern",
 
-  "section-next-challenge-heading": "Vielen Dank fürs Mitmachen bei der Challenge. Die Gewinner werden in kürze benachrichtigt.",
-  "section-next-challenge-text": "Ein großes Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, wir denken bereits an die nächste Challenge. Bleib auf dem Laufenden.",
+  "section-next-challenge-heading": "Vielen Dank fürs Mitmachen bei den zwei Challenges!",
+  "section-next-challenge-text": "Ein grosses Dankeschön an alle, die bei dieser Challenge mitgemacht haben! Jeder einzelne Beitrag bringt uns dem Ziel, Schlangen und Menschen zu schützen und die Behandlung von Schlangenbissen zu unterstützen, ein Stück näher. Dies war jedoch erst der Anfang, weitere Challenges folgten und werden in Zukunft folgen. Diese werden auf der neuen Plattform durchgeführt – dem <a href='https://lab.citizenscience.ch/de/' target='_blank'>Citizen Science Project Builder</a>. Werdet auch Teil dieser neuen Challenges!",
   "section-next-challenge-button": "Registrieren",
 
   "section-partners-heading": "Projektpartner",
@@ -199,7 +197,7 @@
             <div>
               <h2 id="about" class="heading centered left-aligned-large">{{ $t('section-about-heading') }}</h2>
               <p v-html="$t('section-about-text-1')"></p>
-              <p v-html="$t('section-about-text-2')"></p>
+              <!-- <p v-html="$t('section-about-text-2')"></p> -->
               <div class="button-group centered left-aligned-large">
                 <router-link tag="button" to="/about" class="button button-secondary">{{ $t('section-about-button') }}</router-link>
               </div>
