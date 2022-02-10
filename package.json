@@ -13,7 +13,7 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "js-cookie": "^2.2.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "react-snap": "^1.23.0",
     "sass-loader": "^7.1.0",
     "simple-analytics-vue": "^1.1.0",
